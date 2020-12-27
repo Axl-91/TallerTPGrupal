@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsdl-lib.a  CMakeFiles/sdl-lib.dir/src/Game.cpp.o CMakeFiles/sdl-lib.dir/src/Vector.cpp.o CMakeFiles/sdl-lib.dir/src/Hud.cpp.o CMakeFiles/sdl-lib.dir/src/Guns.cpp.o CMakeFiles/sdl-lib.dir/src/Player.cpp.o CMakeFiles/sdl-lib.dir/src/Raycaster.cpp.o CMakeFiles/sdl-lib.dir/src/Map.cpp.o CMakeFiles/sdl-lib.dir/src/Walls.cpp.o CMakeFiles/sdl-lib.dir/src/Objects.cpp.o
+/usr/bin/ranlib libsdl-lib.a

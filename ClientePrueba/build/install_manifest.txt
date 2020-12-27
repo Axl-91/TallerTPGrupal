@@ -1,0 +1,4 @@
+/home/axel/Descargas/Taller/TPfinal/Cliente/build/guns.png
+/home/axel/Descargas/Taller/TPfinal/Cliente/build/hud.png
+/home/axel/Descargas/Taller/TPfinal/Cliente/build/walls.png
+/home/axel/Descargas/Taller/TPfinal/Cliente/build/objects.png
