@@ -5,45 +5,79 @@
 #include "Walls.h"
 #include "Objects.h"
 
-int lvl1[15][20] = {
-	{34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,34},
-	{34,35,49,35,35,49,35,35,00,00,00,00,00,36,36,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,36,36,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,34},
-	{34,34,34,34,34,34,00,00,34,34,34,34,00,00,00,00,00,34,34,34},
-	{34,00,00,00,00,00,00,00,34,34,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,34,34,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,34,34,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,34,34,00,00,00,00,00,00,00,00,00,34},
-	{34,00,00,00,00,00,00,00,34,34,00,00,00,00,00,00,00,00,00,34},
-	{34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34},
-};
 
-Map::Map(){
-	load(lvl1);
-	Objeto luz1 = {Vector(640,192), 6};
-	vectObj.push_back(luz1);
-	//Objeto luz2 = {Vector(), 9};
-	//Objeto luz3 = {Vector(), 9};
-	Objeto col1 = {Vector(192,384), 9};
-	vectObj.push_back(col1);
-	Objeto col2 = {Vector(192,448), 9};
-	vectObj.push_back(col2);
-	Objeto col3 = {Vector(192,320), 9};
-	vectObj.push_back(col3);
-	Objeto col4 = {Vector(705,192), 9};
-	vectObj.push_back(col4);
+#define WEAPON_OFFSET 74
+
+Map::Map(std::vector<std::vector<int>> &lvl)/*: map(lvl)*/{
+	rows=lvl.size();
+	cols=lvl[0].size();
+	load(lvl);
+	
+	// Objeto luz1 = {Vector(640,192), 6};
+	// vectObj.push_back(luz1);
+	// Objeto col1 = {Vector(192,384), 29};
+	// vectObj.push_back(col1);
+	// Objeto col2 = {Vector(192,448), 30};
+	// vectObj.push_back(col2);
+	// Objeto col3 = {Vector(192,320), 9};
+	// vectObj.push_back(col3);
+	// Objeto col4 = {Vector(705,192), 9};
+	// vectObj.push_back(col4);
 }
 
-void Map::load(int lvl[15][20]){
-	for (int i = 0; i < filas; ++i){
-		for (int j = 0; j < columnas; ++j){
+void Map::load(std::vector<std::vector<int>> lvl){
+	for (int i = 0; i < rows; ++i){
+		for (int j = 0; j < cols; ++j){
+			if(lvl[i][j]>=400)
+				lvl[i][j]-=400;
+			if(lvl[i][j]>=100&&lvl[i][j]<200){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), lvl[i][j]-WEAPON_OFFSET};
+				vectObj.emplace_back(aux);
+				lvl[i][j]=0;
+			}
+			if(lvl[i][j]>=200&&lvl[i][j]<300){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), lvl[i][j]-177};
+				vectObj.emplace_back(aux);
+				lvl[i][j]=0;
+			}
+			if(lvl[i][j]>=300&&lvl[i][j]<400){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), 28};
+				vectObj.emplace_back(aux);
+				lvl[i][j]=0;
+			}
+
 			map[i][j] = lvl[i][j];
 		}
+	}
+}
+
+
+void Map::insertWeapon(int x, int y, int obj){
+	int j=x/64;
+	int i=y/64;
+	Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), obj-WEAPON_OFFSET};
+	vectObj.emplace_back(aux);
+}
+
+
+
+void Map::eraseObj(float x, float y){
+	int xLimitInit = x - (int)x%largoBloque;
+	int xLimitEnd = xLimitInit+largoBloque;
+
+	int yLimitInit = y - (int)y%largoBloque;
+	int yLimitEnd = yLimitInit+largoBloque;
+
+	int xObj;
+	int yObj;
+	for(size_t i=0; i<vectObj.size(); i++)
+	{
+		xObj = vectObj[i].posicion.posX;
+		yObj = vectObj[i].posicion.posY;
+		if(xObj > xLimitInit && xObj < xLimitEnd &&
+			yObj > yLimitInit && yObj < yLimitEnd){
+			vectObj.erase(vectObj.begin()+i);
+			}
 	}
 }
 
@@ -60,10 +94,10 @@ bool Map::hayCoordenadas(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
 
-	if (posX > columnas || posX < 0){
+	if (posX > cols || posX < 0){
 		return false;
 	}
-	if (posY > filas || posY < 0){
+	if (posY > rows || posY < 0){
 		return false;
 	}
 	
@@ -72,14 +106,13 @@ bool Map::hayCoordenadas(float &x, float &y){
 
 bool Map::hayCoordenadas(Vector &vector){
 	float x = vector.getX();
-	float y = vector.getY();
+	float y = vector.getY();	
 	return hayCoordenadas(x, y);
 }
 
 int Map::getBloque(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
-
 	return map[posY][posX];
 }
 

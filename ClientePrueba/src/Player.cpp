@@ -3,6 +3,11 @@
 #include <iostream>
 #include "Player.h"
 #include "Raycaster.h"
+#include "weapon_t.h"
+
+#define PLAYER_STEP 5
+#define PLAYER_RADIUS 16
+#define PLAYER_START_ANGLE 0
 
 int toGrados(float radiales){
 	float anguloGrados = (radiales / PI) * 180;
@@ -10,104 +15,127 @@ int toGrados(float radiales){
 	return anguloInt;
 }
 
-Player::Player(){}
+Player::Player(Map &m): mapPlayer(m),
+currentWeapon(inventory.getWeapon(currentWeapon, 1)){
+	// health=MAX_HEALTH;
+	health=50;
+	angulo = PLAYER_START_ANGLE;
+    dx = cos(angulo);
+    dy = sin(angulo);
+	position.radius=PLAYER_RADIUS;
+	step=PLAYER_STEP;
+}
+
+
+weapon_t Player::equip(weapon_t w){
+	w=inventory.equip(w);
+	setWeapon(WP_SECONDARY);
+	return w;
+}
+
+int Player::heal(int h){
+	if(health>=MAX_HEALTH)
+		return 0;
+	std::cout<<"health before: "<<health<<std::endl;
+
+	health=health+h;
+	if(health>MAX_HEALTH)
+		health=MAX_HEALTH;
+	std::cout<<"health after: "<<health<<std::endl;
+
+	// hudGame.setHealth(health);
+	return 1;
+}
+
+int Player::reload(int ammo){
+	int used=inventory.reload(ammo);
+	// hudGame.setAmmo(ammo);
+
+	return used;
+}
 
 void Player::setPos(float x, float y){
-    posX = x;
-    posY = y;
+    position.x = x;
+    position.y = y;
 }
 
-void Player::setMap(Map &map){
-    mapPlayer = map;
-}
 
 void Player::setRenderer(SDL_Renderer* renderer){
+	hudGame.setRenderer(renderer);
+	inventory.setRenderer(renderer);
     rendererPlayer = renderer;
 }
 
-void Player::avanzar(){
-	posX += dx;
-	posY += dy;
 
-    /*Vector lado1(posX-dx, posY);
-    Vector lado2(posX+dx, posY);
-    Vector lado3(posX, posY-dy);
-    Vector lado4(posX, posY+dy);
-
-	if (mapPlayer.getBloque(lado1) != 0){
-
-	} else if (mapPlayer.getBloque(lado2) != 0){
-
-	} else if (mapPlayer.getBloque(lado3) != 0){
-
-	} else if (mapPlayer.getBloque(lado4) != 0){
-
-	} else {
-		posX += dx;
-		posY += dy;
-	}*/
+void Player::setDirection(float x, float y){
+	dx=x;
+	dy=y;
 }
 
-void Player::retroceder(){
-	posX -= dx;
-	posY -= dy;
 
-    /*Vector lado1(posX-dx, posY);
-    Vector lado2(posX+dx, posY);
-    Vector lado3(posX, posY-dy);
-    Vector lado4(posX, posY+dy);
+void Player::move(player_orientation_t &orientation){
+	position.x+=dx*orientation;
+	position.y+=dy*orientation;
+	setDirection(step*cos(angulo), step*sin(angulo));
+}
 
-	if (mapPlayer.getBloque(lado1) != 0){
+void Player::setWeapon(int w){
+	if(w<1 || w>WEAPONS)
+		return;
 
-	} else if (mapPlayer.getBloque(lado2) != 0){
+	currentWeapon=inventory.getWeapon(currentWeapon,w);
+	hudGame.setWeapon(currentWeapon->getType());
+}
 
-	} else if (mapPlayer.getBloque(lado3) != 0){
-
-	} else if (mapPlayer.getBloque(lado4) != 0){
-
-	} else {
-		posX -= dx;
-		posY -= dy;
+void Player::rotateLeft(){
+	angulo -= PI/36;
+	if (toGrados(angulo) < 0){
+		angulo += 2*PI;
 	}
-	*/
+	dx = step*cos(angulo);
+	dy = step*sin(angulo);
 }
 
-void Player::pollEvent(SDL_Event &evento){
-	if (evento.type == SDL_KEYDOWN){
-		switch(evento.key.keysym.sym){
-			case SDLK_UP:
-				avanzar();
-				break;
-			case SDLK_DOWN:
-				retroceder();
-				break;
-			case SDLK_RIGHT:
-				angulo += PI/36;
-				if (toGrados(angulo) >= 360){
-					angulo -= 2*PI;
-				}
-				dx = 5*cos(angulo);
-				dy = 5*sin(angulo);
-				break;
-			case SDLK_LEFT:
-				angulo -= PI/36;
-				if (toGrados(angulo) < 0){
-					angulo += 2*PI;
-				}
-				dx = 5*cos(angulo);
-				dy = 5*sin(angulo);
-				break;
-			break;
-		}
+
+void Player::rotateRight(){
+	angulo += PI/36;
+	if (toGrados(angulo) >= 360){
+		angulo -= 2*PI;
 	}
+	dx = step*cos(angulo);
+	dy = step*sin(angulo);
 }
+
+
+void Player::getPosition(circle &c){
+	c.x=position.x;
+	c.y=position.y;
+	c.radius=position.radius;
+}
+
+
+void Player::getPosition(float &x, float &y){
+	x=position.x;
+	y=position.y;
+}
+
+void Player::getDirection(float &x, float &y){
+	x=dx;
+	y=dy;
+}
+
+void Player::shoot(){
+	currentWeapon->shoot();
+}
+
 
 void Player::renderRaycaster(){
-	Vector vectorPos(posX, posY);
+	Vector vectorPos(position.x, position.y);
 	Raycaster raycaster(vectorPos, angulo, mapPlayer);
 	float anguloRay = angulo-PI/6;
 
 	for (int pos=0; pos < 320; ++pos){
+
 		if (anguloRay < 0){
 			anguloRay += 2*PI;
 		} else if (anguloRay > 2*PI){
@@ -115,9 +143,7 @@ void Player::renderRaycaster(){
 		}
 		raycaster.crearRay(anguloRay);
 		raycaster.render(pos);
-
 		distBuffer[pos] = raycaster.getDistancia();
-
 		anguloRay += PI/960;
 	}
 }
@@ -129,8 +155,8 @@ bool Player::objEsVisible(Vector &posObj){
 	float gVis = 35.0/180.0;
 	float visible = PI * gVis;
 
-	float dx = posObj.getX() - posX;
-	float dy = posObj.getY() - posY;
+	float dx = posObj.getX() - position.x;
+	float dy = posObj.getY() - position.y;
 
 	float anguloObj = atan2(dy, dx);
 	float difAng = angulo - anguloObj;
@@ -149,7 +175,7 @@ bool Player::objEsVisible(Vector &posObj){
 
 void Player::renderObjects(){
 	int uno = 1;
-	Vector posJugador = Vector(posX, posY);
+	Vector posJugador = Vector(position.x, position.y);
 	mapPlayer.ordenarObjects(posJugador);
 	
 	for (int obj = 0; obj < mapPlayer.getCantObjects(); ++obj){
@@ -164,8 +190,8 @@ void Player::renderObjects(){
 		float sizeObj = (64 * 320) / distanciaObj;
 		float yo = 100 - (sizeObj/2);
 		//Coordenadas en X
-		float dx = posX - posObjeto.getX();
-		float dy = posY - posObjeto.getY();
+		float dx = position.x - posObjeto.getX();
+		float dy = position.y - posObjeto.getY();
 
 		float anguloObj = atan2(dy, dx) - angulo;
 		float xo = tan(anguloObj) * 277.1281;
@@ -190,9 +216,12 @@ void Player::renderObjects(){
 	}
 }
 
-void Player::render(){
+void Player::render(int largoWin, int altoWin){
 	renderRaycaster();
 	renderObjects();
+	currentWeapon->render(largoWin, altoWin);
+	hudGame.render(largoWin, altoWin);
+
 }
 
 Player::~Player(){}

@@ -3,14 +3,18 @@
 #include <iostream>
 #include "Game.h"
 #include "Hud.h"
-#include "Guns.h"
 #include "Map.h"
 
-Game::Game(int largo, int alto){
+
+Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl): 
+	colMap(lvl),
+	mapGame(lvl),
+	player(mapGame){
     int hayError;
     winLargo = largo;
     winAlto = alto;
     const char* title = "WOLFENSTEIN 3D";
+
 
 	hayError = SDL_Init(SDL_INIT_VIDEO);
 	if (hayError){
@@ -26,11 +30,9 @@ Game::Game(int largo, int alto){
 	SDL_SetWindowTitle(window, title);
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 
-	hudGame.setRenderer(renderer);
-	gunGame.setRenderer(renderer);
 	mapGame.setRenderer(renderer);
+
 	player.setPos(96,96);
-	player.setMap(mapGame);
 	player.setRenderer(renderer);
 }
 
@@ -61,27 +63,87 @@ void Game::exitPollEvent(SDL_Event &evento){
 	}
 }
 
+
+void Game::movePlayer(player_orientation_t orientation){
+	float dx;
+	float dy;
+	circle playerPos;
+	int collidableIdentifier;
+	player.getPosition(playerPos);
+	player.getDirection(dx,dy);
+	dx*=orientation;
+	dy*=orientation;
+
+	std::vector<Collidable*> col;
+	colMap.detectCollision(playerPos,dx,dy,col);
+	for(size_t i=0;i<col.size();i++){
+		if(col[i]->isInside(playerPos)==false){
+			collidableIdentifier=col[i]->collide(player);
+			playerPos.x+=dx;
+			playerPos.y+=dy;
+			handleCollision(playerPos, collidableIdentifier);
+		}
+	}
+	player.move(orientation);
+}
+
+void Game::handleCollision(circle &playerPos, int c){
+	Collidable *maker;
+	if(c>=400||c%100==0)
+		return;
+
+	colMap.erase(playerPos);
+	mapGame.eraseObj(playerPos.x,playerPos.y);
+	if(c>102&&c<200){
+	 	colMap.insert(playerPos.x, playerPos.y, c);
+		mapGame.insertWeapon(playerPos.x, playerPos.y, c);
+	}
+}
+
+
 void Game::pollEvent(){
     SDL_Event evento;
 
 	if (SDL_PollEvent(&evento)){
 		//POLL EVENT PLAYER
-		exitPollEvent(evento);
-		gunGame.pollEvent(evento);
-		if (!gunGame.estaEnAccion()){
-			hudGame.pollEvent(evento);
+		exitPollEvent(evento);		
+		if (evento.type == SDL_KEYDOWN){
+		switch(evento.key.keysym.sym){
+            case SDLK_1:
+				player.setWeapon(1);
+				break;
+            case SDLK_2:
+				player.setWeapon(2);
+				break;
+            case SDLK_3:
+				player.setWeapon(3);
+				break;
+			case SDLK_UP:
+				movePlayer(FORWARD);
+				break;
+			case SDLK_DOWN:
+				movePlayer(BACKWARD);
+				break;
+			case SDLK_RIGHT:
+				player.rotateRight();
+				break;
+			case SDLK_LEFT:
+				player.rotateLeft();
+				break;
+            case SDLK_SPACE:
+				player.shoot();
+                break;
+			break;
+
 		}
-		player.pollEvent(evento);
+	}
+
 	}
 }
 
 void Game::render(){
 	fill();
-	player.render();
-	//RENDER DE SPRITES
-	gunGame.render(320, 240);
-	hudGame.renderHud(320, 240);
-	hudGame.renderGun(320,240);
+	player.render(320, 240);
     SDL_RenderPresent(renderer);
 }
 
@@ -103,6 +165,5 @@ Game::~Game(){
 		SDL_DestroyWindow(window);
 		window = nullptr;
 	}
-
 	SDL_Quit();
 }
