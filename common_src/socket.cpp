@@ -127,6 +127,7 @@ int Socket::receive(char *buffer, size_t buf_l){
         if (r < 0){
             throw SocketError("Error en socket.receive()");
         }else if (r == 0){
+            throw SocketError("Se cerro receive");
             /* Cerraron socket, hacer excepcion para esto */
             break;
         }else{

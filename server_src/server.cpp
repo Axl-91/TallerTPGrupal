@@ -17,6 +17,6 @@ void Server::run(){
             acceptor.stop_accepting();
         }
     }
+
     acceptor.join();
 }
-

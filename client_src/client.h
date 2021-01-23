@@ -5,10 +5,11 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <atomic>
 #include "../common_src/socket.h"
 #include "../common_src/thread.h"
-#include "../common_src/receiver.h"
-#include "../common_src/transmitter.h"
+#include "clientReceiver.h"
+#include "clientTransmitter.h"
 
 class Client{
 public:
@@ -17,10 +18,12 @@ public:
     void shutdown_writing();
     void connect(const char *host_name, const char *port);
     void run();
-
+    void isAtMenu();
+    void isInMatch();
 private:
     std::stringstream petition;
     Socket s;
+    std::atomic<bool> atMenus;
 };
 
 #endif
