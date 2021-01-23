@@ -5,8 +5,22 @@
 #include "PlayerWeapon.h"
 #include "../Install.h"
 
-PlayerWeapon::PlayerWeapon(int xI, int yI, int xE, int yE):
-textureHandler(xI, yI, xE, yE, INSTALLED_TEXTURE_GUNS){}
+// std::vector<std::string> imgs1=
+//     {"WEAPONS/PWKnife0.png",
+//     "WEAPONS/PWKnife1.png",
+//     "WEAPONS/PWKnife2.png",
+//     "WEAPONS/PWKnife3.png",
+//     "WEAPONS/PWKnife4.png"};
+
+// PlayerWeapon::PlayerWeapon(int xI, int yI, int xE, int yE):
+// // textureHandler(xI, yI, xE, yE, INSTALLED_TEXTURE_GUNS),
+// textureHandler(imgs1){}
+
+
+PlayerWeapon::PlayerWeapon(std::vector<std::string> &imgs):
+textureHandler(imgs){}
+
+
 
 void PlayerWeapon::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);
@@ -24,16 +38,13 @@ void PlayerWeapon::shoot(){
 void PlayerWeapon::render(int largoWin, int altoWin){
    
     if (estaDisparando){
-        int frame = numAuxiliar/offset;
-        textureHandler.src.x = offset*frame;
         numAuxiliar++;
-        if (frame > 4){
-            numAuxiliar = 0;
-            textureHandler.src.x = 0;
-            estaDisparando = false;
+         if (numAuxiliar > 4){
+             numAuxiliar = 0;
+             estaDisparando = false;
         }
     }
-    textureHandler.render(96, 72, GUNL, GUNA);
+    textureHandler.render(96, 72, GUNL, GUNA, numAuxiliar);
 }
 
 

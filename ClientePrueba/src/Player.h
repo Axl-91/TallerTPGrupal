@@ -11,6 +11,7 @@
 #include "weapon_t.h"
 #include "heal_t.h"
 #include "Circle.h"
+#include "SpritesHandler.h"
 
 #define PI 3.14159265358979323846
 #define MAX_HEALTH 100
@@ -22,6 +23,7 @@ typedef enum{
 
 class Player{
 private:
+    SpritesHandler p;
     circle position;
     float angulo;
     float dx;

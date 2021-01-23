@@ -4,7 +4,6 @@
 #include "PlayerWeapon.h"
 
 class PWChainCanon: public PlayerWeapon{
-    
 public:
     PWChainCanon();
     ~PWChainCanon();

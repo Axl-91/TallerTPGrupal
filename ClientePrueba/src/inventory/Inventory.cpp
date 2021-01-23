@@ -4,6 +4,7 @@
 #include "PWGun.h"
 #include "PWMachineGun.h"
 #include "PWChainCanon.h"
+#include "PWRocketLauncher.h"
 
 #define MAX_AMMO 100
 
@@ -11,7 +12,9 @@ Inventory::Inventory(){
     ammo=50;
     weapons[WP_KNIFE]= new PWKnife();
     weapons[WP_GUN]= new PWGun();
+    weapons[WP_SECONDARY]= new PWRocketLauncher();
 }
+
 Inventory::~Inventory(){
     for(int i=1;i<= WEAPONS ;i++)
         if(weapons[i]!=NULL){
@@ -35,7 +38,6 @@ PlayerWeapon* Inventory::getWeapon(PlayerWeapon* pw, int i){
 
     return pw;
 }
-
 
 
 int Inventory::reload(int a){

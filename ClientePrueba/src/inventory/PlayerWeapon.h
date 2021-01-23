@@ -5,6 +5,8 @@
 #include <SDL2/SDL_image.h>
 #include "../SDLHandler.h"
 #include "../weapon_t.h"
+#include "../SpritesHandler.h"
+
 //Largo y alto del arma
 #define GUNL 128
 #define GUNA 128
@@ -15,11 +17,15 @@ protected:
     int numAuxiliar = 0;
     bool estaDisparando = false;
     weapon_t type;
-    SDLHandler textureHandler;
+    // SDLHandler textureHandler;
+    SpritesHandler textureHandler;
+
     void getTexture();
     void disparar();
 public:
     void shoot();
+
+    PlayerWeapon(std::vector<std::string> &imgs);
 
     PlayerWeapon(int xI, int yI, int xE, int yE);
 	PlayerWeapon(const PlayerWeapon &copy) = delete;

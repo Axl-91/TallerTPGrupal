@@ -7,4 +7,5 @@ add_library(inventory SHARED
     PWKnife.cpp
     PWMachineGun.cpp
     PWChainCanon.cpp
+    PWRocketLauncher.cpp
 )

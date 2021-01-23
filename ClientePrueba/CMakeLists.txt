@@ -20,6 +20,7 @@ add_library(sdl-lib
     src/Objects.cpp 
     src/SDLHandler.cpp
     src/CollisionMap.cpp
+    src/SpritesHandler.cpp
 )
 
 

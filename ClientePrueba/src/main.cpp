@@ -54,6 +54,7 @@ int main(int argc, char* argv[]){
 	while (!game.isGameOver()){
 		game.pollEvent();
 		game.render();
+		// SDL_Delay(60);
 		sleep(1/60);
 	}
 	std::cout<<"chau main"<<std::endl;
