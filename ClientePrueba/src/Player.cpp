@@ -221,7 +221,6 @@ void Player::render(int largoWin, int altoWin){
 	renderObjects();
 	currentWeapon->render(largoWin, altoWin);
 	hudGame.render(largoWin, altoWin);
-
 }
 
 Player::~Player(){}

@@ -45,7 +45,6 @@ void Map::load(std::vector<std::vector<int>> lvl){
 				vectObj.emplace_back(aux);
 				lvl[i][j]=0;
 			}
-
 			map[i][j] = lvl[i][j];
 		}
 	}
