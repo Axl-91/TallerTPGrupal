@@ -5,7 +5,6 @@
 #include "Hud.h"
 #include "Map.h"
 
-
 Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl): 
 	colMap(lvl),
 	mapGame(lvl),
@@ -51,17 +50,17 @@ void Game::fill(){
     SDL_RenderFillRect(renderer, &rect);
 }
 
-void Game::exitPollEvent(SDL_Event &evento){
-	if (evento.type == SDL_QUIT){
-		gameOver = true;
-	}
-	if (evento.type == SDL_KEYDOWN){
-		switch(evento.key.keysym.sym){
-			case SDLK_ESCAPE:
-				gameOver = true;
-		}
-	}
-}
+// void Game::exitPollEvent(SDL_Event &evento){
+// 	if (evento.type == SDL_QUIT){
+// 		gameOver = true;
+// 	}
+// 	if (evento.type == SDL_KEYDOWN){
+// 		switch(evento.key.keysym.sym){
+// 			case SDLK_ESCAPE:
+// 				gameOver = true;
+// 		}
+// 	}
+// }
 
 
 void Game::movePlayer(player_orientation_t orientation){
@@ -101,45 +100,85 @@ void Game::handleCollision(circle &playerPos, int c){
 }
 
 
-void Game::pollEvent(){
-    SDL_Event evento;
 
-	if (SDL_PollEvent(&evento)){
-		//POLL EVENT PLAYER
-		exitPollEvent(evento);		
-		if (evento.type == SDL_KEYDOWN){
-		switch(evento.key.keysym.sym){
-            case SDLK_1:
-				player.setWeapon(1);
-				break;
-            case SDLK_2:
-				player.setWeapon(2);
-				break;
-            case SDLK_3:
-				player.setWeapon(3);
-				break;
-			case SDLK_UP:
-				movePlayer(FORWARD);
-				break;
-			case SDLK_DOWN:
-				movePlayer(BACKWARD);
-				break;
-			case SDLK_RIGHT:
-				player.rotateRight();
-				break;
-			case SDLK_LEFT:
-				player.rotateLeft();
-				break;
-            case SDLK_SPACE:
-				player.shoot();
-                break;
+
+void Game::receiveEvent(event_t event){
+	switch(event){
+        case PLAYER_SET_WEAPON_KNIFE:
+			player.setWeapon(1);
 			break;
-
-		}
-	}
-
+        case PLAYER_SET_WEAPON_GUN:
+			player.setWeapon(2);
+			break;
+        case PLAYER_SET_WEAPON_SECONDARY:
+			player.setWeapon(3);
+			break;
+		case PLAYER_MOVE_FORWARD:
+			movePlayer(FORWARD);
+			break;
+		case PLAYER_MOVE_BACKWARD:
+			movePlayer(BACKWARD);
+			break;
+		case PLAYER_ROTATE_RIGHT:
+			player.rotateRight();
+			break;
+		case PLAYER_ROTATE_LEFT:
+			player.rotateLeft();
+			break;
+        case PLAYER_SHOOT:
+			player.shoot();
+            break;
+        case GAME_QUIT:
+			gameOver = true;
+            break;
+		break;
 	}
 }
+
+
+
+
+
+
+// void Game::pollEvent(){
+//     SDL_Event evento;
+
+// 	if (SDL_PollEvent(&evento)){
+// 		//POLL EVENT PLAYER
+// 		exitPollEvent(evento);		
+// 		if (evento.type == SDL_KEYDOWN){
+// 		switch(evento.key.keysym.sym){
+//             case SDLK_1:
+// 				player.setWeapon(1);
+// 				break;
+//             case SDLK_2:
+// 				player.setWeapon(2);
+// 				break;
+//             case SDLK_3:
+// 				player.setWeapon(3);
+// 				break;
+// 			case SDLK_UP:
+// 				movePlayer(FORWARD);
+// 				break;
+// 			case SDLK_DOWN:
+// 				movePlayer(BACKWARD);
+// 				break;
+// 			case SDLK_RIGHT:
+// 				player.rotateRight();
+// 				break;
+// 			case SDLK_LEFT:
+// 				player.rotateLeft();
+// 				break;
+//             case SDLK_SPACE:
+// 				player.shoot();
+//                 break;
+// 			break;
+
+// 		}
+// 	}
+
+// 	}
+// }
 
 void Game::render(){
 	fill();

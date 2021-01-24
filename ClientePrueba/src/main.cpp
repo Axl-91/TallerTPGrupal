@@ -3,7 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "Game.h"
-
+#include "SDL_EventHandler.h"
 
 // std::vector<std::vector<int>> lvl1 = {
 // 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
@@ -49,10 +49,14 @@
 
 int main(int argc, char* argv[]){	
 	Game game(640, 480, lvl1);
+	SDL_EventHandler eventHandler;
+	event_t event;
 	//game.setFullScreen();
 
 	while (!game.isGameOver()){
-		game.pollEvent();
+		event=eventHandler.pollEvent();
+		game.receiveEvent(event);
+		// game.pollEvent();
 		game.render();
 		// SDL_Delay(60);
 		sleep(1/60);

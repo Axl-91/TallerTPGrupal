@@ -12,6 +12,7 @@
 #include "heal_t.h"
 #include "Circle.h"
 #include "SpritesHandler.h"
+// #include "SDL_EventHandler.h"
 
 #define PI 3.14159265358979323846
 #define MAX_HEALTH 100
@@ -23,6 +24,7 @@ typedef enum{
 
 class Player{
 private:
+    // SDL_EventHandler s;
     SpritesHandler p;
     circle position;
     float angulo;

@@ -21,6 +21,7 @@ add_library(sdl-lib
     src/SDLHandler.cpp
     src/CollisionMap.cpp
     src/SpritesHandler.cpp
+    src/SDL_EventHandler.cpp
 )
 
 
