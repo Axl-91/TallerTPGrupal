@@ -4,7 +4,6 @@
 #include "PlayerWeapon.h"
 
 class PWKnife: public PlayerWeapon{
-
 public:
     PWKnife();
     ~PWKnife();

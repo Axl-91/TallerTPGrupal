@@ -12,7 +12,7 @@ int toGradosRay(float radiales){
 }
 
 Raycaster::Raycaster(Vector &pos, float &anguloPlayer, Map &map):
-    mapRay(map), posPlayer(pos), angPlayer(anguloPlayer){
+    mapRay(map), posPlayer(pos), angPlayer(anguloPlayer), rayH(0,0){
 }
 
 void Raycaster::crearRay(float &angulo){
@@ -24,10 +24,11 @@ void Raycaster::crearRay(float &angulo){
 }
 
 void Raycaster::raycasterHorizontal(){
-    float rx, ry, xo, yo;
-    Vector raySuma;
+    float rx=0, ry=0, xo=0, yo=0;
+    Vector raySuma(0,0);
 	bool noHayColision = true;
-	int grados = toGradosRay(angRay);
+	int grados = 0;
+	grados = toGradosRay(angRay);
 	float tangH = -1/tan(angRay);
 	int largoBloque = mapRay.getLongBloques();
 
@@ -35,21 +36,22 @@ void Raycaster::raycasterHorizontal(){
 		int bloqPasados = posPlayer.getY() / largoBloque;
 		ry = bloqPasados*largoBloque - 0.0001;
 		rx = (posPlayer.getY() - ry)*tangH + posPlayer.getX();
-        rayH = Vector(rx,ry);
+        rayH.set(rx,ry);
 
 		yo = -largoBloque;
 		xo = -yo*tangH;
-        raySuma = Vector(xo,yo);
+        raySuma.set(xo,yo);
 	}
 	if (grados < 180){
 		int bloqPasados = posPlayer.getY() / largoBloque;
 		ry = bloqPasados*largoBloque + largoBloque;
 		rx = (posPlayer.getY() - ry)*tangH + posPlayer.getX();
-        rayH = Vector(rx,ry);
+        rayH.set(rx,ry);
 
 		yo = largoBloque;
 		xo = -yo*tangH;
-        raySuma = Vector(xo,yo);
+        raySuma.set(xo,yo);
+
 	}
 	if (grados == 0 || grados == 360 || grados == 180){
 		noHayColision = false;
@@ -71,7 +73,7 @@ void Raycaster::raycasterHorizontal(){
 
 void Raycaster::raycasterVertical(){
     float rx, ry, xo, yo;
-    Vector raySuma;
+    Vector raySuma(0,0);
 	bool noHayColision = true;
 	int grados = toGradosRay(angRay);
 	float tangV = -tan(angRay);
@@ -81,21 +83,21 @@ void Raycaster::raycasterVertical(){
 		int bloqPasados = posPlayer.getX() / largoBloque;
 		rx = bloqPasados*largoBloque - 0.0001;
 		ry = (posPlayer.getX() - rx)*tangV + posPlayer.getY();
-        rayV = Vector(rx, ry);
+        rayV.set(rx, ry);
 
 		xo = -largoBloque;
 		yo = -xo*tangV;
-        raySuma = Vector(xo, yo);
+        raySuma.set(xo, yo);
 	}
 	if (grados > 270 || grados < 90){
 		int bloqPasados = posPlayer.getX() / largoBloque;
 		rx = bloqPasados*largoBloque + largoBloque;
 		ry = (posPlayer.getX() - rx)*tangV + posPlayer.getY();
-        rayV = Vector(rx, ry);
+        rayV.set(rx, ry);
 
 		xo = largoBloque;
 		yo = -xo*tangV;
-        raySuma = Vector(xo, yo);
+        raySuma.set(xo, yo);
 	}
 	if (grados == 270 || grados == 90){
 		noHayColision=false;

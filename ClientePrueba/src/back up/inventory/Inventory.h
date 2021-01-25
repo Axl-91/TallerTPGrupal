@@ -15,12 +15,15 @@
 class Inventory{
     std::map<int,PlayerWeapon*> weapons;
     SDL_Renderer *weaponRenderer;
-    size_t ammo;
+    int ammo;
     bool key;
 public:
     Inventory();
     ~Inventory();
     weapon_t equip(weapon_t w);
+    int reload(int a);
+    int getAmmo();
+
     PlayerWeapon* getWeapon(PlayerWeapon* pw, int i);
     void setRenderer(SDL_Renderer* renderer);
 };

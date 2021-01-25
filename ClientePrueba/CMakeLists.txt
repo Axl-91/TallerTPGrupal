@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Wofenstein3D)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11")
 
 add_executable (main src/main.cpp)
 
 add_subdirectory(src/collisions)
 add_subdirectory(src/inventory)
+
 
 add_library(sdl-lib 
     src/Game.cpp 

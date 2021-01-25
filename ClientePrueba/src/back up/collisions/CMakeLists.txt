@@ -7,6 +7,8 @@ Rectangle.cpp
 Collidable.cpp
 Collectible.cpp
 CollectWeapon.cpp
+CollectHeal.cpp
+CollectAmmo.cpp
 Immovable.cpp
 ImmovableWall.cpp
 )

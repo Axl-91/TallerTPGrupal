@@ -35,6 +35,20 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl):
 	player.setRenderer(renderer);
 }
 
+Game::~Game(){
+	if (renderer){
+		SDL_DestroyRenderer(renderer);
+		renderer = nullptr;
+	}
+
+	if (window){
+		SDL_DestroyWindow(window);
+		window = nullptr;
+	}
+	SDL_Quit();
+}
+
+
 void Game::setFullScreen(){
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 }
@@ -95,7 +109,7 @@ void Game::handleCollision(circle &playerPos, int c){
 	mapGame.eraseObj(playerPos.x,playerPos.y);
 	if(c>102&&c<200){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
-		mapGame.insertWeapon(playerPos.x, playerPos.y, c);
+		mapGame.insertWeaponWithCoords(playerPos.x, playerPos.y, c);
 	}
 }
 
@@ -137,49 +151,6 @@ void Game::receiveEvent(event_t event){
 
 
 
-
-
-
-// void Game::pollEvent(){
-//     SDL_Event evento;
-
-// 	if (SDL_PollEvent(&evento)){
-// 		//POLL EVENT PLAYER
-// 		exitPollEvent(evento);		
-// 		if (evento.type == SDL_KEYDOWN){
-// 		switch(evento.key.keysym.sym){
-//             case SDLK_1:
-// 				player.setWeapon(1);
-// 				break;
-//             case SDLK_2:
-// 				player.setWeapon(2);
-// 				break;
-//             case SDLK_3:
-// 				player.setWeapon(3);
-// 				break;
-// 			case SDLK_UP:
-// 				movePlayer(FORWARD);
-// 				break;
-// 			case SDLK_DOWN:
-// 				movePlayer(BACKWARD);
-// 				break;
-// 			case SDLK_RIGHT:
-// 				player.rotateRight();
-// 				break;
-// 			case SDLK_LEFT:
-// 				player.rotateLeft();
-// 				break;
-//             case SDLK_SPACE:
-// 				player.shoot();
-//                 break;
-// 			break;
-
-// 		}
-// 	}
-
-// 	}
-// }
-
 void Game::render(){
 	fill();
 	player.render(320, 240);
@@ -194,15 +165,3 @@ SDL_Renderer* Game::getRenderer(){
 	return renderer;
 }
 
-Game::~Game(){
-	if (renderer){
-		SDL_DestroyRenderer(renderer);
-		renderer = nullptr;
-	}
-
-	if (window){
-		SDL_DestroyWindow(window);
-		window = nullptr;
-	}
-	SDL_Quit();
-}

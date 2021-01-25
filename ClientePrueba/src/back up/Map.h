@@ -10,8 +10,8 @@
 #include "Walls.h"
 #include "Objects.h"
 
-#define MAP_ROWS 15
-#define MAP_COLS 20
+// #define MAP_ROWS 15
+// #define MAP_COLS 20
 
 typedef struct Objeto {
 	Vector posicion;
@@ -24,8 +24,8 @@ private:
 	int rows;
 	int cols;
     //El mapa deberia ser de dimensiones variables
-	int map[MAP_ROWS][MAP_COLS];
-	// std::vector<std::vector<int>> map;
+	// int map[MAP_ROWS][MAP_COLS];
+	std::vector<std::vector<int>> map;
 
 	Walls walls;
 	Objects objects;

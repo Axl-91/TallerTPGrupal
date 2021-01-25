@@ -14,7 +14,7 @@
 #include "SpritesHandler.h"
 // #include "SDL_EventHandler.h"
 
-#define PI 3.14159265358979323846
+// #define PI 3.14159265358979323846
 #define MAX_HEALTH 100
 typedef enum{
     FORWARD = 1,

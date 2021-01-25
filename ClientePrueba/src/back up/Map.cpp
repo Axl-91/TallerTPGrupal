@@ -7,35 +7,38 @@
 
 
 #define WEAPON_OFFSET 74
+#define HEAL_OFFSET 177
 
-Map::Map(std::vector<std::vector<int>> &lvl)/*: map(lvl)*/{
+
+Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
 	cols=lvl[0].size();
 	load(lvl);
-	
-	// Objeto luz1 = {Vector(640,192), 6};
-	// vectObj.push_back(luz1);
-	// Objeto col1 = {Vector(192,384), 29};
-	// vectObj.push_back(col1);
-	// Objeto col2 = {Vector(192,448), 30};
-	// vectObj.push_back(col2);
-	// Objeto col3 = {Vector(192,320), 9};
-	// vectObj.push_back(col3);
-	// Objeto col4 = {Vector(705,192), 9};
-	// vectObj.push_back(col4);
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
+	std::vector<int> auxVec(lvl.size());
+	// map=lvl;
+
 	for (int i = 0; i < rows; ++i){
 		for (int j = 0; j < cols; ++j){
-			if(lvl[i][j]>=400)
-				lvl[i][j]-=400;
-			if(lvl[i][j]>=100&&lvl[i][j]<200){
-				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), lvl[i][j]-WEAPON_OFFSET};
+			if(map[i][j]>=400)
+				map[i][j]-=400;
+			if(map[i][j]>=100&&map[i][j]<200){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), map[i][j]-WEAPON_OFFSET};
 				vectObj.emplace_back(aux);
-				lvl[i][j]=0;
+				map[i][j]=0;
 			}
-			map[i][j] = lvl[i][j];
+			if(map[i][j]>=200&&map[i][j]<300){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), map[i][j]-HEAL_OFFSET};
+				vectObj.emplace_back(aux);
+				map[i][j]=0;
+			}
+			if(map[i][j]>=300&&map[i][j]<400){
+				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), 28};
+				vectObj.emplace_back(aux);
+				map[i][j]=0;
+			}
 		}
 	}
 }
@@ -83,10 +86,10 @@ bool Map::hayCoordenadas(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
 
-	if (posX > cols || posX < 0){
+	if (posX >= cols || posX < 0){
 		return false;
 	}
-	if (posY > rows || posY < 0){
+	if (posY >= rows || posY < 0){
 		return false;
 	}
 	
@@ -102,6 +105,7 @@ bool Map::hayCoordenadas(Vector &vector){
 int Map::getBloque(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
+
 	return map[posY][posX];
 }
 

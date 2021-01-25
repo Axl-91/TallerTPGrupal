@@ -2,11 +2,15 @@
 #include "Collidable.h"
 #include "ImmovableWall.h"
 #include "CollectWeapon.h"
+#include "CollectHeal.h"
+#include "CollectAmmo.h"
 #include "../Vector.h"
 #include "Rectangle.h"
 
 #define COLLIDABLE_OFFSET 100
 #define WEAPON_OFFSET 100
+#define HEAL_OFFSET 200
+#define AMMO_OFFSET 300
 #define WALL_OFFSET 400
 
 
@@ -20,6 +24,10 @@ Collidable::~Collidable(){}
 Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
     if(opt>WEAPON_OFFSET && opt<WEAPON_OFFSET + COLLIDABLE_OFFSET){
         return new CollectWeapon(xI, yI, cellWidth, opt-WEAPON_OFFSET);
+    }else if(opt>HEAL_OFFSET && opt<HEAL_OFFSET + COLLIDABLE_OFFSET){
+        return new CollectHeal(xI, yI, cellWidth, opt-HEAL_OFFSET);
+    }else if(opt>AMMO_OFFSET && opt<AMMO_OFFSET + COLLIDABLE_OFFSET){
+        return new CollectAmmo(xI, yI, cellWidth, opt-AMMO_OFFSET);
     }else if(opt>WALL_OFFSET && opt<WALL_OFFSET + COLLIDABLE_OFFSET){
         return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);
     }else {

@@ -6,11 +6,13 @@
 
 SDLHandler::SDLHandler(int posX, int posY, int length, int width, std::string iFile):
 imgFile(iFile){
+    textura==NULL;
     src = {posX, posY, length, width};
 }
 
 SDLHandler::~SDLHandler(){
-    SDL_DestroyTexture(textura);
+    // if(textura!=NULL)
+    //     SDL_DestroyTexture(textura);
 }
 
 

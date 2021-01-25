@@ -7,77 +7,57 @@
 
 
 #define WEAPON_OFFSET 74
+#define HEAL_OFFSET 177
 
-Map::Map(std::vector<std::vector<int>> &lvl)/*: map(lvl)*/{
+
+Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
 	cols=lvl[0].size();
 	load(lvl);
-	
-	// Objeto luz1 = {Vector(640,192), 6};
-	// vectObj.push_back(luz1);
-	// Objeto col1 = {Vector(192,384), 29};
-	// vectObj.push_back(col1);
-	// Objeto col2 = {Vector(192,448), 30};
-	// vectObj.push_back(col2);
-	// Objeto col3 = {Vector(192,320), 9};
-	// vectObj.push_back(col3);
-	// Objeto col4 = {Vector(705,192), 9};
-	// vectObj.push_back(col4);
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
+	std::vector<int> auxVec(lvl.size());
+
 	for (int i = 0; i < rows; ++i){
 		for (int j = 0; j < cols; ++j){
-			if(lvl[i][j]>=400)
-				lvl[i][j]-=400;
-			if(lvl[i][j]>=100&&lvl[i][j]<200){
-				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), lvl[i][j]-WEAPON_OFFSET};
-				vectObj.emplace_back(aux);
-				lvl[i][j]=0;
+			if(map[i][j]>=400)
+				map[i][j]-=400;
+			if(map[i][j]>=100&&map[i][j]<200){
+				insertObject(j,i,map[i][j]-WEAPON_OFFSET);
+				map[i][j]=0;
 			}
-			if(lvl[i][j]>=200&&lvl[i][j]<300){
-				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), lvl[i][j]-177};
-				vectObj.emplace_back(aux);
-				lvl[i][j]=0;
+			if(map[i][j]>=200&&map[i][j]<300){
+				insertObject(j,i,map[i][j]-HEAL_OFFSET);
+				map[i][j]=0;
 			}
-			if(lvl[i][j]>=300&&lvl[i][j]<400){
-				Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), 28};
-				vectObj.emplace_back(aux);
-				lvl[i][j]=0;
+			if(map[i][j]>=300&&map[i][j]<400){
+				insertObject(j,i,28);
+				map[i][j]=0;
 			}
-			map[i][j] = lvl[i][j];
 		}
 	}
 }
 
 
-void Map::insertWeapon(int x, int y, int obj){
-	int j=x/64;
-	int i=y/64;
-	Objeto aux = {Vector((j+1)*64-32,(i+1)*64-32), obj-WEAPON_OFFSET};
-	vectObj.emplace_back(aux);
+void Map::insertWeaponWithCoords(int x, int y, int obj){
+	int j=x/largoBloque;
+	int i=y/largoBloque;
+	insertObject(j,i,obj-WEAPON_OFFSET);
 }
 
-
+void Map::insertObject(int x, int y, int obj){
+	Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
+	Objeto auxObj = {posVect, obj};
+	std::pair<int,int> posPair(posVect.posX, posVect.posY);
+	mapObj[posPair]=auxObj;
+}
 
 void Map::eraseObj(float x, float y){
-	int xLimitInit = x - (int)x%largoBloque;
-	int xLimitEnd = xLimitInit+largoBloque;
+	int posX = x - (int)x%largoBloque+largoBloque/2;
+	int posY = y - (int)y%largoBloque+largoBloque/2;
+	mapObj.erase(std::pair<int,int>(posX, posY));
 
-	int yLimitInit = y - (int)y%largoBloque;
-	int yLimitEnd = yLimitInit+largoBloque;
-
-	int xObj;
-	int yObj;
-	for(size_t i=0; i<vectObj.size(); i++)
-	{
-		xObj = vectObj[i].posicion.posX;
-		yObj = vectObj[i].posicion.posY;
-		if(xObj > xLimitInit && xObj < xLimitEnd &&
-			yObj > yLimitInit && yObj < yLimitEnd){
-			vectObj.erase(vectObj.begin()+i);
-			}
-	}
 }
 
 void Map::setRenderer(SDL_Renderer* renderer){
@@ -93,10 +73,10 @@ bool Map::hayCoordenadas(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
 
-	if (posX > cols || posX < 0){
+	if (posX >= cols || posX < 0){
 		return false;
 	}
-	if (posY > rows || posY < 0){
+	if (posY >= rows || posY < 0){
 		return false;
 	}
 	
@@ -112,6 +92,7 @@ bool Map::hayCoordenadas(Vector &vector){
 int Map::getBloque(float &x, float &y){
 	int posX = x/largoBloque;
 	int posY = y/largoBloque;
+
 	return map[posY][posX];
 }
 
@@ -142,13 +123,11 @@ void Map::renderWall(int &posX, int &posY, int &largo, int &alto){
 }
 
 void Map::addObject(Vector &posicion, int tipo){
+	std::pair<int,int> auxPair(posicion.posX,posicion.posY);
 	Objeto obj = {posicion, tipo};
-	vectObj.push_back(obj);
+	mapObj[auxPair]=obj;
 }
 
-int Map::getCantObjects(){
-	return vectObj.size();
-}
 
 void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 	float dist = pos.distancia(obj.posicion);
@@ -163,24 +142,14 @@ void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 	v.push_back(obj);
 }
 
-void Map::ordenarObjects(Vector &pos){
+std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 	std::vector<Objeto> vectorAux;
-
-	for (Objeto obj : vectObj){
-		agregarVectDist(vectorAux, obj, pos);
+	for (auto obj : mapObj){
+		agregarVectDist(vectorAux, obj.second, pos);
 	}
-	vectObj.swap(vectorAux);
+	return vectorAux;
 }
 
-Vector Map::getPosObj(int &pos){
-	Objeto objPedido = vectObj.at(pos);
-	return objPedido.posicion;
-}
-
-int Map::getTipoObj(int &pos){
-	Objeto objPedido = vectObj.at(pos);
-	return objPedido.tipoObjecto;	
-}
 
 void Map::setObj(int &tipo){
 	objects.setObject(tipo);

@@ -9,10 +9,13 @@
 #include "inventory/PlayerWeapon.h"
 #include "inventory/Inventory.h"
 #include "weapon_t.h"
+#include "heal_t.h"
 #include "Circle.h"
+#include "SpritesHandler.h"
+// #include "SDL_EventHandler.h"
 
 #define PI 3.14159265358979323846
-
+#define MAX_HEALTH 100
 typedef enum{
     FORWARD = 1,
     BACKWARD =-1
@@ -21,12 +24,15 @@ typedef enum{
 
 class Player{
 private:
+    // SDL_EventHandler s;
+    SpritesHandler p;
     circle position;
     float angulo;
     float dx;
     float dy;
     float step;
     float distBuffer[320];
+    int health;
     Map &mapPlayer;
     Inventory inventory;
    	Hud hudGame;
@@ -57,6 +63,9 @@ public:
 
     void getDirection(float &x, float &y);
     weapon_t equip(weapon_t w);
+    int heal(int h);
+    int reload(int ammo);
+
     ~Player();
 };
 

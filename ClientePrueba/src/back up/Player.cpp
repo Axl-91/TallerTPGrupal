@@ -17,6 +17,8 @@ int toGrados(float radiales){
 
 Player::Player(Map &m): mapPlayer(m),
 currentWeapon(inventory.getWeapon(currentWeapon, 1)){
+	// health=MAX_HEALTH;
+	health=50;
 	angulo = PLAYER_START_ANGLE;
     dx = cos(angulo);
     dy = sin(angulo);
@@ -31,9 +33,30 @@ weapon_t Player::equip(weapon_t w){
 	return w;
 }
 
+int Player::heal(int h){
+	if(health>=MAX_HEALTH)
+		return 0;
+	std::cout<<"health before: "<<health<<std::endl;
+
+	health=health+h;
+	if(health>MAX_HEALTH)
+		health=MAX_HEALTH;
+	std::cout<<"health after: "<<health<<std::endl;
+
+	// hudGame.setHealth(health);
+	return 1;
+}
+
+int Player::reload(int ammo){
+	int used=inventory.reload(ammo);
+	// hudGame.setAmmo(ammo);
+
+	return used;
+}
+
 void Player::setPos(float x, float y){
     position.x = x;
-    position.x = y;
+    position.y = y;
 }
 
 
@@ -55,20 +78,6 @@ void Player::move(player_orientation_t &orientation){
 	position.y+=dy*orientation;
 	setDirection(step*cos(angulo), step*sin(angulo));
 }
-
-
-
-// void Player::avanzar(){
-// 	position.x+=dx;
-// 	position.y+=dy;
-// 	setDirection(step*cos(angulo), step*sin(angulo));
-// }
-
-// void Player::retroceder(){
-// 	position.x-=dx;
-// 	position.y-=dy;
-// 	setDirection(step*cos(angulo), step*sin(angulo));
-// }
 
 void Player::setWeapon(int w){
 	if(w<1 || w>WEAPONS)
@@ -212,7 +221,6 @@ void Player::render(int largoWin, int altoWin){
 	renderObjects();
 	currentWeapon->render(largoWin, altoWin);
 	hudGame.render(largoWin, altoWin);
-
 }
 
 Player::~Player(){}

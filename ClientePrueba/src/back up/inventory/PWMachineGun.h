@@ -4,7 +4,6 @@
 #include "PlayerWeapon.h"
 
 class PWMachineGun: public PlayerWeapon{
-    
 public:
     PWMachineGun();
     ~PWMachineGun();
