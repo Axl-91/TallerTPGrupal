@@ -37,5 +37,9 @@ install(FILES
 assets/guns.png 
 assets/hud.png 
 assets/walls.png 
-assets/objects.png 
+assets/objects.png
+DESTINATION ${CMAKE_BINARY_DIR}
+)
+install(DIRECTORY
+../Media
 DESTINATION ${CMAKE_BINARY_DIR})

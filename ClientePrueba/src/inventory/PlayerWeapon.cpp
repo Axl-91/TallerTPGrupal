@@ -36,15 +36,19 @@ void PlayerWeapon::shoot(){
 
 
 void PlayerWeapon::render(int largoWin, int altoWin){
+    int delay = 32;
+    int frame = 0;
    
     if (estaDisparando){
         numAuxiliar++;
-         if (numAuxiliar > 4){
+        frame = numAuxiliar / delay;
+         if (frame > 4){
              numAuxiliar = 0;
+             frame = 0;
              estaDisparando = false;
         }
     }
-    textureHandler.render(96, 72, GUNL, GUNA, numAuxiliar);
+    textureHandler.render(96, 72, GUNL, GUNA, frame);
 }
 
 

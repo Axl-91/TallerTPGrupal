@@ -270,6 +270,10 @@ void Player::render(int largoWin, int altoWin){
 	renderObjects();
 	currentWeapon->render(largoWin, altoWin);
 	hudGame.render(largoWin, altoWin);
+	hudGame.renderHealth(100);
+	hudGame.renderLife(3);
+	hudGame.renderAmmo(20);
+	hudGame.renderScore(10320);
 }
 
 Player::~Player(){}
