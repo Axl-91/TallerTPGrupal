@@ -91,13 +91,16 @@ weapon_t ServerPlayer::equip(weapon_t weapon){
 	
 	if(secondaryWP == NONE){
 		secondaryWP = weapon;	
+		currentWP = WP_SECONDARY;
 		return GUN;
 	}
 	if(secondaryWP == weapon){
+		currentWP = WP_SECONDARY;
 		return NONE;
 	}
 	last=secondaryWP;
 	secondaryWP = weapon;
+	currentWP = WP_SECONDARY;
 	return last;
 }
 

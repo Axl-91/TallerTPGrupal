@@ -35,7 +35,6 @@ void Inventory::setRenderer(SDL_Renderer* renderer){
 PlayerWeapon* Inventory::getWeapon(PlayerWeapon* pw, int i){
     if(weapons[i]!=NULL)
         pw=weapons[i];
-
     return pw;
 }
 
@@ -62,32 +61,26 @@ void Inventory::setAmmo(int a){
     ammo = a;
 }
 
-void Inventory::equip(weapon_t w){
+bool Inventory::equip(weapon_t w){
     weapon_t last;
     if(weapons[WP_SECONDARY]!=NULL){
         if(w == weapons[WP_SECONDARY]->getType()){
-	        // std::cout << "ya la tenia" << std::endl;
-            return;
+            return false;
         }
     }
     
-	// std::cout << "voy a equipar una" << std::endl;
-
     if(w==MACHINE_GUN){
         equipMachineGun();
     }else if(w==CHAIN_CANNON){
         equipChainGun();
+
     // }else if(w==ROCKET_LAUNCHER){
     //     equipRocketLauncher();
     }else
-        return;
-    // }else
-    //     std::cout<<"no equipe nada"<<std::endl;
-
-	std::cout << "voy a setear" << std::endl;    
+        return false;
    	weapons[WP_SECONDARY]->setRenderer(weaponRenderer);
-	std::cout << "setee" << std::endl;
 
+    return true;
 }
 
 void Inventory::equipMachineGun(){

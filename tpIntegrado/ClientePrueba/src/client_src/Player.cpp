@@ -24,10 +24,9 @@ Player::Player(Map &m):
 	step=PLAYER_STEP;
 }
 
-weapon_t Player::equip(weapon_t w){
-	inventory.equip(w);
-	setWeapon(WP_SECONDARY);
-	return w;
+void Player::equip(weapon_t w){
+	if(inventory.equip(w)==true);
+		setWeapon(WP_SECONDARY);
 }
 /*
 int Player::heal(int h){
@@ -201,15 +200,16 @@ void Player::updateInfo(Player_t &p){
 	angulo = p.ang;
     // std::cout<<"Player::updateInfo: current wp recibida: " << p.currentWP <<std::endl;
 	
-	equip(p.secondaryWP);
-	if(p.shooting)
-		currentWeapon->shoot();
 	lifes = p.lifes;
 	score = p.score;
 	inventory.setAmmo(p.ammo);
 	health = p.health;
 	// ammo = p.ammo;
+	equip(p.secondaryWP);
 	setWeapon(p.currentWP);
+	if(p.shooting){
+		currentWeapon->shoot();
+	}
 	
 }
 

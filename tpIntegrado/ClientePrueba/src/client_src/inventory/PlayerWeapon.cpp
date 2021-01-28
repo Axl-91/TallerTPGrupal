@@ -26,7 +26,8 @@ void PlayerWeapon::render(int largoWin, int altoWin){
 
     if (estaDisparando){
         numAuxiliar++;
-        frame = numAuxiliar / delay;
+        frame = numAuxiliar/ delay;
+
          if (frame > 4){
              numAuxiliar = 0;
              frame = 0;
@@ -34,7 +35,6 @@ void PlayerWeapon::render(int largoWin, int altoWin){
         }
     }
     textureHandler.render(96, 72, GUNL, GUNA, frame);
-    // textureHandler.render(96, 72, GUNL, GUNA, 2);
 }
 
 weapon_t PlayerWeapon::getType(){

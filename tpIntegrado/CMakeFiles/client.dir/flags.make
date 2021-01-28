@@ -6,5 +6,5 @@ CXX_FLAGS =  -g -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/wagner/Desktop/integrationTest/TallerTPGrupal 
+CXX_INCLUDES = -I/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado 
 

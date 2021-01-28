@@ -1,4 +1,4 @@
-/home/wagner/Desktop/integrationTest/TallerTPGrupal/guns.png
-/home/wagner/Desktop/integrationTest/TallerTPGrupal/hud.png
-/home/wagner/Desktop/integrationTest/TallerTPGrupal/walls.png
-/home/wagner/Desktop/integrationTest/TallerTPGrupal/objects.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/guns.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/hud.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/walls.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/objects.png

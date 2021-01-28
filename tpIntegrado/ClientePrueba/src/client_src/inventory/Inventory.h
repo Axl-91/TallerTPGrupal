@@ -18,7 +18,7 @@ class Inventory{
 public:
     Inventory();
     ~Inventory();
-    void equip(weapon_t w);
+    bool equip(weapon_t w);
     // int reload(int a);
     int getAmmo();
     void setAmmo(int a);

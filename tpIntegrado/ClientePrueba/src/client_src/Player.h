@@ -57,7 +57,7 @@ public:
     void getPosition(circle &c);
 
     void getDirection(float &x, float &y);
-    weapon_t equip(weapon_t w);
+    void equip(weapon_t w);
     int heal(int &h);
     int reload(int &ammo);
     void updateInfo(Player_t &p);
