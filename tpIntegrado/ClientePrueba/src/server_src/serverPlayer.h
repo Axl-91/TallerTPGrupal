@@ -7,14 +7,24 @@
 
 typedef enum{
     FORWARD = 1,
-    BACKWARD =-1
-}player_orientation_t;
+    BACKWARD =-1,
+    MOVE_QUIET = 0
+}player_move_orientation_t;
+
+typedef enum{
+    LEFT = 1,
+    RIGHT =-1,
+    ROTATE_QUIET = 0
+}player_rotate_orientation_t;
+
 
 class ServerPlayer{
 private:
     // SDL_EventHandler s;
     // SpritesHandler p;
     circle position;
+    player_move_orientation_t moveOrientation;
+    player_rotate_orientation_t rotateOrientation;
     float ang;
     float dirx;
     float diry;
@@ -36,16 +46,22 @@ private:
 public:
     ServerPlayer(float x, float y, float a);
     ~ServerPlayer();
-    void movePlayerForward();
-    void movePlayerBackward();
-    void rotatePlayerRight();
-    void rotatePlayerLeft();
+    // void movePlayerForward();
+    // void movePlayerBackward();
+    void rotate();
+
+    // void rotatePlayerRight();
+    // void rotatePlayerLeft();
+    player_move_orientation_t getMoveOrientation();
     void getPlayerInfo(Player_t &p);
     void getPosition(float &x, float &y);
     void getPosition(circle &c);
     void getDirection(float &x, float &y);
     void setDirection(float x, float y);
-    void move(player_orientation_t &orientation);
+    void setMoveOrientation(player_move_orientation_t o);
+    void seteRotateOrientation(player_rotate_orientation_t o);
+
+    void move();
     void setCurrentWeapon(player_weapons_t aWeapon);
     void startShooting();
     void stopShooting();

@@ -18,6 +18,8 @@ ServerPlayer::ServerPlayer(float x, float y, float a){
 	shooting = false;
 	lifes = 3;
 	score = 123;
+	moveOrientation = MOVE_QUIET;
+	rotateOrientation = ROTATE_QUIET;
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -28,41 +30,51 @@ int toGrados(float radiales){
 	return anguloInt;
 }
 
-void ServerPlayer::rotatePlayerLeft(){
-	ang -= PI/36;
+void ServerPlayer::rotate(){
+	ang -= PI/36*rotateOrientation;
 	if (toGrados(ang) < 0){
-		ang += 2*PI;
+		ang += 2*PI*rotateOrientation;
 	}
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
 }
 
-void ServerPlayer::rotatePlayerRight(){
-	ang += PI/36;
-	if (toGrados(ang) >= 360){
-		ang -= 2*PI;
-	}
-	dirx = step*cos(ang);
-	diry = step*sin(ang);
-}
 
-void ServerPlayer::movePlayerBackward(){
-	player_orientation_t forw = FORWARD;
-	move(forw);
-    // position.x -= dirx;
-    // position.y -= diry;
-}
+// void ServerPlayer::rotatePlayerLeft(){
+// 	ang -= PI/36;
+// 	if (toGrados(ang) < 0){
+// 		ang += 2*PI;
+// 	}
+// 	dirx = step*cos(ang);
+// 	diry = step*sin(ang);
+// }
 
-void ServerPlayer::movePlayerForward(){
-    player_orientation_t back = BACKWARD;
-	move(back);
-	// position.x += dirx;
-    // position.y += diry;
-}
+// void ServerPlayer::rotatePlayerRight(){
+// 	ang += PI/36;
+// 	if (toGrados(ang) >= 360){
+// 		ang -= 2*PI;
+// 	}
+// 	dirx = step*cos(ang);
+// 	diry = step*sin(ang);
+// }
 
-void ServerPlayer::move(player_orientation_t &orientation){
-	position.x+=dirx*orientation;
-	position.y+=diry*orientation;
+// void ServerPlayer::movePlayerBackward(){
+// 	player_orientation_t forw = FORWARD;
+// 	move(forw);
+//     // position.x -= dirx;
+//     // position.y -= diry;
+// }
+
+// void ServerPlayer::movePlayerForward(){
+//     player_orientation_t back = BACKWARD;
+// 	move(back);
+// 	// position.x += dirx;
+//     // position.y += diry;
+// }
+
+void ServerPlayer::move(){
+	position.x+=dirx*moveOrientation;
+	position.y+=diry*moveOrientation;
 	setDirection(step*cos(ang), step*sin(ang));
 }
 
@@ -76,6 +88,14 @@ void ServerPlayer::setCurrentWeapon(player_weapons_t aWeapon){
 		return;
 	currentWP = aWeapon;
 }
+
+void ServerPlayer::setMoveOrientation(player_move_orientation_t o){
+	moveOrientation = o;
+}
+void ServerPlayer::seteRotateOrientation(player_rotate_orientation_t o){
+	rotateOrientation = o;
+}
+
 
 void ServerPlayer::startShooting(){
 	shooting = true;
@@ -145,6 +165,10 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	p.key = key;
 	p.shooting = shooting;
     // p.step = step;
+}
+
+player_move_orientation_t ServerPlayer::getMoveOrientation(){
+	return moveOrientation;
 }
 
 

@@ -96,16 +96,28 @@ void Match::readEvents(){
     if(event==PLAYER_STOP_SHOOTING)
         players[0].stopShooting();
 
-    if(event==PLAYER_MOVE_FORWARD){
-        movePlayer(FORWARD, players[0]);
+    if(event==PLAYER_START_MOVING_FORWARD){
+        // movePlayer(FORWARD, players[0]);
+        players[0].setMoveOrientation(FORWARD);
     }
-    if(event==PLAYER_MOVE_BACKWARD){
-        movePlayer(BACKWARD, players[0]);
+    if(event==PLAYER_START_MOVING_BACKWARD){
+        players[0].setMoveOrientation(BACKWARD);
+    //     movePlayer(BACKWARD, players[0]);
     }
-    if(event==PLAYER_ROTATE_RIGHT)
-        players[0].rotatePlayerRight();
-    if(event==PLAYER_ROTATE_LEFT)
-        players[0].rotatePlayerLeft();
+    if(event==PLAYER_STOP_MOVING){
+        players[0].setMoveOrientation(MOVE_QUIET);
+    //     movePlayer(BACKWARD, players[0]);
+    }
+
+    if(event==PLAYER_START_ROTATING_RIGHT)
+        players[0].seteRotateOrientation(RIGHT);
+        // players[0].rotatePlayerRight();
+    if(event==PLAYER_START_ROTATING_LEFT)
+        players[0].seteRotateOrientation(LEFT);
+        // players[0].rotatePlayerLeft();
+    if(event==PLAYER_STOP_ROTATING)
+        players[0].seteRotateOrientation(ROTATE_QUIET);
+
     if(event==GAME_QUIT)
         return;
     if(event==PICHIWAR)
@@ -113,32 +125,26 @@ void Match::readEvents(){
     if(event==UNIRME)
         return;
 
+    movePlayer(players[0]);
+    players[0].rotate();
     updateHandler.updatePlayerPosition(players[0]);
     users[0]->update(updateHandler);
     // for(auto user:users)
     //     user->update(updateHandler);
 
-    // players[0].getPlayerInfo(auxPlayer);
-    
-    // paraEnviar << "playerInfo";
-    // users[0]->sendGameUpdate(paraEnviar);
-    // users[0]->sendPlayerInfo(auxPlayer);
-
-    //     paraEnviar << command;
-    //     users[0]->sendGameUpdate(paraEnviar);
-    //     std::cout <<"mando game quit" << std::endl;
-    // }
 }
 
 void Match::stop(){
     is_running = false;
 }
 
-void Match::movePlayer(player_orientation_t orientation, ServerPlayer &player){
+
+void Match::movePlayer(ServerPlayer &player){
 	float dx;
 	float dy;
 	circle playerPos;
 	int collidableIdentifier;
+    player_move_orientation_t orientation=player.getMoveOrientation();
 	player.getPosition(playerPos);
 	player.getDirection(dx,dy);
 	dx*=orientation;
@@ -154,8 +160,35 @@ void Match::movePlayer(player_orientation_t orientation, ServerPlayer &player){
 			handleCollision(playerPos, collidableIdentifier);
 		}
 	}
-	player.move(orientation);
+	player.move();
 }
+
+
+
+
+
+// void Match::movePlayer(player_orientation_t orientation, ServerPlayer &player){
+// 	float dx;
+// 	float dy;
+// 	circle playerPos;
+// 	int collidableIdentifier;
+// 	player.getPosition(playerPos);
+// 	player.getDirection(dx,dy);
+// 	dx*=orientation;
+// 	dy*=orientation;
+
+// 	std::vector<Collidable*> col;
+// 	colMap.detectCollision(playerPos,dx,dy,col);
+// 	for(size_t i=0;i<col.size();i++){
+// 		if(col[i]->isInside(playerPos)==false){
+// 			collidableIdentifier=col[i]->collide(player);
+// 			playerPos.x+=dx;
+// 			playerPos.y+=dy;
+// 			handleCollision(playerPos, collidableIdentifier);
+// 		}
+// 	}
+// 	player.move(orientation);
+// }
 
 void Match::handleCollision(circle &playerPos, int c){
 	Collidable *maker;

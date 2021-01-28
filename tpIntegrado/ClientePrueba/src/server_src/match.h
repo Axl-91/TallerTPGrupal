@@ -33,7 +33,7 @@ public:
     bool started();
     void delete_finish_clients(std::vector<User*>& threads);
     void readEvents();
-    void movePlayer(player_orientation_t orientation, ServerPlayer &player);
+    void movePlayer(ServerPlayer &player);
     void handleCollision(circle &playerPos, int c);
 
 private:

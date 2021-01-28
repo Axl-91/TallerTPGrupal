@@ -52,49 +52,51 @@ event_t SDL_EventHandler::pollEvent(){
 			switch(SDLEvent.key.keysym.sym){
     	        case SDLK_1:
 					event=PLAYER_SET_WEAPON_KNIFE;
-					// player.setWeapon(1);
 					break;
             	case SDLK_2:
 					event=PLAYER_SET_WEAPON_GUN;
-					// player.setWeapon(2);
 					break;
 	            case SDLK_3:
 					event=PLAYER_SET_WEAPON_SECONDARY;
-					// player.setWeapon(3);
 					break;
 				case SDLK_UP:
-					event=PLAYER_MOVE_FORWARD;
-					// movePlayer(FORWARD);
+					event=PLAYER_START_MOVING_FORWARD;
 					break;
 				case SDLK_DOWN:
-					event=PLAYER_MOVE_BACKWARD;
-					// movePlayer(BACKWARD);
+					event=PLAYER_START_MOVING_BACKWARD;
 					break;
 				case SDLK_RIGHT:
-					event=PLAYER_ROTATE_RIGHT;
-					// player.rotateRight();
+					event=PLAYER_START_ROTATING_RIGHT;
 					break;
 				case SDLK_LEFT:
-					event=PLAYER_ROTATE_LEFT;
-					// player.rotateLeft();
+					event=PLAYER_START_ROTATING_LEFT;
 					break;
             	case SDLK_SPACE:
 					event=PLAYER_SHOOT;
-					// player.shoot();
 	                break;
 				case SDLK_p:
 					event=PICHIWAR;
-					// player.shoot();
 	                break;
 				case SDLK_u:
 					event=UNIRME;
-					// player.shoot();
 	                break;
 				break;
 			}
 		}
 		if (SDLEvent.type == SDL_KEYUP){
 			switch(SDLEvent.key.keysym.sym){
+				case SDLK_UP:
+					event=PLAYER_STOP_MOVING;
+					break;
+				case SDLK_DOWN:
+					event=PLAYER_STOP_MOVING;
+					break;
+				case SDLK_RIGHT:
+					event=PLAYER_STOP_ROTATING;
+					break;
+				case SDLK_LEFT:
+					event=PLAYER_STOP_ROTATING;
+					break;
     	        case SDLK_SPACE:
 					event=PLAYER_STOP_SHOOTING;
 					break;
