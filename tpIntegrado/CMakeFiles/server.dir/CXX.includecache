@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/common_src/Circle.h
+
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/common_src/types.h
+
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/server_src/serverPlayer.cpp
+serverPlayer.h
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/server_src/serverPlayer.h
+iostream
+-
+../common_src/types.h
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/common_src/types.h
+
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/server_src/serverPlayer.h
+../common_src/Circle.h
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/common_src/Circle.h
+cmath
+-
+../common_src/types.h
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/ClientePrueba/src/common_src/types.h
+

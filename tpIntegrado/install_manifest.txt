@@ -1,0 +1,4 @@
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/guns.png
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/hud.png
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/walls.png
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/objects.png

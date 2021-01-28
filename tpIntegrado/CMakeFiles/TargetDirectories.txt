@@ -1,0 +1,8 @@
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/install/strip.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/install.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/list_install_components.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/rebuild_cache.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/edit_cache.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/client.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/install/local.dir
+/home/wagner/Desktop/integrationTest/TallerTPGrupal/CMakeFiles/server.dir
