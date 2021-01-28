@@ -19,7 +19,6 @@ public:
     // Match();
     Match(std::string matchName);
     ~Match();
-    // ~Match();
     void addUser();
     virtual void run() override;
     void operator()();

@@ -20,8 +20,6 @@ typedef enum{
 
 class ServerPlayer{
 private:
-    // SDL_EventHandler s;
-    // SpritesHandler p;
     circle position;
     player_move_orientation_t moveOrientation;
     player_rotate_orientation_t rotateOrientation;
@@ -33,26 +31,19 @@ private:
     size_t ID;
     size_t lifes;
     size_t score;
-    // Inventory inventory;
-   	// Hud hudGame;
     weapon_t secondaryWP;
     player_weapons_t currentWP;
     size_t ammo;
     bool key;
     bool shooting;
-	// PlayerWeapon *currentWeapon;
 
 
 public:
     ServerPlayer(float x, float y, float a);
     ~ServerPlayer();
-    // void movePlayerForward();
-    // void movePlayerBackward();
+    void move();
     void rotate();
 
-    // void rotatePlayerRight();
-    // void rotatePlayerLeft();
-    player_move_orientation_t getMoveOrientation();
     void getPlayerInfo(Player_t &p);
     void getPosition(float &x, float &y);
     void getPosition(circle &c);
@@ -60,8 +51,8 @@ public:
     void setDirection(float x, float y);
     void setMoveOrientation(player_move_orientation_t o);
     void seteRotateOrientation(player_rotate_orientation_t o);
+    player_move_orientation_t getMoveOrientation();
 
-    void move();
     void setCurrentWeapon(player_weapons_t aWeapon);
     void startShooting();
     void stopShooting();

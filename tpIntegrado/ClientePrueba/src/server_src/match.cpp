@@ -82,39 +82,29 @@ void Match::readEvents(){
         return;    
     }
     
-    if(event==PLAYER_SET_WEAPON_KNIFE){
+    if(event==PLAYER_SET_WEAPON_KNIFE)
         players[0].setCurrentWeapon(WP_KNIFE);
-    }
-    if(event==PLAYER_SET_WEAPON_GUN){
+    if(event==PLAYER_SET_WEAPON_GUN)
         players[0].setCurrentWeapon(WP_GUN);
-    }
-    if(event==PLAYER_SET_WEAPON_SECONDARY){
+    if(event==PLAYER_SET_WEAPON_SECONDARY)
         players[0].setCurrentWeapon(WP_SECONDARY);
-    }
     if(event==PLAYER_SHOOT)
         players[0].startShooting();
     if(event==PLAYER_STOP_SHOOTING)
         players[0].stopShooting();
 
-    if(event==PLAYER_START_MOVING_FORWARD){
-        // movePlayer(FORWARD, players[0]);
+    if(event==PLAYER_START_MOVING_FORWARD)
         players[0].setMoveOrientation(FORWARD);
-    }
-    if(event==PLAYER_START_MOVING_BACKWARD){
+    if(event==PLAYER_START_MOVING_BACKWARD)
         players[0].setMoveOrientation(BACKWARD);
-    //     movePlayer(BACKWARD, players[0]);
-    }
-    if(event==PLAYER_STOP_MOVING){
+
+    if(event==PLAYER_STOP_MOVING)
         players[0].setMoveOrientation(MOVE_QUIET);
-    //     movePlayer(BACKWARD, players[0]);
-    }
 
     if(event==PLAYER_START_ROTATING_RIGHT)
         players[0].seteRotateOrientation(RIGHT);
-        // players[0].rotatePlayerRight();
     if(event==PLAYER_START_ROTATING_LEFT)
         players[0].seteRotateOrientation(LEFT);
-        // players[0].rotatePlayerLeft();
     if(event==PLAYER_STOP_ROTATING)
         players[0].seteRotateOrientation(ROTATE_QUIET);
 
@@ -164,32 +154,6 @@ void Match::movePlayer(ServerPlayer &player){
 }
 
 
-
-
-
-// void Match::movePlayer(player_orientation_t orientation, ServerPlayer &player){
-// 	float dx;
-// 	float dy;
-// 	circle playerPos;
-// 	int collidableIdentifier;
-// 	player.getPosition(playerPos);
-// 	player.getDirection(dx,dy);
-// 	dx*=orientation;
-// 	dy*=orientation;
-
-// 	std::vector<Collidable*> col;
-// 	colMap.detectCollision(playerPos,dx,dy,col);
-// 	for(size_t i=0;i<col.size();i++){
-// 		if(col[i]->isInside(playerPos)==false){
-// 			collidableIdentifier=col[i]->collide(player);
-// 			playerPos.x+=dx;
-// 			playerPos.y+=dy;
-// 			handleCollision(playerPos, collidableIdentifier);
-// 		}
-// 	}
-// 	player.move(orientation);
-// }
-
 void Match::handleCollision(circle &playerPos, int c){
 	Collidable *maker;
     int largoBloque = 64;
@@ -199,11 +163,9 @@ void Match::handleCollision(circle &playerPos, int c){
 
 	colMap.erase(playerPos);
     value=0;
-	// mapGame.eraseObj(playerPos.x,playerPos.y);
 	if(c>102&&c<200){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
         value = c;
-		// mapGame.insertWeapon(playerPos.x, playerPos.y, c);
 	}
 
     updateHandler.updateMap(playerPos.x, playerPos.y, value);

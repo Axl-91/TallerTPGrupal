@@ -39,39 +39,6 @@ void ServerPlayer::rotate(){
 	diry = step*sin(ang);
 }
 
-
-// void ServerPlayer::rotatePlayerLeft(){
-// 	ang -= PI/36;
-// 	if (toGrados(ang) < 0){
-// 		ang += 2*PI;
-// 	}
-// 	dirx = step*cos(ang);
-// 	diry = step*sin(ang);
-// }
-
-// void ServerPlayer::rotatePlayerRight(){
-// 	ang += PI/36;
-// 	if (toGrados(ang) >= 360){
-// 		ang -= 2*PI;
-// 	}
-// 	dirx = step*cos(ang);
-// 	diry = step*sin(ang);
-// }
-
-// void ServerPlayer::movePlayerBackward(){
-// 	player_orientation_t forw = FORWARD;
-// 	move(forw);
-//     // position.x -= dirx;
-//     // position.y -= diry;
-// }
-
-// void ServerPlayer::movePlayerForward(){
-//     player_orientation_t back = BACKWARD;
-// 	move(back);
-// 	// position.x += dirx;
-//     // position.y += diry;
-// }
-
 void ServerPlayer::move(){
 	position.x+=dirx*moveOrientation;
 	position.y+=diry*moveOrientation;
