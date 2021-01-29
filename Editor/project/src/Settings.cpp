@@ -2,25 +2,20 @@
 #include<fstream>
 #include <iostream>
 
-Settings::Settings(){
-    config = YAML::LoadFile(filename);      
-    resW = config["resW"].as<int>();
-    resH = config["resH"].as<int>();
-    minplayers = config["minplayers"].as<int>();
-    maxplayers = config["maxplayers"].as<int>();         
-    std::vector<std::vector<int>> lvl1 = config["map"].as<std::vector<std::vector<int>>>();
-}
+Settings::Settings(){}
 
 void Settings::init(char* _filename){ 
     if((_filename != "") && (_filename != NULL)){
         std::string filename(_filename);
     }    
     config = YAML::LoadFile(filename);      
-    resW = config["resW"].as<int>();
-    resH = config["resH"].as<int>();
-    minplayers = config["minplayers"].as<int>();
-    maxplayers = config["maxplayers"].as<int>();         
-    std::vector<std::vector<int>> lvl1 = config["map"].as<std::vector<std::vector<int>>>();    
+    resolutionWidth = config["resolutionWidth"].as<int>();
+    resolutionHeigh = config["resolutionHeigh"].as<int>();    
+    maxPlayers = config["maxPlayers"].as<int>();   
+    resolutionsWidthOP = config["resolutionsWidthOP"].as<std::vector<int>>();   
+    resolutionsHeighOP = config["resolutionsHeighOP"].as<std::vector<int>>();   
+    maxplayersOP = config["maxplayersOP"].as<std::vector<int>>();       
+    map = config["map"].as<std::vector<std::vector<int>>>();    
 }
 
 void Settings::saveChanges(){
@@ -29,17 +24,30 @@ void Settings::saveChanges(){
 }
 
 int Settings::getresW() const{
-    return resW;
+    return resolutionWidth;
+}
+
+std::vector<int> Settings::getresolutionsWidthOP() const{
+    return resolutionsWidthOP;
+}
+
+std::vector<int> Settings::getresolutionsHeighOP() const{
+    return resolutionsHeighOP;
+}
+std::vector<int> Settings::getmaxplayersOP() const{
+    return maxplayersOP;
 }
 
 int Settings::getresH() const{
-    return resH;
+    return resolutionHeigh;
 }
 int Settings::getmaxlayers() const{
-    return maxplayers;
+    return maxPlayers;
 }
-int Settings::getminplayers() const{
-    return minplayers;
-}
+/*
+std::vector<std::vector<int>> Settings::getmap(){
+    return map;
+}*/
+
 
 Settings::~Settings(){}

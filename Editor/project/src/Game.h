@@ -7,19 +7,20 @@
 #include <iostream>
 #include "Settings.h"
 #include "Arrow.h"
-#include "Save.h"
 #include "Textbox.h"
-#include "Point.h"
+#include "Position.h"
+#include "Map.h"
 
 class Game{
 private:
-    int largoReal = 320;
-    int altoReal = 240;
 	const char* title = "Game Editor";
 	const char* imgFile = "background.png";
+	const char* font = "wolfenstein.ttf";
+	TTF_Font *gFont = NULL;
 	bool gameOver = false;
 	int winLargo;
 	int winAlto;
+	Map map;
 	Arrow arrow;
 	Textbox maxplayers;	
 	Textbox resW;
@@ -32,6 +33,7 @@ private:
     void getTexture();
     void fill();
     void initGui();
+	void updatemodel();
 public:
 	Game(int largo, int ancho,char * filename);
 	void render();

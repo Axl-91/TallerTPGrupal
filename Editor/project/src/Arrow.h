@@ -7,11 +7,14 @@
 #include <string>
 #include "Button.h"
 
-class Arrow : public Button{    
-
-public:
-    Arrow();    
-    ~Arrow();
+class Arrow : public Button{   
+    private:        
+        void avanzar();
+        void retroceder();
+    public:
+        Arrow();
+        void pollEvent(SDL_Event &evento);    
+        ~Arrow();
 };
 
 #endif

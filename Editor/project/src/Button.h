@@ -5,25 +5,24 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <string>
-
-#define BUTH 16
-#define BUTW 16
+#include "Position.h"
 
 class Button{
 private:
     void getTexture();
-    void avanzar();
-    void retroceder();
 protected:
-    SDL_Rect srcBut = {0, 0, 32, 32};
-    int x, y, posxInicial,posyInicial, movs;
+    int h = 50;
+    int w = 50;
+    SDL_Rect srcBut = {0, 0, 32, 32};    
     const char* imgFile = "brush.png";
     SDL_Texture* textura;
-    SDL_Renderer* winRenderer;    
-public:
+    SDL_Renderer* winRenderer;
+    Position pos;    
+public:    
     Button();
-    void setRenderer(SDL_Renderer* renderer);	    
-    void pollEvent(SDL_Event &evento);    
+    void setSrc(int _x, int _y, int _w, int _h);
+    Position getPosition() const;
+    void init(SDL_Renderer* renderer);	    
     void render(int posX, int posY);
     ~Button();
 };

@@ -1,8 +1,10 @@
 ---
-resW: 640 
-resH: 480
-minplayers: 2
-maxplayers: 4
+resolutionWidth: 640 
+resolutionHeigh: 480
+resolutionsWidthOP: [640, 800, 1024]
+resolutionsHeighOP: [480, 600, 768]
+maxPlayers: 2
+maxplayersOP: [2, 3, 4, 5]
 
 map:
   - [ 434,434,434,434,434,434,434,434,434 ]

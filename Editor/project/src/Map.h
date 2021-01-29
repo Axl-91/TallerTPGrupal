@@ -15,7 +15,8 @@ private:
     SDL_Renderer* winRenderer;    
 public:
 	Map();	
-	void init(std::vector<std::vector<int>>, SDL_Renderer* renderer);	
+	void init(std::vector<std::vector<int>>, SDL_Renderer* renderer);
+	void render();
 	~Map();
 };
 

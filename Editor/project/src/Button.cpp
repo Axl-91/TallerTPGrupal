@@ -5,7 +5,7 @@
 
 Button::Button(){}
 
-void Button::setRenderer(SDL_Renderer* renderer){
+void Button::init(SDL_Renderer* renderer){
     winRenderer = renderer;
     getTexture();
 }
@@ -26,31 +26,19 @@ void Button::getTexture(){
 }
 
 void Button::render(int largoWin, int altoWin){    
-    SDL_Rect but = {x, y, BUTH, BUTW};    
+    SDL_Rect but = {pos.getPosX(), pos.getPosY(), h, w};    
     SDL_RenderCopy(winRenderer, textura, NULL, &but);     
 }
 
-void Button::avanzar(){	
-	y -= 40;
+Position Button::getPosition()const{
+    return pos;
 }
 
-void Button::retroceder(){	
-    movs++;
-	y += 40;
-}
-
-void Button::pollEvent(SDL_Event &evento){    	
-    if (evento.type == SDL_KEYDOWN){
-		switch(evento.key.keysym.sym){
-			case SDLK_UP:
-				avanzar();
-				break;
-			case SDLK_DOWN:
-				retroceder();
-				break;
-			break;
-		}
-	}
+void Button::setSrc(int _x, int _y, int _w, int _h){
+    pos.setPosX(_x);
+    pos.setPosY(_y);
+    w = _w;
+    h = _h;    
 }
 
 Button::~Button(){

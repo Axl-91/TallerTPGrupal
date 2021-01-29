@@ -10,10 +10,12 @@ class Settings{
 private:
     YAML::Node config;
     std::string filename = "nivel.yaml";
-    int resW; 
-    int resH;
-    int minplayers;
-    int maxplayers;
+    int resolutionWidth; 
+    int resolutionHeigh;
+    int maxPlayers;
+    std::vector<int> resolutionsWidthOP;
+    std::vector<int> resolutionsHeighOP;
+    std::vector<int> maxplayersOP;
     std::vector<std::vector<int>> map;
 public:
     Settings();
@@ -23,7 +25,10 @@ public:
     int getresW() const;    
     int getresH() const;    
     int getminplayers() const;    
-    int getmaxlayers() const;    
+    int getmaxlayers() const;
+    std::vector<int> getresolutionsWidthOP() const;
+    std::vector<int> getresolutionsHeighOP() const;
+    std::vector<int> getmaxplayersOP() const;    
     ~Settings();
 };
 

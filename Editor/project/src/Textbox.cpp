@@ -2,34 +2,43 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <sstream>  
+#include <algorithm>
 #include "Textbox.h"
 
-Textbox::Textbox(){
-    TTF_Init();
-    gFont = TTF_OpenFont( font, 30 );
-    if( gFont == NULL )	{
-		printf( "Failed to load SDL_ttf Error: %s\n", TTF_GetError() );		
-	}
-}
+Textbox::Textbox(){}
 
-void Textbox::setRenderer(SDL_Renderer* renderer){
-    winRenderer = renderer;
-    getTexture();
-}
+void Textbox::init(SDL_Renderer* _renderer,int _x, int _y, int _textboxText,
+        bool _focused, TTF_Font *_gFont, std::vector<int> opts){
+    options = opts;
+    gFont = _gFont;
+    pos.setPosX(_x);
+    pos.setPosY(_y);
+    focused = _focused; 
 
-void Textbox::init(SDL_Renderer* _renderer,int _x, int _y, int _textureText){
-    std::string value = std::to_string(_textureText);
+    std::vector<int>::iterator itr= std::find(options.begin(), options.end(),_textboxText);    
+     if (itr != options.cend()) {
+         indexelementSelected = std::distance(options.begin(), itr);
+    }    
+    textboxText = std::to_string(_textboxText);
     winRenderer = _renderer;
     srctxt = {_x, _y,TXTH ,TXTW} ;    
-    textureText = value== "" ? "Defecto":value;
     getTexture();
 }
-std::string Textbox::getTextureText() const {
-    return textureText;
+std::string Textbox::gettextboxText() const {
+    return textboxText;
+}
+
+void Textbox::setFocus(Button &but){
+    Position posB = but.getPosition();
+    if(this->pos.samePos(posB)){
+        focused = true;        
+    } else {
+        focused = false;
+    }
 }
 
 void Textbox::getTexture(){
-    SDL_Surface* surface = TTF_RenderText_Solid( gFont, textureText.c_str(), textColor );
+    SDL_Surface* surface = TTF_RenderText_Solid( gFont, textboxText.c_str(), textColor );
 
     if (!surface) {        
         std::cout << "ERROR : " << SDL_GetError()  << std::endl;
@@ -40,11 +49,10 @@ void Textbox::getTexture(){
         throw std::exception(); 
     }
     SDL_FreeSurface(surface);
-    SDL_StartTextInput();    
 }
 
 void Textbox::render(){    
-   SDL_Surface* surface = TTF_RenderText_Solid( gFont, textureText.c_str(), textColor );
+   SDL_Surface* surface = TTF_RenderText_Solid( gFont, textboxText.c_str(), textColor );
 
     if (!surface) {        
         std::cout << "ERROR : " << SDL_GetError()  << std::endl;
@@ -58,19 +66,48 @@ void Textbox::render(){
     SDL_RenderCopy(winRenderer, textura, NULL, &srctxt);  
 }
 
+void Textbox::avanzar(){
+    //std::cout<<textboxText;
+    int elements = options.size()-1;
+    if(indexelementSelected<elements){
+        indexelementSelected++;
+    } else{
+        indexelementSelected = 0;
+    }
+    textboxText = std::to_string(options.at(indexelementSelected));
+}
+
+void Textbox::retroceder(){
+    //std::cout<<textboxText;    
+    int elements = options.size()-1;
+    if(indexelementSelected==0){
+        indexelementSelected = elements;
+    } else{
+        indexelementSelected --;
+    }
+    textboxText = std::to_string(options.at(indexelementSelected));
+}
+
 
 void Textbox::pollEvent(SDL_Event &e){    
-    if( e.type == SDL_TEXTINPUT ) {
-    if( !( SDL_GetModState() & KMOD_CTRL && ( e.text.text[ 0 ] == 'c' || e.text.text[ 0 ] == 'C' || 
-        e.text.text[ 0 ] == 'v' || e.text.text[ 0 ] == 'V' ) ) )    {        
-        textureText += e.text.text;
-        }
-    }
+    if(focused){ 
+        switch(e.key.keysym.sym){
+                case SDLK_RIGHT:
+                    avanzar();
+                    break;
+                case SDLK_LEFT:
+                    retroceder();
+                    break;
+                case SDLK_KP_ENTER:
+                    avanzar();
+                    break;
+                break;
+            }
+    }       
+    
 }
 
 Textbox::~Textbox(){
-    SDL_DestroyTexture(textura);
-    SDL_StopTextInput();
-    TTF_CloseFont(gFont);
-    TTF_Quit();
+    gFont = NULL;
+    SDL_DestroyTexture(textura);        
 }

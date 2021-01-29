@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
+#include <vector>
 
 Game::Game(int largo, int alto,char* filename){	
     int hayError;
@@ -24,6 +25,13 @@ Game::Game(int largo, int alto,char* filename){
 	if( hayError){
 		std::cout << "ERROR : " << TTF_GetError() << std::endl;		
 	}
+
+	gFont = TTF_OpenFont( font, 30 );
+    if( gFont == NULL )	{
+		printf( "Error en to load SDL_ttf Error: %s\n", TTF_GetError() );		
+	}
+
+	SDL_StartTextInput(); 
 	
 	SDL_SetWindowTitle(window, title);
 	SDL_RenderSetLogicalSize(renderer, winLargo, winAlto);
@@ -41,8 +49,6 @@ void Game::getTexture(){
     if (!surface) {
         throw std::exception(); 
     }
-    auto color = SDL_MapRGB(surface->format, 152, 0, 136);
-    SDL_SetColorKey(surface, SDL_TRUE, color);
 
     textura = SDL_CreateTextureFromSurface(renderer, surface);
     if (!textura) {
@@ -51,14 +57,12 @@ void Game::getTexture(){
     SDL_FreeSurface(surface);    
 }
 
-
 void Game::initGui(){
-	arrow.setRenderer(renderer);
-	resW.init(renderer,160,145,sett.getresW());
-	resH.init(renderer,160,185,sett.getresH());
-	maxplayers.init(renderer,160,225,sett.getmaxlayers());
+	arrow.init(renderer);
+	resW.init(renderer,200,300,sett.getresW(),true,gFont,sett.getresolutionsWidthOP());
+	resH.init(renderer,285,300,sett.getresH(),false,gFont,sett.getresolutionsHeighOP());
+	maxplayers.init(renderer,225,355,sett.getmaxlayers(),false,gFont,sett.getmaxplayersOP());
 }
-
 
 void Game::fill(){
 	SDL_RenderClear(renderer);
@@ -69,6 +73,9 @@ void Game::fill(){
 void Game::exitPollEvent(SDL_Event &evento){
 	if (evento.type == SDL_QUIT){
 		gameOver = true;
+	}
+	if (evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE){
+			gameOver = true;
 	}
 }
 
@@ -84,6 +91,13 @@ void Game::update(){
 		resH.pollEvent(evento);
 		maxplayers.pollEvent(evento);
 	}
+	updatemodel();
+}
+
+void Game::updatemodel(){
+	resW.setFocus(arrow);
+	resH.setFocus(arrow);
+	maxplayers.setFocus(arrow);
 }
 
 void Game::render(){
@@ -100,9 +114,10 @@ bool Game::isGameOver(){
 }
 
 Game::~Game(){
-
+	SDL_StopTextInput();    
+	TTF_CloseFont(gFont);	
+    TTF_Quit();
 	SDL_DestroyTexture(textura);
-
 	if (renderer){
 		SDL_DestroyRenderer(renderer);
 		renderer = nullptr;

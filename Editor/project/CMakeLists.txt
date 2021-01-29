@@ -8,10 +8,10 @@ add_library(sdl-lib
 src/Game.cpp 
 src/Button.cpp
 src/Arrow.cpp 
-src/Save.cpp 
 src/Textbox.cpp 
 src/Settings.cpp
-src/Point.cpp
+src/Position.cpp
+src/Map.cpp
 )
 
 # Agrego la carpeta con los headers autogenerados a los includes
@@ -27,9 +27,6 @@ target_link_libraries(editor sdl-lib SDL2 SDL2_image SDL2_ttf ${YAMLCPP_LIBRARIE
 
 install(FILES 
 data/arrow.png 
-data/brush.png 
-data/paint.png 
-data/pencil.png 
 data/background.png
 data/wolfenstein.ttf
 data/nivel.yaml
