@@ -14,13 +14,15 @@ class SpritesHandler{
     void destroyTextures();
 
 public:
-    SDL_Rect src;
-
+    /* Deberia pasarsele el largo y el alto al crearlo
+    y de ahi crear el src */
+    SDL_Rect src = {0, 0, 64, 64};
     SpritesHandler(){}
     SpritesHandler(std::vector<std::string> &iFiles);
     void setRenderer(SDL_Renderer* renderer);
     ~SpritesHandler();
-    void render(int posX, int posY, int largo, int ancho, int text);
+    void setSrc(int posX, int posY, int largo, int alto);
+    void render(int posX, int posY, int largo, int alto, int text);
 };
 
 

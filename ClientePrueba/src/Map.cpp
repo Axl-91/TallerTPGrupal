@@ -5,10 +5,8 @@
 #include "Walls.h"
 #include "Objects.h"
 
-
 #define WEAPON_OFFSET 74
 #define HEAL_OFFSET 177
-
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
@@ -24,21 +22,20 @@ void Map::load(std::vector<std::vector<int>> lvl){
 			if(map[i][j]>=400)
 				map[i][j]-=400;
 			if(map[i][j]>=100&&map[i][j]<200){
-				insertObject(j,i,map[i][j]-WEAPON_OFFSET);
+				insertObject(j,i,25);
 				map[i][j]=0;
 			}
 			if(map[i][j]>=200&&map[i][j]<300){
-				insertObject(j,i,map[i][j]-HEAL_OFFSET);
+				insertObject(j,i,26);
 				map[i][j]=0;
 			}
 			if(map[i][j]>=300&&map[i][j]<400){
-				insertObject(j,i,28);
+				insertObject(j,i,24);
 				map[i][j]=0;
 			}
 		}
 	}
 }
-
 
 void Map::insertWeaponWithCoords(int x, int y, int obj){
 	int j=x/largoBloque;
@@ -128,7 +125,6 @@ void Map::addObject(Vector &posicion, int tipo){
 	mapObj[auxPair]=obj;
 }
 
-
 void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 	float dist = pos.distancia(obj.posicion);
 	for (auto i = v.begin(); i != v.end(); ++i){
@@ -149,7 +145,6 @@ std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 	}
 	return vectorAux;
 }
-
 
 void Map::setObj(int &tipo){
 	objects.setObject(tipo);

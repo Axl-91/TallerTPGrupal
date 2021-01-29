@@ -5,30 +5,23 @@
 #include "Objects.h"
 #include "Install.h"
 
-Objects::Objects():textureHandler(srcX, srcY, LADO, LADO,INSTALLED_TEXTURE_OBJECTS){}
+Objects::Objects(): objHandler(ObjectsSprites){
+}
 
 void Objects::setRenderer(SDL_Renderer* renderer){
-    textureHandler.setRenderer(renderer);
+    objHandler.setRenderer(renderer);
 }
 
 void Objects::setObject(int num){
-    int limite = 5;
-    int x = (num % limite) * offset;
-    int y = (num / limite) * offset;
-    srcX = x;
-    srcY = y;
-    textureHandler.src.x = srcX;
-    textureHandler.src.y = srcY;
+    objSelected = num;
 }
 
-
-
 void Objects::recortar(int x, int y, int largo, int alto){
-    textureHandler.setSrc(srcX+x, srcY+y, largo, alto);
+    objHandler.setSrc(x, y, largo,alto);
 }
 
 void Objects::render(int x, int y, int largo, int alto){
-    textureHandler.render(x, y, largo, alto);
+    objHandler.render(x, y, largo, alto, objSelected);
 }
 
 Objects::~Objects(){}

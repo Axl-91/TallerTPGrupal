@@ -9,6 +9,7 @@
 #include "Vector.h"
 #include "Walls.h"
 #include "Objects.h"
+#include "Enemies.h"
 
 // #define MAP_ROWS 15
 // #define MAP_COLS 20
@@ -29,6 +30,7 @@ private:
 
 	Walls walls;
 	Objects objects;
+	Enemies enemies;
 	std::map<std::pair<int,int>, Objeto> mapObj;
 	// std::vector<Objeto> vectObj;
 public:

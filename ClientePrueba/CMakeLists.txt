@@ -18,7 +18,8 @@ add_library(sdl-lib
     src/Raycaster.cpp
     src/Map.cpp 
     src/Walls.cpp 
-    src/Objects.cpp 
+    src/Objects.cpp
+    src/Enemies.cpp
     src/SDLHandler.cpp
     src/CollisionMap.cpp
     src/SpritesHandler.cpp
