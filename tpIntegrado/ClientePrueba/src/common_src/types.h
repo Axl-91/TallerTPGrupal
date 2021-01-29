@@ -69,6 +69,11 @@ typedef struct{
     bool changeAvailable;
 }Map_change_t;
 
+typedef struct {
+    event_t event;
+    size_t playerTag;
+}MatchEvent_t;
+
 #define PI 3.14159265358979323846
 
 #endif

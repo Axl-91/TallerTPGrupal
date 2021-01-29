@@ -15,7 +15,6 @@ class SDL_EventHandler : public Thread{
 private: 
     std::map<SDL_Keycode, event_t> keyDownEvents;
     std::map<SDL_Keycode, event_t> keyUpEvents;
-
     ProtectedEventQueue &q;
     std::atomic<bool> is_running;
     std::atomic<bool> quitGameRead;

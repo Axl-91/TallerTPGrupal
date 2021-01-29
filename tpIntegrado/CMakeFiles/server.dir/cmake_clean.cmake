@@ -19,6 +19,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/src/server_src/match.cpp.o"
   "CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o"
   "CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o"
+  "CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.o"
   "CMakeFiles/server.dir/src/server_src/server.cpp.o"
   "CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o"
   "CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o"

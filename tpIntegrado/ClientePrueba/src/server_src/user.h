@@ -6,6 +6,7 @@
 #include "../common_src/thread.h"
 #include "serverReceiver.h"
 #include "serverTransmitter.h"
+#include "protectedMatchEventQueue.h"
 #include "../common_src/protectedEventQueue.h"
 #include <string>
 #include <vector>
@@ -20,14 +21,14 @@ private:
     ServerTransmitter transmitter;
     ServerReceiver receiver;
     std::atomic<bool> userIsRunning;
-    ProtectedEventQueue *q;
+    ProtectedMatchEventQueue *q;
     std::atomic<bool> started;
     std::string userName;
     size_t ID;
 public:
     User(Socket socket);
     void operator()();
-    void setProtectedEventQueue(ProtectedEventQueue *q);
+    void setProtectedMatchEventQueue(ProtectedMatchEventQueue *q);
     std::string getName();
     virtual void run() override;
     void readInput(event_t &input);
@@ -41,7 +42,7 @@ public:
     void sendPlayerInfo(Player_t player);
     void update(UpdateHandler uHandler);
     void sendMapUpdate(Map_change_t &aMapChange);
-
+    void setID(size_t ID);
 };
 
 #endif

@@ -23,6 +23,9 @@ ServerPlayer::ServerPlayer(float x, float y, float a){
 }
 ServerPlayer::~ServerPlayer(){}
 
+void ServerPlayer::setID(size_t newID){
+	ID = newID;
+}
 
 int toGrados(float radiales){
 	float anguloGrados = (radiales / PI) * 180;
@@ -62,7 +65,6 @@ void ServerPlayer::setMoveOrientation(player_move_orientation_t o){
 void ServerPlayer::seteRotateOrientation(player_rotate_orientation_t o){
 	rotateOrientation = o;
 }
-
 
 void ServerPlayer::startShooting(){
 	shooting = true;
@@ -137,7 +139,6 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 player_move_orientation_t ServerPlayer::getMoveOrientation(){
 	return moveOrientation;
 }
-
 
 void ServerPlayer::getPosition(circle &c){
 	c.x=position.x;

@@ -5,6 +5,7 @@ CollisionMap.cpp
 updateHandler.cpp
 main.cpp
 serverPlayer.cpp
+protectedMatchEventQueue.cpp
 match.cpp
 matchHandler.cpp
 menuHandler.cpp

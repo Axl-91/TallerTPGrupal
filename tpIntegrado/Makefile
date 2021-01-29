@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba
+CMAKE_SOURCE_DIR = /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado
+CMAKE_BINARY_DIR = /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1304,6 +1304,33 @@ src/server_src/menuHandler.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/menuHandler.cpp.s
 .PHONY : src/server_src/menuHandler.cpp.s
 
+src/server_src/protectedMatchEventQueue.o: src/server_src/protectedMatchEventQueue.cpp.o
+
+.PHONY : src/server_src/protectedMatchEventQueue.o
+
+# target to build an object file
+src/server_src/protectedMatchEventQueue.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.o
+.PHONY : src/server_src/protectedMatchEventQueue.cpp.o
+
+src/server_src/protectedMatchEventQueue.i: src/server_src/protectedMatchEventQueue.cpp.i
+
+.PHONY : src/server_src/protectedMatchEventQueue.i
+
+# target to preprocess a source file
+src/server_src/protectedMatchEventQueue.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.i
+.PHONY : src/server_src/protectedMatchEventQueue.cpp.i
+
+src/server_src/protectedMatchEventQueue.s: src/server_src/protectedMatchEventQueue.cpp.s
+
+.PHONY : src/server_src/protectedMatchEventQueue.s
+
+# target to generate assembly for a file
+src/server_src/protectedMatchEventQueue.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.s
+.PHONY : src/server_src/protectedMatchEventQueue.cpp.s
+
 src/server_src/server.o: src/server_src/server.cpp.o
 
 .PHONY : src/server_src/server.o
@@ -1630,6 +1657,9 @@ help:
 	@echo "... src/server_src/menuHandler.o"
 	@echo "... src/server_src/menuHandler.i"
 	@echo "... src/server_src/menuHandler.s"
+	@echo "... src/server_src/protectedMatchEventQueue.o"
+	@echo "... src/server_src/protectedMatchEventQueue.i"
+	@echo "... src/server_src/protectedMatchEventQueue.s"
 	@echo "... src/server_src/server.o"
 	@echo "... src/server_src/server.i"
 	@echo "... src/server_src/server.s"

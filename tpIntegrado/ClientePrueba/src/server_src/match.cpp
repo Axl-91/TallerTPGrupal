@@ -1,5 +1,5 @@
 #include "match.h"
-
+#include <algorithm>
 // std::vector<std::vector<int>> lvl2 = {
 //     {434,434,434,434,434,434,434,434,434},
 //     {434,000,104,000,000,000,000,000,434},
@@ -32,7 +32,8 @@ Match::Match(std::string matchName):
     is_running(true),
     name(matchName),
     colMap(lvl2),
-    lvl1(lvl2)
+    lvl1(lvl2),
+    connectionNumber(0)
 {}
 
 Match::~Match(){
@@ -66,11 +67,17 @@ void Match::run(){
     }
 }
 
+// void Match::getPlayerIndex(size_t index){
+//     std::vector<ServerPlayer>::iterator it = std::find(players.begin(), players.end(), );
+//     if (it != players.end())
+//         index = std::distance(players.begin(), it);
+// }
+
 void Match::readEvents(){
     if(users.size() == 0)
         return;
     Player_t auxPlayer;
-    event_t event;
+    MatchEvent_t event;
     // users[0]->readInput(event);
 
     if(q.isEmpty())
@@ -78,57 +85,71 @@ void Match::readEvents(){
     event = q.pop();
     std::string command;
     std::stringstream paraEnviar;
-    if(event == NO_EVENT){
+    if(event.event == NO_EVENT){
         return;    
     }
+        std::cout <<"el tag usado es: " << event.playerTag << std::endl;
     
-    if(event==PLAYER_SET_WEAPON_KNIFE)
-        players[0].setCurrentWeapon(WP_KNIFE);
-    if(event==PLAYER_SET_WEAPON_GUN)
-        players[0].setCurrentWeapon(WP_GUN);
-    if(event==PLAYER_SET_WEAPON_SECONDARY)
-        players[0].setCurrentWeapon(WP_SECONDARY);
-    if(event==PLAYER_SHOOT)
-        players[0].startShooting();
-    if(event==PLAYER_STOP_SHOOTING)
-        players[0].stopShooting();
+    // size_t i;
+    // getPlayerIndex(i);
+    ServerPlayer &aPlayer = players.at(event.playerTag);
+    if(event.event==PLAYER_SET_WEAPON_KNIFE){
+        aPlayer.setCurrentWeapon(WP_KNIFE);
+        // players[event.playerTag].setCurrentWeapon(WP_KNIFE);
+        // players[event.playerTag].setCurrentWeapon(WP_KNIFE);
+    }
+    if(event.event==PLAYER_SET_WEAPON_GUN){
+        aPlayer.setCurrentWeapon(WP_GUN);
+    }
+    if(event.event==PLAYER_SET_WEAPON_SECONDARY){
+        aPlayer.setCurrentWeapon(WP_SECONDARY);
+    }
+    if(event.event==PLAYER_SHOOT)
+        aPlayer.startShooting();
+    if(event.event==PLAYER_STOP_SHOOTING)
+        aPlayer.stopShooting();
 
-    if(event==PLAYER_START_MOVING_FORWARD)
-        players[0].setMoveOrientation(FORWARD);
-    if(event==PLAYER_START_MOVING_BACKWARD)
-        players[0].setMoveOrientation(BACKWARD);
+    if(event.event==PLAYER_START_MOVING_FORWARD){
+        // movePlayer(FORWARD, players[0]);
+        aPlayer.setMoveOrientation(FORWARD);
+    }
+    if(event.event==PLAYER_START_MOVING_BACKWARD){
+        aPlayer.setMoveOrientation(BACKWARD);
+    //     movePlayer(BACKWARD, players[0]);
+    }
+    if(event.event==PLAYER_STOP_MOVING){
+        aPlayer.setMoveOrientation(MOVE_QUIET);
+    //     movePlayer(BACKWARD, players[0]);
+    }
 
-    if(event==PLAYER_STOP_MOVING)
-        players[0].setMoveOrientation(MOVE_QUIET);
+    if(event.event==PLAYER_START_ROTATING_RIGHT)
+        aPlayer.seteRotateOrientation(RIGHT);
+        // players[0].rotatePlayerRight();
+    if(event.event==PLAYER_START_ROTATING_LEFT)
+        aPlayer.seteRotateOrientation(LEFT);
+        // players[0].rotatePlayerLeft();
+    if(event.event==PLAYER_STOP_ROTATING)
+        aPlayer.seteRotateOrientation(ROTATE_QUIET);
 
-    if(event==PLAYER_START_ROTATING_RIGHT)
-        players[0].seteRotateOrientation(RIGHT);
-    if(event==PLAYER_START_ROTATING_LEFT)
-        players[0].seteRotateOrientation(LEFT);
-    if(event==PLAYER_STOP_ROTATING)
-        players[0].seteRotateOrientation(ROTATE_QUIET);
-
-    if(event==GAME_QUIT)
+    if(event.event==GAME_QUIT)
         return;
-    if(event==PICHIWAR)
+    if(event.event==PICHIWAR)
         return;
-    if(event==UNIRME)
+    if(event.event==UNIRME)
         return;
 
-    movePlayer(players[0]);
-    players[0].rotate();
-    updateHandler.updatePlayerPosition(players[0]);
-    users[0]->update(updateHandler);
-    // for(auto user:users)
-    //     user->update(updateHandler);
+    movePlayer(aPlayer);
+    aPlayer.rotate();
 
+    updateHandler.updatePlayerPosition(aPlayer);
+    // for (auto user:users)
+    //     user.second->update(updateHandler);
+    users.at(event.playerTag)->update(updateHandler);
 }
 
 void Match::stop(){
     is_running = false;
 }
-
-
 void Match::movePlayer(ServerPlayer &player){
 	float dx;
 	float dy;
@@ -153,7 +174,6 @@ void Match::movePlayer(ServerPlayer &player){
 	player.move();
 }
 
-
 void Match::handleCollision(circle &playerPos, int c){
 	Collidable *maker;
     int largoBloque = 64;
@@ -163,68 +183,56 @@ void Match::handleCollision(circle &playerPos, int c){
 
 	colMap.erase(playerPos);
     value=0;
+	// mapGame.eraseObj(playerPos.x,playerPos.y);
 	if(c>102&&c<200){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
         value = c;
+		// mapGame.insertWeapon(playerPos.x, playerPos.y, c);
 	}
 
     updateHandler.updateMap(playerPos.x, playerPos.y, value);
 }
 
-void Match::addUser(User* user){
-    // user.setID(connectedNumber)
-    // connectedNumber++; 
-    // Player player 
-    // PlayerVector.push_back(player);
-    // player.ID = connectedNUmber
-    // find TAG, enviar 
-    ServerPlayer aPlayer(96,96,0);
-
-    players.push_back(aPlayer);
-    user->setProtectedEventQueue(&q);
-    users.emplace_back(user);
-    user->start();
-
+void Match::welcomeUser(User* user){
     std::stringstream welcome;
     welcome << "Te uniste a la partida: " << name << std::endl;
     welcome << "Bienvenido!\nPodes chatear con otros jugadores en la sala." << std::endl;
     welcome << "Cantidad de jugadores en la sala: " << users.size() << std::endl;
     user->sendGameUpdate(welcome);
-    
 
     std::stringstream map;
     map << "mapa";
     user->sendGameUpdate(map);
     user->sendMap(lvl1);
+
     std::stringstream playerInfo;
     playerInfo << "playerInfo";
     user->sendGameUpdate(playerInfo);
-
     Player_t auxPlayer;
-    players[0].getPlayerInfo(auxPlayer);
-    users[0]->sendPlayerInfo(auxPlayer);
+    players.at(connectionNumber).getPlayerInfo(auxPlayer);
+    user->sendPlayerInfo(auxPlayer);
 }
 
-// Envio el contenido de la cola a los clientes
-/*
-void Match::updateUsers(){
-    std::stringstream auxStream;
-    while(!q.isEmpty()){
-        event_t frase = q.pop();
-        if(frase == GAME_QUIT){
-            auxStream << "sali";
-            for(auto user:users){
-                user->sendGameUpdate(auxStream);
-            }
-        }
-        auxStream << frase << std::endl;
-    }
+void Match::addUser(User* user){
+    // ServerPlayer aPlayer(96,96,0);
+
+    std::cout <<"tag que asigno es:"<< connectionNumber << std::endl;
     
-    for(auto user:users){
-        user->sendGameUpdate(auxStream);
-    }
+    players.emplace(connectionNumber, ServerPlayer(96,96,0));
+    // players[connectionNumber] = std::move(aPlayer);
+
+        std::cout <<"guarde player en mapa" << std::endl;
+
+    user->setProtectedMatchEventQueue(&q);
+    user->setID(connectionNumber);
+    users[connectionNumber] = user;
+    user->start();
+        std::cout <<"guarde user en mapa" << std::endl;
+
+    welcomeUser(user);
+    connectionNumber++;
 }
-*/
+
 std::string Match::getName(){
     return name;
 }
@@ -235,7 +243,7 @@ bool Match::started(){
 
 bool Match::isUserNameAvailable(std::string aName){
     for(auto user:users){
-        if(user->getName() == aName)
+        if(user.second->getName() == aName)
             return false;
     }
     return true;

@@ -15,12 +15,12 @@ bool MatchHandler::addUserToMatch(User *user, std::string matchName){
     if (it == matches.end())
 		return false;
 
-    if( !(it->second->isUserNameAvailable(user->getName())) ){
-        std::stringstream nameNotAvailablemessage;
-        nameNotAvailablemessage << "El nombre elegido no está disponible en la partida.\n";
-        user->sendGameUpdate(nameNotAvailablemessage);
-        return false;
-    }
+    // if( !(it->second->isUserNameAvailable(user->getName())) ){
+    //     std::stringstream nameNotAvailablemessage;
+    //     nameNotAvailablemessage << "El nombre elegido no está disponible en la partida.\n";
+    //     user->sendGameUpdate(nameNotAvailablemessage);
+    //     return false;
+    // }
 	it->second->addUser(user);
 	return true;
 }

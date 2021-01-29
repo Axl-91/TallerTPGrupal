@@ -13,7 +13,7 @@ void User::operator()(){
     this->start();
 }
 
-void User::setProtectedEventQueue(ProtectedEventQueue *q){
+void User::setProtectedMatchEventQueue(ProtectedMatchEventQueue *q){
     this->q = q;
 }
 
@@ -21,14 +21,17 @@ void User::run(){
     started = true;
     try {
         while(userIsRunning){
+            MatchEvent_t event;
             event_t input;
             readInput(input);
+            event.event = input;
+            event.playerTag = ID;
             if(input == GAME_QUIT){
-                q->push(input);
+                q->push(event);
                 userIsRunning = false;
                 continue;
             }
-            q->push(input);
+            q->push(event);
         }
     } catch (const SocketError &e){
         std::cerr << "Excepcion en ServerReceiver.run()" << std::endl;
@@ -106,4 +109,8 @@ void User::update(UpdateHandler uHandler){
 
 void User::sendMapUpdate(Map_change_t &aMapChange){
     transmitter.sendMapUpdate(aMapChange);
+}
+
+void User::setID(size_t newID){
+    ID = newID;
 }
