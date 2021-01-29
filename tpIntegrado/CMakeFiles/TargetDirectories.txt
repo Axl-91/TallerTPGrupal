@@ -1,0 +1,8 @@
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/install/strip.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/install.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/list_install_components.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/rebuild_cache.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/edit_cache.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/client.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/install/local.dir
+/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/server.dir
