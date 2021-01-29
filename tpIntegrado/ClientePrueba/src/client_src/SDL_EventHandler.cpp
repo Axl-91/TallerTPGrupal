@@ -7,7 +7,24 @@ SDL_EventHandler::SDL_EventHandler(ProtectedEventQueue &q):
 	q(q),
 	is_running(false),
 	quitGameRead(false)
-{}
+{
+	keyDownEvents[SDLK_1] = PLAYER_SET_WEAPON_KNIFE;
+	keyDownEvents[SDLK_2] = PLAYER_SET_WEAPON_GUN;
+	keyDownEvents[SDLK_3] = PLAYER_SET_WEAPON_SECONDARY;
+	keyDownEvents[SDLK_UP] = PLAYER_START_MOVING_FORWARD;
+	keyDownEvents[SDLK_DOWN] = PLAYER_START_MOVING_BACKWARD;
+	keyDownEvents[SDLK_RIGHT] = PLAYER_START_ROTATING_RIGHT;
+	keyDownEvents[SDLK_LEFT] = PLAYER_START_ROTATING_LEFT;
+	keyDownEvents[SDLK_SPACE] = PLAYER_SHOOT;
+	keyDownEvents[SDLK_p] = PICHIWAR;
+	keyDownEvents[SDLK_u] = UNIRME;
+
+	keyUpEvents[SDLK_UP] = PLAYER_STOP_MOVING;
+	keyUpEvents[SDLK_DOWN] = PLAYER_STOP_MOVING;
+	keyUpEvents[SDLK_RIGHT] = PLAYER_STOP_ROTATING;
+	keyUpEvents[SDLK_LEFT] = PLAYER_STOP_ROTATING;
+	keyUpEvents[SDLK_SPACE] = PLAYER_STOP_SHOOTING;
+}
 SDL_EventHandler::~SDL_EventHandler(){}
 
 void SDL_EventHandler::operator()(){
@@ -49,59 +66,10 @@ event_t SDL_EventHandler::pollEvent(){
 		//POLL EVENT PLAYER
 		exitPollEvent(SDLEvent, event);		
 		if (SDLEvent.type == SDL_KEYDOWN){
-			switch(SDLEvent.key.keysym.sym){
-    	        case SDLK_1:
-					event=PLAYER_SET_WEAPON_KNIFE;
-					break;
-            	case SDLK_2:
-					event=PLAYER_SET_WEAPON_GUN;
-					break;
-	            case SDLK_3:
-					event=PLAYER_SET_WEAPON_SECONDARY;
-					break;
-				case SDLK_UP:
-					event=PLAYER_START_MOVING_FORWARD;
-					break;
-				case SDLK_DOWN:
-					event=PLAYER_START_MOVING_BACKWARD;
-					break;
-				case SDLK_RIGHT:
-					event=PLAYER_START_ROTATING_RIGHT;
-					break;
-				case SDLK_LEFT:
-					event=PLAYER_START_ROTATING_LEFT;
-					break;
-            	case SDLK_SPACE:
-					event=PLAYER_SHOOT;
-	                break;
-				case SDLK_p:
-					event=PICHIWAR;
-	                break;
-				case SDLK_u:
-					event=UNIRME;
-	                break;
-				break;
-			}
+			event = keyDownEvents[SDLEvent.key.keysym.sym];
 		}
 		if (SDLEvent.type == SDL_KEYUP){
-			switch(SDLEvent.key.keysym.sym){
-				case SDLK_UP:
-					event=PLAYER_STOP_MOVING;
-					break;
-				case SDLK_DOWN:
-					event=PLAYER_STOP_MOVING;
-					break;
-				case SDLK_RIGHT:
-					event=PLAYER_STOP_ROTATING;
-					break;
-				case SDLK_LEFT:
-					event=PLAYER_STOP_ROTATING;
-					break;
-    	        case SDLK_SPACE:
-					event=PLAYER_STOP_SHOOTING;
-					break;
-				break;
-			}
+			event = keyUpEvents[SDLEvent.key.keysym.sym];
 		}
 	}
 	return event;
