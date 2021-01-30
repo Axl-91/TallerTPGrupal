@@ -54,6 +54,9 @@ public:
     void setDirection(float x, float y);
 
     void shoot();
+    bool enemyInShootRange(Vector &posObj);
+    void getDamageCoefficient(Vector &enemyPos, float &coef);
+
     void move(player_orientation_t &orientation);
     void setWeapon(int w);
     void rotateLeft();

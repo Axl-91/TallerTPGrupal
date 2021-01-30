@@ -44,6 +44,7 @@ public:
 	void insertObject(int x, int y, int obj);
 	void insertEnemy(int ID, int x, int y, int obj);
 
+	std::map<int, Enemy_t>& getEnemies();
 
 	void load(std::vector<std::vector<int>> lvl);
 	void setRenderer(SDL_Renderer* renderer);

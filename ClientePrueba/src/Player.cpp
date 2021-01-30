@@ -10,11 +10,16 @@
 #define PLAYER_STEP 5
 #define PLAYER_RADIUS 16
 #define PLAYER_START_ANGLE 0
+#define SHOOTING_ANGLE 10
 
 int toGrados(float radiales){
 	float anguloGrados = (radiales / PI) * 180;
 	int anguloInt = round(anguloGrados);
 	return anguloInt;
+}
+
+float toRandians(float grades){
+	return grades*PI/180;	
 }
 
 Player::Player(Map &m): mapPlayer(m),
@@ -126,9 +131,6 @@ void Player::getDirection(float &x, float &y){
 	y=dy;
 }
 
-void Player::shoot(){
-	currentWeapon->shoot();
-}
 
 
 void Player::renderRaycaster(){
@@ -150,11 +152,13 @@ void Player::renderRaycaster(){
 	}
 }
 
-bool Player::objEsVisible(Vector &posObj){
+
+
+bool Player::enemyInShootRange(Vector &posObj){
 	/*Visibilidad hacia izq y derecha en radiales
 	serian 30 grados pero agrego 5 mas para que
 	se vea mas el sprite del objeto */
-	float gVis = 35.0/180.0;
+	float gVis = SHOOTING_ANGLE/180.0;
 	float visible = PI * gVis;
 
 	float dx = posObj.getX() - position.x;
@@ -174,6 +178,80 @@ bool Player::objEsVisible(Vector &posObj){
 
 	return res;
 }
+
+
+
+void Player::shoot(){
+	std::map<int, Enemy_t>& enemies = mapPlayer.getEnemies();
+	float damageCoef;
+	Vector enemyPos;
+
+	for(auto e: enemies){
+		enemyPos = e.second.pos;
+		if(enemyInShootRange(enemyPos)==false)
+			continue;
+		getDamageCoefficient(enemyPos, damageCoef);
+		std::cout<<"coeficiente: "<<damageCoef<<std::endl;
+	}
+
+	currentWeapon->shoot();
+}
+
+void Player::getDamageCoefficient(Vector &enemyPos, float &coef){
+	Vector pos(position.x, position.y);
+	Vector dir(cos(angulo), sin(angulo));
+	// float difAng;
+	float distance = pos.distancia(enemyPos); 
+	float coef1, coef2;
+
+
+	float dx = enemyPos.getX() - position.x;
+	float dy = enemyPos.getY() - position.y;
+
+	float anguloObj = atan2(dy, dx);
+	float difAng = angulo - anguloObj;
+
+	if (difAng < -PI){
+		difAng += 2*PI;
+	}
+	if (difAng > PI){
+		difAng -= 2*PI;
+	}
+	if(difAng<0)
+		difAng=-difAng;
+	std::cout<<"difAng grados: "<<toGrados(difAng)<<std::endl;
+	std::cout<<"difAng radianes: "<<difAng<<std::endl;
+
+
+	// std::cout<<"difAng grados: "<<dir.getAngle(enemyPos-pos)<<std::endl;
+
+	// difAng=toRandians(dir.getAngle(enemyPos-pos));
+
+	// std::cout<<"difAng radianes: "<<difAng<<std::endl;
+
+
+	//se forma un triangulo rectangulo con posicion del jugador,
+	//direccion de tiro y posicion del enemigo
+	float op=sin(difAng)*distance; //cateto opuesto
+	float ad=sin(difAng)*distance; //cateto adyacente
+
+	float l= ad*(tan(toRandians(SHOOTING_ANGLE))-tan(difAng));
+
+	if(l>16)//si l es mayor al radio del enemigo
+		coef1=16;
+	else
+		coef1=l;
+
+	if(2*op+l>16)//si 2*op+l es mayor al radio del enemigo
+		coef2=16;
+	else
+		coef2=2*op+l;
+
+	//coeficiente de acuerdo al
+	float angleCoef=1-difAng/SHOOTING_ANGLE;
+	coef=(coef1+coef2)/(2*op+2*l)*angleCoef;
+}
+
 
 void Player::renderObjects(){
 	int uno = 1;
@@ -215,18 +293,47 @@ void Player::renderObjects(){
 				if (z < 0 || z > 320){ continue; }
 
 				if (distBuffer[z] > distanciaObj){
-					// if(orderedObjets[obj].tipoObjecto==100){
-					// 	mapPlayer.setColEnemy(i);
-					// 	mapPlayer.renderEnemy(z, yoInt, uno, sizeObjInt);
-					// }else{
 					mapPlayer.setColObject(i,orderedObjets[obj].tipoObjecto);
 					mapPlayer.renderObject(z, yoInt, uno, sizeObjInt,orderedObjets[obj].tipoObjecto);
-					// }
 				}
 			}
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+bool Player::objEsVisible(Vector &posObj){
+	/*Visibilidad hacia izq y derecha en radiales
+	serian 30 grados pero agrego 5 mas para que
+	se vea mas el sprite del objeto */
+	float gVis = 35.0/180.0;
+	float visible = PI * gVis;
+
+	float dx = posObj.getX() - position.x;
+	float dy = posObj.getY() - position.y;
+
+	float anguloObj = atan2(dy, dx);
+	float difAng = angulo - anguloObj;
+
+	if (difAng < -PI){
+		difAng += 2*PI;
+	}
+	if (difAng > PI){
+		difAng -= 2*PI;
+	}
+	bool res = (difAng < visible);
+	res &= (difAng > -visible);
+
+	return res;
+}
+
 
 void Player::render(int largoWin, int altoWin){
 	renderRaycaster();

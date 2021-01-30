@@ -60,6 +60,9 @@ void Map::insertEnemy(int ID, int x, int y, int obj){
 	mapEnemies[ID]=auxObj;
 }
 
+std::map<int, Enemy_t>& Map::getEnemies(){
+	return mapEnemies;
+}
 
 void Map::insertObject(int x, int y, int obj){
 	Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
