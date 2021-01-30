@@ -206,6 +206,7 @@ void Player::renderObjects(){
 		float anchura = sizeObj / 64;
 		int yoInt = yo;
 		int sizeObjInt = sizeObj;
+
 		mapPlayer.setObj(tipoObj);
 
 		for (int i = 0; i < 64; ++i){
@@ -214,55 +215,17 @@ void Player::renderObjects(){
 				if (z < 0 || z > 320){ continue; }
 
 				if (distBuffer[z] > distanciaObj){
-					mapPlayer.setColObject(i);
-					mapPlayer.renderObject(z, yoInt, uno, sizeObjInt);
+					// if(orderedObjets[obj].tipoObjecto==100){
+					// 	mapPlayer.setColEnemy(i);
+					// 	mapPlayer.renderEnemy(z, yoInt, uno, sizeObjInt);
+					// }else{
+					mapPlayer.setColObject(i,orderedObjets[obj].tipoObjecto);
+					mapPlayer.renderObject(z, yoInt, uno, sizeObjInt,orderedObjets[obj].tipoObjecto);
+					// }
 				}
 			}
 		}
 	}
-
-
-
-
-
-
-
-	// for (int obj = 0; obj < mapPlayer.getCantObjects(); ++obj){
-	// 	Vector posObjeto = mapPlayer.getPosObj(obj);
-	// 	if (!objEsVisible(posObjeto)){
-	// 		continue;
-	// 	}
-	// 	int tipoObj = mapPlayer.getTipoObj(obj);
-	// 	float distanciaObj = posJugador.distancia(posObjeto);
-
-	// 	//Coordenadas en Y
-	// 	float sizeObj = (64 * 320) / distanciaObj;
-	// 	float yo = 100 - (sizeObj/2);
-	// 	//Coordenadas en X
-	// 	float dx = position.x - posObjeto.getX();
-	// 	float dy = position.y - posObjeto.getY();
-
-	// 	float anguloObj = atan2(dy, dx) - angulo;
-	// 	float xo = tan(anguloObj) * 277.1281;
-	// 	float x = round((320/2) + xo - (sizeObj/2));
-
-	// 	float anchura = sizeObj / 64;
-	// 	int yoInt = yo;
-	// 	int sizeObjInt = sizeObj;
-	// 	mapPlayer.setObj(tipoObj);
-
-	// 	for (int i = 0; i < 64; ++i){
-	// 		for (int j = 0; j < anchura; ++j){
-	// 			int z = round(x)+((i)*anchura)+j;
-	// 			if (z < 0 || z > 320){ continue; }
-
-	// 			if (distBuffer[z] > distanciaObj){
-	// 				mapPlayer.setColObject(i);
-	// 				mapPlayer.renderObject(z, yoInt, uno, sizeObjInt);
-	// 			}
-	// 		}
-	// 	}
-	// }
 }
 
 void Player::render(int largoWin, int altoWin){

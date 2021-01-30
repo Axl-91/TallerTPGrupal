@@ -19,6 +19,8 @@ typedef struct Objeto {
 	int tipoObjecto;
 } Objeto;
 
+
+
 class Map{
 private:
 	int largoBloque = 64;
@@ -31,6 +33,7 @@ private:
 	Walls walls;
 	Objects objects;
 	Enemies enemies;
+	std::map<int, Enemy_t> mapEnemies;
 	std::map<std::pair<int,int>, Objeto> mapObj;
 	// std::vector<Objeto> vectObj;
 public:
@@ -39,6 +42,8 @@ public:
 
 	void insertWeaponWithCoords(int j, int i, int obj);
 	void insertObject(int x, int y, int obj);
+	void insertEnemy(int ID, int x, int y, int obj);
+
 
 	void load(std::vector<std::vector<int>> lvl);
 	void setRenderer(SDL_Renderer* renderer);
@@ -55,8 +60,13 @@ public:
 
 	void eraseObj(float x, float y);
 	void setObj(int &pos);
-	void setColObject(int &pos);
-	void renderObject(int &posX, int &posY, int &largo, int &alto);
+	void renderEnemy(int &posX, int &posY, int &largo, int &alto);
+	void setColEnemy(int &pos);
+
+	void setColObject(int &pos, int type);
+	// void setColObject(int &pos);
+	void renderObject(int &posX, int &posY, int &largo, int &alto, int type);
+	// void renderObject(int &posX, int &posY, int &largo, int &alto);
 };
 
 #endif
