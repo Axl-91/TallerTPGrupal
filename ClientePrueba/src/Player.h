@@ -32,6 +32,10 @@ private:
     float dy;
     float step;
     float distBuffer[320];
+    // float shootBuffer[101];
+    // std::map<float,float> shootBuffer; //<angle, distance>
+    float shootRay;
+
     int health;
     Map &mapPlayer;
     Inventory inventory;
@@ -52,6 +56,7 @@ public:
     void render(int largoWin, int altoWin);
 
     void setDirection(float x, float y);
+    void shootRaycaster();
 
     void shoot();
     bool enemyInShootRange(Vector &posObj);

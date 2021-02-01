@@ -4,13 +4,6 @@
 
 // Vector::Vector(): posX(0), posY(0) {}
 
-int toGrados1(float radiales){
-	float anguloGrados = (radiales / 3.1415) * 180;
-	int anguloInt = round(anguloGrados);
-	return anguloInt;
-}
-
-
 Vector::Vector(float x, float y): posX(x), posY(y) {}
 
 float Vector::getX(){
@@ -34,17 +27,14 @@ void Vector::set(float &x,float &y){
 }
 
 float Vector::getAngle(Vector v){
-    float finalAngle=v.getAngle()+getAngle();
-    if(finalAngle>=360)
-        finalAngle-=360;
-    else if(finalAngle<0)
-        finalAngle+=360;
-
-    return finalAngle;
+	float dx = v.posX - posX;
+	float dy = v.posY - posY;
+    return atan2(dy, dx);
 }
 
 float Vector::getAngle(){
-    return toGrados1(atan2(posY,posX));
+    return atan2(posY,posX);
+
 }
 
 

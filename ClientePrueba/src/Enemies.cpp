@@ -21,7 +21,7 @@ void Enemies::setAngle(int angle){
 void Enemies::defineSprite(Enemy_t enemy, Vector &posPlayer, int &sprite){
     //anglePlayer con angulo en grados
     Vector aux(posPlayer-enemy.pos);
-    int angleDif = enemy.pos.getAngle()+aux.getAngle();
+    int angleDif = (enemy.pos.getAngle()+aux.getAngle())*180/3.1415;
 
     // std::cout<<"player ang: "<<posPlayer.getAngle()<<std::endl;
     // std::cout<<"enemy ang: "<<enemy.pos.getAngle()<<std::endl;

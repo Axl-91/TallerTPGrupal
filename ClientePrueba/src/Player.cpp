@@ -10,12 +10,18 @@
 #define PLAYER_STEP 5
 #define PLAYER_RADIUS 16
 #define PLAYER_START_ANGLE 0
-#define SHOOTING_ANGLE 10
+//10*PI/180=0.1745
+// #define SHOOTING_ANGLE 0.1745
+#define SHOOTING_ANGLE 0.087263
+#define COEF_SHOOTING_DISTANCE_DIVISOR 512
+#define COEF_SHOOTING_DISTANCE_OFFSET 0.2
+#define SHOOTING_SIZE 20
+#define COEF_SHOOTING_ANGLE_DIVISOR 96
 
-int toGrados(float radiales){
-	float anguloGrados = (radiales / PI) * 180;
-	int anguloInt = round(anguloGrados);
-	return anguloInt;
+float toGrados(float radiales){
+	// float anguloGrados = (radiales / PI) * 180;
+	// int anguloInt = round(anguloGrados);
+	return (radiales / PI) * 180;
 }
 
 float toRandians(float grades){
@@ -158,8 +164,9 @@ bool Player::enemyInShootRange(Vector &posObj){
 	/*Visibilidad hacia izq y derecha en radiales
 	serian 30 grados pero agrego 5 mas para que
 	se vea mas el sprite del objeto */
-	float gVis = SHOOTING_ANGLE/180.0;
-	float visible = PI * gVis;
+	// float gVis = SHOOTING_ANGLE/180.0;
+	// float visible = PI * gVis;
+	float visible = SHOOTING_ANGLE;
 
 	float dx = posObj.getX() - position.x;
 	float dy = posObj.getY() - position.y;
@@ -180,6 +187,21 @@ bool Player::enemyInShootRange(Vector &posObj){
 }
 
 
+void Player::shootRaycaster(){
+	Vector vectorPos(position.x, position.y);
+	Raycaster raycaster(vectorPos, angulo, mapPlayer);
+	float anguloRay = angulo;
+	if (anguloRay < 0){
+		anguloRay += 2*PI;
+	} else if (anguloRay > 2*PI){
+		anguloRay -=2*PI;
+	}
+
+	raycaster.crearRay(anguloRay);
+	shootRay=raycaster.getDistancia();
+}
+
+
 
 void Player::shoot(){
 	std::map<int, Enemy_t>& enemies = mapPlayer.getEnemies();
@@ -188,27 +210,26 @@ void Player::shoot(){
 
 	for(auto e: enemies){
 		enemyPos = e.second.pos;
-		if(enemyInShootRange(enemyPos)==false)
-			continue;
+		// if(enemyInShootRange(enemyPos)==false)
+		// 	continue;
 		getDamageCoefficient(enemyPos, damageCoef);
+		// if(damageCoef!=0)
+		// 	currentWeapon->getDamage(enemyPos, damageCoef)
 		std::cout<<"coeficiente: "<<damageCoef<<std::endl;
 	}
-
 	currentWeapon->shoot();
+
 }
 
+
 void Player::getDamageCoefficient(Vector &enemyPos, float &coef){
+	std::cout<<"getDamageCoefficient-------------------------------------------------------------- "<<std::endl;
 	Vector pos(position.x, position.y);
-	Vector dir(cos(angulo), sin(angulo));
-	// float difAng;
 	float distance = pos.distancia(enemyPos); 
-	float coef1, coef2;
 
+	float anguloObj = pos.getAngle(enemyPos);
 
-	float dx = enemyPos.getX() - position.x;
-	float dy = enemyPos.getY() - position.y;
-
-	float anguloObj = atan2(dy, dx);
+	// std::cout<<"anguloObj: "<<toGrados(anguloObj)<<std::endl;
 	float difAng = angulo - anguloObj;
 
 	if (difAng < -PI){
@@ -219,38 +240,31 @@ void Player::getDamageCoefficient(Vector &enemyPos, float &coef){
 	}
 	if(difAng<0)
 		difAng=-difAng;
-	std::cout<<"difAng grados: "<<toGrados(difAng)<<std::endl;
-	std::cout<<"difAng radianes: "<<difAng<<std::endl;
-
-
-	// std::cout<<"difAng grados: "<<dir.getAngle(enemyPos-pos)<<std::endl;
-
-	// difAng=toRandians(dir.getAngle(enemyPos-pos));
-
-	// std::cout<<"difAng radianes: "<<difAng<<std::endl;
-
+	std::cout<<"difAng: "<<toGrados(difAng)<<std::endl;
 
 	//se forma un triangulo rectangulo con posicion del jugador,
 	//direccion de tiro y posicion del enemigo
 	float op=sin(difAng)*distance; //cateto opuesto
-	float ad=sin(difAng)*distance; //cateto adyacente
+	float ad=cos(difAng)*distance; //cateto adyacente
+	shootRaycaster();
 
-	float l= ad*(tan(toRandians(SHOOTING_ANGLE))-tan(difAng));
+	if(ad>shootRay || op > SHOOTING_SIZE){
+		coef=0;
+		return;
+	}
 
-	if(l>16)//si l es mayor al radio del enemigo
-		coef1=16;
-	else
-		coef1=l;
+	float coefDistance= COEF_SHOOTING_DISTANCE_OFFSET+exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
+	float coefAng= exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
 
-	if(2*op+l>16)//si 2*op+l es mayor al radio del enemigo
-		coef2=16;
-	else
-		coef2=2*op+l;
+	std::cout<<"coefDistance: "<<coefDistance<<std::endl;
+	std::cout<<"coefAng: "<<coefAng<<std::endl;
 
-	//coeficiente de acuerdo al
-	float angleCoef=1-difAng/SHOOTING_ANGLE;
-	coef=(coef1+coef2)/(2*op+2*l)*angleCoef;
+	coef=coefDistance*coefAng;
+	if(coef>1)
+		coef=1;
 }
+
+
 
 
 void Player::renderObjects(){
