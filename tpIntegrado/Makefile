@@ -182,6 +182,33 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+src/client_src/Enemies.o: src/client_src/Enemies.cpp.o
+
+.PHONY : src/client_src/Enemies.o
+
+# target to build an object file
+src/client_src/Enemies.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/Enemies.cpp.o
+.PHONY : src/client_src/Enemies.cpp.o
+
+src/client_src/Enemies.i: src/client_src/Enemies.cpp.i
+
+.PHONY : src/client_src/Enemies.i
+
+# target to preprocess a source file
+src/client_src/Enemies.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/Enemies.cpp.i
+.PHONY : src/client_src/Enemies.cpp.i
+
+src/client_src/Enemies.s: src/client_src/Enemies.cpp.s
+
+.PHONY : src/client_src/Enemies.s
+
+# target to generate assembly for a file
+src/client_src/Enemies.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/Enemies.cpp.s
+.PHONY : src/client_src/Enemies.cpp.s
+
 src/client_src/Game.o: src/client_src/Game.cpp.o
 
 .PHONY : src/client_src/Game.o
@@ -1358,6 +1385,33 @@ src/server_src/server.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/server.cpp.s
 .PHONY : src/server_src/server.cpp.s
 
+src/server_src/serverGame.o: src/server_src/serverGame.cpp.o
+
+.PHONY : src/server_src/serverGame.o
+
+# target to build an object file
+src/server_src/serverGame.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/serverGame.cpp.o
+.PHONY : src/server_src/serverGame.cpp.o
+
+src/server_src/serverGame.i: src/server_src/serverGame.cpp.i
+
+.PHONY : src/server_src/serverGame.i
+
+# target to preprocess a source file
+src/server_src/serverGame.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/serverGame.cpp.i
+.PHONY : src/server_src/serverGame.cpp.i
+
+src/server_src/serverGame.s: src/server_src/serverGame.cpp.s
+
+.PHONY : src/server_src/serverGame.s
+
+# target to generate assembly for a file
+src/server_src/serverGame.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/serverGame.cpp.s
+.PHONY : src/server_src/serverGame.cpp.s
+
 src/server_src/serverPlayer.o: src/server_src/serverPlayer.cpp.o
 
 .PHONY : src/server_src/serverPlayer.o
@@ -1534,6 +1588,9 @@ help:
 	@echo "... client"
 	@echo "... install/local"
 	@echo "... server"
+	@echo "... src/client_src/Enemies.o"
+	@echo "... src/client_src/Enemies.i"
+	@echo "... src/client_src/Enemies.s"
 	@echo "... src/client_src/Game.o"
 	@echo "... src/client_src/Game.i"
 	@echo "... src/client_src/Game.s"
@@ -1663,6 +1720,9 @@ help:
 	@echo "... src/server_src/server.o"
 	@echo "... src/server_src/server.i"
 	@echo "... src/server_src/server.s"
+	@echo "... src/server_src/serverGame.o"
+	@echo "... src/server_src/serverGame.i"
+	@echo "... src/server_src/serverGame.s"
 	@echo "... src/server_src/serverPlayer.o"
 	@echo "... src/server_src/serverPlayer.i"
 	@echo "... src/server_src/serverPlayer.s"

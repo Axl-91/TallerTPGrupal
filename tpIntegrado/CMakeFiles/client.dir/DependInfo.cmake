@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Enemies.cpp" "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/client.dir/src/client_src/Enemies.cpp.o"
   "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Game.cpp" "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/client.dir/src/client_src/Game.cpp.o"
   "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Hud.cpp" "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/client.dir/src/client_src/Hud.cpp.o"
   "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Map.cpp" "/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles/client.dir/src/client_src/Map.cpp.o"

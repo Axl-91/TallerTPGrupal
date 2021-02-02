@@ -147,6 +147,7 @@ CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/ma
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/menuHandler.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/server.h
+CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
@@ -172,6 +173,7 @@ CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/c
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/match.cpp
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/match.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
+CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
@@ -197,6 +199,7 @@ CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/serve
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/matchHandler.cpp
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/matchHandler.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
+CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
@@ -223,6 +226,7 @@ CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/menuHandler.cpp
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/menuHandler.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
+CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
@@ -254,12 +258,26 @@ CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/server.cpp
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/server.h
+CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/thacceptor.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/user.h
+
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/common_src/Circle.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/common_src/Vector.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/CollisionMap.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/collisions/QuadNode.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverGame.cpp
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverGame.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/common_src/types.h
@@ -302,6 +320,7 @@ CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/matchHandler.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/menuHandler.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/protectedMatchEventQueue.h
+CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h

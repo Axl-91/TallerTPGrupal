@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/client.dir/src/client_src/Enemies.cpp.o"
   "CMakeFiles/client.dir/src/client_src/Game.cpp.o"
   "CMakeFiles/client.dir/src/client_src/Hud.cpp.o"
   "CMakeFiles/client.dir/src/client_src/Map.cpp.o"

@@ -70,9 +70,22 @@ CMakeFiles/client.dir/src/client_src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/client_src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/main.cpp -o CMakeFiles/client.dir/src/client_src/main.cpp.s
 
+CMakeFiles/client.dir/src/client_src/Enemies.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/client_src/Enemies.cpp.o: ClientePrueba/src/client_src/Enemies.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/client_src/Enemies.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Enemies.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Enemies.cpp
+
+CMakeFiles/client.dir/src/client_src/Enemies.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/client_src/Enemies.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Enemies.cpp > CMakeFiles/client.dir/src/client_src/Enemies.cpp.i
+
+CMakeFiles/client.dir/src/client_src/Enemies.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/client_src/Enemies.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Enemies.cpp -o CMakeFiles/client.dir/src/client_src/Enemies.cpp.s
+
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/client_src/Game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/client_src/Game.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Game.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Game.cpp
 
 CMakeFiles/client.dir/src/client_src/Game.cpp.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/client.dir/src/client_src/Game.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Hud.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Hud.cpp.o: ClientePrueba/src/client_src/Hud.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/client_src/Hud.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/src/client_src/Hud.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Hud.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Hud.cpp
 
 CMakeFiles/client.dir/src/client_src/Hud.cpp.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/client.dir/src/client_src/Hud.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Map.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Map.cpp.o: ClientePrueba/src/client_src/Map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/src/client_src/Map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/src/client_src/Map.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Map.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Map.cpp
 
 CMakeFiles/client.dir/src/client_src/Map.cpp.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/client.dir/src/client_src/Map.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/Objects.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/src/client_src/Objects.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/src/client_src/Objects.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Objects.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Objects.cpp
 
 CMakeFiles/client.dir/src/client_src/Objects.cpp.i: cmake_force
@@ -124,7 +137,7 @@ CMakeFiles/client.dir/src/client_src/Objects.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Player.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Player.cpp.o: ClientePrueba/src/client_src/Player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/src/client_src/Player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/src/client_src/Player.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Player.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Player.cpp
 
 CMakeFiles/client.dir/src/client_src/Player.cpp.i: cmake_force
@@ -137,7 +150,7 @@ CMakeFiles/client.dir/src/client_src/Player.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Raycaster.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Raycaster.cpp.o: ClientePrueba/src/client_src/Raycaster.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/src/client_src/Raycaster.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/client.dir/src/client_src/Raycaster.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Raycaster.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Raycaster.cpp
 
 CMakeFiles/client.dir/src/client_src/Raycaster.cpp.i: cmake_force
@@ -150,7 +163,7 @@ CMakeFiles/client.dir/src/client_src/Raycaster.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.o: ClientePrueba/src/client_src/SDLHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/SDLHandler.cpp
 
 CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.i: cmake_force
@@ -163,7 +176,7 @@ CMakeFiles/client.dir/src/client_src/SDLHandler.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.o: ClientePrueba/src/client_src/SDL_EventHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/SDL_EventHandler.cpp
 
 CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.i: cmake_force
@@ -176,7 +189,7 @@ CMakeFiles/client.dir/src/client_src/SDL_EventHandler.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.o: ClientePrueba/src/client_src/SpritesHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/SpritesHandler.cpp
 
 CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.i: cmake_force
@@ -189,7 +202,7 @@ CMakeFiles/client.dir/src/client_src/SpritesHandler.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/Walls.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/Walls.cpp.o: ClientePrueba/src/client_src/Walls.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/client.dir/src/client_src/Walls.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/client.dir/src/client_src/Walls.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/Walls.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/Walls.cpp
 
 CMakeFiles/client.dir/src/client_src/Walls.cpp.i: cmake_force
@@ -202,7 +215,7 @@ CMakeFiles/client.dir/src/client_src/Walls.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/client.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/client.dir/src/client_src/client.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/client.dir/src/client_src/client.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/client.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/client.cpp
 
 CMakeFiles/client.dir/src/client_src/client.cpp.i: cmake_force
@@ -215,7 +228,7 @@ CMakeFiles/client.dir/src/client_src/client.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/client_src/clientReceiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/clientReceiver.cpp
 
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.i: cmake_force
@@ -228,7 +241,7 @@ CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.o: ClientePrueba/src/client_src/clientTransmitter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/clientTransmitter.cpp
 
 CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.i: cmake_force
@@ -241,7 +254,7 @@ CMakeFiles/client.dir/src/client_src/clientTransmitter.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/common_src/Vector.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/common_src/Vector.cpp.o: ClientePrueba/src/common_src/Vector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/src/common_src/Vector.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/src/common_src/Vector.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/common_src/Vector.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.cpp
 
 CMakeFiles/client.dir/src/common_src/Vector.cpp.i: cmake_force
@@ -254,7 +267,7 @@ CMakeFiles/client.dir/src/common_src/Vector.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o: ClientePrueba/src/common_src/protectedEventQueue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/protectedEventQueue.cpp
 
 CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.i: cmake_force
@@ -267,7 +280,7 @@ CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o: ClientePrueba/src/common_src/protectedQueue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/protectedQueue.cpp
 
 CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.i: cmake_force
@@ -280,7 +293,7 @@ CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/common_src/socket.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/common_src/socket.cpp.o: ClientePrueba/src/common_src/socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/client.dir/src/common_src/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/client.dir/src/common_src/socket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/common_src/socket.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/socket.cpp
 
 CMakeFiles/client.dir/src/common_src/socket.cpp.i: cmake_force
@@ -293,7 +306,7 @@ CMakeFiles/client.dir/src/common_src/socket.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/common_src/thread.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/common_src/thread.cpp.o: ClientePrueba/src/common_src/thread.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/client.dir/src/common_src/thread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/client.dir/src/common_src/thread.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/common_src/thread.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/thread.cpp
 
 CMakeFiles/client.dir/src/common_src/thread.cpp.i: cmake_force
@@ -306,7 +319,7 @@ CMakeFiles/client.dir/src/common_src/thread.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.o: ClientePrueba/src/client_src/inventory/Inventory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/Inventory.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.i: cmake_force
@@ -319,7 +332,7 @@ CMakeFiles/client.dir/src/client_src/inventory/Inventory.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.o: ClientePrueba/src/client_src/inventory/PWChainCannon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PWChainCannon.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.i: cmake_force
@@ -332,7 +345,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PWChainCannon.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.o: ClientePrueba/src/client_src/inventory/PWGun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PWGun.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.i: cmake_force
@@ -345,7 +358,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PWGun.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.o: ClientePrueba/src/client_src/inventory/PWKnife.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PWKnife.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.i: cmake_force
@@ -358,7 +371,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PWKnife.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.o: ClientePrueba/src/client_src/inventory/PWMachineGun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PWMachineGun.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.i: cmake_force
@@ -371,7 +384,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PWMachineGun.cpp.s: cmake_force
 
 CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o: ClientePrueba/src/client_src/inventory/PWRocketLauncher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PWRocketLauncher.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.i: cmake_force
@@ -384,7 +397,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.s: cmake_for
 
 CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o: ClientePrueba/src/client_src/inventory/PlayerWeapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/client_src/inventory/PlayerWeapon.cpp
 
 CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.i: cmake_force
@@ -398,6 +411,7 @@ CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.s: cmake_force
 # Object files for target client
 client_OBJECTS = \
 "CMakeFiles/client.dir/src/client_src/main.cpp.o" \
+"CMakeFiles/client.dir/src/client_src/Enemies.cpp.o" \
 "CMakeFiles/client.dir/src/client_src/Game.cpp.o" \
 "CMakeFiles/client.dir/src/client_src/Hud.cpp.o" \
 "CMakeFiles/client.dir/src/client_src/Map.cpp.o" \
@@ -428,6 +442,7 @@ client_OBJECTS = \
 client_EXTERNAL_OBJECTS =
 
 client: CMakeFiles/client.dir/src/client_src/main.cpp.o
+client: CMakeFiles/client.dir/src/client_src/Enemies.cpp.o
 client: CMakeFiles/client.dir/src/client_src/Game.cpp.o
 client: CMakeFiles/client.dir/src/client_src/Hud.cpp.o
 client: CMakeFiles/client.dir/src/client_src/Map.cpp.o
@@ -455,7 +470,7 @@ client: CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o
 client: CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o
 client: CMakeFiles/client.dir/build.make
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

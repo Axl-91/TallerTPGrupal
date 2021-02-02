@@ -29,6 +29,7 @@ void UpdateHandler::getMapChange(Map_change_t &aMapChange){
 }
 
 void UpdateHandler::getPlayerChange(Player_t &p){
+    p.ID = player.ID;
     p.x = player.x;
     p.y = player.y;
     p.ang = player.ang;
@@ -47,5 +48,5 @@ void UpdateHandler::getPlayerChange(Player_t &p){
 
 void UpdateHandler::updated(){
     mapChanged = false;
-    playerChanged = false;
+    // playerChanged = false;
 }

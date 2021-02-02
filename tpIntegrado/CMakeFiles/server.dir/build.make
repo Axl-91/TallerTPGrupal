@@ -148,9 +148,22 @@ CMakeFiles/server.dir/src/server_src/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/server.cpp -o CMakeFiles/server.dir/src/server_src/server.cpp.s
 
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverGame.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/server_src/serverGame.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/serverGame.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverGame.cpp
+
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/serverGame.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverGame.cpp > CMakeFiles/server.dir/src/server_src/serverGame.cpp.i
+
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/serverGame.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverGame.cpp -o CMakeFiles/server.dir/src/server_src/serverGame.cpp.s
+
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/server_src/serverPlayer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.cpp
 
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.i: cmake_force
@@ -163,7 +176,7 @@ CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o: ClientePrueba/src/server_src/serverReceiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.cpp
 
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.i: cmake_force
@@ -176,7 +189,7 @@ CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/server_src/serverTransmitter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.cpp
 
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.i: cmake_force
@@ -189,7 +202,7 @@ CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/thacceptor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/thacceptor.cpp
 
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.i: cmake_force
@@ -202,7 +215,7 @@ CMakeFiles/server.dir/src/server_src/thacceptor.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/updateHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.cpp
 
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.i: cmake_force
@@ -215,7 +228,7 @@ CMakeFiles/server.dir/src/server_src/updateHandler.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/user.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/user.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/src/server_src/user.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/src/server_src/user.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/user.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.cpp
 
 CMakeFiles/server.dir/src/server_src/user.cpp.i: cmake_force
@@ -228,7 +241,7 @@ CMakeFiles/server.dir/src/server_src/user.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/common_src/Vector.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/Vector.cpp.o: ClientePrueba/src/common_src/Vector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/src/common_src/Vector.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/src/common_src/Vector.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/common_src/Vector.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.cpp
 
 CMakeFiles/server.dir/src/common_src/Vector.cpp.i: cmake_force
@@ -241,7 +254,7 @@ CMakeFiles/server.dir/src/common_src/Vector.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.o: ClientePrueba/src/common_src/protectedEventQueue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/protectedEventQueue.cpp
 
 CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.i: cmake_force
@@ -254,7 +267,7 @@ CMakeFiles/server.dir/src/common_src/protectedEventQueue.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.o: ClientePrueba/src/common_src/protectedQueue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/protectedQueue.cpp
 
 CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.i: cmake_force
@@ -267,7 +280,7 @@ CMakeFiles/server.dir/src/common_src/protectedQueue.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/common_src/socket.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/socket.cpp.o: ClientePrueba/src/common_src/socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/src/common_src/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/src/common_src/socket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/common_src/socket.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/socket.cpp
 
 CMakeFiles/server.dir/src/common_src/socket.cpp.i: cmake_force
@@ -280,7 +293,7 @@ CMakeFiles/server.dir/src/common_src/socket.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/common_src/thread.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/thread.cpp.o: ClientePrueba/src/common_src/thread.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/src/common_src/thread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/src/common_src/thread.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/common_src/thread.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/thread.cpp
 
 CMakeFiles/server.dir/src/common_src/thread.cpp.i: cmake_force
@@ -293,7 +306,7 @@ CMakeFiles/server.dir/src/common_src/thread.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/collisions/CollectAmmo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectAmmo.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.i: cmake_force
@@ -306,7 +319,7 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/collisions/CollectHeal.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectHeal.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.i: cmake_force
@@ -319,7 +332,7 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/collisions/CollectWeapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectWeapon.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.i: cmake_force
@@ -332,7 +345,7 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.i: cmake_force
@@ -345,7 +358,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.i: cmake_force
@@ -358,7 +371,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Immovable.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.i: cmake_force
@@ -371,7 +384,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableWall.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableWall.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.i: cmake_force
@@ -384,7 +397,7 @@ CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/collisions/QuadNode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/QuadNode.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.i: cmake_force
@@ -397,7 +410,7 @@ CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.i: cmake_force
@@ -410,7 +423,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o -c /home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.i: cmake_force
@@ -430,6 +443,7 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/server.cpp.o" \
+"CMakeFiles/server.dir/src/server_src/serverGame.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o" \
@@ -462,6 +476,7 @@ server: CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o
 server: CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o
 server: CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.o
 server: CMakeFiles/server.dir/src/server_src/server.cpp.o
+server: CMakeFiles/server.dir/src/server_src/serverGame.cpp.o
 server: CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o
 server: CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o
 server: CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o
@@ -485,7 +500,7 @@ server: CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

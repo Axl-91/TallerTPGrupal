@@ -19,7 +19,6 @@ void SpritesHandler::destroyTextures(){
 void SpritesHandler::setRenderer(SDL_Renderer* renderer){
     rendererWin = renderer;
     getTextures(renderer);
-
 }
 
 
@@ -43,11 +42,14 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
 
 }
 
+void SpritesHandler::setSrc(int posX, int posY, int largo, int alto){
+    src = {posX, posY, largo, alto};
+}
+
 
 void SpritesHandler::render(int posX, int posY, int largo, int alto, int text){
     SDL_Rect rect = {posX, posY, largo, alto};
-
     
-    SDL_RenderCopy(rendererWin, texturas[text], NULL, &rect);
+    SDL_RenderCopy(rendererWin, texturas[text], &src, &rect);
 }
 

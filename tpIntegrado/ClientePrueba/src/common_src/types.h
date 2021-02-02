@@ -25,6 +25,8 @@ typedef enum{
     PLAYER_SHOOT,
     PLAYER_STOP_SHOOTING,
     GAME_QUIT,
+    NEW_MATCH,
+    ASD,
     PICHIWAR,
     UNIRME
 }event_t;
@@ -39,7 +41,7 @@ typedef enum{
 }weapon_t;
 
 typedef struct{
-    size_t tag;
+    size_t ID;
     int step;
     float x;
     float y;

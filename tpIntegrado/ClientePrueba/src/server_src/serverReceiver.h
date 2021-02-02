@@ -16,8 +16,10 @@ public:
     // void readInput(std::string &input);
     void readInput(event_t &input);
     void stop();
+    bool finished();
 private:
     Socket &socket;
+    std::atomic<bool> is_running;
 };
 
 #endif
