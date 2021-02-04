@@ -20,10 +20,6 @@
 class Enemies{
 private:
     std::vector<std::string> EnemiesSprites = {
-    // "Media/EnemiesSprites/asd.png", "Media/EnemiesSprites/dsadGuard02.png",
-    // "Media/EnemiesSprites/Guarddawd03.png", "Media/EnemiesSprites/Guarddda04.png",
-    // "Media/EnemiesSprites/Guardawdd05.png", "Media/EnemiesSprites/Guardd06.png",
-    // "Media/EnemiesSprites/Guardawdad07.png", "Media/EnemiesSprites/Guaddrd08.png",
     "Media/EnemiesSprites/Guard01.png", "Media/EnemiesSprites/Guard02.png",
     "Media/EnemiesSprites/Guard03.png", "Media/EnemiesSprites/Guard04.png",
     "Media/EnemiesSprites/Guard05.png", "Media/EnemiesSprites/Guard06.png",
@@ -31,7 +27,7 @@ private:
     };
     SpritesHandler EnemiesHandler;
     int angleEnemy = 0;
-    //angleEnemy con angulo en grados
+    //angleEnemy con angulo en radianes
     int pos = 0;
 public:
     Enemies();

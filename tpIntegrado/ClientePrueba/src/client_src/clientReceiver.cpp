@@ -68,7 +68,7 @@ void ClientReceiver::receiveGame(){
     std::vector<char> buffer(length+1, 0);
     socket.receive(buffer.data(), length);
     std::string response = buffer.data();
-    std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
+    // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 
     if(response == "mapa"){
      std::cout<<"client.receive cargo el mapa"<<std::endl;
@@ -76,7 +76,7 @@ void ClientReceiver::receiveGame(){
     }
     if(response == "playerInfo"){
         receivePlayerInfo();
-        std::cout << "Receiver::Recibi player tag: " << player.ID  << std::endl;
+        // std::cout << "Receiver::Recibi player tag: " << player.ID  << std::endl;
     }
 
     if(response == "mapChange"){

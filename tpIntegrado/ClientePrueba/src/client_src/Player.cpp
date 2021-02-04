@@ -293,7 +293,7 @@ void Player::updateInfo(Player_t &p){
 	position.x = p.x;
 	position.y = p.y;
 	angulo = p.ang;
-    // std::cout<<"Player::updateInfo: current wp recibida: " << p.currentWP <<std::endl;
+    // std::cout<<"el angulo propio: " << angulo*180/3.1415 <<std::endl;
 	
 	lifes = p.lifes;
 	score = p.score;
@@ -302,7 +302,7 @@ void Player::updateInfo(Player_t &p){
 	// ammo = p.ammo;
 	equip(p.secondaryWP);
 	// if(p.secondaryWP == NONE)
-		std::cout << "El secondaryWP es: " << p.secondaryWP << std::endl;
+		// std::cout << "El secondaryWP es: " << p.secondaryWP << std::endl;
 	setWeapon(p.currentWP);
 	// std::cout << "El currentWP es: " << p.currentWP << std::endl;
 	if(p.shooting){

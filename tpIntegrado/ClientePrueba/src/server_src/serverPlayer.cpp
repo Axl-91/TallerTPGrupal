@@ -36,9 +36,13 @@ int toGrados(float radiales){
 
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
-	if (toGrados(ang) < 0){
+	if (ang < 0 || ang >= 2*PI){
 		ang += 2*PI*rotateOrientation;
 	}
+	// if (ang >= 2*PI){
+	// 	ang += 2*PI*rotateOrientation;
+	// }
+
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
 }

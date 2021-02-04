@@ -17,18 +17,26 @@ void Enemies::setAngle(int angle){
 }
 
 void Enemies::defineSprite(Player_t enemy, Vector &posPlayer, int &sprite){
-    //anglePlayer con angulo en grados
+    std::cout<<"----------------------------------------------------------------- "<<std::endl;
+
     Vector enemyPos(enemy.x, enemy.y);
-    Vector aux(posPlayer-enemyPos);
+    // float auxAngle=enemyPos.getAngle(posPlayer)*180/3.1415;
 
-    int angleDif = (enemy.ang+aux.getAngle())*180/3.1415;
-    // std::cout<<"player ang: "<<posPlayer.getAngle()<<std::endl;
-    // std::cout<<"enemy ang: "<<enemy.pos.getAngle()<<std::endl;
+    float auxAngle=enemyPos.getAngle(posPlayer);
 
-    if(angleDif>=360)
-        angleDif-=360;
-    else if(angleDif<0)
-        angleDif+=360;
+    if(auxAngle>=2*PI)
+        auxAngle-=2*PI;
+    if(auxAngle<0)
+        auxAngle+=2*PI;
+
+    float angleDif = (enemy.ang-auxAngle);
+
+    if(angleDif>=2*PI)
+        angleDif-=2*PI;
+    if(angleDif<0)
+        angleDif+=2*PI;
+
+    angleDif=angleDif*180/PI;
 
     if (angleDif <= 22.5 && angleDif >= 0||angleDif <=360 && angleDif >337.5){
         sprite = 0;
@@ -46,26 +54,9 @@ void Enemies::defineSprite(Player_t enemy, Vector &posPlayer, int &sprite){
         sprite = 6;
     } else if (angleDif > 292.5  && angleDif <= 337.5){
         sprite = 7;
-        }
-    // if (angleDif <= 22.5 && angleDif >= 0||angleDif <=360 && angleDif >337.5){
-    //     sprite = 0;
-    // } else if (angleDif > 22.5 && angleDif <= 67.5){
-    //     sprite = 7;
-    // } else if (angleDif > 67.5 && angleDif <= 112.5){
-    //     sprite = 6;
-    // } else if (angleDif > 112.5 && angleDif <= 157.5){
-    //     sprite = 5;
-    // } else if (angleDif > 157.5 && angleDif <= 202.5){
-    //     sprite = 4;
-    // } else if (angleDif > 202.5 && angleDif <= 247.5){
-    //     sprite = 3;
-    // } else if (angleDif > 247.5 && angleDif <= 292.5){
-    //     sprite = 2;
-    // } else if (angleDif > 292.5  && angleDif <= 337.5){
-    //     sprite = 1;
-    //     }
-    // std::cout<<"dif angulo: "<<angleDif<<std::endl;
-    // std::cout<<"sprite: "<<sprite+1<<std::endl;
+    }
+    std::cout<<"angleDif: "<<angleDif<<std::endl;
+    std::cout<<"sprite: "<<sprite+1<<std::endl;
 
     sprite+=100;
 }

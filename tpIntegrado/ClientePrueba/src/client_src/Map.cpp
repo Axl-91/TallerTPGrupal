@@ -58,17 +58,19 @@ void Map::insertEnemy(Player_t &p){
 	// Vector posVect(p.x,p.y);
 	// Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
 	// Enemy_t auxObj = {posVect, 0, obj};
-	Player_t auxEnemy;
-	// auxEnemy.pos=posVect;
-	auxEnemy.ang = 0;
-	auxEnemy.x = p.x;
-	auxEnemy.y = p.y;
-	auxEnemy.ang = p.ang;
-	auxEnemy.dirx = p.dirx;
-	auxEnemy.diry = p.diry;
+	// Player_t auxEnemy;
+	// // auxEnemy.pos=posVect;
+	// auxEnemy.ang = 0;
+	// auxEnemy.x = p.x;
+	// auxEnemy.y = p.y;
+	// auxEnemy.ang = p.ang;
+	// auxEnemy.dirx = p.dirx;
+	// auxEnemy.diry = p.diry;
 	
-	auxEnemy.currentWP = p.currentWP;
-	mapEnemies[p.ID] = auxEnemy;
+	// auxEnemy.currentWP = p.currentWP;
+	// mapEnemies[p.ID] = auxEnemy;
+	mapEnemies[p.ID] = p;
+
 }
 
 std::map<int, Player_t>& Map::getEnemies(){
