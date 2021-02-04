@@ -11,6 +11,7 @@ add_subdirectory(src/inventory)
 
 
 add_library(sdl-lib 
+    src/Menu.cpp
     src/Game.cpp 
     src/Vector.cpp
     src/Hud.cpp     
@@ -24,6 +25,7 @@ add_library(sdl-lib
     src/CollisionMap.cpp
     src/SpritesHandler.cpp
     src/SDL_EventHandler.cpp
+    src/TextHandler.cpp
 )
 
 
@@ -32,7 +34,7 @@ message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes")
 include_directories(${PROJECT_BINARY_DIR})
 
 
-target_link_libraries(main sdl-lib SDL2 SDL2_image collisions inventory)
+target_link_libraries(main sdl-lib SDL2 SDL2_image SDL2_ttf collisions inventory)
 
 install(FILES 
 assets/guns.png 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "Game.h"
+#include "Menu.h"
 #include "SDL_EventHandler.h"
 
 std::vector<std::vector<int>> lvl1 = {
@@ -23,7 +24,6 @@ std::vector<std::vector<int>> lvl1 = {
 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
 };
 
-
 //  std::vector<std::vector<int>> lvl1 = {
 // 	{404,404,404,404,404,404,404,404,404},
 // 	{404,000,000,000,000,000,000,000,404},
@@ -35,9 +35,6 @@ std::vector<std::vector<int>> lvl1 = {
 // 	{404,404,404,404,404,404,404,404,404}
 // };
 
-
-
-int main(int argc, char* argv[]){	
 //  std::vector<std::vector<int>> lvl1 = {
 // 	{434,434,434,434,434,434,434,434,434},
 // 	{434,000,104,000,000,000,000,000,434},
@@ -49,6 +46,19 @@ int main(int argc, char* argv[]){
 // 	{434,434,434,434,434,434,434,434,434}
 // };
 
+
+int main(int argc, char* argv[]){	
+	Menu menu;
+
+	while (!menu.quitGame() && !menu.createGame() && !menu.joinGame()){
+		menu.pollEvent();
+		menu.render();
+		sleep (1/60);
+	}
+	if (menu.quitGame()){
+		return 0;
+	}
+	
 	Game game(640, 480, lvl1);
 	SDL_EventHandler eventHandler;
 	event_t event;

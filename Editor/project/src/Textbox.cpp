@@ -90,8 +90,9 @@ void Textbox::retroceder(){
 
 
 void Textbox::pollEvent(SDL_Event &e){    
-    if(focused){ 
-        switch(e.key.keysym.sym){
+    if(focused){
+        if (e.type == SDL_KEYDOWN){ 
+            switch(e.key.keysym.sym){
                 case SDLK_RIGHT:
                     avanzar();
                     break;
@@ -103,6 +104,7 @@ void Textbox::pollEvent(SDL_Event &e){
                     break;
                 break;
             }
+        }
     }       
     
 }
