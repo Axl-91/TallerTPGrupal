@@ -75,7 +75,7 @@ private:
 	};
 	int matchPos = 0;
 
-	/*Crear un SDLHandler en el que pueda
+	/*Crear o modificar SDLHandler en el que pueda
 	 meter muchas imagenes juntas */
 	SDLHandler mainMenu;
 	SDLHandler optionsMenu;

@@ -161,6 +161,7 @@ void Menu::doActionMain(){
 			break;
 		case MAIN_JOIN:
 			menu = JOIN_MENU;
+			posSelectJoin = JOIN_NAME;
 			break;
 		case MAIN_OPTIONS:
 			menu = OPTIONS_MENU;
