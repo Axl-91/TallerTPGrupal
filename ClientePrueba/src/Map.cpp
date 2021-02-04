@@ -7,11 +7,18 @@
 
 #define WEAPON_OFFSET 74
 #define HEAL_OFFSET 177
+#define ENEMY_VALUE 100
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
 	cols=lvl[0].size();
 	load(lvl);
+	insertEnemy(1, 11, 4, ENEMY_VALUE);
+	// insertObject(13, 4, ENEMY_VALUE);
+
+	// Vector posEnemy(224, 96);
+	// enemy = {posEnemy, 100};
+	
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
@@ -43,6 +50,20 @@ void Map::insertWeaponWithCoords(int x, int y, int obj){
 	insertObject(j,i,obj-WEAPON_OFFSET);
 }
 
+void Map::insertEnemy(int ID, int x, int y, int obj){
+	Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
+	// Enemy_t auxObj = {posVect, 0, obj};
+	Enemy_t auxObj;
+	auxObj.pos=posVect;
+	auxObj.ang=0;
+	auxObj.type=obj;
+	mapEnemies[ID]=auxObj;
+}
+
+std::map<int, Enemy_t>& Map::getEnemies(){
+	return mapEnemies;
+}
+
 void Map::insertObject(int x, int y, int obj){
 	Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
 	Objeto auxObj = {posVect, obj};
@@ -60,6 +81,7 @@ void Map::eraseObj(float x, float y){
 void Map::setRenderer(SDL_Renderer* renderer){
 	walls.setRenderer(renderer);
 	objects.setRenderer(renderer);
+	enemies.setRenderer(renderer);
 }
 
 int Map::getLongBloques(){
@@ -140,22 +162,49 @@ void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 
 std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 	std::vector<Objeto> vectorAux;
+	int auxSprite;
+	Objeto auxObj;
 	for (auto obj : mapObj){
 		agregarVectDist(vectorAux, obj.second, pos);
+	}
+
+	for (auto enemy : mapEnemies){
+		enemies.defineSprite(enemy.second, pos, auxSprite);
+		auxObj={enemy.second.pos, auxSprite};
+		agregarVectDist(vectorAux, auxObj, pos);
 	}
 	return vectorAux;
 }
 
 void Map::setObj(int &tipo){
-	objects.setObject(tipo);
+	if(tipo>=100)
+		enemies.setEnemy(tipo);
+	else
+		objects.setObject(tipo);
 }
 
-void Map::setColObject(int &pos){
-	objects.recortar(pos, 0, 1, 64);
+void Map::setColObject(int &pos, int type ){
+	if(type>=100){
+		setColEnemy(pos);
+	}else
+		objects.recortar(pos, 0, 1, 64);
 }
 
-void Map::renderObject(int &posX, int &posY, int &largo, int &alto){
-	objects.render(posX, posY, largo, alto);
+
+void Map::setColEnemy(int &pos){
+	enemies.recortar(pos, 0, 1, 64);
+}
+
+void Map::renderEnemy(int &posX, int &posY, int &largo, int &alto){
+	enemies.render(posX, posY, largo, alto);
+}
+
+
+void Map::renderObject(int &posX, int &posY, int &largo, int &alto, int type){
+	if(type>=100)
+		renderEnemy(posX, posY, largo, alto);
+	else
+		objects.render(posX, posY, largo, alto);
 }
 
 Map::~Map(){}

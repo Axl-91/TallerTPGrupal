@@ -12,6 +12,10 @@ public:
 	Vector(float x=0, float y=0);
     float getX();
     float getY();
+        float getAngle(Vector v);
+    float getAngle();
+
+    Vector operator-(Vector &v);
     void setX(float &x);
     void setY(float &y);
     void set(float &x,float &y);

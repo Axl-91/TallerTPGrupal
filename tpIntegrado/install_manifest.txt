@@ -1,4 +1,0 @@
-/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/guns.png
-/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/hud.png
-/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/walls.png
-/home/wagner/Desktop/tpIntegrado/TallerTPGrupal/tpIntegrado/objects.png

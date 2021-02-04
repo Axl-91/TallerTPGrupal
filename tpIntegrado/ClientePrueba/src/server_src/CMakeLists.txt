@@ -10,6 +10,7 @@ match.cpp
 matchHandler.cpp
 menuHandler.cpp
 server.cpp
+serverGame.cpp
 serverReceiver.cpp
 serverTransmitter.cpp
 thAcceptor.cpp

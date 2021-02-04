@@ -11,6 +11,7 @@ clientReceiver.cpp
 SDLHandler.cpp
 Map.cpp
 Objects.cpp
+Enemies.cpp
 client Transmitter.cpp
 Walls.cpp
 main.cpp

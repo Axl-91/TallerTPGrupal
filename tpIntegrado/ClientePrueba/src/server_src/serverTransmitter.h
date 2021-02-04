@@ -14,6 +14,7 @@ public:
     void sendMap(std::vector<std::vector<int>> &lvl1);
     void sendPlayer(Player_t player);   
     void sendMapUpdate(Map_change_t &aMapChange);
+    void sendPlayerID(size_t &ID);
 
 private:
     Socket &socket;

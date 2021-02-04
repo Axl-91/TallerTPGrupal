@@ -68,14 +68,15 @@ void ClientReceiver::receiveGame(){
     std::vector<char> buffer(length+1, 0);
     socket.receive(buffer.data(), length);
     std::string response = buffer.data();
-    std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
+    // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 
     if(response == "mapa"){
+     std::cout<<"client.receive cargo el mapa"<<std::endl;
         receiveMap();
     }
     if(response == "playerInfo"){
         receivePlayerInfo();
-        // std::cout << "Recibi player:\n" << player.x  << std::endl << player.y  << std::endl;
+        // std::cout << "Receiver::Recibi player tag: " << player.ID  << std::endl;
     }
 
     if(response == "mapChange"){
@@ -86,6 +87,9 @@ void ClientReceiver::receiveGame(){
         matchEnded = true;
     }
 
+    // if(response == "ID"){
+
+    // }
 }
 
 void ClientReceiver::receivePlayerInfo(){
@@ -116,7 +120,7 @@ void printVector(std::vector<std::vector<int>> &lvl2){
     }
 }
 void ClientReceiver::receiveMap(){
-    // std::cout << "Recibo mapa" << std::endl;
+    std::cout << "Recibo mapa" << std::endl;
     uint32_t filas = 0;
     uint32_t columnas = 0;
     const size_t SIZE_OF_UINT32 = 4;
@@ -142,7 +146,8 @@ void ClientReceiver::receiveMap(){
         // std::cout << "recibi vector" << std::endl;
         // std::cout << "hice pritn de vector" << std::endl;
     }
-    printVector(lvl2);
+    // printVector(lvl2);
+    std::cout << "ya receibi el mapa" << std::endl;
     inMatch = true;
 }
 

@@ -63,8 +63,8 @@ void MenuHandler::processInput(){
         joinMatch();
     // if(command == "verpartidas")
     //     sendMatches();
-    // if(command == "crear")
-    //     newMatch();
+    if(command == NEW_MATCH)
+        newMatch();
 }
 
 void MenuHandler::changeUserName(){
@@ -85,17 +85,21 @@ void MenuHandler::joinMatch(){
     user->readInput(matchName);
     if(matchName == PICHIWAR)
         addUserToMatch("pichiwar");
+    if(matchName == ASD)
+        addUserToMatch("asd");
     return;
 }
 
 void MenuHandler::newMatch(){
-    std::string matchName;
+    // std::string matchName;
 
     std::stringstream newMatchText;
     newMatchText << "Ingrese el nombre de la nueva partida: \n\n";
-
-    // user->readInput(matchName);
-    // matches.newMatch(matchName);
+    event_t matchName;
+    user->readInput(matchName);
+    if(matchName == ASD)
+    // addUserToMatch("asd");
+    matches.newMatch("asd");
 }
 
 void MenuHandler::addUserToMatch(std::string matchName){

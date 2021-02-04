@@ -10,6 +10,7 @@ User::User(Socket socket):
 {}
 
 void User::operator()(){
+    std::cout << "ServerReceiver.run(): arranco"  << std::endl;
     this->start();
 }
 
@@ -21,6 +22,10 @@ void User::run(){
     started = true;
     try {
         while(userIsRunning){
+            if(receiver.finished()){
+                userIsRunning = false;
+                continue;
+            }
             MatchEvent_t event;
             event_t input;
             readInput(input);
@@ -34,7 +39,7 @@ void User::run(){
             q->push(event);
         }
     } catch (const SocketError &e){
-        std::cerr << "Excepcion en ServerReceiver.run()" << std::endl;
+        std::cerr << "Excepcion en User.run():" << std::endl;
     } catch (const std::exception &e){
         std::cerr << "Excepcion en User.run()" << std::endl;
         std::cerr << e.what() << std::endl;
@@ -80,8 +85,9 @@ std::string User::getName(){
     return userName;
 }
 
-void User::sendPlayerInfo(Player_t player){
-    transmitter.sendPlayer(player);   
+void User::sendPlayerInfo(Player_t p){
+    std::cout << "USer.sendplayerinfo(), ID de player que se envia: " << p.ID << std::endl;
+    transmitter.sendPlayer(p);
 }
 
 void User::update(UpdateHandler uHandler){
@@ -92,25 +98,29 @@ void User::update(UpdateHandler uHandler){
         Map_change_t aMapChange;
         uHandler.getMapChange(aMapChange);
         sendGameUpdate(updateMsg);
-        sendMapUpdate(aMapChange);
+        transmitter.sendMapUpdate(aMapChange);
     }
     if(uHandler.playerChangeAvailable()){
     std::stringstream updateMsg;
         updateMsg << "playerInfo";
         Player_t playerInfo;
         uHandler.getPlayerChange(playerInfo);
+    	// std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
+		std::cout << "El secondaryWP es: " << playerInfo.secondaryWP << std::endl;
+
         // std::cout << "Usser::update() playerInfo.currentWP: " << playerInfo.currentWP << std::endl;
         // std::cout
         sendGameUpdate(updateMsg);
-        sendPlayerInfo(playerInfo);
+        transmitter.sendPlayer(playerInfo);   
     }
     uHandler.updated();
 }
 
-void User::sendMapUpdate(Map_change_t &aMapChange){
-    transmitter.sendMapUpdate(aMapChange);
-}
-
 void User::setID(size_t newID){
     ID = newID;
+    // std::stringstream updateMsg;
+    // updateMsg << "playerInfo";
+
+    // sendGameUpdate(updateMsg);
+    // transmitter.sendPlayerID(ID);
 }

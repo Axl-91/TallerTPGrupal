@@ -27,19 +27,37 @@ void ClientTransmitter::run()
     is_running = true;
     try{
 
-        std::cout << "Entro a clien transmitter" << std::endl;
         event_t event;
         std::string command;
 
         getline(std::cin, command);
-        if(command=="unirme")
-            event = UNIRME;
-        socket.send((char*) &event, sizeof(event_t));
+        if(command=="crear"){
+            event = NEW_MATCH;
+            socket.send((char*) &event, sizeof(event_t));
+
+            // getline(std::cin, command);
+            // if(command=="unirme")
+            //     event = UNIRME;
+            // socket.send((char*) &event, sizeof(event_t));
+
+            getline(std::cin, command);
+            if(command=="asd")
+                event = ASD;
+            socket.send((char*) &event, sizeof(event_t));
 
         getline(std::cin, command);
-        if(command=="pichiwar")
+        }
+        if(command=="unirme"){
+            event = UNIRME;
+        socket.send((char*) &event, sizeof(event_t));}
+        
+        getline(std::cin, command);
+        if(command=="pichiwar"){
             event = PICHIWAR;
-        socket.send((char*) &event, sizeof(event_t));
+        socket.send((char*) &event, sizeof(event_t));}
+        if(command=="asd"){
+            event = ASD;
+        socket.send((char*) &event, sizeof(event_t));}
 
 
         while(is_running == true){

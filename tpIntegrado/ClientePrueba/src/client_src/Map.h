@@ -9,6 +9,8 @@
 #include "../common_src/Vector.h"
 #include "Walls.h"
 #include "Objects.h"
+#include "Enemies.h"
+
 #include "../common_src/types.h"
 // #define MAP_ROWS 15
 // #define MAP_COLS 20
@@ -29,6 +31,9 @@ private:
 
 	Walls walls;
 	Objects objects;
+	Enemies enemies;
+
+	std::map<int, Player_t> mapEnemies;
 	std::map<std::pair<int,int>, Objeto> mapObj;
 	// std::vector<Objeto> vectObj;
 public:
@@ -37,6 +42,8 @@ public:
 
 	void insertWeaponWithCoords(int j, int i, int obj);
 	void insertObject(int x, int y, int obj);
+	void insertEnemy(Player_t &p);
+	std::map<int, Player_t>& getEnemies();
 	void load(std::vector<std::vector<int>> lvl);
 	void setRenderer(SDL_Renderer* renderer);
 	int getLongBloques();
@@ -54,10 +61,15 @@ public:
 	// Vector getPosObj(int &pos);
 	// int getTipoObj(int &pos);
 	void setObj(int &pos);
-	void setColObject(int &pos);
-	void renderObject(int &posX, int &posY, int &largo, int &alto);
-	void update(Map_change_t &aMapChange);
+	void renderEnemy(int &posX, int &posY, int &largo, int &alto);
+	void setColEnemy(int &pos);
 
+	void setColObject(int &pos, int type);
+	// void setColObject(int &pos);
+	void renderObject(int &posX, int &posY, int &largo, int &alto, int type);
+	// void renderObject(int &posX, int &posY, int &largo, int &alto);
+	void update(Map_change_t &aMapChange);
+	void updateEnemy(Player_t &p);
 };
 
 #endif

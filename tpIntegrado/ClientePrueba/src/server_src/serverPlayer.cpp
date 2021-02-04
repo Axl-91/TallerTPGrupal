@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../common_src/types.h"
 
-ServerPlayer::ServerPlayer(float x, float y, float a){
+ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID){
     position.x=x;
     position.y=y;
     position.radius=16;
@@ -20,12 +20,13 @@ ServerPlayer::ServerPlayer(float x, float y, float a){
 	score = 123;
 	moveOrientation = MOVE_QUIET;
 	rotateOrientation = ROTATE_QUIET;
+	ID = newID;
 }
 ServerPlayer::~ServerPlayer(){}
 
-void ServerPlayer::setID(size_t newID){
-	ID = newID;
-}
+// void ServerPlayer::setID(size_t newID){
+// 	ID = newID;
+// }
 
 int toGrados(float radiales){
 	float anguloGrados = (radiales / PI) * 180;
@@ -35,9 +36,13 @@ int toGrados(float radiales){
 
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
-	if (toGrados(ang) < 0){
+	if (ang < 0 || ang >= 2*PI){
 		ang += 2*PI*rotateOrientation;
 	}
+	// if (ang >= 2*PI){
+	// 	ang += 2*PI*rotateOrientation;
+	// }
+
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
 }
@@ -133,6 +138,7 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	p.score = score;
 	p.key = key;
 	p.shooting = shooting;
+	p.ID = ID;
     // p.step = step;
 }
 

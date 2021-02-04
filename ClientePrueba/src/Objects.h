@@ -27,10 +27,10 @@ private:
     "Media/ObjectsSprites/Obj23.png", "Media/ObjectsSprites/Obj24.png",
     "Media/ObjectsSprites/Obj25.png", "Media/ObjectsSprites/Obj26.png",
     "Media/ObjectsSprites/Obj27.png", "Media/ObjectsSprites/Obj28.png",
-    "Media/ObjectsSprites/Obj29.png", "Media/ObjectsSprites/Obj29.png",
-    "Media/ObjectsSprites/Obj30.png", "Media/ObjectsSprites/Obj31.png",
-    "Media/ObjectsSprites/Obj32.png", "Media/ObjectsSprites/Obj33.png",
-    "Media/ObjectsSprites/Obj34.png", "Media/ObjectsSprites/Obj35.png",
+    "Media/ObjectsSprites/Obj29.png", "Media/ObjectsSprites/Obj30.png", 
+    "Media/ObjectsSprites/Obj31.png", "Media/ObjectsSprites/Obj32.png", 
+    "Media/ObjectsSprites/Obj33.png", "Media/ObjectsSprites/Obj34.png", 
+    "Media/ObjectsSprites/Obj35.png"
     };
     SpritesHandler objHandler;
     int objSelected = 0;

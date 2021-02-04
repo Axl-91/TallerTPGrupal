@@ -31,10 +31,16 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, Player_t &pl
 
 	player.setPos(playerInfo.x,playerInfo.y);
 	player.setRenderer(renderer);
+	player.setID(playerInfo.ID);
 }
 
 void Game::updatePlayer(Player_t &p){
-	player.updateInfo(p);
+
+	if(p.ID == player.getID()){
+		player.updateInfo(p);
+		return;
+	}
+	mapGame.updateEnemy(p);
 }
 
 void Game::fill(){

@@ -34,6 +34,7 @@ private:
     Map &mapPlayer;
     Inventory inventory;
    	Hud hudGame;
+    size_t ID;
 
 	PlayerWeapon *currentWeapon;
 
@@ -51,17 +52,21 @@ public:
 
     void setDirection(float x, float y);
 
-    // void shoot();
     void setWeapon(player_weapons_t w);
     void getPosition(float &x, float &y);
     void getPosition(circle &c);
-
+    float shootRay;
+    void shootRaycaster();
     void getDirection(float &x, float &y);
     void equip(weapon_t w);
     int heal(int &h);
     int reload(int &ammo);
     void updateInfo(Player_t &p);
-
+    size_t getID();
+    void setID(size_t newID);
+    bool enemyInShootRange(Vector &posObj);
+    void getDamageCoefficient(Vector &enemyPos, float &coef);
+    void shoot();
     ~Player();
 };
 

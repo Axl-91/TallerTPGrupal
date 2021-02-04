@@ -51,7 +51,6 @@ void SDL_EventHandler::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
-	std::cout << "salgo de SDL_EventHandler.run()" << std::endl;
 }
 
 void SDL_EventHandler::stop(){

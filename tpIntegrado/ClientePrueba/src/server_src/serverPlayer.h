@@ -43,7 +43,7 @@ private:
 
 
 public:
-    ServerPlayer(float x, float y, float a);
+    ServerPlayer(float x, float y, float a, size_t ID);
     ~ServerPlayer();
     // void movePlayerForward();
     // void movePlayerBackward();
@@ -67,7 +67,7 @@ public:
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
-    void setID(size_t newID);
+    // void setID(size_t newID);
 };
 
 #endif

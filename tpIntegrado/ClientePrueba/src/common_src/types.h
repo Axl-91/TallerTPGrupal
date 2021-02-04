@@ -4,6 +4,7 @@
 #define MAX_WEAPONS 3
 #define MAX_HEALTH 100
 #define MAX_AMMO 100
+#define PI 3.14159265358979323846
 
 typedef enum{
     WP_KNIFE = 1,
@@ -25,6 +26,8 @@ typedef enum{
     PLAYER_SHOOT,
     PLAYER_STOP_SHOOTING,
     GAME_QUIT,
+    NEW_MATCH,
+    ASD,
     PICHIWAR,
     UNIRME
 }event_t;
@@ -39,7 +42,7 @@ typedef enum{
 }weapon_t;
 
 typedef struct{
-    size_t tag;
+    size_t ID;
     int step;
     float x;
     float y;
@@ -74,6 +77,5 @@ typedef struct {
     size_t playerTag;
 }MatchEvent_t;
 
-#define PI 3.14159265358979323846
 
 #endif

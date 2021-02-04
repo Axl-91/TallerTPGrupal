@@ -78,9 +78,11 @@ void Client::run(){
             if(receiver.isInMatch() == true && is_running == true){
                 std::cout << "client: isInMatch" << std::endl;
                 
+                std::cout << "___________________________________ \n" << std::endl;
                 Game game(640, 480, lvl2, player);
                 // SDL_EventHandler eventHandler;
                 //game.setFullScreen();
+                std::cout << "___________________________________ \n" << std::endl;
 
                 while (!game.isGameOver() && is_running == true){
                     // event = eventHandler.pollEvent();
@@ -101,7 +103,10 @@ void Client::run(){
                     if(mapChange.changeAvailable == true){
                         game.updateMap(mapChange);
                     }
+                    
                     game.updatePlayer(player);
+
+
                     if(receiver.matchFinished()){
                         game.quitGame();
                         receiver.quitMatch();

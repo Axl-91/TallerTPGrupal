@@ -26,8 +26,23 @@ void Vector::set(float &x,float &y){
     setY(y);
 }
 
+float Vector::getAngle(Vector v){
+	float dx = v.posX - posX;
+	float dy = v.posY - posY;
+    return atan2(dy, dx);
+}
+
+float Vector::getAngle(){
+    return atan2(posY,posX);
+
+}
 
 
+
+Vector Vector::operator-(Vector &v){
+    Vector aux(posX-v.getX(),posY-v.getY());
+    return aux;
+}
 
 
 

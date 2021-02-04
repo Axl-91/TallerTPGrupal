@@ -117,8 +117,9 @@ void Raycaster::raycasterVertical(){
 }
 
 void Raycaster::calcularRayFinal(){
-	//axel, arreglame esto
-    if (distH < distV && rayH.posX<2000){
+	//axel, arreglame esto (arreglado, creo?)
+
+    if (distH < distV){
         distT = distH;
         rayFinal = rayH;
 		mapRay.setWall(rayFinal, false);

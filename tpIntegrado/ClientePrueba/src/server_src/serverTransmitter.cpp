@@ -64,3 +64,7 @@ void ServerTransmitter::sendMapUpdate(Map_change_t &aMapChange){
     
     socket.send((char*) &aMapChange, sizeof(Map_change_t));
 }
+
+void ServerTransmitter::sendPlayerID(size_t &ID){
+    socket.send((char*) &ID, sizeof(ID));
+}
