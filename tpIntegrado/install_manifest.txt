@@ -1,0 +1,4 @@
+/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/guns.png
+/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/hud.png
+/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/walls.png
+/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/objects.png

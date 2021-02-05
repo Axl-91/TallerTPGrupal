@@ -21,7 +21,11 @@ public:
                 std::vector<std::vector<int>> &l,
                 UpdateHandler &uH);
     // ~ServerGame();
+    float shootRaycaster(ServerPlayer &player);
+
     void movePlayer(ServerPlayer &player);
+    void handlePlayerShoot(ServerPlayer &player);
+
     void handleCollision(circle &playerPos, int c);
 };
 

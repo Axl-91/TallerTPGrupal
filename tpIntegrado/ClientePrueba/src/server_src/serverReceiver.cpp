@@ -11,10 +11,10 @@ ServerReceiver::ServerReceiver(ServerReceiver&& other):
 
 void ServerReceiver::readInput(event_t &input){
     try{
-        std::cout << "serverReceiver: leo input" << std::endl;
+        // std::cout << "serverReceiver: leo input" << std::endl;
 
         socket.receive((char*) &input, sizeof(input));
-        std::cout << input << std::endl;
+        // std::cout << input << std::endl;
 
         // event_t event;
         // socket.receive((char*) &event, sizeof(event));

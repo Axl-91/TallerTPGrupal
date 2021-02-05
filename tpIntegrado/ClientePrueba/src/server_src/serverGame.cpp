@@ -1,4 +1,5 @@
 #include "serverGame.h"
+#include "ShootingRaycaster.h"
 
 ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
                         std::vector<std::vector<int>> &l,
@@ -8,6 +9,47 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
     updateHandler(uH),
     colMap(lvl1)
 {}
+
+
+
+void ServerGame::handlePlayerShoot(ServerPlayer &player){
+	float wallDist=shootRaycaster(player);
+	float coef;
+	for(auto &p: players){
+		if(p.first==player.getID())
+			continue;
+
+		player.getDamageCoefficient(p.second, coef, wallDist);
+
+		if(coef!=0)
+			player.shoot(p.second,coef);
+	}
+}
+
+
+
+float ServerGame::shootRaycaster(ServerPlayer &player){
+	circle pPosition;
+	float pAngle=player.getAngle();
+	player.getPosition(pPosition);
+	Vector vectorPos(pPosition.x, pPosition.y);
+	ShootingRaycaster raycaster(vectorPos, pAngle, colMap);
+	float anguloRay = pAngle;
+	if (anguloRay < 0){
+		anguloRay += 2*PI;
+	} else if (anguloRay > 2*PI){
+		anguloRay -=2*PI;
+	}
+
+	raycaster.crearRay(anguloRay);
+	return raycaster.getDistancia();
+}
+
+
+
+
+
+
 
 
 void ServerGame::movePlayer(ServerPlayer &player){

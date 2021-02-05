@@ -44,6 +44,7 @@ private:
     void renderObjects();
 public:
 //    Player();
+
     Player(Map &m);
     void setPos(float x, float y);
     void setMap(Map &map);
@@ -55,8 +56,6 @@ public:
     void setWeapon(player_weapons_t w);
     void getPosition(float &x, float &y);
     void getPosition(circle &c);
-    float shootRay;
-    void shootRaycaster();
     void getDirection(float &x, float &y);
     void equip(weapon_t w);
     int heal(int &h);
@@ -64,8 +63,6 @@ public:
     void updateInfo(Player_t &p);
     size_t getID();
     void setID(size_t newID);
-    bool enemyInShootRange(Vector &posObj);
-    void getDamageCoefficient(Vector &enemyPos, float &coef);
     void shoot();
     ~Player();
 };

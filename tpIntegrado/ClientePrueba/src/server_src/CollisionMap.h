@@ -11,8 +11,7 @@ class CollisionMap{
    	int largoBloque;
 	int rows;
 	int cols;
-    //El mapa deberia ser de dimensiones variables
-	// int map[MAP_ROWS][MAP_COLS];
+	std::vector<std::vector<int>> &map;
 	Quadtree collisionTree;
 
 public:
@@ -23,6 +22,17 @@ public:
 
 	void insert(float x, float y, int value);
 	void detectCollision(circle &c, float dx, float dy, std::vector<Collidable*> &col);
+
+
+
+
+
+		int getLongBloques();
+	bool hayCoordenadas(float &x, float &y);
+	bool hayCoordenadas(Vector &posicion);
+	int getBloque(float &x, float &y);
+	int getBloque(Vector &posicion);
+
 
 };
 

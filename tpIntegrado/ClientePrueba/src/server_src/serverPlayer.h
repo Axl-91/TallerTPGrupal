@@ -4,6 +4,8 @@
 #include "../common_src/Circle.h"
 #include <cmath>
 #include "../common_src/types.h"
+#include "../common_src/Vector.h"
+
 
 typedef enum{
     FORWARD = 1,
@@ -28,7 +30,6 @@ private:
     float dirx;
     float diry;
     float step;
-    int health;
     size_t ID;
     size_t lifes;
     size_t score;
@@ -40,17 +41,20 @@ private:
     bool key;
     bool shooting;
 	// PlayerWeapon *currentWeapon;
-
-
 public:
+    int health;
+
     ServerPlayer(float x, float y, float a, size_t ID);
     ~ServerPlayer();
-    // void movePlayerForward();
-    // void movePlayerBackward();
     void rotate();
 
-    // void rotatePlayerRight();
-    // void rotatePlayerLeft();
+    bool enemyInShootRange(ServerPlayer &enemy, float wallDist);
+    void getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist);
+    float getAngle();
+	void shoot(ServerPlayer &enemy, float coef);
+    void beDamaged(int damage);
+
+
     player_move_orientation_t getMoveOrientation();
     void getPlayerInfo(Player_t &p);
     void getPosition(float &x, float &y);
@@ -64,9 +68,12 @@ public:
     void setCurrentWeapon(player_weapons_t aWeapon);
     void startShooting();
     void stopShooting();
+    bool isShooting();
+
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
+    size_t getID();
     // void setID(size_t newID);
 };
 

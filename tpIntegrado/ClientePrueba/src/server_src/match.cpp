@@ -104,7 +104,7 @@ void Match::readEvents(){
     if(users.size() == 0)
         return;
 
-    Player_t auxPlayer;
+    // Player_t auxPlayer;
     MatchEvent_t event;
 
     if(q.isEmpty())
@@ -155,9 +155,12 @@ void Match::readEvents(){
 
     game.movePlayer(aPlayer);
     aPlayer.rotate();
-
     updateHandler.updatePlayerPosition(aPlayer);
-    
+
+    if(aPlayer.isShooting()==true){
+        std::cout<<"hola match"<<std::endl;
+        game.handlePlayerShoot(aPlayer);
+    }
     for(auto user:users)
         user.second->update(updateHandler);
 }

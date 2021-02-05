@@ -17,10 +17,7 @@ void Enemies::setAngle(int angle){
 }
 
 void Enemies::defineSprite(Player_t enemy, Vector &posPlayer, int &sprite){
-    std::cout<<"----------------------------------------------------------------- "<<std::endl;
-
     Vector enemyPos(enemy.x, enemy.y);
-    // float auxAngle=enemyPos.getAngle(posPlayer)*180/3.1415;
 
     float auxAngle=enemyPos.getAngle(posPlayer);
 
@@ -55,9 +52,6 @@ void Enemies::defineSprite(Player_t enemy, Vector &posPlayer, int &sprite){
     } else if (angleDif > 292.5  && angleDif <= 337.5){
         sprite = 7;
     }
-    std::cout<<"angleDif: "<<angleDif<<std::endl;
-    std::cout<<"sprite: "<<sprite+1<<std::endl;
-
     sprite+=100;
 }
 

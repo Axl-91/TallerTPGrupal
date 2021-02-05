@@ -15,4 +15,5 @@ serverReceiver.cpp
 serverTransmitter.cpp
 thAcceptor.cpp
 user.cpp
+ShootingRaycaster.cpp
 )
