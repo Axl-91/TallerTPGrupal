@@ -28,7 +28,8 @@ public:
     int getmaxlayers() const;
     std::vector<int> getresolutionsWidthOP() const;
     std::vector<int> getresolutionsHeighOP() const;
-    std::vector<int> getmaxplayersOP() const;    
+    std::vector<int> getmaxplayersOP() const;  
+    std::vector<std::vector<int>> getmap() const;  
     ~Settings();
 };
 

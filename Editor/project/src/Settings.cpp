@@ -38,16 +38,15 @@ std::vector<int> Settings::getmaxplayersOP() const{
     return maxplayersOP;
 }
 
+std::vector<std::vector<int>> Settings::getmap() const{
+    return map;
+}
+
 int Settings::getresH() const{
     return resolutionHeigh;
 }
 int Settings::getmaxlayers() const{
     return maxPlayers;
 }
-/*
-std::vector<std::vector<int>> Settings::getmap(){
-    return map;
-}*/
-
 
 Settings::~Settings(){}
