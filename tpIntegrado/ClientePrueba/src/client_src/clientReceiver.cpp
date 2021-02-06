@@ -11,12 +11,6 @@ ClientReceiver::ClientReceiver(Socket &socket,
     uQ(q)
 {}
 
-// ClientReceiver::ClientReceiver(ClientReceiver&& other):
-//     socket(other.socket),
-//     lvl2(other.lvl2),
-//     player(other.player),
-//     mapChange(other.mapChange)
-// {}
 void ClientReceiver::operator()(){ 
     this->start(); 
 }
@@ -56,14 +50,7 @@ void ClientReceiver::receiveGame(){
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
     update_tag_t aTag = TAG_NO_UPDATE;
-    // socket.receive((char *) &length, SIZE_OF_UINT32);
-    // length = ntohl(length);
-    // if(length == 0){
-    //     is_running = false;
-    // }
-    // std::vector<char> buffer(length+1, 0);
-    // socket.receive(buffer.data(), length);
-    // std::string response = buffer.data();
+    
     socket.receive((char*) &aTag, sizeof(update_tag_t));
     // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 

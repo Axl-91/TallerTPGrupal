@@ -24,6 +24,7 @@ CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/in
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/Vector.h
+CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/thread.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/types.h
 
 CMakeFiles/client.dir/src/client_src/Hud.cpp.o: ClientePrueba/src/client_src/Hud.cpp

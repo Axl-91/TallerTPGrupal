@@ -8,7 +8,8 @@
 Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpdateQueue &q): 
 	mapGame(lvl),
 	player(mapGame),
-	uQ(q){
+	uQ(q),
+	is_running(false){
     int hayError;
     winLargo = largo;
     winAlto = alto;
@@ -38,6 +39,28 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpd
 	player.updateInfo(anUpdate.playerUpdate);
 	player.setRenderer(renderer);
 	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
+}
+
+void Game::operator()(){
+	this->start();
+}
+
+void Game::run(){
+	is_running = true;
+    try{
+		while(is_running){
+			update();
+			render();
+		}
+
+
+    } catch (const std::exception &e){
+        std::cerr << "Excepcion en Game.run()" << std::endl;
+        std::cerr << e.what() << std::endl;
+        return;
+    } catch (...) { // ellipsis: catch anything
+        printf("Unknown error!");
+    } 
 }
 
 void Game::update(){
@@ -79,8 +102,12 @@ void Game::setFullScreen(){
 
 void Game::quitGame(){
 	gameOver = true;
+	is_running = false;
 }
 
+void Game::stop(){
+	is_running = false;
+}
 
 void Game::render(){
 	fill();

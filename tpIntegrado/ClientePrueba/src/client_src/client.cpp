@@ -67,61 +67,39 @@ void Client::run(){
         // Recibe actualmente todo lo envia por quienes estan en mismo match. Cambiar despues a enviar modelo.
         
         while(is_running == true){
-            // if(transmitter.isRunning() == false){
-            //     is_running = false;
-            //     receiver.stop();
-            //     eHandler.stop();
-            //     s.shutdown_read();
-            //     s.shutdown_writing();
-                // std::cout << "is running es false" << std::endl;
-            // }    
-            if(receiver.isInMatch() == true && is_running == true){
-                std::cout << "client: isInMatch" << std::endl;
-                
-                std::cout << "___________________________________ \n" << std::endl;
-                Game game(640, 480, lvl2, uQ);
-                // SDL_EventHandler eventHandler;
-                //game.setFullScreen();
-                std::cout << "___________________________________ \n" << std::endl;
-
-                while (!game.isGameOver() && is_running == true){
-                    // event = eventHandler.pollEvent();
-                    // event_t event;
-                    // while(!q.isEmpty()){
-                    //     event = q.pop();
-                    //     game.receiveEvent(event);
-
-                    // }
-                    if(eHandler.finished()){
-                        game.quitGame();
-                        is_running = false;
-                        continue;
-                        // MATAR TODO
-                    }
-
-                    // game.pollEvent();
-                    // if(anUpdate.mapChangeAvailable == true){
-                    //     game.updateMap(anUpdate.mapChange);
-                    //     anUpdate.mapChangeAvailable = false;
-                    // }
-                    
-                    // game.updatePlayer(anUpdate.playerUpdate);
-                    // std::cout << "hago game update" << std::endl;
-                    game.update();
-
-                    if(receiver.matchFinished()){
-                        game.quitGame();
-                        receiver.quitMatch();
-                        is_running = false;
-                        s.shutdown_read();
-                        s.shutdown_writing();
-                        continue;
-                    }
-                    game.render();
-                    // SDL_Delay(60);
-                    sleep(1/60);
-                }
+            while(!receiver.isInMatch()){
+                sleep(1/60);
             }
+
+            std::cout << "client: isInMatch" << std::endl;
+            
+            std::cout << "___________________________________ \n" << std::endl;
+            Game game(640, 480, lvl2, uQ);
+
+            std::cout << "___________________________________ \n" << std::endl;
+            game();
+            while (!game.isGameOver() && is_running == true){
+
+                if(eHandler.finished()){
+                    game.quitGame();
+                    is_running = false;
+                    continue;
+                    // MATAR TODO
+                }
+
+
+                if(receiver.matchFinished()){
+                    game.quitGame();
+                    receiver.quitMatch();
+                    is_running = false;
+                    s.shutdown_read();
+                    s.shutdown_writing();
+                    continue;
+                }
+                // SDL_Delay(60);
+            }
+            game.join();
+            
         }
 
     }  catch (const SocketError &e){
