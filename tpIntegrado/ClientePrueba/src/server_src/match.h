@@ -31,7 +31,6 @@ public:
     bool started();
     void delete_finish_clients(std::vector<User*>& threads);
     void readEvents();
-    
     void getPlayerIndex(size_t index);
 private:
     ProtectedMatchEventQueue q;

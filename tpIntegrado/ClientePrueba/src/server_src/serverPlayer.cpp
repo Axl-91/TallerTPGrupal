@@ -21,7 +21,6 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
     step=5;
 	dirx = step*cos(ang);
 	diry = step*sin(ang); 
-	// secondaryWP = NONE;
 	currentWP = WP_KNIFE;
 	health = 50;
 	ammo = 50;
@@ -35,6 +34,28 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 }
 ServerPlayer::~ServerPlayer(){}
 
+ServerPlayer::ServerPlayer(ServerPlayer&& other):
+	inventory(std::move(other.inventory)),
+	currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
+{
+    position.x=other.position.x;
+    position.y=other.position.y;
+    position.radius=16;
+    ang=other.ang;
+    step=5;
+	dirx = other.dirx;
+	diry = other.diry;
+	currentWP = WP_KNIFE;
+	health = 50;
+	ammo = 50;
+	key = false;
+	shooting = false;
+	lifes = 3;
+	score = 123;
+	moveOrientation = MOVE_QUIET;
+	rotateOrientation = ROTATE_QUIET;
+	ID = other.ID;
+}
 // void ServerPlayer::setID(size_t newID){
 // 	ID = newID;
 // }
@@ -178,6 +199,7 @@ size_t ServerPlayer::getID(){
 float ServerPlayer::getAngle(){
 	return ang;
 }
+
 
 int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)

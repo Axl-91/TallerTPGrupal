@@ -16,6 +16,7 @@ class SPInventory{
     // bool key;
 public:
     SPInventory();
+    SPInventory(SPInventory &&other);
     ~SPInventory();
     weapon_t equip(weapon_t w);
 

@@ -50,11 +50,11 @@ private:
     weapon_t getSecondaryWPtype();
 
 public:
-
     int health;
 
     ServerPlayer(float x, float y, float a, size_t ID);
     ~ServerPlayer();
+    ServerPlayer(ServerPlayer&& other);
     void rotate();
 
     // bool enemyInShootRange(ServerPlayer &enemy, float wallDist);

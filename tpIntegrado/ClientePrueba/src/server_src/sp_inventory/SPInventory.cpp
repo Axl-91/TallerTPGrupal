@@ -18,6 +18,15 @@ SPInventory::SPInventory(){
     weapons[WP_SECONDARY]= NULL;
 }
 
+SPInventory::SPInventory(SPInventory &&other){
+    for(int i=1;i<= MAX_WEAPONS ;i++){
+        if(other.weapons[i]!=NULL){
+            weapons[i] = other.weapons[i];
+            other.weapons[i] = NULL;
+        }
+    }
+}
+
 SPInventory::~SPInventory(){
     for(int i=1;i<= MAX_WEAPONS ;i++)
         if(weapons[i]!=NULL){
