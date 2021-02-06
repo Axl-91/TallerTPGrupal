@@ -50,18 +50,13 @@ void ClientReceiver::receiveGame(){
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
     update_tag_t aTag = TAG_NO_UPDATE;
-    
     socket.receive((char*) &aTag, sizeof(update_tag_t));
-    // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 
     if(aTag == TAG_MAP_INIT){
-     std::cout<<"client.receive cargo el mapa"<<std::endl;
         receiveMap();
     }
     if(aTag == TAG_PLAYER_INFO){
         receivePlayerInfo(anUpdate);
-        // std::cout<<"puntos: "<<<<std::endl;
-
         uQ.push(anUpdate);
     }
     if(aTag == TAG_MAP_CHANGE){

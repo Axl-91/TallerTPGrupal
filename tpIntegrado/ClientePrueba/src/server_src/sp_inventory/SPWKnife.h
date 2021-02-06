@@ -7,7 +7,7 @@ class SPWKnife: public SPWeapon{
 public:
     SPWKnife();
     ~SPWKnife();
-    void shoot() override;
+    float shoot(float dist, bool &isShooting) override;
 
 };
 

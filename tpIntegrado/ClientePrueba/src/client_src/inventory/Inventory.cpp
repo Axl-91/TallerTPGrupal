@@ -13,6 +13,7 @@ Inventory::Inventory(){
     weapons[WP_KNIFE]= new PWKnife();
     weapons[WP_GUN]= new PWGun();
     weapons[WP_SECONDARY]= NULL;
+    weaponRenderer = NULL;
 }
 
 Inventory::~Inventory(){
@@ -63,6 +64,7 @@ void Inventory::setAmmo(int a){
 
 bool Inventory::equip(weapon_t w){
     weapon_t last;
+
     if(weapons[WP_SECONDARY]!=NULL){
         if(w == weapons[WP_SECONDARY]->getType()){
             return false;
@@ -78,7 +80,9 @@ bool Inventory::equip(weapon_t w){
     //     equipRocketLauncher();
     }else
         return false;
-   	weapons[WP_SECONDARY]->setRenderer(weaponRenderer);
+
+    if(weaponRenderer!=NULL)
+       	weapons[WP_SECONDARY]->setRenderer(weaponRenderer);
 
     return true;
 }
@@ -87,6 +91,7 @@ void Inventory::equipMachineGun(){
     delete weapons[WP_SECONDARY];
     weapons[WP_SECONDARY]= new PWMachineGun();
 }
+
 void Inventory::equipChainGun(){
     delete weapons[WP_SECONDARY];
     weapons[WP_SECONDARY]= new PWChainCannon();

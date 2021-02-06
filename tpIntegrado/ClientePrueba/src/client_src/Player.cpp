@@ -24,10 +24,6 @@ Player::Player(Map &m):
 	position.radius=PLAYER_RADIUS;
 	step=PLAYER_STEP;
 }
-float toRandians(float grades){
-	return grades*PI/180;	
-}
-
 
 void Player::equip(weapon_t w){
 	if(inventory.equip(w)==true);
@@ -208,8 +204,14 @@ void Player::updateInfo(Player_t &p){
 	std::cout<<"vida: "<<health<<std::endl;
 	// ammo = p.ammo;
 
+	std::cout<<"p.secondaryWP: "<<p.secondaryWP<<std::endl;
+	std::cout<<"p.currentWP: "<<p.currentWP<<std::endl;
+
 	equip(p.secondaryWP);
+	std::cout<<"equipada: "<<std::endl;
+
 	setWeapon(p.currentWP);
+	std::cout<<"seteada: "<<std::endl;
 
 	if(p.shooting){
 		currentWeapon->shoot();

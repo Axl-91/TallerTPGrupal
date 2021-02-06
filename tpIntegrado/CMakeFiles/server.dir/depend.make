@@ -356,9 +356,16 @@ CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.cpp
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWChainCannon.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWChainCannon.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWChainCannon.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.cpp
@@ -369,6 +376,11 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.cpp
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp

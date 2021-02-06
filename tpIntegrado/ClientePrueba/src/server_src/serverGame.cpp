@@ -17,12 +17,13 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist=shootRaycaster(player);
 	float coef;
+	// player.shoot();
+
 	for(auto &p: players){
 		if(p.first==player.getID())
 			continue;
 
 		player.getDamageCoefficient(p.second, coef, wallDist);
-
 		if(coef!=0)
 			player.shoot(p.second, coef);
 	}

@@ -2,18 +2,14 @@
 #include "SPInventory.h"
 #include "SPWKnife.h"
 #include "SPWGun.h"
-// #include "SPWMachineGun.h"
-// #include "SPWChainCannon.h"
+#include "SPWMachineGun.h"
+#include "SPWChainCannon.h"
 // #include "SPWRocketLauncher.h"
 
 #define MAX_AMMO 100
 
 SPInventory::SPInventory(){
-  	std::cout<<"creando inventario "<<std::endl;
-
     weapons[WP_KNIFE]= new SPWKnife();
-   	std::cout<<"tipo de arma cuchillo: "<<weapons[WP_KNIFE]->getType()<<std::endl;
-
     weapons[WP_GUN]= new SPWGun();
     weapons[WP_SECONDARY]= NULL;
 }
@@ -53,15 +49,13 @@ weapon_t SPInventory::equip(weapon_t w){
     if(last==w)
         return NONE;
 
-    // if(w==MACHINE_GUN){
-    //     delete weapons[WP_SECONDARY];
-    //     weapons[WP_SECONDARY]= new PWMachineGun();
-    // }else
-    // if(w==CHAIN_CANNON){
-    //     delete weapons[WP_SECONDARY];
-    //     weapons[WP_SECONDARY]= new PWChainCanon();
-    // }else
-    //     std::cout<<"no equipe nada"<<std::endl;
+    if(w==MACHINE_GUN){
+        equipMachineGun();
+    }else
+    if(w==CHAIN_CANNON){
+        equipChainGun();
+    }else
+        std::cout<<"no equipe nada"<<std::endl;
 
     return last;
 }
@@ -99,14 +93,14 @@ weapon_t SPInventory::getSecondaryWPtype(){
 
 
 
-// void SPInventory::equipMachineGun(){
-//     delete weapons[WP_SECONDARY];
-//     weapons[WP_SECONDARY]= new SPWMachineGun();
-// }
-// void SPInventory::equipChainGun(){
-//     delete weapons[WP_SECONDARY];
-//     weapons[WP_SECONDARY]= new SPWChainCannon();
-// }
+void SPInventory::equipMachineGun(){
+    delete weapons[WP_SECONDARY];
+    weapons[WP_SECONDARY]= new SPWMachineGun();
+}
+void SPInventory::equipChainGun(){
+    delete weapons[WP_SECONDARY];
+    weapons[WP_SECONDARY]= new SPWChainCannon();
+}
 // void SPInventory::equipRocketLauncher(){
 //     delete weapons[WP_SECONDARY];
 //     weapons[WP_SECONDARY]= new SPWRocketLauncher();    

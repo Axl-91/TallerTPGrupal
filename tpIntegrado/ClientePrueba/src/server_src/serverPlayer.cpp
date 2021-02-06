@@ -115,20 +115,6 @@ weapon_t ServerPlayer::equip(weapon_t weapon){
 	if((last=inventory.equip(weapon))!=NONE);
 		setCurrentWeapon(WP_SECONDARY);
 
-    // weapon_t last;
-	
-	// if(secondaryWP == NONE){
-	// 	secondaryWP = weapon;	
-	// 	currentWP = WP_SECONDARY;
-	// 	return GUN;
-	// }
-	// if(secondaryWP == weapon){
-	// 	currentWP = WP_SECONDARY;
-	// 	return NONE;
-	// }
-	// last=secondaryWP;
-	// secondaryWP = weapon;
-	// currentWP = WP_SECONDARY;
 	return last;
 }
 
@@ -168,18 +154,27 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 }
 
+// void ServerPlayer::shoot(){
+// 	currentWeapon->shoot();
+// }
 
 void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
-	float damage = 10*coef;
-	int totalDamage =(int) damage;
+	float weaponDamage;
+	int totalDamage;
 	std::cout<<"DISPARO!! "<<std::endl;
 	std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
-	currentWeapon->shoot();
-	
-	std::cout<<"daño: "<<damage<<std::endl;
-
-	std::cout<<"daño total: "<<totalDamage<<std::endl;
+	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shooting);
+	weaponDamage *= coef;
+	totalDamage = (int) weaponDamage;
 	enemy.beDamaged(totalDamage);
+}
+
+
+float ServerPlayer::getDist(ServerPlayer &enemy){
+	Vector pPos(position.x, position.y);
+	Vector ePos(enemy.position.x, enemy.position.y);
+
+	return pPos.distancia(ePos)-2*position.radius;
 }
 
 void ServerPlayer::beDamaged(int damage){
@@ -198,7 +193,6 @@ size_t ServerPlayer::getID(){
 float ServerPlayer::getAngle(){
 	return ang;
 }
-
 
 int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)

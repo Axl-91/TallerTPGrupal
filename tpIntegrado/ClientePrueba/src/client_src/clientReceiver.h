@@ -21,6 +21,7 @@ public:
     bool isInMatch();
     bool isDead();
     bool matchFinished();
+
 private:
     Socket &socket;
     std::atomic<bool> is_running;

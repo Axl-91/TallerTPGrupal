@@ -6,7 +6,7 @@ std::vector<std::vector<int>> lvl2 = {
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,103,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,103,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,104,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
@@ -48,7 +48,7 @@ void Match::run(){
             readEvents();
             // updateUsers();
     		sleep(1/60);
-
+            // updateUsers();
         }
     } catch (const std::exception &e){
         std::cerr << "Error encontrado en Match.run()" << std::endl;
@@ -116,7 +116,6 @@ void Match::readEvents(){
     updateHandler.updatePlayerPosition(aPlayer);
 
     if(aPlayer.isShooting()==true){
-        std::cout<<"hola match"<<std::endl;
         game.handlePlayerShoot(aPlayer);
     }
     for(auto user:users)
@@ -124,6 +123,14 @@ void Match::readEvents(){
 
     updateHandler.updated();
 }
+
+// void Match::updateUsers(){
+//     for(auto user:users)
+//         user.second->update(updateHandler);
+
+//     updateHandler.updated();
+
+// }
 
 void Match::stop(){
     is_running = false;
@@ -150,7 +157,6 @@ void Match::welcomeUser(User* user){
 
 void Match::addUser(User* user){
     ServerPlayer aux(96, 96, 0, connectionNumber);
-    // players[connectionNumber] = std::move(aux);
     players.emplace(connectionNumber, std::move(aux));
     user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);

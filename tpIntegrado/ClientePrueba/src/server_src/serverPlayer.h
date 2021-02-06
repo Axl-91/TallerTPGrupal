@@ -50,6 +50,8 @@ private:
     weapon_t getSecondaryWPtype();
 
 public:
+    void shoot();
+
     int health;
 
     ServerPlayer(float x, float y, float a, size_t ID);
@@ -72,6 +74,9 @@ public:
     void setDirection(float x, float y);
     void setMoveOrientation(player_move_orientation_t o);
     void seteRotateOrientation(player_rotate_orientation_t o);
+    float getDist(ServerPlayer &enemy);
+
+
 
     void move();
     void setCurrentWeapon(player_weapons_t aWeapon);
