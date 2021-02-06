@@ -1,25 +1,22 @@
 #include "clientReceiver.h"
 
 ClientReceiver::ClientReceiver(Socket &socket, 
-    std::vector<std::vector<int>> &lvl2, 
-    Player_t &p,
-    Map_change_t &mapC):
+    std::vector<std::vector<int>> &m, 
+    ProtectedUpdateQueue &q):
     socket(socket),
     is_running(false),
-    atMenus(true),
     inMatch(false),
-    lvl2(lvl2),
+    map(m),
     matchEnded(false),
-    player(p),
-    mapChange(mapC)
+    uQ(q)
 {}
 
-ClientReceiver::ClientReceiver(ClientReceiver&& other):
-    socket(other.socket),
-    lvl2(other.lvl2),
-    player(other.player),
-    mapChange(other.mapChange)
-{}
+// ClientReceiver::ClientReceiver(ClientReceiver&& other):
+//     socket(other.socket),
+//     lvl2(other.lvl2),
+//     player(other.player),
+//     mapChange(other.mapChange)
+// {}
 void ClientReceiver::operator()(){ 
     this->start(); 
 }
@@ -53,62 +50,53 @@ bool ClientReceiver::isDead(){
     return !is_running;
 }
 
-void ClientReceiver::receiveMenuOption(){}
-
 void ClientReceiver::receiveGame(){
+    Update_t anUpdate;
+    anUpdate.mapChangeAvailable = false;
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
-    // std::cout << "Entro a receiver"  << std::endl;
-
-    socket.receive((char *) &length, SIZE_OF_UINT32);
-    length = ntohl(length);
-    if(length == 0){
-        is_running = false;
-    }
-    std::vector<char> buffer(length+1, 0);
-    socket.receive(buffer.data(), length);
-    std::string response = buffer.data();
+    update_tag_t aTag = TAG_NO_UPDATE;
+    // socket.receive((char *) &length, SIZE_OF_UINT32);
+    // length = ntohl(length);
+    // if(length == 0){
+    //     is_running = false;
+    // }
+    // std::vector<char> buffer(length+1, 0);
+    // socket.receive(buffer.data(), length);
+    // std::string response = buffer.data();
+    socket.receive((char*) &aTag, sizeof(update_tag_t));
     // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 
-    if(response == "mapa"){
+    if(aTag == TAG_MAP_INIT){
      std::cout<<"client.receive cargo el mapa"<<std::endl;
         receiveMap();
     }
-    if(response == "playerInfo"){
-        receivePlayerInfo();
-        // std::cout << "Receiver::Recibi player tag: " << player.ID  << std::endl;
+    if(aTag == TAG_PLAYER_INFO){
+        receivePlayerInfo(anUpdate);
+        uQ.push(anUpdate);
+    }
+    if(aTag == TAG_MAP_CHANGE){
+        receiveMapChange(anUpdate);
+        anUpdate.mapChangeAvailable = true;
+        uQ.push(anUpdate);
     }
 
-    if(response == "mapChange"){
-        receiveMapChange();
-    }
-
-    if(response == "GAME_QUIT"){
+    if(aTag == TAG_GAME_QUIT){
         matchEnded = true;
     }
-
-    // if(response == "ID"){
-
-    // }
 }
 
-void ClientReceiver::receivePlayerInfo(){
+void ClientReceiver::receivePlayerInfo(Update_t &anUpdate){
     Player_t aux;
-
     socket.receive((char *) &aux, sizeof(Player_t));
-
-    player = aux;
+    anUpdate.playerUpdate = aux;
 }
 
-void ClientReceiver::receiveMapChange(){
+void ClientReceiver::receiveMapChange(Update_t &anUpdate){
     Map_change_t aux;
-    //  std::cout<<"receive map change"<<std::endl;
-
     socket.receive((char *) &aux, sizeof(Map_change_t));
-    std::cout<<aux.value<<std::endl;
-
-    std::cout<<aux.value<<std::endl;
-    mapChange = aux;
+    anUpdate.mapChange = aux;
+    anUpdate.mapChangeAvailable = true;
 }
 
 void printVector(std::vector<std::vector<int>> &lvl2){
@@ -120,7 +108,6 @@ void printVector(std::vector<std::vector<int>> &lvl2){
     }
 }
 void ClientReceiver::receiveMap(){
-    std::cout << "Recibo mapa" << std::endl;
     uint32_t filas = 0;
     uint32_t columnas = 0;
     const size_t SIZE_OF_UINT32 = 4;
@@ -128,26 +115,17 @@ void ClientReceiver::receiveMap(){
     filas = ntohl(filas);
     socket.receive((char *) &columnas, SIZE_OF_UINT32);
     columnas = ntohl(columnas);
-    // std::cout << "recibi filas: " << filas << std::endl;
-    // std::cout << "recibi columnas: " << columnas << std::endl;
 
     for(size_t i = 0; i < filas ; i++){
         std::vector<int> aux;
-        // std::cout << "recibe vector" << std::endl;
         for(size_t i = 0; i < columnas ; i++){
             uint32_t num;
             socket.receive((char*) &num, sizeof(uint32_t));
             num = ntohl(num);
-            // std::cout << num;
             aux.push_back(num);
         }
-        // std::cout << std::endl;
-        lvl2.push_back(aux);
-        // std::cout << "recibi vector" << std::endl;
-        // std::cout << "hice pritn de vector" << std::endl;
+        map.push_back(aux);
     }
-    // printVector(lvl2);
-    std::cout << "ya receibi el mapa" << std::endl;
     inMatch = true;
 }
 
@@ -157,10 +135,6 @@ void ClientReceiver::stop(){
     is_running = false;
 }
 
-void ClientReceiver::isAtMenu(){
-    atMenus = true;
-}
-
 bool ClientReceiver::isInMatch(){
     return inMatch;
 }
@@ -168,4 +142,3 @@ bool ClientReceiver::isInMatch(){
 void ClientReceiver::quitMatch(){
     inMatch = false;
 }
-

@@ -21,7 +21,7 @@ void MenuHandler::run(){
     std::stringstream welcomeMessage;
     welcomeMessage <<  "Bienvenido a Wolfestein3D!\n\n";
 
-    user->sendGameUpdate(welcomeMessage);
+    // user->sendGameUpdate(welcomeMessage);
     try{
         while(is_running){
             std::string instrucciones = "Ingrese\t\t\t\t\t\t\tNombre de usuario: " + user->getName() + "\n\
@@ -31,7 +31,7 @@ void MenuHandler::run(){
                 crear - para crear una nueva partida.\n\
                 quit - para desconectarse del juego.\n\n";
                 std::stringstream instr(instrucciones);
-                user->sendGameUpdate(instr);
+                // user->sendGameUpdate(instr);
 
                 processInput();
         }
@@ -70,7 +70,7 @@ void MenuHandler::processInput(){
 void MenuHandler::changeUserName(){
     std::stringstream changeUserNameMessage;
     changeUserNameMessage << "Ingrese su nuevo nombre de usuario:\n";
-    user->sendGameUpdate(changeUserNameMessage);
+    // user->sendGameUpdate(changeUserNameMessage);
 
     std::string newUserName;
     // user->readInput(newUserName);
@@ -81,7 +81,7 @@ void MenuHandler::joinMatch(){
     event_t matchName;
     std::stringstream typeMatchName;
     typeMatchName << "Ingrese el nombre de la partida a la que desee unirse:\n";
-    user->sendGameUpdate(typeMatchName);
+    // user->sendGameUpdate(typeMatchName);
     user->readInput(matchName);
     if(matchName == PICHIWAR)
         addUserToMatch("pichiwar");
@@ -115,7 +115,7 @@ void MenuHandler::sendMatches(){
     std::stringstream matchesList;
     matches.getMatchList(matchesList);
 
-    user->sendGameUpdate(matchesList);
+    // user->sendGameUpdate(matchesList);
 }
 
 bool MenuHandler::is_dead(){

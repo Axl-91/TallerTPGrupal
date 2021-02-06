@@ -4,7 +4,7 @@ Client::Client(const char *host_name, const char *port):
     atMenus(true),
     connectedToMatch(false),
     transmitter(s,q),
-    receiver(s,lvl2, player, mapChange),
+    receiver(s,lvl2, uQ),
     eHandler(q),
     is_running(false)
 {
@@ -73,13 +73,13 @@ void Client::run(){
             //     eHandler.stop();
             //     s.shutdown_read();
             //     s.shutdown_writing();
-            //     std::cout << "is running es false" << std::endl;
+                // std::cout << "is running es false" << std::endl;
             // }    
             if(receiver.isInMatch() == true && is_running == true){
                 std::cout << "client: isInMatch" << std::endl;
                 
                 std::cout << "___________________________________ \n" << std::endl;
-                Game game(640, 480, lvl2, player);
+                Game game(640, 480, lvl2, uQ);
                 // SDL_EventHandler eventHandler;
                 //game.setFullScreen();
                 std::cout << "___________________________________ \n" << std::endl;
@@ -100,12 +100,14 @@ void Client::run(){
                     }
 
                     // game.pollEvent();
-                    if(mapChange.changeAvailable == true){
-                        game.updateMap(mapChange);
-                    }
+                    // if(anUpdate.mapChangeAvailable == true){
+                    //     game.updateMap(anUpdate.mapChange);
+                    //     anUpdate.mapChangeAvailable = false;
+                    // }
                     
-                    game.updatePlayer(player);
-
+                    // game.updatePlayer(anUpdate.playerUpdate);
+                    // std::cout << "hago game update" << std::endl;
+                    game.update();
 
                     if(receiver.matchFinished()){
                         game.quitGame();

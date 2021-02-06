@@ -69,12 +69,12 @@ void User::stop(){
     userIsRunning = false;
 }
 
-void User::changeName(std::string newName){
+void User::changeName(std::string &newName){
     userName = newName;
 }
 
-void User::sendGameUpdate(std::stringstream& game){
-    transmitter.send(game);
+void User::sendGameUpdate(update_tag_t &aTag){
+    transmitter.sendTag(aTag);
 }
 
 void User::sendMap(std::vector<std::vector<int>> &lvl1){
@@ -85,35 +85,31 @@ std::string User::getName(){
     return userName;
 }
 
-void User::sendPlayerInfo(Player_t p){
+void User::sendPlayerInfo(Player_t &p){
     std::cout << "USer.sendplayerinfo(), ID de player que se envia: " << p.ID << std::endl;
     transmitter.sendPlayer(p);
 }
 
-void User::update(UpdateHandler uHandler){
+void User::update(UpdateHandler &uHandler){
+    
+    update_tag_t aTag = TAG_PLAYER_INFO;
+    Player_t playerInfo;
+    uHandler.getPlayerChange(playerInfo);
+    std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
+    // std::cout << "El secondaryWP es: " << playerInfo.secondaryWP << std::endl;
+
+    // std::cout << "Usser::update() playerInfo.currentWP: " << playerInfo.currentWP << std::endl;
+    // std::cout
+    sendGameUpdate(aTag);
+    transmitter.sendPlayer(playerInfo);   
     
     if(uHandler.mapChangeAvailable()){
-        std::stringstream updateMsg;
-        updateMsg << "mapChange";
+        aTag = TAG_MAP_CHANGE;
         Map_change_t aMapChange;
         uHandler.getMapChange(aMapChange);
-        sendGameUpdate(updateMsg);
+        sendGameUpdate(aTag);
         transmitter.sendMapUpdate(aMapChange);
     }
-    if(uHandler.playerChangeAvailable()){
-    std::stringstream updateMsg;
-        updateMsg << "playerInfo";
-        Player_t playerInfo;
-        uHandler.getPlayerChange(playerInfo);
-    	// std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
-		std::cout << "El secondaryWP es: " << playerInfo.secondaryWP << std::endl;
-
-        // std::cout << "Usser::update() playerInfo.currentWP: " << playerInfo.currentWP << std::endl;
-        // std::cout
-        sendGameUpdate(updateMsg);
-        transmitter.sendPlayer(playerInfo);   
-    }
-    uHandler.updated();
 }
 
 void User::setID(size_t newID){

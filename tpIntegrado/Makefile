@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba
+CMAKE_SOURCE_DIR = /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado
+CMAKE_BINARY_DIR = /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/CMakeFiles /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -775,6 +775,33 @@ src/client_src/main.s: src/client_src/main.cpp.s
 src/client_src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/main.cpp.s
 .PHONY : src/client_src/main.cpp.s
+
+src/client_src/protectedUpdateQueue.o: src/client_src/protectedUpdateQueue.cpp.o
+
+.PHONY : src/client_src/protectedUpdateQueue.o
+
+# target to build an object file
+src/client_src/protectedUpdateQueue.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.o
+.PHONY : src/client_src/protectedUpdateQueue.cpp.o
+
+src/client_src/protectedUpdateQueue.i: src/client_src/protectedUpdateQueue.cpp.i
+
+.PHONY : src/client_src/protectedUpdateQueue.i
+
+# target to preprocess a source file
+src/client_src/protectedUpdateQueue.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.i
+.PHONY : src/client_src/protectedUpdateQueue.cpp.i
+
+src/client_src/protectedUpdateQueue.s: src/client_src/protectedUpdateQueue.cpp.s
+
+.PHONY : src/client_src/protectedUpdateQueue.s
+
+# target to generate assembly for a file
+src/client_src/protectedUpdateQueue.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.s
+.PHONY : src/client_src/protectedUpdateQueue.cpp.s
 
 src/common_src/Vector.o: src/common_src/Vector.cpp.o
 
@@ -1789,6 +1816,9 @@ help:
 	@echo "... src/client_src/main.o"
 	@echo "... src/client_src/main.i"
 	@echo "... src/client_src/main.s"
+	@echo "... src/client_src/protectedUpdateQueue.o"
+	@echo "... src/client_src/protectedUpdateQueue.i"
+	@echo "... src/client_src/protectedUpdateQueue.s"
 	@echo "... src/common_src/Vector.o"
 	@echo "... src/common_src/Vector.i"
 	@echo "... src/common_src/Vector.s"

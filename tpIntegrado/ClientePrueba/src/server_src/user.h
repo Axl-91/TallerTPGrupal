@@ -35,12 +35,12 @@ public:
     // void readInput(std::string &input);
     void stop();
     bool is_dead();
-    void sendGameUpdate(std::stringstream& game);
+    void sendGameUpdate(update_tag_t &aTag);
     bool hasStarted();
-    void changeName(std::string newName);
+    void changeName(std::string &newName);
     void sendMap(std::vector<std::vector<int>> &lvl1);
-    void sendPlayerInfo(Player_t player);
-    void update(UpdateHandler uHandler);
+    void sendPlayerInfo(Player_t &player);
+    void update(UpdateHandler &uHandler);
     void sendMapUpdate(Map_change_t &aMapChange);
     void setID(size_t ID);
 };

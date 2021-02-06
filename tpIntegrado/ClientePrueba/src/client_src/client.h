@@ -12,6 +12,7 @@
 #include "clientReceiver.h"
 #include "clientTransmitter.h"
 #include "SDL_EventHandler.h"
+#include "protectedUpdateQueue.h"
 class Client{
 public:
     Client(const char *host_name, const char *port);
@@ -33,8 +34,10 @@ private:
     SDL_EventHandler eHandler;
     std::vector<std::vector<int>> lvl2;
     std::atomic<bool> is_running;
-    Player_t player;
-    Map_change_t mapChange;
+    // Player_t player;
+    // Map_change_t mapChange;
+    // Update_t anUpdate;
+    ProtectedUpdateQueue uQ;
 };
 
 #endif

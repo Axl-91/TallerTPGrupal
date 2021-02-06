@@ -172,11 +172,10 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	float damage = 10*coef;
 	int totalDamage =(int) damage;
-	// std::cout<<"DISPARO!! "<<std::endl;
-
-	// std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
-
-	// currentWeapon->shoot();
+	std::cout<<"DISPARO!! "<<std::endl;
+	std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
+	currentWeapon->shoot();
+	
 	std::cout<<"daño: "<<damage<<std::endl;
 
 	std::cout<<"daño total: "<<totalDamage<<std::endl;

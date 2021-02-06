@@ -3,6 +3,7 @@ project(Wofenstein3D)
 add_library(client_src  SHARED
 Player.cpp
 SpritesHandler.cpp
+protectedUpdateQueue.cpp
 SDL_EventHandler.cpp
 Hud.cpp
 Raycaster.cpp

@@ -1,4 +1,4 @@
-# Install script for directory: /home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba
+# Install script for directory: /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,18 +39,18 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/guns.png;/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/hud.png;/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/walls.png;/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/objects.png")
+   "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/guns.png;/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/hud.png;/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/walls.png;/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/objects.png")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado" TYPE FILE FILES
-    "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/guns.png"
-    "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/hud.png"
-    "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/walls.png"
-    "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/objects.png"
+file(INSTALL DESTINATION "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado" TYPE FILE FILES
+    "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/guns.png"
+    "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/hud.png"
+    "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/walls.png"
+    "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/assets/objects.png"
     )
 endif()
 
@@ -62,5 +62,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/wagner/Desktop/tpIntegrado5feb/TallerTPGrupal/tpIntegrado/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

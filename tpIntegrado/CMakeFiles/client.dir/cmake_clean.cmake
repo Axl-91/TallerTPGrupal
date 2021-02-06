@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/src/client_src/inventory/PWRocketLauncher.cpp.o"
   "CMakeFiles/client.dir/src/client_src/inventory/PlayerWeapon.cpp.o"
   "CMakeFiles/client.dir/src/client_src/main.cpp.o"
+  "CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.o"
   "CMakeFiles/client.dir/src/common_src/Vector.cpp.o"
   "CMakeFiles/client.dir/src/common_src/protectedEventQueue.cpp.o"
   "CMakeFiles/client.dir/src/common_src/protectedQueue.cpp.o"

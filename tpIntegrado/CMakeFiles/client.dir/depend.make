@@ -21,6 +21,7 @@ CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/Sp
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/Walls.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/inventory/Inventory.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/inventory/PlayerWeapon.h
+CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/client.dir/src/client_src/Game.cpp.o: ClientePrueba/src/common_src/types.h
@@ -108,6 +109,7 @@ CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/clientTransmitter.h
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/inventory/Inventory.h
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/inventory/PlayerWeapon.h
+CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/client.dir/src/client_src/client.cpp.o: ClientePrueba/src/common_src/acceptorClosed.h
@@ -132,6 +134,7 @@ CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/cli
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/client_src/clientReceiver.h
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/client_src/inventory/Inventory.h
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/client_src/inventory/PlayerWeapon.h
+CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/client.dir/src/client_src/clientReceiver.cpp.o: ClientePrueba/src/common_src/acceptorClosed.h
@@ -223,6 +226,7 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/client_src/cl
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/client_src/inventory/Inventory.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/client_src/inventory/PlayerWeapon.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/client_src/main.cpp
+CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/acceptorClosed.h
@@ -233,6 +237,10 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/so
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/socketError.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/thread.h
 CMakeFiles/client.dir/src/client_src/main.cpp.o: ClientePrueba/src/common_src/types.h
+
+CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.cpp
+CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.o: ClientePrueba/src/client_src/protectedUpdateQueue.h
+CMakeFiles/client.dir/src/client_src/protectedUpdateQueue.cpp.o: ClientePrueba/src/common_src/types.h
 
 CMakeFiles/client.dir/src/common_src/Vector.cpp.o: ClientePrueba/src/common_src/Vector.cpp
 CMakeFiles/client.dir/src/common_src/Vector.cpp.o: ClientePrueba/src/common_src/Vector.h

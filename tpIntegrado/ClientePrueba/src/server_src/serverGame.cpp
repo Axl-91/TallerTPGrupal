@@ -24,7 +24,7 @@ void ServerGame::handlePlayerShoot(ServerPlayer &player){
 		player.getDamageCoefficient(p.second, coef, wallDist);
 
 		if(coef!=0)
-			player.shoot(p.second,coef);
+			player.shoot(p.second, coef);
 	}
 }
 

@@ -4,7 +4,7 @@
 std::vector<std::vector<int>> lvl2 = {
 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,103,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
@@ -133,19 +133,16 @@ void Match::welcomeUser(User* user){
     welcome << "Te uniste a la partida: " << name << std::endl;
     welcome << "Bienvenido!\nPodes chatear con otros jugadores en la sala." << std::endl;
     welcome << "Cantidad de jugadores en la sala: " << users.size() << std::endl;
-    user->sendGameUpdate(welcome);
-
-    std::stringstream playerInfo;
-    playerInfo << "playerInfo";
-    user->sendGameUpdate(playerInfo);
+    // user->sendText(welcome);
+    update_tag_t aTag = TAG_PLAYER_INFO;
+    user->sendGameUpdate(aTag);
 
     Player_t auxPlayer;
     players.at(connectionNumber).getPlayerInfo(auxPlayer);
     user->sendPlayerInfo(auxPlayer);
-    
-    std::stringstream map;
-    map << "mapa";
-    user->sendGameUpdate(map);
+
+    aTag = TAG_MAP_INIT;    
+    user->sendGameUpdate(aTag);
     user->sendMap(lvl1);
 }
 
@@ -160,7 +157,7 @@ void Match::addUser(User* user){
     user->start();
 
     welcomeUser(user);
-
+    std::cout << "se guardo el ID: "  << connectionNumber << std::endl;
     connectionNumber++;
 
 }

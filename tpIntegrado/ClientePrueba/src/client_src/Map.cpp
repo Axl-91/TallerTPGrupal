@@ -246,7 +246,7 @@ Map::~Map(){}
 
 void Map::update(Map_change_t &aMapChange){
 	// map[aMapChange.x][aMapChange.y] = aMapChange.value;
-	aMapChange.changeAvailable = false;
+	// aMapChange.changeAvailable = false;
 	// std::cout << "Map::update(): aMapchange.x: "<< aMapChange.x << "amapchange.y: " << aMapChange.y << std::endl;
 	eraseObj(aMapChange.x, aMapChange.y) ;
 

@@ -8,14 +8,15 @@ ServerTransmitter::ServerTransmitter(ServerTransmitter&& other):
     socket(other.socket)
 {}
     // ~Transmitter(){}
-void ServerTransmitter::send(std::stringstream &game){
-    if(game.str().length() == 0)
-        return;
-    uint32_t length = game.str().length();
-    const size_t SIZE_OF_UINT32 = 4;
-    length = htonl(length);
-    socket.send((char *) &length, SIZE_OF_UINT32);
-    socket.send(game.str().data(), game.str().length());   
+void ServerTransmitter::sendTag(update_tag_t &aTag){
+    // if(game.str().length() == 0)
+    //     return;
+    // uint32_t length = game.str().length();
+    // const size_t SIZE_OF_UINT32 = 4;
+    // length = htonl(length);
+    // socket.send((char *) &length, SIZE_OF_UINT32);
+    // socket.send(game.str().data(), game.str().length());   
+    socket.send((char*) &aTag, sizeof(update_tag_t));   
 }
 void printVector(std::vector<std::vector<uint32_t>> lvl1){
     for(auto v:lvl1){
@@ -48,7 +49,7 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
     std::cout << "termine de enviar mapa" << std::endl;
 }
 
-void ServerTransmitter::sendPlayer(Player_t player){
+void ServerTransmitter::sendPlayer(Player_t &player){
     // std::cout << "voy a enviar playerInfo: \n player.x:" << player.x << "\t player.y:" << player.y << std::endl;
     // std::cout<< player.health<<std::endl;
     socket.send((char *) &player, sizeof(Player_t));
@@ -56,7 +57,6 @@ void ServerTransmitter::sendPlayer(Player_t player){
 
 
 void ServerTransmitter::sendMapUpdate(Map_change_t &aMapChange){
-    std::cout << "voy a enviar mapa actu" << std::endl;
     std::cout << aMapChange.x<< std::endl;
     std::cout << aMapChange.y << std::endl;
     

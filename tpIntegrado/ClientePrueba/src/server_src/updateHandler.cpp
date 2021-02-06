@@ -10,7 +10,6 @@ void UpdateHandler::updateMap(int xAux, int yAux, int value){
     mapChange.x = xAux;
     mapChange.y = yAux;
     mapChange.value = value;
-    mapChange.changeAvailable = true;
 }
 
 bool UpdateHandler::mapChangeAvailable(){
@@ -24,8 +23,6 @@ void UpdateHandler::getMapChange(Map_change_t &aMapChange){
     aMapChange.x =mapChange.x;
     aMapChange.y = mapChange.y;
     aMapChange.value = mapChange.value;
-    aMapChange.changeAvailable = mapChange.changeAvailable;
-
 }
 
 void UpdateHandler::getPlayerChange(Player_t &p){

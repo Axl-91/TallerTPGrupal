@@ -5,9 +5,10 @@
 // #include "Hud.h"
 #include "Map.h"
 
-Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, Player_t &playerInfo): 
+Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpdateQueue &q): 
 	mapGame(lvl),
-	player(mapGame){
+	player(mapGame),
+	uQ(q){
     int hayError;
     winLargo = largo;
     winAlto = alto;
@@ -28,13 +29,29 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, Player_t &pl
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 
 	mapGame.setRenderer(renderer);
-
-	player.setPos(playerInfo.x,playerInfo.y);
+	if(uQ.isEmpty()){
+		std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
+	}
+	Update_t anUpdate = uQ.pop();
+	player.setPos(anUpdate.playerUpdate.x,anUpdate.playerUpdate.y);
 	player.setRenderer(renderer);
-	player.setID(playerInfo.ID);
+	player.setID(anUpdate.playerUpdate.ID);
+	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 }
 
+void Game::update(){
+	if(uQ.isEmpty()){
+		return;
+		// sleep(1/60);
+	}
+	Update_t anUpdate = uQ.pop();
+
+	updatePlayer(anUpdate.playerUpdate);
+	if(anUpdate.mapChangeAvailable == true)
+		updateMap(anUpdate.mapChange);
+}
 void Game::updatePlayer(Player_t &p){
+	// std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 
 	if(p.ID == player.getID()){
 		player.updateInfo(p);

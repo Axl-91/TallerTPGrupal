@@ -70,8 +70,21 @@ typedef struct{
     int x;
     int y;
     int value;
-    bool changeAvailable;
 }Map_change_t;
+
+typedef struct{
+    Player_t playerUpdate;
+    Map_change_t mapChange;
+    bool mapChangeAvailable;
+}Update_t;
+
+typedef enum{
+    TAG_NO_UPDATE,
+    TAG_GAME_QUIT,
+    TAG_PLAYER_INFO,
+    TAG_MAP_CHANGE,
+    TAG_MAP_INIT
+}update_tag_t;
 
 typedef struct {
     event_t event;

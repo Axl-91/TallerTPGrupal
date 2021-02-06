@@ -10,9 +10,10 @@ class ServerTransmitter {
 public:
     ServerTransmitter(Socket &socket);
     ServerTransmitter(ServerTransmitter&& other);
-    void send(std::stringstream &game);
+    void sendTag(update_tag_t &aTag);
     void sendMap(std::vector<std::vector<int>> &lvl1);
-    void sendPlayer(Player_t player);   
+    void sendPlayer(Player_t &player);   
+    // void sendUpdate(Update_t &anUpdate);   
     void sendMapUpdate(Map_change_t &aMapChange);
     void sendPlayerID(size_t &ID);
 
