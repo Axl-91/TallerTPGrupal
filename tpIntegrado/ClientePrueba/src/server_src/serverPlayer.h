@@ -5,6 +5,8 @@
 #include <cmath>
 #include "../common_src/types.h"
 #include "../common_src/Vector.h"
+#include "sp_inventory/SPWeapon.h"
+#include "sp_inventory/SPInventory.h"
 
 
 typedef enum{
@@ -21,11 +23,12 @@ typedef enum{
 
 class ServerPlayer{
 private:
-    // SDL_EventHandler s;
-    // SpritesHandler p;
     circle position;
     player_move_orientation_t moveOrientation;
     player_rotate_orientation_t rotateOrientation;
+    SPInventory inventory;
+	SPWeapon *currentWeapon;
+
     float ang;
     float dirx;
     float diry;
@@ -35,20 +38,26 @@ private:
     size_t score;
     // Inventory inventory;
    	// Hud hudGame;
-    weapon_t secondaryWP;
+
+
+    // weapon_t secondaryWP;
     player_weapons_t currentWP;
+
     size_t ammo;
     bool key;
     bool shooting;
 	// PlayerWeapon *currentWeapon;
+    weapon_t getSecondaryWPtype();
+
 public:
+
     int health;
 
     ServerPlayer(float x, float y, float a, size_t ID);
     ~ServerPlayer();
     void rotate();
 
-    bool enemyInShootRange(ServerPlayer &enemy, float wallDist);
+    // bool enemyInShootRange(ServerPlayer &enemy, float wallDist);
     void getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist);
     float getAngle();
 	void shoot(ServerPlayer &enemy, float coef);

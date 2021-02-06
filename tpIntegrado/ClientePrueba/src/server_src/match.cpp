@@ -177,10 +177,10 @@ void Match::welcomeUser(User* user){
     welcome << "Cantidad de jugadores en la sala: " << users.size() << std::endl;
     user->sendGameUpdate(welcome);
 
-
     std::stringstream playerInfo;
     playerInfo << "playerInfo";
     user->sendGameUpdate(playerInfo);
+
     Player_t auxPlayer;
     players.at(connectionNumber).getPlayerInfo(auxPlayer);
     user->sendPlayerInfo(auxPlayer);
@@ -197,9 +197,11 @@ void Match::addUser(User* user){
     user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);
     users[connectionNumber] = user;
+
     user->start();
 
     welcomeUser(user);
+
     connectionNumber++;
 
 }

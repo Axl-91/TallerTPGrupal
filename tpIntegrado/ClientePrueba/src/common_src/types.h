@@ -1,5 +1,6 @@
 #ifndef TYPES__H
 #define TYPES__H
+#include <iostream>
 
 #define MAX_WEAPONS 3
 #define MAX_HEALTH 100

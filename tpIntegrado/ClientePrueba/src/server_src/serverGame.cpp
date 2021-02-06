@@ -8,7 +8,9 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
     lvl1(l),
     updateHandler(uH),
     colMap(lvl1)
-{}
+{
+
+}
 
 
 
@@ -44,11 +46,6 @@ float ServerGame::shootRaycaster(ServerPlayer &player){
 	raycaster.crearRay(anguloRay);
 	return raycaster.getDistancia();
 }
-
-
-
-
-
 
 
 

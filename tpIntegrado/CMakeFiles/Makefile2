@@ -103,12 +103,12 @@ CMakeFiles/client.dir/clean:
 CMakeFiles/server.dir/all:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59 "Built target server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63 "Built target server"
 .PHONY : CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles 35
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule

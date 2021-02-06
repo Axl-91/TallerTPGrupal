@@ -31,6 +31,8 @@ CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -43,6 +45,8 @@ CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -52,6 +56,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -61,6 +67,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -70,6 +78,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -78,6 +88,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -92,6 +104,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableWall.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -100,6 +114,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Immovable.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Immovable.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -110,6 +126,8 @@ CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableWall.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -120,6 +138,8 @@ CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -130,6 +150,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -138,6 +160,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -164,6 +188,8 @@ CMakeFiles/server.dir/src/server_src/main.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/thacceptor.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h
@@ -190,6 +216,8 @@ CMakeFiles/server.dir/src/server_src/match.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o
@@ -216,6 +244,8 @@ CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o
@@ -243,6 +273,8 @@ CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h
 CMakeFiles/server.dir/src/server_src/protectedMatchEventQueue.cpp.o
@@ -275,6 +307,8 @@ CMakeFiles/server.dir/src/server_src/server.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/thacceptor.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h
@@ -291,6 +325,8 @@ CMakeFiles/server.dir/src/server_src/serverGame.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverGame.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverGame.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
@@ -298,6 +334,8 @@ CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/acceptorClosed.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/protectedQueue.h
@@ -315,6 +353,27 @@ CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.cpp
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWGun.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWGun.cpp
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWGun.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWKnife.cpp
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Circle.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
@@ -339,6 +398,8 @@ CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/thacceptor.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/thacceptor.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
@@ -348,6 +409,8 @@ CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/Vector.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/common_src/types.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/user.cpp.o
@@ -365,6 +428,8 @@ CMakeFiles/server.dir/src/server_src/user.cpp.o
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverPlayer.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverReceiver.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/serverTransmitter.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+ /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/updateHandler.h
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.cpp
  /home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/user.h

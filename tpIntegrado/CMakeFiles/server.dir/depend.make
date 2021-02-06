@@ -30,6 +30,8 @@ CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/serve
 CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.h
 CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/CollisionMap.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -42,6 +44,8 @@ CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.h
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/ShootingRaycaster.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -51,6 +55,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -60,6 +66,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -69,6 +77,8 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrue
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -77,6 +87,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -91,6 +103,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableWall.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -99,6 +113,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/s
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.cpp
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.h
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -109,6 +125,8 @@ CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrue
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableWall.h
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -119,6 +137,8 @@ CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/sr
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.h
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -129,6 +149,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/sr
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.h
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -137,6 +159,8 @@ CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/s
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.cpp
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -163,6 +187,8 @@ CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/se
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/thacceptor.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ClientePrueba/src/server_src/user.h
@@ -189,6 +215,8 @@ CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/s
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/match.cpp.o: ClientePrueba/src/server_src/user.h
 
@@ -215,6 +243,8 @@ CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/serve
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/matchHandler.cpp.o: ClientePrueba/src/server_src/user.h
 
@@ -242,6 +272,8 @@ CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/menuHandler.cpp.o: ClientePrueba/src/server_src/user.h
 
@@ -274,6 +306,8 @@ CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/thacceptor.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ClientePrueba/src/server_src/user.h
@@ -290,6 +324,8 @@ CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_
 CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverGame.cpp
 CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverGame.h
 CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/serverGame.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/common_src/Circle.h
@@ -297,6 +333,8 @@ CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/commo
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/server_src/serverPlayer.cpp
 CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/serverPlayer.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o: ClientePrueba/src/common_src/acceptorClosed.h
 CMakeFiles/server.dir/src/server_src/serverReceiver.cpp.o: ClientePrueba/src/common_src/protectedQueue.h
@@ -314,6 +352,27 @@ CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/server_src/serverTransmitter.cpp
 CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -338,6 +397,8 @@ CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/thacceptor.cpp
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/thacceptor.h
 CMakeFiles/server.dir/src/server_src/thacceptor.cpp.o: ClientePrueba/src/server_src/updateHandler.h
@@ -347,6 +408,8 @@ CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/comm
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/updateHandler.cpp
 CMakeFiles/server.dir/src/server_src/updateHandler.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 
@@ -364,6 +427,8 @@ CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/pr
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/serverReceiver.h
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/serverTransmitter.h
+CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/updateHandler.h
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/user.cpp
 CMakeFiles/server.dir/src/server_src/user.cpp.o: ClientePrueba/src/server_src/user.h

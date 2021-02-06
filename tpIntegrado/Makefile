@@ -1520,6 +1520,114 @@ src/server_src/serverTransmitter.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/serverTransmitter.cpp.s
 .PHONY : src/server_src/serverTransmitter.cpp.s
 
+src/server_src/sp_inventory/SPInventory.o: src/server_src/sp_inventory/SPInventory.cpp.o
+
+.PHONY : src/server_src/sp_inventory/SPInventory.o
+
+# target to build an object file
+src/server_src/sp_inventory/SPInventory.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o
+.PHONY : src/server_src/sp_inventory/SPInventory.cpp.o
+
+src/server_src/sp_inventory/SPInventory.i: src/server_src/sp_inventory/SPInventory.cpp.i
+
+.PHONY : src/server_src/sp_inventory/SPInventory.i
+
+# target to preprocess a source file
+src/server_src/sp_inventory/SPInventory.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.i
+.PHONY : src/server_src/sp_inventory/SPInventory.cpp.i
+
+src/server_src/sp_inventory/SPInventory.s: src/server_src/sp_inventory/SPInventory.cpp.s
+
+.PHONY : src/server_src/sp_inventory/SPInventory.s
+
+# target to generate assembly for a file
+src/server_src/sp_inventory/SPInventory.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.s
+.PHONY : src/server_src/sp_inventory/SPInventory.cpp.s
+
+src/server_src/sp_inventory/SPWGun.o: src/server_src/sp_inventory/SPWGun.cpp.o
+
+.PHONY : src/server_src/sp_inventory/SPWGun.o
+
+# target to build an object file
+src/server_src/sp_inventory/SPWGun.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o
+.PHONY : src/server_src/sp_inventory/SPWGun.cpp.o
+
+src/server_src/sp_inventory/SPWGun.i: src/server_src/sp_inventory/SPWGun.cpp.i
+
+.PHONY : src/server_src/sp_inventory/SPWGun.i
+
+# target to preprocess a source file
+src/server_src/sp_inventory/SPWGun.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.i
+.PHONY : src/server_src/sp_inventory/SPWGun.cpp.i
+
+src/server_src/sp_inventory/SPWGun.s: src/server_src/sp_inventory/SPWGun.cpp.s
+
+.PHONY : src/server_src/sp_inventory/SPWGun.s
+
+# target to generate assembly for a file
+src/server_src/sp_inventory/SPWGun.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.s
+.PHONY : src/server_src/sp_inventory/SPWGun.cpp.s
+
+src/server_src/sp_inventory/SPWKnife.o: src/server_src/sp_inventory/SPWKnife.cpp.o
+
+.PHONY : src/server_src/sp_inventory/SPWKnife.o
+
+# target to build an object file
+src/server_src/sp_inventory/SPWKnife.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o
+.PHONY : src/server_src/sp_inventory/SPWKnife.cpp.o
+
+src/server_src/sp_inventory/SPWKnife.i: src/server_src/sp_inventory/SPWKnife.cpp.i
+
+.PHONY : src/server_src/sp_inventory/SPWKnife.i
+
+# target to preprocess a source file
+src/server_src/sp_inventory/SPWKnife.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.i
+.PHONY : src/server_src/sp_inventory/SPWKnife.cpp.i
+
+src/server_src/sp_inventory/SPWKnife.s: src/server_src/sp_inventory/SPWKnife.cpp.s
+
+.PHONY : src/server_src/sp_inventory/SPWKnife.s
+
+# target to generate assembly for a file
+src/server_src/sp_inventory/SPWKnife.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.s
+.PHONY : src/server_src/sp_inventory/SPWKnife.cpp.s
+
+src/server_src/sp_inventory/SPWeapon.o: src/server_src/sp_inventory/SPWeapon.cpp.o
+
+.PHONY : src/server_src/sp_inventory/SPWeapon.o
+
+# target to build an object file
+src/server_src/sp_inventory/SPWeapon.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o
+.PHONY : src/server_src/sp_inventory/SPWeapon.cpp.o
+
+src/server_src/sp_inventory/SPWeapon.i: src/server_src/sp_inventory/SPWeapon.cpp.i
+
+.PHONY : src/server_src/sp_inventory/SPWeapon.i
+
+# target to preprocess a source file
+src/server_src/sp_inventory/SPWeapon.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.i
+.PHONY : src/server_src/sp_inventory/SPWeapon.cpp.i
+
+src/server_src/sp_inventory/SPWeapon.s: src/server_src/sp_inventory/SPWeapon.cpp.s
+
+.PHONY : src/server_src/sp_inventory/SPWeapon.s
+
+# target to generate assembly for a file
+src/server_src/sp_inventory/SPWeapon.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.s
+.PHONY : src/server_src/sp_inventory/SPWeapon.cpp.s
+
 src/server_src/thacceptor.o: src/server_src/thacceptor.cpp.o
 
 .PHONY : src/server_src/thacceptor.o
@@ -1762,6 +1870,18 @@ help:
 	@echo "... src/server_src/serverTransmitter.o"
 	@echo "... src/server_src/serverTransmitter.i"
 	@echo "... src/server_src/serverTransmitter.s"
+	@echo "... src/server_src/sp_inventory/SPInventory.o"
+	@echo "... src/server_src/sp_inventory/SPInventory.i"
+	@echo "... src/server_src/sp_inventory/SPInventory.s"
+	@echo "... src/server_src/sp_inventory/SPWGun.o"
+	@echo "... src/server_src/sp_inventory/SPWGun.i"
+	@echo "... src/server_src/sp_inventory/SPWGun.s"
+	@echo "... src/server_src/sp_inventory/SPWKnife.o"
+	@echo "... src/server_src/sp_inventory/SPWKnife.i"
+	@echo "... src/server_src/sp_inventory/SPWKnife.s"
+	@echo "... src/server_src/sp_inventory/SPWeapon.o"
+	@echo "... src/server_src/sp_inventory/SPWeapon.i"
+	@echo "... src/server_src/sp_inventory/SPWeapon.s"
 	@echo "... src/server_src/thacceptor.o"
 	@echo "... src/server_src/thacceptor.i"
 	@echo "... src/server_src/thacceptor.s"

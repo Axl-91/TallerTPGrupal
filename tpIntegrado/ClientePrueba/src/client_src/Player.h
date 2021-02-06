@@ -7,7 +7,7 @@
 #include "Map.h"
 #include "../common_src/types.h"
 #include "Hud.h"
-#include "./inventory/PlayerWeapon.h"
+#include "inventory/PlayerWeapon.h"
 #include "inventory/Inventory.h"
 // #include "weapon_t.h"
 // #include "heal_t.h"

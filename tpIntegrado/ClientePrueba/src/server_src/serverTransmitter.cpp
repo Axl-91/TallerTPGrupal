@@ -49,8 +49,8 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
 }
 
 void ServerTransmitter::sendPlayer(Player_t player){
-    std::cout << "voy a enviar playerInfo: \n player.x:" << player.x << "\t player.y:" << player.y << std::endl;
-    std::cout<< player.health<<std::endl;
+    // std::cout << "voy a enviar playerInfo: \n player.x:" << player.x << "\t player.y:" << player.y << std::endl;
+    // std::cout<< player.health<<std::endl;
     socket.send((char *) &player, sizeof(Player_t));
 }
 
