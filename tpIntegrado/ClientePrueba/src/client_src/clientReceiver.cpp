@@ -73,10 +73,13 @@ void ClientReceiver::receiveGame(){
     }
     if(aTag == TAG_PLAYER_INFO){
         receivePlayerInfo(anUpdate);
+        // std::cout<<"puntos: "<<<<std::endl;
+
         uQ.push(anUpdate);
     }
     if(aTag == TAG_MAP_CHANGE){
         receiveMapChange(anUpdate);
+        receivePlayerInfo(anUpdate);
         anUpdate.mapChangeAvailable = true;
         uQ.push(anUpdate);
     }

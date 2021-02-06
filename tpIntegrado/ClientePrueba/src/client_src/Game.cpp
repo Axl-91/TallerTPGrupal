@@ -33,9 +33,10 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpd
 		std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
 	}
 	Update_t anUpdate = uQ.pop();
-	player.setPos(anUpdate.playerUpdate.x,anUpdate.playerUpdate.y);
-	player.setRenderer(renderer);
 	player.setID(anUpdate.playerUpdate.ID);
+	// player.setPos(anUpdate.playerUpdate.x,anUpdate.playerUpdate.y);
+	player.updateInfo(anUpdate.playerUpdate);
+	player.setRenderer(renderer);
 	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 }
 
@@ -45,7 +46,7 @@ void Game::update(){
 		// sleep(1/60);
 	}
 	Update_t anUpdate = uQ.pop();
-
+	
 	updatePlayer(anUpdate.playerUpdate);
 	if(anUpdate.mapChangeAvailable == true)
 		updateMap(anUpdate.mapChange);

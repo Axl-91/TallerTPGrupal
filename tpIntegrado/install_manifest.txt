@@ -1,4 +1,4 @@
-/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/guns.png
-/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/hud.png
-/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/walls.png
-/home/ari/Desktop/FIUBA/TallerTPGrupal/tpIntegrado/objects.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/guns.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/hud.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/walls.png
+/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/objects.png
