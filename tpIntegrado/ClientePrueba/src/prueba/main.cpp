@@ -1,29 +1,37 @@
 #include <iostream>
-#include <map>
+#include <thread>
+#include <chrono>
+
+#include <time.h>
 #include "Vector.h"
 
 int main(void){
-    std::map <std::pair<int,int>,int>m;
-    std::pair<int,int> a(0, 1);
-    std::pair<int,int> a1(1, 2);
-    std::pair<int,int> a2(2, 3);
-    std::pair<int,int> a3(57, 4);
-    std::pair<int,int> a4(109, 5);
-    std::pair<int,int> b=a;
+    // long int start = 0, end = 0;
+    // double delta = 0;
+    // double ns = 1000000.0 / 60.0; // Syncs updates at 60 per second (59 - 61)
+    int quit= 100;
+    int c=0;
 
-    m[a]=10;
-    m[a1]=11;
-    m[a2]=12;
-    m[a3]=13;
-    m[a4]=14;
+    // time_t timer1;
+    // time_t timer2;
 
-    std::cout<<"hola"<<std::endl;
-    std::cout<<m[b]<<std::endl;
-    b={1,2};
-    std::cout<<m[b]<<std::endl;
-    m.erase(a1);
+    // auto initial = std::chrono::high_resolution_clock::now();
+    while (c<=quit) {
 
-    std::cout<<m[b]<<std::endl;
+        auto initial = std::chrono::high_resolution_clock::now();
 
-    std::cout<<"hola"<<std::endl;
+        while(c<=100000){ 
+            c++;
+            std::cout<<"c: "<<c<<std::endl;
+        }
+        auto final = std::chrono::high_resolution_clock::now();
+        auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
+        // long sleepTime = timeStep - loopDuration.count();
+        // if (sleepTime > 0) {
+        //     std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
+        // std::cout<<"duracion: "<<loopDuration.count()<<std::endl;
+
+    }
+
+
 }

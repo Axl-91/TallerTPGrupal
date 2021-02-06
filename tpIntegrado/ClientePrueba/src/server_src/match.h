@@ -23,14 +23,15 @@ public:
     virtual void run() override;
     void operator()();
     void startMatch();
-    void updateGame();
+    void updateUsers();
+
     void addUser(User* user);
     void stop();
     bool isUserNameAvailable(std::string aName);
     std::string getName();
     bool started();
     void delete_finish_clients(std::vector<User*>& threads);
-    void readEvents();
+    bool readEvents();
     void getPlayerIndex(size_t index);
 private:
     ProtectedMatchEventQueue q;

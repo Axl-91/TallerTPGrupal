@@ -66,8 +66,8 @@ event_t SDL_EventHandler::pollEvent(){
 		exitPollEvent(SDLEvent, event);		
 		// if (SDLEvent.type == SDL_KEYDOWN){
 		if (SDLEvent.key.state == SDL_PRESSED){
-			// if(SDLEvent.key.repeat!=0)
-			// 	return event;
+			if(SDLEvent.key.repeat!=0)
+				return event;
 
 			event = keyDownEvents[SDLEvent.key.keysym.sym];
 			std::cout<<"key down"<<std::endl;

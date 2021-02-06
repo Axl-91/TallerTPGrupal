@@ -13,6 +13,16 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
 }
 
 
+void ServerGame::update(){
+	for(auto &aPlayer: players){
+	    movePlayer(aPlayer.second);
+    	aPlayer.second.rotate();
+	    if(aPlayer.second.isShooting()==true){
+        	handlePlayerShoot(aPlayer.second);
+    	}
+		updateHandler.updatePlayerPosition(aPlayer.second);
+	}
+}
 
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist=shootRaycaster(player);

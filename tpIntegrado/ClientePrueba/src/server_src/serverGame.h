@@ -23,6 +23,7 @@ public:
     // ~ServerGame();
     float shootRaycaster(ServerPlayer &player);
 
+    void update();
     void movePlayer(ServerPlayer &player);
     void handlePlayerShoot(ServerPlayer &player);
 

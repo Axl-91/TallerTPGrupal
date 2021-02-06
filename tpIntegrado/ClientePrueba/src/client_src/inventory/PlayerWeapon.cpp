@@ -21,7 +21,7 @@ void PlayerWeapon::shoot(){
 }
 
 void PlayerWeapon::render(int largoWin, int altoWin){
-    int delay = 32;
+    int delay = 10;
     int frame = 0;
 
     if (estaDisparando){
