@@ -6,36 +6,30 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include "Settings.h"
-#include "Arrow.h"
-#include "Textbox.h"
 #include "Position.h"
 #include "Map.h"
+#include "SDLHandler.h"
 
 class Game{
-private:
-	const char* title = "Game Editor";
-	const char* imgFile = "background.png";
-	const char* font = "wolfenstein.ttf";
+private:	
 	TTF_Font *gFont = NULL;
 	bool gameOver = false;
-	int winLargo;
-	int winAlto;
+	bool isFullScreen = false;;
+	int largo = 320;
+    int alto = 240;
+    int winLargo = 640;
+	int winAlto = 480;
 	Map map;
-	Arrow arrow;
-	Textbox maxplayers;	
-	Textbox resW;
-	Textbox resH;		
+	SDLHandler main;	
 	Settings sett;	
 	SDL_Texture* textura;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	void exitPollEvent(SDL_Event &evento);
-    void getTexture();
-    void fill();
-    void initGui();
 	void updatemodel();
+	void initialize();
 public:
-	Game(int largo, int ancho,char * filename);
+	Game(bool isFullScreen,char * filename);
 	void render();
 	void update();
 	bool isGameOver();
