@@ -64,6 +64,7 @@ void Inventory::setAmmo(int a){
 
 bool Inventory::equip(weapon_t w){
     weapon_t last;
+
     if(weapons[WP_SECONDARY]!=NULL){
         if(w == weapons[WP_SECONDARY]->getType()){
             return false;
@@ -79,6 +80,7 @@ bool Inventory::equip(weapon_t w){
         equipRocketLauncher();
     }else
         return false;
+
     if(weaponRenderer!=NULL)
        	weapons[WP_SECONDARY]->setRenderer(weaponRenderer);
 
@@ -89,6 +91,7 @@ void Inventory::equipMachineGun(){
     delete weapons[WP_SECONDARY];
     weapons[WP_SECONDARY]= new PWMachineGun();
 }
+
 void Inventory::equipChainGun(){
     delete weapons[WP_SECONDARY];
     weapons[WP_SECONDARY]= new PWChainCannon();

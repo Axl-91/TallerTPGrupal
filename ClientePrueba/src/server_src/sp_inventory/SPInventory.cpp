@@ -31,14 +31,11 @@ SPInventory::~SPInventory(){
         }
 }
 
-
-
 SPWeapon* SPInventory::getWeapon(SPWeapon* pw, int i){
     if(weapons[i]!=NULL)
         pw=weapons[i];
     return pw;
 }
-
 
 weapon_t SPInventory::equip(weapon_t w){
     weapon_t last;
@@ -68,32 +65,6 @@ weapon_t SPInventory::getSecondaryWPtype(){
 
     return weapons[WP_SECONDARY]->getType();
 }
-
-
-// bool SPInventory::equip(weapon_t w){
-//     weapon_t last;
-//     if(weapons[WP_SECONDARY]!=NULL){
-//         if(w == (last=weapons[WP_SECONDARY]->getType())){
-//             return false;
-//         }
-//     }
-
-//     if(w==MACHINE_GUN){
-//         equipMachineGun();
-//     }else if(w==CHAIN_CANNON){
-//         equipChainGun();
-
-//     }else if(w==ROCKET_LAUNCHER){
-//         equipRocketLauncher();
-//     }else
-//         return false;
-
-//     return true;
-// }
-
-
-
-
 
 void SPInventory::equipMachineGun(){
     delete weapons[WP_SECONDARY];

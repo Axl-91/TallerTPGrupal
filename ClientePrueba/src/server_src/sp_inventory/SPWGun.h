@@ -8,7 +8,7 @@ class SPWGun: public SPWeapon{
 public:
     SPWGun();
     ~SPWGun();
-    float shoot(float dist, bool &isShooting) override;
+    float shoot(float dist, shooting_state_t &shootingState) override;
 };
 
 #endif

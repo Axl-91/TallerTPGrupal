@@ -13,10 +13,7 @@
 
 class ClientReceiver : public Thread {
 public:
-    ClientReceiver(Socket &socket, 
-                std::vector<std::vector<int>> &m, 
-                ProtectedQueue<Update_t> &uQ,
-                ProtectedQueue<menu_event_t> &mQ);
+    ClientReceiver(Socket &socket, std::vector<std::vector<int>> &m, ProtectedUpdateQueue &uQ);
     void operator()();
     virtual void run() override;
     void stop();
@@ -24,16 +21,14 @@ public:
     bool isInMatch();
     bool isDead();
     bool matchFinished();
-    void receiveString(std::string &aString);
-    void receiveMatchList();
+
 private:
     Socket &socket;
     std::atomic<bool> is_running;
     std::vector<std::vector<int>>&map;
     std::atomic<bool> inMatch;
     std::atomic<bool> matchEnded;
-    ProtectedQueue<Update_t> &uQ;
-    ProtectedQueue<menu_event_t> &menuResponseQ;
+    ProtectedUpdateQueue &uQ;
     void receivePlayerInfo(Update_t &anUpdate);
     void receiveMapChange(Update_t &anUpdate);
     void receiveGame();

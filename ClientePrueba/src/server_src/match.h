@@ -24,6 +24,7 @@ public:
     void operator()();
     void startMatch();
     void updateUsers();
+
     void addUser(User* user);
     void stop();
     bool isUserNameAvailable(std::string aName);
@@ -42,7 +43,7 @@ private:
     std::string name;
     std::vector<std::vector<int>> lvl1;
     UpdateHandler updateHandler;
-    std::queue<UpdateHandler> uQ;
+    std::queue<UpdateHandler> uQ; 
     size_t connectionNumber;
     void welcomeUser(User* user);
     ServerGame game;

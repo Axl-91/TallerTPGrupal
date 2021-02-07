@@ -16,7 +16,7 @@ public:
     // void sendUpdate(Update_t &anUpdate);   
     void sendMapUpdate(Map_change_t &aMapChange);
     void sendPlayerID(size_t &ID);
-    void sendString(std::string &aString);
+
 private:
     Socket &socket;
 };

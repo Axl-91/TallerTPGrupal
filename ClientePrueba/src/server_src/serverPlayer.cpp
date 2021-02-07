@@ -25,7 +25,8 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	health = 50;
 	ammo = 50;
 	key = false;
-	shooting = false;
+	shootingState = SHOOTING_STATE_QUIET;
+	// shooting = false;
 	lifes = 3;
 	score = 123;
 	moveOrientation = MOVE_QUIET;
@@ -50,7 +51,8 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	health = 50;
 	ammo = 50;
 	key = false;
-	shooting = false;
+	// shooting = false;
+	shootingState = SHOOTING_STATE_QUIET;
 	lifes = 3;
 	score = 123;
 	moveOrientation = MOVE_QUIET;
@@ -74,6 +76,8 @@ bool ServerPlayer::updateIsAvailable(){
 void ServerPlayer::updated(){
 	updateAvailable=false;
 }
+
+
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
 	if (ang < 0 || ang >= 2*PI){
@@ -81,6 +85,7 @@ void ServerPlayer::rotate(){
 	}
 	if(rotateOrientation!=ROTATE_QUIET)
 		updateAvailable=true;
+
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
 }
@@ -89,7 +94,8 @@ void ServerPlayer::move(){
 	position.x+=dirx*moveOrientation;
 	position.y+=diry*moveOrientation;
 	if(moveOrientation!=MOVE_QUIET)
-	updateAvailable=true;
+		updateAvailable=true;
+
 	setDirection(step*cos(ang), step*sin(ang));
 }
 
@@ -116,11 +122,14 @@ void ServerPlayer::seteRotateOrientation(player_rotate_orientation_t o){
 
 void ServerPlayer::startShooting(){
 	currentWeapon->shootingTrue();
-	shooting = true;
+	shootingState = SHOOTING_STATE_STARTED;
+	// shooting = true;
 }
 
 void ServerPlayer::stopShooting(){
-	shooting = false;
+	shootingState = SHOOTING_STATE_STOPED;
+
+	// shooting = false;
 }
 
 weapon_t ServerPlayer::equip(weapon_t weapon){
@@ -168,17 +177,21 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 }
 
+// void ServerPlayer::shoot(){
+// 	currentWeapon->shoot();
+// }
 
 void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	float weaponDamage;
 	int totalDamage;
 	std::cout<<"DISPARO!! "<<std::endl;
 	std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
-	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shooting);
+	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
 	weaponDamage *= coef;
 	totalDamage = (int) weaponDamage;
 	enemy.beDamaged(totalDamage);
 }
+
 
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
@@ -187,8 +200,9 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 	return pPos.distancia(ePos)-2*position.radius;
 }
 
+
 void ServerPlayer::beDamaged(int damage){
-	health-=damage;	
+	health-=damage;
 	updateAvailable=true;
 	if(health<=0)
 		//MORIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -197,10 +211,12 @@ void ServerPlayer::beDamaged(int damage){
 }
 
 bool ServerPlayer::isShooting(){
-	if(shooting == true)
-		updateAvailable=true;
+	updateAvailable=true;
+	if(shootingState != SHOOTING_STATE_QUIET){
+		return true;
+	}
 
-	return shooting;
+	return false;
 }
 
 size_t ServerPlayer::getID(){
@@ -210,7 +226,6 @@ size_t ServerPlayer::getID(){
 float ServerPlayer::getAngle(){
 	return ang;
 }
-
 
 int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)
@@ -239,6 +254,7 @@ int ServerPlayer::addPoints(int p){
 }
 
 
+
 int ServerPlayer::reload(int a){
 	if(ammo>=MAX_AMMO)
 		return 0;
@@ -262,13 +278,15 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	// p.secondaryWP = secondaryWP;
 	p.currentWP = currentWP;
 	p.secondaryWP = getSecondaryWPtype();
-
+	p.moving = moveOrientation;
+	p.rotating = rotateOrientation;
 	p.ammo = ammo;
 	p.health = health;
 	p.lifes = lifes;
 	p.score = score;
 	p.key = key;
-	p.shooting = shooting;
+	p.shootingState = shootingState;
+	// p.shooting = shooting;
 	p.ID = ID;
     // p.step = step;
 }

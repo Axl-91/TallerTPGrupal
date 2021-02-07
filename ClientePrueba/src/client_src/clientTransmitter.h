@@ -11,11 +11,10 @@
 
 class ClientTransmitter : public Thread {
 public:
-    ClientTransmitter(Socket &socket, ProtectedQueue<event_t> &gQ, ProtectedQueue<menu_event_t> &mQ);
+    ClientTransmitter(Socket &socket, ProtectedEventQueue &q);
+    ClientTransmitter(ClientTransmitter&& other);
     void operator()();
     bool isRunning();
-    void sendGameEvent();
-    void sendMenuEvent();
     virtual void run() override;
     void isAtMenu();
     void isInMatch();
@@ -24,8 +23,7 @@ private:
     Socket &socket;
     std::atomic<bool> is_running;
     std::atomic<bool> atMenus;
-    ProtectedQueue<event_t> &gameEventQ;
-    ProtectedQueue<menu_event_t> &menuEventQ;
+    ProtectedEventQueue &q;
 };
 
 #endif

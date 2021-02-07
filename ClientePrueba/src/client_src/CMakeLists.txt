@@ -17,7 +17,5 @@ client Transmitter.cpp
 Walls.cpp
 main.cpp
 Game.cpp
-Menu.cpp
-TextHandler.cpp
 )
 

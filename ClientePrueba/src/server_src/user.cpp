@@ -28,7 +28,7 @@ void User::run(){
             }
             MatchEvent_t event;
             event_t input;
-            readEvent(input);
+            readInput(input);
             event.event = input;
             event.playerTag = ID;
             if(input == GAME_QUIT){
@@ -43,6 +43,7 @@ void User::run(){
     } catch (const std::exception &e){
         std::cerr << "Excepcion en User.run()" << std::endl;
         std::cerr << e.what() << std::endl;
+        return;
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     }
@@ -55,12 +56,9 @@ bool User::hasStarted(){
     return started;
 }
 
-void User::readMenuEvent(menu_event_t &menuEvent){
-    receiver.readMenuEvent(menuEvent);
-}
 
-void User::readEvent(event_t &event){
-    receiver.readGameEvent(event);
+void User::readInput(event_t &input){
+    receiver.readInput(input);
 }
 
 // void User::readInput(std::string &input){
@@ -77,10 +75,6 @@ void User::changeName(std::string &newName){
 
 void User::sendGameUpdate(update_tag_t &aTag){
     transmitter.sendTag(aTag);
-}
-
-void User::sendString(std::string &aString){
-    transmitter.sendString(aString);
 }
 
 void User::sendMap(std::vector<std::vector<int>> &lvl1){
@@ -105,7 +99,7 @@ void User::update(UpdateHandler &uHandler){
     // std::cout << "Usser::update() playerInfo.currentWP: " << playerInfo.currentWP << std::endl;
     // std::cout
     uHandler.getPlayerChange(playerInfo);    
-    std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
+    // std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
 
     if(uHandler.mapChangeAvailable()){
         aTag = TAG_MAP_CHANGE;

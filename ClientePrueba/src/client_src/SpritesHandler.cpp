@@ -30,7 +30,6 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL
         }
-
         texturas.push_back(SDL_CreateTextureFromSurface(rendererWin, surface));
         if (!texturas.back()) {
             // destroyTextures();
@@ -39,7 +38,6 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
         }
         SDL_FreeSurface(surface);
     }
-
 }
 
 void SpritesHandler::setSrc(int posX, int posY, int largo, int alto){
@@ -48,8 +46,7 @@ void SpritesHandler::setSrc(int posX, int posY, int largo, int alto){
 
 
 void SpritesHandler::render(int posX, int posY, int largo, int alto, int text){
-    SDL_Rect rect = {posX, posY, largo, alto};
-    
+    SDL_Rect rect = {posX, posY, largo, alto};    
     SDL_RenderCopy(rendererWin, texturas[text], &src, &rect);
 }
 

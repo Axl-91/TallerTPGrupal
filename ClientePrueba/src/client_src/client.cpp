@@ -3,9 +3,9 @@
 Client::Client(const char *host_name, const char *port):
     atMenus(true),
     connectedToMatch(false),
-    transmitter(s,gameEventQ, menuEventQ),
-    receiver(s,lvl2, gameUpdateQ, menuResponseQ),
-    eHandler(gameEventQ),
+    transmitter(s,q),
+    receiver(s,lvl2, uQ),
+    eHandler(q),
     is_running(false)
 {
     std::cout << "empiezo a construir client" << std::endl;
@@ -14,7 +14,8 @@ Client::Client(const char *host_name, const char *port):
     if(!s.isConnected())
         return;
     transmitter();
-    // receiver();
+    receiver();
+    eHandler();
     std::cout << "termine de construir client" << std::endl;
 
 }
@@ -66,23 +67,14 @@ void Client::run(){
         // Recibe actualmente todo lo envia por quienes estan en mismo match. Cambiar despues a enviar modelo.
         
         while(is_running == true){
-            {
-                Menu menu(menuEventQ, receiver);
-                while (!menu.quitGame() && !menu.createGame() && !menu.joinGame()){
-                    menu.pollEvent();
-                    menu.render();
-                    // sleep (1/60);
-                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-                }
-            }
-            receiver();
             while(!receiver.isInMatch()){
-                // sleep(1/60);
+                sleep(1/60);
             }
-            eHandler();
+
+            std::cout << "client: isInMatch" << std::endl;
             
             std::cout << "___________________________________ \n" << std::endl;
-            Game game(640, 480, lvl2, gameUpdateQ);
+            Game game(640, 480, lvl2, uQ);
 
             std::cout << "___________________________________ \n" << std::endl;
             game();
@@ -105,6 +97,8 @@ void Client::run(){
                     continue;
                 }
                 std::this_thread::sleep_for(std::chrono::milliseconds(40));
+                // SDL_Delay(60);
+
             }
             game.join();
             

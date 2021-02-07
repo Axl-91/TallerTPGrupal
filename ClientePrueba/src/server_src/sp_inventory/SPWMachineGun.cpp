@@ -10,7 +10,7 @@ SPWMachineGun::SPWMachineGun(){
 SPWMachineGun::~SPWMachineGun(){}
 
 
-float SPWMachineGun::shoot(float dist, bool &isShooting){
+float SPWMachineGun::shoot(float dist, shooting_state_t &shootingState){
     std::cout<<"disparo con LA MACHINE GAN"<<std::endl;   
     std::cout<<"bullet: "<<bulletsCounter<<std::endl;   
 

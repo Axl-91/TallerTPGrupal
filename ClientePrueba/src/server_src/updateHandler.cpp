@@ -26,21 +26,7 @@ void UpdateHandler::getMapChange(Map_change_t &aMapChange){
 }
 
 void UpdateHandler::getPlayerChange(Player_t &p){
-    p.ID = player.ID;
-    p.x = player.x;
-    p.y = player.y;
-    p.ang = player.ang;
-    p.dirx = player.dirx;
-    p.diry = player.diry;
-    // std::cout << "UpdateHandler. getPlayerupdate() currentWP: " << player.currentWP << std::endl;
-	p.currentWP = player.currentWP;
-	p.secondaryWP = player.secondaryWP;
-	p.ammo = player.ammo;
-	p.key = player.key;
-	p.shooting = player.shooting;
-    p.lifes = player.lifes;
-    p.score = player.score;
-    p.health = player.health;
+    p = player;
 }
 
 void UpdateHandler::updated(){

@@ -11,7 +11,7 @@ SPWRocketLauncher::SPWRocketLauncher(){
 SPWRocketLauncher::~SPWRocketLauncher(){}
 
 
-float SPWRocketLauncher::shoot(float dist, bool &isShooting){
+float SPWRocketLauncher::shoot(float dist, shooting_state_t &shootingState){
     std::cout<<"disparo con el cañon"<<std::endl;   
     return damage;
 }

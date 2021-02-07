@@ -6,13 +6,10 @@
 #include <chrono>
 
 class SPWRocketLauncher: public SPWeapon{
-    std::chrono::_V2::system_clock::time_point before;
-    std::chrono::_V2::system_clock::time_point now;
-
 public:
     SPWRocketLauncher();
     ~SPWRocketLauncher();
-    float shoot(float dist, bool &isShooting) override;
+    float shoot(float dist, shooting_state_t &shootingState) override;
 };
 
 #endif

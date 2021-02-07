@@ -2,15 +2,13 @@
 
 ClientReceiver::ClientReceiver(Socket &socket, 
     std::vector<std::vector<int>> &m, 
-    ProtectedQueue<Update_t> &q,
-    ProtectedQueue<menu_event_t> &mQ):
+    ProtectedUpdateQueue &q):
     socket(socket),
     is_running(false),
     inMatch(false),
     map(m),
     matchEnded(false),
-    uQ(q),
-    menuResponseQ(mQ)
+    uQ(q)
 {}
 
 void ClientReceiver::operator()(){ 
@@ -52,18 +50,13 @@ void ClientReceiver::receiveGame(){
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
     update_tag_t aTag = TAG_NO_UPDATE;
-    
     socket.receive((char*) &aTag, sizeof(update_tag_t));
-    // std::cout << "ClientReceiver(), recibo mensaje: \n" << response << std::endl;
 
     if(aTag == TAG_MAP_INIT){
-     std::cout<<"client.receive cargo el mapa"<<std::endl;
         receiveMap();
     }
     if(aTag == TAG_PLAYER_INFO){
         receivePlayerInfo(anUpdate);
-        // std::cout<<"puntos: "<<<<std::endl;
-
         uQ.push(anUpdate);
     }
     if(aTag == TAG_MAP_CHANGE){
@@ -76,48 +69,6 @@ void ClientReceiver::receiveGame(){
     if(aTag == TAG_GAME_QUIT){
         matchEnded = true;
     }
-
-    if(aTag == TAG_MATCH_LIST){
-        receiveMatchList();
-    }
-}
-
-void ClientReceiver::receiveMatchList(){
-    menu_event_t menuEvent;
-    menuEvent.event = GET_MATCHES;
-    uint32_t length = 0;
-    const size_t SIZE_OF_UINT32 = 4;
-
-    socket.receive((char *) &length, SIZE_OF_UINT32);
-    length = ntohl(length);
-    if(length == 0){
-        menuEvent.info = "";
-        return;
-    }
-    std::vector<char> buffer(length+1, 0);
-    socket.receive(buffer.data(), length);
-    menuEvent.info = buffer.data();
-    std::cout << "recibi partidas:" << menuEvent.info << "." << std::endl;
-    menuResponseQ.push(menuEvent);
-}
-
-void ClientReceiver::receiveString(std::string &aString){
-    uint32_t length = 0;
-    const size_t SIZE_OF_UINT32 = 4;
-
-	std::cout << "antes de recibir largo" << std::endl;
-    socket.receive((char *) &length, SIZE_OF_UINT32);
-	std::cout << "despues de recibir largo" << std::endl;
-    length = ntohl(length);
-    if(length == 0){
-        return;
-    }
-    std::vector<char> buffer(length+1, 0);
-	std::cout << "antes de recibir string" << std::endl;
-    socket.receive(buffer.data(), length);
-	std::cout << "antes de compiar string" << std::endl;
-    aString = buffer.data();
-    std::cout << "recibi partidas:" << aString << "." << std::endl;
 }
 
 void ClientReceiver::receivePlayerInfo(Update_t &anUpdate){

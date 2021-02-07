@@ -13,25 +13,28 @@ void PlayerWeapon::setRenderer(SDL_Renderer* renderer){
 }
 
 bool PlayerWeapon::estaEnAccion(){
-    return estaDisparando;
+    if(shootingState!=SHOOTING_STATE_QUIET)
+        return true;
+
+    return false;
 }
 
 void PlayerWeapon::shoot(){
-    estaDisparando=true;
+    shootingState = SHOOTING_STATE_STARTED;
 }
 
 void PlayerWeapon::render(int largoWin, int altoWin){
-    int delay = 32;
+    int delay = 10;
     int frame = 0;
 
-    if (estaDisparando){
+    if (shootingState!=SHOOTING_STATE_QUIET){
         numAuxiliar++;
         frame = numAuxiliar/ delay;
 
          if (frame > 4){
              numAuxiliar = 0;
              frame = 0;
-             estaDisparando = false;
+             shootingState!=SHOOTING_STATE_QUIET;
         }
     }
     textureHandler.render(96, 72, GUNL, GUNA, frame);

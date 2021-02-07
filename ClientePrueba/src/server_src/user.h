@@ -31,8 +31,7 @@ public:
     void setProtectedMatchEventQueue(ProtectedMatchEventQueue *q);
     std::string getName();
     virtual void run() override;
-    void readEvent(event_t &event);
-    void readMenuEvent(menu_event_t &menuEvent);
+    void readInput(event_t &input);
     // void readInput(std::string &input);
     void stop();
     bool is_dead();
@@ -44,7 +43,6 @@ public:
     void update(UpdateHandler &uHandler);
     void sendMapUpdate(Map_change_t &aMapChange);
     void setID(size_t ID);
-    void sendString(std::string &aString);
 };
 
 #endif

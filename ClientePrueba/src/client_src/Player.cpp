@@ -187,10 +187,14 @@ void Player::updateInfo(Player_t &p){
 	// std::cout<<"vida: "<<health<<std::endl;
 	// ammo = p.ammo;
 
+	// std::cout<<"p.secondaryWP: "<<p.secondaryWP<<std::endl;
+	// std::cout<<"p.currentWP: "<<p.currentWP<<std::endl;
+
 	equip(p.secondaryWP);
+
 	setWeapon(p.currentWP);
 
-	if(p.shooting){
+	if(p.shootingState != SHOOTING_STATE_QUIET){
 		currentWeapon->shoot();
 	}
 }

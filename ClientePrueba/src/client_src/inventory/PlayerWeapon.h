@@ -15,7 +15,8 @@ class PlayerWeapon{
 protected:
     int offset = 65;
     int numAuxiliar = 0;
-    bool estaDisparando = false;
+    shooting_state_t shootingState;
+    // bool estaDisparando = false;
     weapon_t type;
     // SDLHandler textureHandler;
     // SpritesHandler textureHandler;

@@ -9,23 +9,15 @@ ServerTransmitter::ServerTransmitter(ServerTransmitter&& other):
 {}
     // ~Transmitter(){}
 void ServerTransmitter::sendTag(update_tag_t &aTag){
+    // if(game.str().length() == 0)
+    //     return;
+    // uint32_t length = game.str().length();
+    // const size_t SIZE_OF_UINT32 = 4;
+    // length = htonl(length);
+    // socket.send((char *) &length, SIZE_OF_UINT32);
+    // socket.send(game.str().data(), game.str().length());   
     socket.send((char*) &aTag, sizeof(update_tag_t));   
 }
-
-void ServerTransmitter::sendString(std::string &aString){
-    // if(aString.length() == 0)
-    //     return;
-    std::stringstream aux(aString);
-    uint32_t length = aux.str().length();
-    const size_t SIZE_OF_UINT32 = 4;
-	std::cout << "envio largo: " << length << std::endl;
-    length = htonl(length);
-    socket.send((char *) &length, SIZE_OF_UINT32);
-	std::cout << "envio string: " << aString << std::endl;
-    socket.send(aux.str().data(), aux.str().length());   
-}
-
-
 void printVector(std::vector<std::vector<uint32_t>> lvl1){
     for(auto v:lvl1){
         for(auto num:v)
@@ -65,10 +57,10 @@ void ServerTransmitter::sendPlayer(Player_t &player){
 
 
 void ServerTransmitter::sendMapUpdate(Map_change_t &aMapChange){
-    std::cout << aMapChange.x<< std::endl;
-    std::cout << aMapChange.y << std::endl;
+    // std::cout <<"chichiwolen "<< aMapChange.x<< std::endl;
+    // std::cout << aMapChange.y << std::endl;
     
-    std::cout << aMapChange.value << std::endl;
+    // std::cout << aMapChange.value << std::endl;
     
     socket.send((char*) &aMapChange, sizeof(Map_change_t));
 }

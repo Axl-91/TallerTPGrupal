@@ -11,6 +11,7 @@
 #include "../../common_src/Vector.h"
 #include "Rectangle.h"
 
+
 Collidable::Collidable(float xI, float yI, float xE, float yE):
 xInit(xI), xEnd(xE), yInit(yI), yEnd(yE){}
 

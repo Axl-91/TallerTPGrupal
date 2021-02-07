@@ -9,18 +9,6 @@
 #include "sp_inventory/SPInventory.h"
 
 
-typedef enum{
-    FORWARD = 1,
-    BACKWARD =-1,
-    MOVE_QUIET = 0
-}player_move_orientation_t;
-
-typedef enum{
-    LEFT = 1,
-    RIGHT =-1,
-    ROTATE_QUIET = 0
-}player_rotate_orientation_t;
-
 class ServerPlayer{
 private:
     circle position;
@@ -36,17 +24,18 @@ private:
     size_t ID;
     size_t lifes;
     size_t score;
-    
     player_weapons_t currentWP;
 
     size_t ammo;
     bool key;
-    bool shooting;
+    shooting_state_t shootingState;
+    // bool shooting;
     bool updateAvailable;
     weapon_t getSecondaryWPtype();
 
 public:
     void shoot();
+
     int health;
     bool updateIsAvailable();
     void updated();
@@ -82,10 +71,11 @@ public:
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
-    size_t getID();    
     int grabKey(game_key_t k);
     int addPoints(int p);
 
+    size_t getID();
+    // void setID(size_t newID);
 };
 
 #endif

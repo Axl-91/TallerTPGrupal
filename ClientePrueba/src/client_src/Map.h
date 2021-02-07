@@ -29,7 +29,7 @@ private:
 	Objects objects;
 	Enemies enemies;
 
-	std::map<int, Player_t> mapEnemies;
+	std::map<int, Enemy_t> mapEnemies;
 	std::map<std::pair<int,int>, Objeto> mapObj;
 public:
 	Map(std::vector<std::vector<int>> &lvl);
@@ -38,7 +38,7 @@ public:
 	void insertWeaponWithCoords(int j, int i, int obj);
 	void insertObject(int x, int y, int obj);
 	void insertEnemy(Player_t &p);
-	std::map<int, Player_t>& getEnemies();
+	std::map<int, Enemy_t>& getEnemies();
 	void load(std::vector<std::vector<int>> lvl);
 	void setRenderer(SDL_Renderer* renderer);
 	int getLongBloques();

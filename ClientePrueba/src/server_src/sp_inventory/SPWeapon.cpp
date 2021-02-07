@@ -2,8 +2,6 @@
 #include <unistd.h>
 #include "SPWeapon.h"
 
-
-
 SPWeapon::SPWeapon(){
     shooting=false;
 }

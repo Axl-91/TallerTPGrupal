@@ -15,4 +15,11 @@ int CollectWeapon::collide(ServerPlayer &p){
     return (int)p.equip(weapon)+WEAPON_OFFSET;
 }
 
+// bool CollectWeapon::detectCollision(circle &c, float dX,float dY){
+//     circle aux={c.x+dX, c.y+dY,c.radius};
+//     return isInside(aux);
+// }
+
+
 CollectWeapon::~CollectWeapon(){}
+

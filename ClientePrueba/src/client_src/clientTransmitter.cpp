@@ -1,27 +1,76 @@
 #include "clientTransmitter.h"
 
-ClientTransmitter::ClientTransmitter(Socket &socket, ProtectedQueue<event_t> &gQ, ProtectedQueue<menu_event_t> &mQ):
+ClientTransmitter::ClientTransmitter(Socket &socket, ProtectedEventQueue &q):
     socket(socket),
     is_running(false),
     atMenus(true),
-    gameEventQ(gQ),
-    menuEventQ(mQ)
+    q(q)
 {}
 
+ClientTransmitter::ClientTransmitter(ClientTransmitter&& other):
+    socket(other.socket),
+    q(other.q)
+{}
     // ~Transmitter(){}
-void ClientTransmitter::operator()(){
+void ClientTransmitter::operator()()
+{
     this->start(); 
 }
 
+void getCommand(ProtectedEventQueue &q, std::string command){
+    
+}
+
 // Envia comandos
-void ClientTransmitter::run(){
+void ClientTransmitter::run()
+{
     is_running = true;
     try{
+
+        event_t event;
+        std::string command;
+
+        getline(std::cin, command);
+        if(command=="crear"){
+            event = NEW_MATCH;
+            socket.send((char*) &event, sizeof(event_t));
+
+            // getline(std::cin, command);
+            // if(command=="unirme")
+            //     event = UNIRME;
+            // socket.send((char*) &event, sizeof(event_t));
+
+            getline(std::cin, command);
+            if(command=="asd")
+                event = ASD;
+            socket.send((char*) &event, sizeof(event_t));
+
+        getline(std::cin, command);
+        }
+        if(command=="unirme"){
+            event = UNIRME;
+        socket.send((char*) &event, sizeof(event_t));}
+        
+        getline(std::cin, command);
+        if(command=="pichiwar"){
+            event = PICHIWAR;
+        socket.send((char*) &event, sizeof(event_t));}
+        if(command=="asd"){
+            event = ASD;
+        socket.send((char*) &event, sizeof(event_t));}
+
+
         while(is_running == true){
-            if(!gameEventQ.isEmpty())
-                sendGameEvent();
-            if(!menuEventQ.isEmpty())
-                sendMenuEvent();
+            event = NO_EVENT;
+            
+            if(!q.isEmpty())
+                event = q.pop();
+
+            if(event==NO_EVENT){
+                sleep(1/60);
+                continue;    
+            }
+            socket.send((char*) &event, sizeof(event_t));
         }
     } catch (const SocketError &e){
         std::cerr << "Excepcion en clientTransmitter.run()" << std::endl;
@@ -29,49 +78,29 @@ void ClientTransmitter::run(){
     } catch (const std::exception &e){
         std::cerr << "Excepcion en clientTransmitter.run()" << std::endl;
         std::cerr << e.what() << std::endl;
+        return;
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
-}
-
-void ClientTransmitter::sendGameEvent(){
-    event_t event;
-    event = NO_EVENT;
-    
-    event = gameEventQ.pop();
-
-    if(event!=NO_EVENT)
-        socket.send((char*) &event, sizeof(event_t));    
-}
-
-void ClientTransmitter::sendMenuEvent(){
-    menu_event_t event;
-    event.event = NO_EVENT;
-    
-    event = menuEventQ.pop();
-    if(event.event!=NO_EVENT)
-        socket.send((char*) &event.event, sizeof(event_t));  
-
-    uint32_t length = event.info.length();
-    const size_t SIZE_OF_UINT32 = 4;
-    length = htonl(length);
-    socket.send((char *) &length, SIZE_OF_UINT32);
-    if(length != 0)
-        socket.send(event.info.data(), event.info.length()); 
 }
 
 void ClientTransmitter::stop(){
     is_running = false;
 }
 
+void funcionVieja(){
+}
+
 bool ClientTransmitter::isRunning(){
     return is_running;
 }
 
-void ClientTransmitter::isAtMenu(){
+void ClientTransmitter::isAtMenu()
+{
     atMenus = true;
 }
 
-void ClientTransmitter::isInMatch(){
+void ClientTransmitter::isInMatch()
+{
     atMenus = false;
 }

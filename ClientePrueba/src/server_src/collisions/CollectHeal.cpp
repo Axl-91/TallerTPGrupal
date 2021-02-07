@@ -1,8 +1,8 @@
 #include "CollectHeal.h"
 
+
 CollectHeal::CollectHeal(int xI, int yI, int cellWidth, int h):
 Collectible(xI, yI, cellWidth){
-    // weapon= (weapon_t) w;
     type=(heal_t) h;
 
     if(type == BLOOD)

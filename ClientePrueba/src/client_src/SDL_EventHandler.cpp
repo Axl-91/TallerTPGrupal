@@ -3,7 +3,7 @@
 #include <iostream>
 #include "SDL_EventHandler.h"
 
-SDL_EventHandler::SDL_EventHandler(ProtectedQueue<event_t> &q):
+SDL_EventHandler::SDL_EventHandler(ProtectedEventQueue &q):
 	q(q),
 	is_running(false),
 	quitGameRead(false)
@@ -17,7 +17,7 @@ SDL_EventHandler::SDL_EventHandler(ProtectedQueue<event_t> &q):
 	keyDownEvents[SDLK_LEFT] = PLAYER_START_ROTATING_LEFT;
 	keyDownEvents[SDLK_SPACE] = PLAYER_SHOOT;
 	keyDownEvents[SDLK_p] = PICHIWAR;
-	keyDownEvents[SDLK_u] = JOIN;
+	keyDownEvents[SDLK_u] = UNIRME;
 
 	keyUpEvents[SDLK_UP] = PLAYER_STOP_MOVING;
 	keyUpEvents[SDLK_DOWN] = PLAYER_STOP_MOVING;
@@ -72,7 +72,6 @@ event_t SDL_EventHandler::pollEvent(){
 		}
 		if (SDLEvent.key.state == SDL_RELEASED){
 			event = keyUpEvents[SDLEvent.key.keysym.sym];
-
 		}
 	}
 	return event;

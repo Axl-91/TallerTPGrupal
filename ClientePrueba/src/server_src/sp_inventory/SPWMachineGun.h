@@ -5,14 +5,11 @@
 #include "SPWeapon.h"
 
 class SPWMachineGun: public SPWeapon{
-    int bulletsCounter;
-    std::chrono::_V2::system_clock::time_point before;
-    std::chrono::_V2::system_clock::time_point now;
-    
+    int bulletsCounter;    
 public:
     SPWMachineGun();
     ~SPWMachineGun();
-    float shoot(float dist, bool &isShooting) override;
+    float shoot(float dist, shooting_state_t &shootingState) override;
 };
 
 #endif
