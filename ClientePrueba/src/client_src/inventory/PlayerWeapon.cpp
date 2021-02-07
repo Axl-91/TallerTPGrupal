@@ -23,22 +23,22 @@ void PlayerWeapon::shoot(){
     shootingState = SHOOTING_STATE_STARTED;
 }
 
-void PlayerWeapon::render(int largoWin, int altoWin){
-    int delay = 10;
-    int frame = 0;
+// void PlayerWeapon::render(int largoWin, int altoWin){
+//     int delay = 10;
+//     int frame = 0;
 
-    if (shootingState!=SHOOTING_STATE_QUIET){
-        numAuxiliar++;
-        frame = numAuxiliar/ delay;
+//     if (shootingState!=SHOOTING_STATE_QUIET){
+//         numAuxiliar++;
+//         frame = numAuxiliar/ delay;
 
-         if (frame > 4){
-             numAuxiliar = 0;
-             frame = 0;
-             shootingState!=SHOOTING_STATE_QUIET;
-        }
-    }
-    textureHandler.render(96, 72, GUNL, GUNA, frame);
-}
+//          if (frame > 4){
+//              numAuxiliar = 0;
+//              frame = 0;
+//              shootingState!=SHOOTING_STATE_QUIET;
+//         }
+//     }
+//     textureHandler.render(96, 72, GUNL, GUNA, frame);
+// }
 
 weapon_t PlayerWeapon::getType(){
     return type;

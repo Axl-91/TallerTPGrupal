@@ -8,6 +8,7 @@ class PWRocketLauncher: public PlayerWeapon{
 public:
     PWRocketLauncher();
     ~PWRocketLauncher();
+    void render(int posX, int posY) override;
 };
 
 #endif

@@ -14,4 +14,10 @@ PlayerWeapon(PWRocketLauncherSprites){
     type=ROCKET_LAUNCHER;
 }
 
+void PWRocketLauncher::render(int posX, int posY){
+    std::cout<<"render ROCKET LAUNCHER"<<std::endl;
+}
+
+
+
 PWRocketLauncher::~PWRocketLauncher(){}

@@ -7,6 +7,8 @@ class PWMachineGun: public PlayerWeapon{
 public:
     PWMachineGun();
     ~PWMachineGun();
+    void render(int posX, int posY) override;
+
 };
 
 #endif

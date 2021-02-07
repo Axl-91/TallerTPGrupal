@@ -14,4 +14,9 @@ PlayerWeapon(PWChainCannonSprites){
     type=CHAIN_CANNON;
 }
 
+void PWChainCannon::render(int posX, int posY){
+    std::cout<<"render CHAIN CANNON"<<std::endl;
+}
+
+
 PWChainCannon::~PWChainCannon(){}

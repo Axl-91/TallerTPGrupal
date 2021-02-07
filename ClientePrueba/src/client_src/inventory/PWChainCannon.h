@@ -7,6 +7,8 @@ class PWChainCannon: public PlayerWeapon{
 public:
     PWChainCannon();
     ~PWChainCannon();
+    void render(int posX, int posY) override;
+
 };
 
 #endif

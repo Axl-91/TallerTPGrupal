@@ -16,15 +16,12 @@ protected:
     int offset = 65;
     int numAuxiliar = 0;
     shooting_state_t shootingState;
-    // bool estaDisparando = false;
     weapon_t type;
-    // SDLHandler textureHandler;
-    // SpritesHandler textureHandler;
+    SpritesHandler textureHandler;
 
     void getTexture();
-    void disparar();
+    // void disparar();
 public:
-    SpritesHandler textureHandler;
 
     void shoot();
 
@@ -35,7 +32,7 @@ public:
 //	PlayerWeapon operator=(const PlayerWeapon &copy) = delete;
     void setRenderer(SDL_Renderer* renderer);
     bool estaEnAccion();
-    void render(int posX, int posY);
+    virtual void render(int posX, int posY) = 0;
     weapon_t getType();
     ~PlayerWeapon();
 };

@@ -14,4 +14,10 @@ PlayerWeapon(PWMachineGunSprites){
     type=MACHINE_GUN;
 }
 
+
+void PWMachineGun::render(int posX, int posY){
+    std::cout<<"render MACHINE GUN"<<std::endl;
+}
+
+
 PWMachineGun::~PWMachineGun(){}

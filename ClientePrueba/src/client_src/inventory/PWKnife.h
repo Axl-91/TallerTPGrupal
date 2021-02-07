@@ -7,6 +7,7 @@ class PWKnife: public PlayerWeapon{
 public:
     PWKnife();
     ~PWKnife();
+    void render(int posX, int posY) override;
 };
 
 #endif

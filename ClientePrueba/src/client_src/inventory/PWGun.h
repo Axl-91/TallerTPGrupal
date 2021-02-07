@@ -7,6 +7,7 @@ class PWGun: public PlayerWeapon{
 public:
     PWGun();
     ~PWGun();
+    void render(int largoWin, int altoWin) override;
 };
 
 #endif
