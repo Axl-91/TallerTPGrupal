@@ -1,13 +1,16 @@
 #include "server.h"
 
 Server::Server(const char *service):
-    acceptor(service)
+    menuHandler(matchHandler),
+    acceptor(service, menuHandler)
 {}
 
 void Server::run(){
     std::string input;
     bool keep_accepting = true;
+    // MatchHandler matches;
 
+    // matchHandler.newMatch("pichiwar");
     acceptor();
     
     while (keep_accepting){
@@ -17,6 +20,6 @@ void Server::run(){
             acceptor.stop_accepting();
         }
     }
-
     acceptor.join();
+
 }

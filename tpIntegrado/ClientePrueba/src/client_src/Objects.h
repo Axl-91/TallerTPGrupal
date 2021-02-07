@@ -10,8 +10,6 @@
 #define LARGO 64
 #define ALTO 64
 
-
-
 class Objects{
 private:
     std::vector<std::string> ObjectsSprites = {

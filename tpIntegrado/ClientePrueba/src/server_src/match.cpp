@@ -5,39 +5,20 @@
 std::vector<std::vector<int>> lvl2 = {
 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,000,000,434,434,434},
-	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
 };
-
-// std::vector<std::vector<int>> lvl2 = {
-// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,101,102,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,000,000,434,434,434},
-// 	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-// 	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
-// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-// };
-
 
 Match::Match(std::string matchName):
     is_running(true),
@@ -68,9 +49,10 @@ void Match::run(){
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
             readEvents();
+    		sleep(1/60);
+
             game.update();
             updateUsers();
-
             auto final = std::chrono::high_resolution_clock::now();
             auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
             long sleepTime = timeStep - loopDuration.count();
@@ -96,31 +78,36 @@ bool Match::readEvents(){
 
     if(q.isEmpty())
         return false;
-
     event = q.pop();
     std::string command;
     std::stringstream paraEnviar;
 
     if(event.event == NO_EVENT)
-        return false;    
-
+        return false;
     ServerPlayer &aPlayer = players.at(event.playerTag);
-    if(event.event==PLAYER_SET_WEAPON_KNIFE)
+    if(event.event==PLAYER_SET_WEAPON_KNIFE){
         aPlayer.setCurrentWeapon(WP_KNIFE);
-    if(event.event==PLAYER_SET_WEAPON_GUN)
+    }
+    if(event.event==PLAYER_SET_WEAPON_GUN){
         aPlayer.setCurrentWeapon(WP_GUN);
-    if(event.event==PLAYER_SET_WEAPON_SECONDARY)
+    }
+    if(event.event==PLAYER_SET_WEAPON_SECONDARY){
         aPlayer.setCurrentWeapon(WP_SECONDARY);
+    }
     if(event.event==PLAYER_SHOOT)
         aPlayer.startShooting();
     if(event.event==PLAYER_STOP_SHOOTING)
         aPlayer.stopShooting();
-    if(event.event==PLAYER_START_MOVING_FORWARD)
+
+    if(event.event==PLAYER_START_MOVING_FORWARD){
         aPlayer.setMoveOrientation(FORWARD);
-    if(event.event==PLAYER_START_MOVING_BACKWARD)
+    }
+    if(event.event==PLAYER_START_MOVING_BACKWARD){
         aPlayer.setMoveOrientation(BACKWARD);
-    if(event.event==PLAYER_STOP_MOVING)
+    }
+    if(event.event==PLAYER_STOP_MOVING){
         aPlayer.setMoveOrientation(MOVE_QUIET);
+    }
     if(event.event==PLAYER_START_ROTATING_RIGHT)
         aPlayer.seteRotateOrientation(RIGHT);
     if(event.event==PLAYER_START_ROTATING_LEFT)
@@ -132,8 +119,9 @@ bool Match::readEvents(){
         return false;
     if(event.event==PICHIWAR)
         return false;
-    if(event.event==UNIRME)
+    if(event.event==JOIN)
         return false;
+                    
 
     // game.movePlayer(aPlayer);
     // aPlayer.rotate();
@@ -148,7 +136,6 @@ bool Match::readEvents(){
     // updateHandler.updated();
     return true;
 }
-
 
 void Match::updateUsers(){
     while (uQ.empty()==false){
@@ -184,6 +171,7 @@ void Match::welcomeUser(User* user){
 
 void Match::addUser(User* user){
     ServerPlayer aux(96, 96, 0, connectionNumber);
+    // players[connectionNumber] = std::move(aux);
     players.emplace(connectionNumber, std::move(aux));
     user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);

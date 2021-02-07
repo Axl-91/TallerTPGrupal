@@ -74,8 +74,6 @@ bool ServerPlayer::updateIsAvailable(){
 void ServerPlayer::updated(){
 	updateAvailable=false;
 }
-
-
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
 	if (ang < 0 || ang >= 2*PI){
@@ -83,7 +81,6 @@ void ServerPlayer::rotate(){
 	}
 	if(rotateOrientation!=ROTATE_QUIET)
 		updateAvailable=true;
-
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
 }
@@ -92,8 +89,7 @@ void ServerPlayer::move(){
 	position.x+=dirx*moveOrientation;
 	position.y+=diry*moveOrientation;
 	if(moveOrientation!=MOVE_QUIET)
-		updateAvailable=true;
-
+	updateAvailable=true;
 	setDirection(step*cos(ang), step*sin(ang));
 }
 
@@ -172,9 +168,6 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 }
 
-// void ServerPlayer::shoot(){
-// 	currentWeapon->shoot();
-// }
 
 void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	float weaponDamage;
@@ -187,7 +180,6 @@ void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	enemy.beDamaged(totalDamage);
 }
 
-
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
 	Vector ePos(enemy.position.x, enemy.position.y);
@@ -195,9 +187,8 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 	return pPos.distancia(ePos)-2*position.radius;
 }
 
-
 void ServerPlayer::beDamaged(int damage){
-	health-=damage;
+	health-=damage;	
 	updateAvailable=true;
 	if(health<=0)
 		//MORIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -219,6 +210,7 @@ size_t ServerPlayer::getID(){
 float ServerPlayer::getAngle(){
 	return ang;
 }
+
 
 int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)
@@ -245,7 +237,6 @@ int ServerPlayer::addPoints(int p){
 	score+=p;
 	return 1;
 }
-
 
 
 int ServerPlayer::reload(int a){

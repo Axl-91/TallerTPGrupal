@@ -1,20 +1,24 @@
 #include "protectedQueue.h"
-
-std::string ProtectedQueue::pop(){
+/*
+template <class T>
+T ProtectedQueue<T>::pop(){
     std::unique_lock<std::mutex> lock(m);
-    std::string aux(std::move(q.front()));
+    T aux(std::move(q.front()));
     q.pop();
     return aux;
 }
 
-void ProtectedQueue::push(std::string aString){
+template <class T>
+void ProtectedQueue<T>::push(T obj){
     std::unique_lock<std::mutex> lock(m);
-    q.push(std::move(aString));
+    q.push(std::move(obj));
 }
 
-bool ProtectedQueue::isEmpty(){
+template <class T>
+bool ProtectedQueue<T>::isEmpty(){
     std::unique_lock<std::mutex> lock(m);
     if(q.empty())
         return true;
     return false;
 }
+*/

@@ -8,10 +8,7 @@ Collectible::Collectible(int xI, int yI, int cellWidth){
     yEnd=yInit;
 
 }
-
 Collectible::~Collectible(){}
-
-
 
 bool Collectible::detectCollision(circle &c, float dX,float dY){
     circle aux={c.x+dX, c.y+dY,c.radius};

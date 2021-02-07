@@ -1,5 +1,6 @@
 #include "CollectAmmo.h"
 
+#define MAP_AMMO 20
 
 CollectAmmo::CollectAmmo(int xI, int yI, int cellWidth, int h):
 Collectible(xI, yI, cellWidth){
@@ -17,4 +18,3 @@ int CollectAmmo::collide(ServerPlayer &p){
 }
 
 CollectAmmo::~CollectAmmo(){}
-

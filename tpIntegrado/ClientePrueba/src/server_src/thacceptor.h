@@ -3,8 +3,9 @@
 
 #include "../common_src/socket.h"
 #include "../common_src/thread.h"
-#include "match.h"
+// #include "match.h"
 #include "user.h"
+// #include "userHandler.h"
 #include "menuHandler.h"
 #include <vector>
 #include <utility>
@@ -12,7 +13,7 @@
 
 class ThAcceptor : public Thread{
 public:
-    ThAcceptor(const char *service);
+    ThAcceptor(const char *service, MenuHandler& mH);
     Socket accept();
     void stop_accepting();
     virtual void run() override;
@@ -21,8 +22,7 @@ public:
 private:
     Socket acceptor_socket;
     std::atomic<bool> keep_accepting;
-    std::vector<MenuHandler*> threads;
-    void delete_finish_clients(std::vector<MenuHandler*> &threads);
+    MenuHandler &menuHandler;
 };
 
 #endif

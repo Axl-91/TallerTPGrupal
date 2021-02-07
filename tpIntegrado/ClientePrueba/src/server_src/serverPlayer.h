@@ -36,6 +36,7 @@ private:
     size_t ID;
     size_t lifes;
     size_t score;
+    
     player_weapons_t currentWP;
 
     size_t ammo;
@@ -46,7 +47,6 @@ private:
 
 public:
     void shoot();
-
     int health;
     bool updateIsAvailable();
     void updated();
@@ -82,11 +82,10 @@ public:
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
+    size_t getID();    
     int grabKey(game_key_t k);
     int addPoints(int p);
 
-    size_t getID();
-    // void setID(size_t newID);
 };
 
 #endif

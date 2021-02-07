@@ -28,9 +28,10 @@ typedef enum{
     PLAYER_STOP_SHOOTING,
     GAME_QUIT,
     NEW_MATCH,
-    ASD,
+    NEW_NAME,
+    GET_MATCHES,
     PICHIWAR,
-    UNIRME
+    JOIN
 }event_t;
 
 typedef enum{
@@ -45,6 +46,11 @@ typedef enum{
     CROWN = 4
 }treasure_t;
 
+
+typedef struct{
+    event_t event;
+    std::string info;
+}menu_event_t;
 
 typedef enum{
     NONE = 0,
@@ -96,7 +102,9 @@ typedef enum{
     TAG_GAME_QUIT,
     TAG_PLAYER_INFO,
     TAG_MAP_CHANGE,
-    TAG_MAP_INIT
+    TAG_MAP_INIT,
+    TAG_MATCH_LIST,
+    TAG_NAME_NOT_AVAILABLE
 }update_tag_t;
 
 typedef struct {

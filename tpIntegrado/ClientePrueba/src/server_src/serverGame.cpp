@@ -7,7 +7,7 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
 						std::queue<UpdateHandler> &q):
     players(p),
     lvl1(l),
-    // updateHandler(uH),
+    updateHandler(uH),
     colMap(lvl1),
 	uQ(q)
 {}
@@ -31,13 +31,12 @@ void ServerGame::update(){
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist=shootRaycaster(player);
 	float coef;
-	// player.shoot();
-
 	for(auto &p: players){
 		if(p.first==player.getID())
 			continue;
 
 		player.getDamageCoefficient(p.second, coef, wallDist);
+
 		// if(coef!=0)
 		player.shoot(p.second, coef);
 	}

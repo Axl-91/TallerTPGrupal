@@ -27,7 +27,6 @@
 #define HEAL_FOOD 10
 #define HEAL_MEDICAL_EQUIPMENT 20
 
-
 class Collidable{
 protected:
     float xInit;

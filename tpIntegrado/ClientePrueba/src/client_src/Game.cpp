@@ -5,12 +5,11 @@
 // #include "Hud.h"
 #include "Map.h"
 
-Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpdateQueue &q): 
+Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),
 	is_running(false){
-
     int hayError;
     winLargo = largo;
     winAlto = alto;
@@ -29,6 +28,7 @@ Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpd
 
 	SDL_SetWindowTitle(window, title);
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
+
 	mapGame.setRenderer(renderer);
 	if(uQ.isEmpty()){
 		std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
@@ -50,8 +50,9 @@ void Game::run(){
 		while(is_running){
 			update();
 			render();
-			//SLEEP?
 		}
+
+
     } catch (const std::exception &e){
         std::cerr << "Excepcion en Game.run()" << std::endl;
         std::cerr << e.what() << std::endl;
@@ -85,6 +86,7 @@ void Game::fill(){
     /*Dibuja la pantalla en gris claro y luego dibuja
     desde la mitad para arriba en gris oscuro */
 	SDL_SetRenderDrawColor(renderer, 0x80, 0x80, 0x80, 0xFF);
+
 	SDL_RenderClear(renderer);
 	
     SDL_Rect rect = {0,0, largoReal, (altoReal-40)/2};

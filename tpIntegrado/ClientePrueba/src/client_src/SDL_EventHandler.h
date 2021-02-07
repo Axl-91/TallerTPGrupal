@@ -8,18 +8,18 @@
 #include <map>
 #include "../common_src/thread.h"
 #include "../common_src/types.h"
-#include "../common_src/protectedEventQueue.h"
+#include "../common_src/protectedQueue.h"
 
 
 class SDL_EventHandler : public Thread{
 private: 
     std::map<SDL_Keycode, event_t> keyDownEvents;
     std::map<SDL_Keycode, event_t> keyUpEvents;
-    ProtectedEventQueue &q;
+    ProtectedQueue<event_t> &q;
     std::atomic<bool> is_running;
     std::atomic<bool> quitGameRead;
 public:
-    SDL_EventHandler(ProtectedEventQueue &q);
+    SDL_EventHandler(ProtectedQueue<event_t> &q);
     ~SDL_EventHandler();
     event_t pollEvent();
     void exitPollEvent(SDL_Event &SDLEvent, event_t &event);
