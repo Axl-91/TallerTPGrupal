@@ -48,12 +48,10 @@ void Match::run(){
     try{
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
-            // if(readEvents()==true){
             readEvents();
             game.update();
             updateUsers();
-            // }
-    		// sleep(30/60);
+
             auto final = std::chrono::high_resolution_clock::now();
             auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
             long sleepTime = timeStep - loopDuration.count();

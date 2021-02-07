@@ -2,6 +2,7 @@
 
 SPWGun::SPWGun(){
     type=GUN;
+    damage = GUN_DAMAGE;
 }
 SPWGun::~SPWGun(){}
 
@@ -12,5 +13,5 @@ float SPWGun::shoot(float dist, bool &isShooting){
     }
     std::cout<<"disparo con pistola"<<std::endl;   
     shooting=false;
-    return 10;
+    return damage;
 }

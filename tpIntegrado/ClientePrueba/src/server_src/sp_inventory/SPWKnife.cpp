@@ -4,12 +4,21 @@
 
 SPWKnife::SPWKnife(){
     type=KNIFE;
+    damage=KNIFE_DAMAGE;
 }
 SPWKnife::~SPWKnife(){}
 
 float SPWKnife::shoot(float dist, bool &isShooting){
-    if(dist>5)
-        return 0;
-    return 10;
     std::cout<<"disparo con cuchillo"<<std::endl;   
+    if(shooting==false){
+        isShooting=false;
+        return 0;
+    }
+    if(dist>5){
+        shooting = false;
+        return 0;
+    }
+
+    shooting = false;
+    return damage;
 }
