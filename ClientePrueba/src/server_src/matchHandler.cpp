@@ -26,8 +26,6 @@ bool MatchHandler::addUserToMatch(User *user, std::string matchName){
 }
 
 void MatchHandler::getMatchList(std::stringstream &matchesList){
-    matchesList << "Las partidas disponibles son: " << std::endl;
-
     for(auto match:matches){
         matchesList << match.second->getName() << std::endl;
     }

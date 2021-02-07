@@ -9,18 +9,29 @@ ServerReceiver::ServerReceiver(ServerReceiver&& other):
     socket(other.socket)
 {}
 
-void ServerReceiver::readInput(event_t &input){
+void ServerReceiver::readMenuEvent(menu_event_t &menuEvent){
+    readGameEvent(menuEvent.event);
+
+    uint32_t length = 0;
+    const size_t SIZE_OF_UINT32 = 4;
+
+    socket.receive((char *) &length, SIZE_OF_UINT32);
+    length = ntohl(length);
+    if(length == 0){
+        menuEvent.info = "";
+        return;
+    }
+    std::vector<char> buffer(length+1, 0);
+    socket.receive(buffer.data(), length);
+    menuEvent.info = buffer.data();
+
+}
+
+void ServerReceiver::readGameEvent(event_t &input){
+    if(is_running == false)
+        return;
     try{
-        // std::cout << "serverReceiver: leo input" << std::endl;
-
         socket.receive((char*) &input, sizeof(input));
-        // std::cout << input << std::endl;
-
-        // event_t event;
-        // socket.receive((char*) &event, sizeof(event));
-    
-        // std::cout << event << std::endl;
-
     } catch (const SocketClosed &e){
         std::cerr << "Excepcion en ServerReceiver.run()" << std::endl;
         std::cerr << e.what() << std::endl;
@@ -30,6 +41,7 @@ void ServerReceiver::readInput(event_t &input){
 
 void ServerReceiver::stop(){
     socket.shutdown_read();
+    is_running = false;
 }
 
 bool ServerReceiver::finished(){

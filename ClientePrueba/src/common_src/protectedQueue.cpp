@@ -1,5 +1,5 @@
 #include "protectedQueue.h"
-
+/*
 std::string ProtectedQueue::pop(){
     std::unique_lock<std::mutex> lock(m);
     std::string aux(std::move(q.front()));
@@ -18,3 +18,4 @@ bool ProtectedQueue::isEmpty(){
         return true;
     return false;
 }
+*/

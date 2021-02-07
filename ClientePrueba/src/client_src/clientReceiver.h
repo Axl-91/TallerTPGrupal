@@ -12,8 +12,11 @@
 #include "Game.h"
 
 class ClientReceiver : public Thread {
-public:
-    ClientReceiver(Socket &socket, std::vector<std::vector<int>> &m, ProtectedUpdateQueue &uQ);
+public:   
+    ClientReceiver(Socket &socket, 
+                std::vector<std::vector<int>> &m, 
+                ProtectedQueue<Update_t> &uQ,
+                ProtectedQueue<menu_event_t> &mQ);
     void operator()();
     virtual void run() override;
     void stop();
@@ -21,6 +24,8 @@ public:
     bool isInMatch();
     bool isDead();
     bool matchFinished();
+    void receiveString(std::string &aString);
+    void receiveMatchList();
 
 private:
     Socket &socket;
@@ -28,7 +33,8 @@ private:
     std::vector<std::vector<int>>&map;
     std::atomic<bool> inMatch;
     std::atomic<bool> matchEnded;
-    ProtectedUpdateQueue &uQ;
+    ProtectedQueue<Update_t> &uQ;
+    ProtectedQueue<menu_event_t> &menuResponseQ;
     void receivePlayerInfo(Update_t &anUpdate);
     void receiveMapChange(Update_t &anUpdate);
     void receiveGame();

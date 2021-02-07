@@ -14,7 +14,8 @@ public:
     ServerReceiver(Socket &socket);
     ServerReceiver(ServerReceiver&& other);
     // void readInput(std::string &input);
-    void readInput(event_t &input);
+    void readGameEvent(event_t &event);
+    void readMenuEvent(menu_event_t &menuEvent);
     void stop();
     bool finished();
 private:

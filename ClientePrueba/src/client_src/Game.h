@@ -11,7 +11,7 @@
 #include "Map.h"
 #include "../common_src/types.h"
 #include "../common_src/thread.h"
-#include "protectedUpdateQueue.h"
+#include "../common_src/protectedQueue.h"
 
 class Game : public Thread{
 private:
@@ -25,10 +25,10 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
     void fill();
-	ProtectedUpdateQueue &uQ;
+	ProtectedQueue<Update_t> &uQ;
     std::atomic<bool> is_running;
 public:
-	Game(int largo, int ancho, std::vector<std::vector<int>> &lvl, ProtectedUpdateQueue &q);
+	Game(int largo, int ancho, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q);
 	~Game();
 	void operator()();
     virtual void run() override;

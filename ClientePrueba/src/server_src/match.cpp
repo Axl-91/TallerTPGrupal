@@ -113,7 +113,7 @@ bool Match::readEvents(){
         return false;
     if(event.event==PICHIWAR)
         return false;
-    if(event.event==UNIRME)
+    if(event.event==JOIN)
         return false;
 
     // game.movePlayer(aPlayer);

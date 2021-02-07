@@ -5,7 +5,7 @@
 // #include "Hud.h"
 #include "Map.h"
 
-Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedUpdateQueue &q): 
+Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),

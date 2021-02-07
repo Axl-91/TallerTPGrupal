@@ -1,7 +1,8 @@
 #include "server.h"
 
 Server::Server(const char *service):
-    acceptor(service)
+    menuHandler(matchHandler),
+    acceptor(service, menuHandler)
 {}
 
 void Server::run(){

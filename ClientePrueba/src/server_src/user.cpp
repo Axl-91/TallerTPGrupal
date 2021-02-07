@@ -28,7 +28,7 @@ void User::run(){
             }
             MatchEvent_t event;
             event_t input;
-            readInput(input);
+            readEvent(input);
             event.event = input;
             event.playerTag = ID;
             if(input == GAME_QUIT){
@@ -43,7 +43,6 @@ void User::run(){
     } catch (const std::exception &e){
         std::cerr << "Excepcion en User.run()" << std::endl;
         std::cerr << e.what() << std::endl;
-        return;
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     }
@@ -57,10 +56,13 @@ bool User::hasStarted(){
 }
 
 
-void User::readInput(event_t &input){
-    receiver.readInput(input);
+void User::readMenuEvent(menu_event_t &menuEvent){
+    receiver.readMenuEvent(menuEvent);
 }
 
+void User::readEvent(event_t &event){
+    receiver.readGameEvent(event);
+}
 // void User::readInput(std::string &input){
 //     receiver.readInput(input);
 // }
@@ -77,6 +79,9 @@ void User::sendGameUpdate(update_tag_t &aTag){
     transmitter.sendTag(aTag);
 }
 
+void User::sendString(std::string &aString){
+    transmitter.sendString(aString);
+}
 void User::sendMap(std::vector<std::vector<int>> &lvl1){
     transmitter.sendMap(lvl1);
 }

@@ -1,33 +1,20 @@
-#ifndef MENUHANDLER__T
-#define MENUHANDLER__T
+#ifndef MENUHANDLER__H
+#define MENUHANDLER__H
 
-#include <vector>
-#include <algorithm>
-#include <map>
-#include "../common_src/thread.h"
-#include "match.h"
 #include "user.h"
 #include "matchHandler.h"
+#include "userHandler.h"
 
-class MenuHandler : public Thread {
-public:
-    MenuHandler(User *user, MatchHandler &matches);
-    ~MenuHandler();
-    virtual void run() override;
-    void operator()();
-    void sendMatches();
-    void processInput();
-    bool isMatchAvailable(size_t i);
-    void stop();
-    bool is_dead();
-    void addUserToMatch(std::string matchName);
-    void newMatch();
-    void joinMatch();
-    void changeUserName();
+class MenuHandler {
 private:
-    std::atomic<bool> is_running;
-    MatchHandler &matches;
-    User* user;
+    MatchHandler &matches;    
+    std::vector<UserHandler*> menuHandlers;
+    void delete_finish_clients(std::vector<UserHandler*> &menuHandlers);
+public:
+    MenuHandler(MatchHandler &mH);
+    ~MenuHandler();
+
+    void addUser(User *user);
 };
 
 #endif

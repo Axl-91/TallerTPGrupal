@@ -1,127 +1,36 @@
 #include "menuHandler.h"
 
-MenuHandler::MenuHandler(User *user, MatchHandler &matches):
-    is_running(true),
-    matches(matches),
-    user(user)
+MenuHandler::MenuHandler(MatchHandler &mH):
+    matches(mH)
 {}
 
 MenuHandler::~MenuHandler(){
-    if(user != NULL){
-        delete(user);
-        user = NULL;
+    for (size_t i = 0; i < menuHandlers.size(); i++){
+        menuHandlers.at(i)->stop();
+        menuHandlers.at(i)->join();    
+        delete(menuHandlers.at(i));
     }
 }
 
-void MenuHandler::operator()(){
-    this->start();
+void MenuHandler::addUser(User *user){
+    UserHandler *userHandler = new UserHandler(user, matches);
+    (*userHandler)();
+    menuHandlers.push_back(userHandler);
+                                std::cout << "Menuhandler.19: agregue un usuario" << std::endl;
+    delete_finish_clients(menuHandlers);
 }
 
-void MenuHandler::run(){
-    std::stringstream welcomeMessage;
-    welcomeMessage <<  "Bienvenido a Wolfestein3D!\n\n";
-
-    // user->sendGameUpdate(welcomeMessage);
-    try{
-        while(is_running){
-            std::string instrucciones = "Ingrese\t\t\t\t\t\t\tNombre de usuario: " + user->getName() + "\n\
-                cambiarnombre - para cambiar nombre de usuario.\n\
-                verpartidas - para ver las partidas disponibles.\n\
-                unirme - para ingresar el nombre de la partida a la que desea unirse.\n\
-                crear - para crear una nueva partida.\n\
-                quit - para desconectarse del juego.\n\n";
-                std::stringstream instr(instrucciones);
-                // user->sendGameUpdate(instr);
-
-                processInput();
+void MenuHandler::delete_finish_clients(std::vector<UserHandler*>& menuH){
+    std::vector <UserHandler*> temp;
+    std::vector <UserHandler*>::iterator it = menuH.begin();
+    for (; it != menuH.end() ; ++it){
+        if ((*it)->is_dead()){
+            (*it)->join();
+            delete(*it);
+            *it = NULL;
+        } else {
+            temp.push_back(*it);
         }
-    } catch (const std::exception &e){
-        std::cerr << "Error encontrado en menuHandler.run()" << std::endl;
-        std::cerr << e.what() << std::endl;
-        return;
-    } catch (...) { // ellipsis: catch anything
-        printf("Unknown error!");
     }
-}
-
-void MenuHandler::processInput(){
-    event_t command;
-    user->readInput(command);
-
-    // if(command == "Se cerro receive")
-    //     stop();
-    // if(command == "quit")
-    //     stop();
-    // if(command.length() == 0){
-    //     sleep(1/60);
-    //     std::cout << "llego cadena vacia" << std::endl;
-    //     return;
-    // }
-    // if(command == "cambiarnombre")
-    //     changeUserName();
-    if(command == UNIRME)
-        joinMatch();
-    // if(command == "verpartidas")
-    //     sendMatches();
-    if(command == NEW_MATCH)
-        newMatch();
-}
-
-void MenuHandler::changeUserName(){
-    std::stringstream changeUserNameMessage;
-    changeUserNameMessage << "Ingrese su nuevo nombre de usuario:\n";
-    // user->sendGameUpdate(changeUserNameMessage);
-
-    std::string newUserName;
-    // user->readInput(newUserName);
-    // user->changeName(newUserName);
-}
-
-void MenuHandler::joinMatch(){
-    event_t matchName;
-    std::stringstream typeMatchName;
-    typeMatchName << "Ingrese el nombre de la partida a la que desee unirse:\n";
-    // user->sendGameUpdate(typeMatchName);
-    user->readInput(matchName);
-    if(matchName == PICHIWAR)
-        addUserToMatch("pichiwar");
-    if(matchName == ASD)
-        addUserToMatch("asd");
-    return;
-}
-
-void MenuHandler::newMatch(){
-    // std::string matchName;
-
-    std::stringstream newMatchText;
-    newMatchText << "Ingrese el nombre de la nueva partida: \n\n";
-    event_t matchName;
-    user->readInput(matchName);
-    if(matchName == ASD)
-    // addUserToMatch("asd");
-    matches.newMatch("asd");
-}
-
-void MenuHandler::addUserToMatch(std::string matchName){
-    bool wasAbleToJoin = false;
-    wasAbleToJoin = matches.addUserToMatch(user, matchName);
-    if(wasAbleToJoin){
-        user = NULL;
-        stop();
-    }
-}
-
-void MenuHandler::sendMatches(){
-    std::stringstream matchesList;
-    matches.getMatchList(matchesList);
-
-    // user->sendGameUpdate(matchesList);
-}
-
-bool MenuHandler::is_dead(){
-    return !is_running;
-}
-
-void MenuHandler::stop(){
-    is_running = false;
+    menuH.swap(temp);
 }
