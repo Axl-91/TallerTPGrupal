@@ -76,8 +76,8 @@ bool Inventory::equip(weapon_t w){
     }else if(w==CHAIN_CANNON){
         equipChainGun();
 
-    // }else if(w==ROCKET_LAUNCHER){
-    //     equipRocketLauncher();
+    }else if(w==ROCKET_LAUNCHER){
+        equipRocketLauncher();
     }else
         return false;
 

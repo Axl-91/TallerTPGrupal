@@ -1061,6 +1061,60 @@ src/server_src/collisions/CollectHeal.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.s
 .PHONY : src/server_src/collisions/CollectHeal.cpp.s
 
+src/server_src/collisions/CollectKey.o: src/server_src/collisions/CollectKey.cpp.o
+
+.PHONY : src/server_src/collisions/CollectKey.o
+
+# target to build an object file
+src/server_src/collisions/CollectKey.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o
+.PHONY : src/server_src/collisions/CollectKey.cpp.o
+
+src/server_src/collisions/CollectKey.i: src/server_src/collisions/CollectKey.cpp.i
+
+.PHONY : src/server_src/collisions/CollectKey.i
+
+# target to preprocess a source file
+src/server_src/collisions/CollectKey.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.i
+.PHONY : src/server_src/collisions/CollectKey.cpp.i
+
+src/server_src/collisions/CollectKey.s: src/server_src/collisions/CollectKey.cpp.s
+
+.PHONY : src/server_src/collisions/CollectKey.s
+
+# target to generate assembly for a file
+src/server_src/collisions/CollectKey.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.s
+.PHONY : src/server_src/collisions/CollectKey.cpp.s
+
+src/server_src/collisions/CollectTreasure.o: src/server_src/collisions/CollectTreasure.cpp.o
+
+.PHONY : src/server_src/collisions/CollectTreasure.o
+
+# target to build an object file
+src/server_src/collisions/CollectTreasure.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o
+.PHONY : src/server_src/collisions/CollectTreasure.cpp.o
+
+src/server_src/collisions/CollectTreasure.i: src/server_src/collisions/CollectTreasure.cpp.i
+
+.PHONY : src/server_src/collisions/CollectTreasure.i
+
+# target to preprocess a source file
+src/server_src/collisions/CollectTreasure.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.i
+.PHONY : src/server_src/collisions/CollectTreasure.cpp.i
+
+src/server_src/collisions/CollectTreasure.s: src/server_src/collisions/CollectTreasure.cpp.s
+
+.PHONY : src/server_src/collisions/CollectTreasure.s
+
+# target to generate assembly for a file
+src/server_src/collisions/CollectTreasure.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.s
+.PHONY : src/server_src/collisions/CollectTreasure.cpp.s
+
 src/server_src/collisions/CollectWeapon.o: src/server_src/collisions/CollectWeapon.cpp.o
 
 .PHONY : src/server_src/collisions/CollectWeapon.o
@@ -1168,6 +1222,33 @@ src/server_src/collisions/Immovable.s: src/server_src/collisions/Immovable.cpp.s
 src/server_src/collisions/Immovable.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.s
 .PHONY : src/server_src/collisions/Immovable.cpp.s
+
+src/server_src/collisions/ImmovableObject.o: src/server_src/collisions/ImmovableObject.cpp.o
+
+.PHONY : src/server_src/collisions/ImmovableObject.o
+
+# target to build an object file
+src/server_src/collisions/ImmovableObject.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o
+.PHONY : src/server_src/collisions/ImmovableObject.cpp.o
+
+src/server_src/collisions/ImmovableObject.i: src/server_src/collisions/ImmovableObject.cpp.i
+
+.PHONY : src/server_src/collisions/ImmovableObject.i
+
+# target to preprocess a source file
+src/server_src/collisions/ImmovableObject.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.i
+.PHONY : src/server_src/collisions/ImmovableObject.cpp.i
+
+src/server_src/collisions/ImmovableObject.s: src/server_src/collisions/ImmovableObject.cpp.s
+
+.PHONY : src/server_src/collisions/ImmovableObject.s
+
+# target to generate assembly for a file
+src/server_src/collisions/ImmovableObject.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.s
+.PHONY : src/server_src/collisions/ImmovableObject.cpp.s
 
 src/server_src/collisions/ImmovableWall.o: src/server_src/collisions/ImmovableWall.cpp.o
 
@@ -1682,6 +1763,33 @@ src/server_src/sp_inventory/SPWMachineGun.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.s
 .PHONY : src/server_src/sp_inventory/SPWMachineGun.cpp.s
 
+src/server_src/sp_inventory/SPWRocketLauncher.o: src/server_src/sp_inventory/SPWRocketLauncher.cpp.o
+
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.o
+
+# target to build an object file
+src/server_src/sp_inventory/SPWRocketLauncher.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.cpp.o
+
+src/server_src/sp_inventory/SPWRocketLauncher.i: src/server_src/sp_inventory/SPWRocketLauncher.cpp.i
+
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.i
+
+# target to preprocess a source file
+src/server_src/sp_inventory/SPWRocketLauncher.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.i
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.cpp.i
+
+src/server_src/sp_inventory/SPWRocketLauncher.s: src/server_src/sp_inventory/SPWRocketLauncher.cpp.s
+
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.s
+
+# target to generate assembly for a file
+src/server_src/sp_inventory/SPWRocketLauncher.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.s
+.PHONY : src/server_src/sp_inventory/SPWRocketLauncher.cpp.s
+
 src/server_src/sp_inventory/SPWeapon.o: src/server_src/sp_inventory/SPWeapon.cpp.o
 
 .PHONY : src/server_src/sp_inventory/SPWeapon.o
@@ -1900,6 +2008,12 @@ help:
 	@echo "... src/server_src/collisions/CollectHeal.o"
 	@echo "... src/server_src/collisions/CollectHeal.i"
 	@echo "... src/server_src/collisions/CollectHeal.s"
+	@echo "... src/server_src/collisions/CollectKey.o"
+	@echo "... src/server_src/collisions/CollectKey.i"
+	@echo "... src/server_src/collisions/CollectKey.s"
+	@echo "... src/server_src/collisions/CollectTreasure.o"
+	@echo "... src/server_src/collisions/CollectTreasure.i"
+	@echo "... src/server_src/collisions/CollectTreasure.s"
 	@echo "... src/server_src/collisions/CollectWeapon.o"
 	@echo "... src/server_src/collisions/CollectWeapon.i"
 	@echo "... src/server_src/collisions/CollectWeapon.s"
@@ -1912,6 +2026,9 @@ help:
 	@echo "... src/server_src/collisions/Immovable.o"
 	@echo "... src/server_src/collisions/Immovable.i"
 	@echo "... src/server_src/collisions/Immovable.s"
+	@echo "... src/server_src/collisions/ImmovableObject.o"
+	@echo "... src/server_src/collisions/ImmovableObject.i"
+	@echo "... src/server_src/collisions/ImmovableObject.s"
 	@echo "... src/server_src/collisions/ImmovableWall.o"
 	@echo "... src/server_src/collisions/ImmovableWall.i"
 	@echo "... src/server_src/collisions/ImmovableWall.s"
@@ -1969,6 +2086,9 @@ help:
 	@echo "... src/server_src/sp_inventory/SPWMachineGun.o"
 	@echo "... src/server_src/sp_inventory/SPWMachineGun.i"
 	@echo "... src/server_src/sp_inventory/SPWMachineGun.s"
+	@echo "... src/server_src/sp_inventory/SPWRocketLauncher.o"
+	@echo "... src/server_src/sp_inventory/SPWRocketLauncher.i"
+	@echo "... src/server_src/sp_inventory/SPWRocketLauncher.s"
 	@echo "... src/server_src/sp_inventory/SPWeapon.o"
 	@echo "... src/server_src/sp_inventory/SPWeapon.i"
 	@echo "... src/server_src/sp_inventory/SPWeapon.s"

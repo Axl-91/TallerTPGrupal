@@ -1,17 +1,16 @@
 #include <iostream>
 #include "Collidable.h"
 #include "ImmovableWall.h"
+#include "ImmovableObject.h"
 #include "CollectWeapon.h"
 #include "CollectHeal.h"
 #include "CollectAmmo.h"
+#include "CollectKey.h"
+#include "CollectTreasure.h"
+
 #include "../../common_src/Vector.h"
 #include "Rectangle.h"
 
-#define COLLIDABLE_OFFSET 100
-#define WEAPON_OFFSET 100
-#define HEAL_OFFSET 200
-#define AMMO_OFFSET 300
-#define WALL_OFFSET 400
 
 Collidable::Collidable(float xI, float yI, float xE, float yE):
 xInit(xI), xEnd(xE), yInit(yI), yEnd(yE){}
@@ -19,13 +18,18 @@ xInit(xI), xEnd(xE), yInit(yI), yEnd(yE){}
 Collidable::~Collidable(){}
 
 Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
-    if(opt>WEAPON_OFFSET && opt<WEAPON_OFFSET + COLLIDABLE_OFFSET){
-        // return NULL;
+    if(opt>WEAPON_OFFSET && opt<WEAPON_OFFSET + COLLECTIBLE_OFFSET){
         return new CollectWeapon(xI, yI, cellWidth, opt-WEAPON_OFFSET);
-    }else if(opt>HEAL_OFFSET && opt<HEAL_OFFSET + COLLIDABLE_OFFSET){
+    }else if(opt>TREASURE_OFFSET && opt<TREASURE_OFFSET + COLLECTIBLE_OFFSET){
+        return new CollectTreasure(xI, yI, cellWidth, opt-TREASURE_OFFSET);
+    }else if(opt>KEY_OFFSET && opt<KEY_OFFSET + COLLECTIBLE_OFFSET){
+        return new CollectKey(xI, yI, cellWidth, opt-KEY_OFFSET);
+    }else if(opt>HEAL_OFFSET && opt<HEAL_OFFSET + COLLECTIBLE_OFFSET){
         return new CollectHeal(xI, yI, cellWidth, opt-HEAL_OFFSET);
-    }else if(opt>AMMO_OFFSET && opt<AMMO_OFFSET + COLLIDABLE_OFFSET){
+    }else if(opt>AMMO_OFFSET && opt<AMMO_OFFSET + COLLECTIBLE_OFFSET){
         return new CollectAmmo(xI, yI, cellWidth, opt-AMMO_OFFSET);
+    }else if(opt>IMMOVABLE_OBJECT_OFFSET && opt<IMMOVABLE_OBJECT_OFFSET + COLLIDABLE_OFFSET){
+        return new ImmovableObject(xI, yI, cellWidth, opt-IMMOVABLE_OBJECT_OFFSET);
     }else if(opt>WALL_OFFSET && opt<WALL_OFFSET + COLLIDABLE_OFFSET){
         return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);
     }else {

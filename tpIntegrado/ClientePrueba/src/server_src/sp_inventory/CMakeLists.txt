@@ -7,4 +7,5 @@ add_library(sp_inventory SHARED
     SPWKnife.cpp
     SPWMachineGun.cpp
     SPWChainCannon.cpp
+    SPWRocketLauncher.cpp
 )

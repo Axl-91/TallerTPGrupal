@@ -69,6 +69,28 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/common_src/Circle.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/common_src/Vector.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/collisions/CollectKey.cpp
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/collisions/CollectKey.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/common_src/Circle.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/common_src/Vector.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/collisions/CollectTreasure.cpp
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/collisions/CollectTreasure.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/common_src/Vector.h
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/common_src/types.h
@@ -95,11 +117,14 @@ CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/CollectAmmo.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/CollectHeal.h
+CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/CollectKey.h
+CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/CollectTreasure.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/CollectWeapon.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.cpp
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.h
+CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableObject.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableWall.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
@@ -115,6 +140,18 @@ CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/s
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/common_src/Circle.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/common_src/Vector.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableObject.cpp
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableObject.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/serverPlayer.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.h
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/common_src/Circle.h
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/common_src/Vector.h
@@ -360,6 +397,7 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrue
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/common_src/types.h
@@ -381,6 +419,11 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePr
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.cpp
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: ClientePrueba/src/common_src/types.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.cpp
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.h
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.h
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/common_src/types.h
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp

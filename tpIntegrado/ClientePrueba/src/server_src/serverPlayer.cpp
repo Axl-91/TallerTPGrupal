@@ -195,6 +195,7 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 	return pPos.distancia(ePos)-2*position.radius;
 }
 
+
 void ServerPlayer::beDamaged(int damage){
 	health-=damage;
 	updateAvailable=true;
@@ -230,9 +231,22 @@ int ServerPlayer::heal(int h){
 		health=MAX_HEALTH;
 	std::cout<<"health after: "<<health<<std::endl;
 
-	// hudGame.setHealth(health);
 	return 1;
 }
+
+int ServerPlayer::grabKey(game_key_t k){
+	if(key==true)
+		return 0;
+	key=true;
+	return 1;
+}
+
+int ServerPlayer::addPoints(int p){
+	score+=p;
+	return 1;
+}
+
+
 
 int ServerPlayer::reload(int a){
 	if(ammo>=MAX_AMMO)

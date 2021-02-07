@@ -92,13 +92,13 @@ void ServerGame::handleCollision(circle &playerPos, int c){
 	Collidable *maker;
     int largoBloque = 64;
 	int value;
-    if(c>=400||c%100==0)
+    if(c>=400||c%10==0)
 		return;
 
 	colMap.erase(playerPos);
     value=0;
 	// mapGame.eraseObj(playerPos.x,playerPos.y);
-	if(c>102&&c<200){
+	if(c>130&&c<140){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
         value = c;
 		// mapGame.insertWeapon(playerPos.x, playerPos.y, c);

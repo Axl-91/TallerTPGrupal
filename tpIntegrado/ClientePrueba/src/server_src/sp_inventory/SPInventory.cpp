@@ -4,7 +4,7 @@
 #include "SPWGun.h"
 #include "SPWMachineGun.h"
 #include "SPWChainCannon.h"
-// #include "SPWRocketLauncher.h"
+#include "SPWRocketLauncher.h"
 
 #define MAX_AMMO 100
 
@@ -54,6 +54,8 @@ weapon_t SPInventory::equip(weapon_t w){
     }else
     if(w==CHAIN_CANNON){
         equipChainGun();
+    }if(w==ROCKET_LAUNCHER){
+        equipRocketLauncher();
     }else
         std::cout<<"no equipe nada"<<std::endl;
 
@@ -101,7 +103,7 @@ void SPInventory::equipChainGun(){
     delete weapons[WP_SECONDARY];
     weapons[WP_SECONDARY]= new SPWChainCannon();
 }
-// void SPInventory::equipRocketLauncher(){
-//     delete weapons[WP_SECONDARY];
-//     weapons[WP_SECONDARY]= new SPWRocketLauncher();    
-// }
+void SPInventory::equipRocketLauncher(){
+    delete weapons[WP_SECONDARY];
+    weapons[WP_SECONDARY]= new SPWRocketLauncher();    
+}

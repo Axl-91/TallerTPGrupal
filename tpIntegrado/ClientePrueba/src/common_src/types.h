@@ -34,6 +34,19 @@ typedef enum{
 }event_t;
 
 typedef enum{
+    KEY_GOLD = 1,
+    KEY_BLUE = 2
+}game_key_t;
+
+typedef enum{
+    CROSS = 1,
+    CALIZ = 2,
+    CHEST = 3,
+    CROWN = 4
+}treasure_t;
+
+
+typedef enum{
     NONE = 0,
     KNIFE = 1,
     GUN = 2,
@@ -61,9 +74,9 @@ typedef struct{
 }Player_t;
 
 typedef enum{
-    BLOOD = 17,
-    FOOD = 3,
-    MEDICAL_EQUIPMENT = 4
+    BLOOD = 1,
+    FOOD = 2,
+    MEDICAL_EQUIPMENT = 3
 }heal_t;
 
 typedef struct{

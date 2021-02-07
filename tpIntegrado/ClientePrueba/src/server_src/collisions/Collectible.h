@@ -7,8 +7,7 @@ class Collectible: public Collidable{
 private:
     /* data */
 public:
-    Collectible(/* args */);
-    // int collide(Player &p) override;
+    Collectible(int xI, int yI, int cellWidth);
     bool detectCollision(circle &c, float dX,float dY) override;
 
     ~Collectible();

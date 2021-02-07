@@ -12,8 +12,6 @@
 #include "Enemies.h"
 
 #include "../common_src/types.h"
-// #define MAP_ROWS 15
-// #define MAP_COLS 20
 
 typedef struct Objeto {
 	Vector posicion;
@@ -25,8 +23,6 @@ private:
 	int largoBloque = 64;
 	int rows;
 	int cols;
-    //El mapa deberia ser de dimensiones variables
-	// int map[MAP_ROWS][MAP_COLS];
 	std::vector<std::vector<int>> map;
 
 	Walls walls;
@@ -35,7 +31,6 @@ private:
 
 	std::map<int, Player_t> mapEnemies;
 	std::map<std::pair<int,int>, Objeto> mapObj;
-	// std::vector<Objeto> vectObj;
 public:
 	Map(std::vector<std::vector<int>> &lvl);
 	~Map();

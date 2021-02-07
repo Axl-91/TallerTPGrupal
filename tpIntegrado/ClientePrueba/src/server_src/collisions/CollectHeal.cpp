@@ -1,35 +1,25 @@
 #include "CollectHeal.h"
 
-CollectHeal::CollectHeal(int xI, int yI, int cellWidth, int h){
-    // weapon= (weapon_t) w;
+
+CollectHeal::CollectHeal(int xI, int yI, int cellWidth, int h):
+Collectible(xI, yI, cellWidth){
     type=(heal_t) h;
 
-    if(type==BLOOD)
-        heal=1;
-    else if(type==FOOD)
-        heal=10;
+    if(type == BLOOD)
+        heal = HEAL_BLOOD;
+    else if(type == FOOD)
+        heal = HEAL_FOOD;
     else if(type==MEDICAL_EQUIPMENT)
-        heal=20;
+        heal=HEAL_MEDICAL_EQUIPMENT;
     else 
         heal=0;
-
-    xInit=xI*cellWidth+32;
-    xEnd=xInit;
-    yInit=yI*cellWidth+32; 
-    yEnd=yInit;
 }
 
 int CollectHeal::collide(ServerPlayer &p){
     std::cout<<"colision cura"<<std::endl;
 
-    return (int)p.heal(heal)+200;
+    return (int)p.heal(heal)+HEAL_OFFSET;
 }
-
-// bool CollectWeapon::detectCollision(circle &c, float dX,float dY){
-//     circle aux={c.x+dX, c.y+dY,c.radius};
-//     return isInside(aux);
-// }
-
 
 CollectHeal::~CollectHeal(){}
 

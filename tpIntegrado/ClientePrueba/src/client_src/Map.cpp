@@ -3,23 +3,22 @@
 #include <iostream>
 #include "Map.h"
 #include "Walls.h"
-// #include "Objects.h"
+//#include "Objects.h"
+
+#define KEY_OFFSET 101
+#define WEAPON_OFFSET 127
+#define HEAL_OFFSET 109
+#define AMMO_OFFSET 116
+#define TREASURE_OFFSET 132
+#define INMOVABLE_OBJECT_OFFSET 188
 
 
-#define WEAPON_OFFSET 74
-#define HEAL_OFFSET 177
 #define ENEMY_VALUE 100
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
 	cols=lvl[0].size();
 	load(lvl);
-	// insertEnemy(1, 11, 4, ENEMY_VALUE);
-	// insertObject(13, 4, ENEMY_VALUE);
-
-	// Vector posEnemy(224, 96);
-	// enemy = {posEnemy, 100};
-
 }
 
 void Map::updateEnemy(Player_t &p){
@@ -33,18 +32,31 @@ void Map::load(std::vector<std::vector<int>> lvl){
 		for (int j = 0; j < cols; ++j){
 			if(map[i][j]>=400)
 				map[i][j]-=400;
-			if(map[i][j]>=100&&map[i][j]<200){
-				insertObject(j,i,25);
-				map[i][j]=0;
-			}
 			if(map[i][j]>=200&&map[i][j]<300){
-				insertObject(j,i,26);
+				insertObject(j,i,map[i][j]-INMOVABLE_OBJECT_OFFSET);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=300&&map[i][j]<400){
-				insertObject(j,i,24);
+			if(map[i][j]>=100&&map[i][j]<110){
+				insertObject(j,i,map[i][j]-KEY_OFFSET);
 				map[i][j]=0;
 			}
+			if(map[i][j]>=110&&map[i][j]<120){
+				insertObject(j,i,map[i][j]-HEAL_OFFSET);
+				map[i][j]=0;
+			}
+			if(map[i][j]>=120&&map[i][j]<130){
+				insertObject(j,i,map[i][j]-AMMO_OFFSET);
+				map[i][j]=0;
+			}
+			if(map[i][j]>=130&&map[i][j]<140){
+				insertObject(j,i,map[i][j]-WEAPON_OFFSET);
+				map[i][j]=0;
+			}
+			if(map[i][j]>=140&&map[i][j]<150){
+				insertObject(j,i,map[i][j]-TREASURE_OFFSET);
+				map[i][j]=0;
+			}
+
 		}
 	}
 }
@@ -55,22 +67,7 @@ void Map::insertWeaponWithCoords(int x, int y, int obj){
 	insertObject(j,i,obj-WEAPON_OFFSET);
 }
 void Map::insertEnemy(Player_t &p){
-	// Vector posVect(p.x,p.y);
-	// Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
-	// Enemy_t auxObj = {posVect, 0, obj};
-	// Player_t auxEnemy;
-	// // auxEnemy.pos=posVect;
-	// auxEnemy.ang = 0;
-	// auxEnemy.x = p.x;
-	// auxEnemy.y = p.y;
-	// auxEnemy.ang = p.ang;
-	// auxEnemy.dirx = p.dirx;
-	// auxEnemy.diry = p.diry;
-	
-	// auxEnemy.currentWP = p.currentWP;
-	// mapEnemies[p.ID] = auxEnemy;
 	mapEnemies[p.ID] = p;
-
 }
 
 std::map<int, Player_t>& Map::getEnemies(){
@@ -93,7 +90,11 @@ void Map::eraseObj(float x, float y){
 
 void Map::setRenderer(SDL_Renderer* renderer){
 	walls.setRenderer(renderer);
+	std::cout << "map: setrenderer "<< std::endl;
+
 	objects.setRenderer(renderer);
+	std::cout << "map: objeto rederizado "<< std::endl;
+
 	enemies.setRenderer(renderer);
 }
 
@@ -159,10 +160,6 @@ void Map::addObject(Vector &posicion, int tipo){
 	mapObj[auxPair]=obj;
 }
 
-// int Map::getCantObjects(){
-// 	return vectObj.size();
-// }
-
 void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 	float dist = pos.distancia(obj.posicion);
 	for (auto i = v.begin(); i != v.end(); ++i){
@@ -191,24 +188,6 @@ std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 	}
 	return vectorAux;
 }
-// void Map::ordenarObjects(Vector &pos){
-// 	std::vector<Objeto> vectorAux;
-
-// 	for (Objeto obj : vectObj){
-// 		agregarVectDist(vectorAux, obj, pos);
-// 	}
-// 	vectObj.swap(vectorAux);
-// }
-
-// Vector Map::getPosObj(int &pos){
-// 	Objeto objPedido = vectObj.at(pos);
-// 	return objPedido.posicion;
-// }
-
-// int Map::getTipoObj(int &pos){
-// 	Objeto objPedido = vectObj.at(pos);
-// 	return objPedido.tipoObjecto;	
-// }
 
 void Map::setObj(int &tipo){
 	if(tipo>=100)
@@ -245,15 +224,8 @@ void Map::renderObject(int &posX, int &posY, int &largo, int &alto, int type){
 Map::~Map(){}
 
 void Map::update(Map_change_t &aMapChange){
-	// map[aMapChange.x][aMapChange.y] = aMapChange.value;
-	// aMapChange.changeAvailable = false;
-	// std::cout << "Map::update(): aMapchange.x: "<< aMapChange.x << "amapchange.y: " << aMapChange.y << std::endl;
 	eraseObj(aMapChange.x, aMapChange.y) ;
-
-	// eraseObj(aMapChange.x * 64 + 32, aMapChange.y * 64 + 32) ;
 	if(aMapChange.value != 0){
 		insertWeaponWithCoords(aMapChange.x,aMapChange.y, aMapChange.value);
-		// Objeto aux = {Vector((aMapChange.x+1)*64-32,(aMapChange.y+1)*64-32), aMapChange.value-WEAPON_OFFSET};
-		// vectObj.emplace_back(aux);
 	}
 }

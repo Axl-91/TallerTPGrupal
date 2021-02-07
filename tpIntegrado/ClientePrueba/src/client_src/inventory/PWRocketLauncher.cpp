@@ -11,8 +11,7 @@ std::vector<std::string> PWRocketLauncherSprites={
 
 PWRocketLauncher::PWRocketLauncher():
 PlayerWeapon(PWRocketLauncherSprites){
-    std::cout << "Falta sprite, se usa el de machine gun" << std::endl;
-    type=MACHINE_GUN;
+    type=ROCKET_LAUNCHER;
 }
 
 PWRocketLauncher::~PWRocketLauncher(){}

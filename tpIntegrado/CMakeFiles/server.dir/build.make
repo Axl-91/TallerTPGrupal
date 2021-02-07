@@ -343,9 +343,35 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectHeal.cpp -o CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.s
 
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o: ClientePrueba/src/server_src/collisions/CollectKey.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectKey.cpp
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectKey.cpp > CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.i
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectKey.cpp -o CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.s
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o: ClientePrueba/src/server_src/collisions/CollectTreasure.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectTreasure.cpp
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectTreasure.cpp > CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.i
+
+CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectTreasure.cpp -o CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.s
+
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o: ClientePrueba/src/server_src/collisions/CollectWeapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/CollectWeapon.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.i: cmake_force
@@ -358,7 +384,7 @@ CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o: ClientePrueba/src/server_src/collisions/Collectible.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collectible.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.i: cmake_force
@@ -371,7 +397,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o: ClientePrueba/src/server_src/collisions/Collidable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Collidable.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.i: cmake_force
@@ -384,7 +410,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o: ClientePrueba/src/server_src/collisions/Immovable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Immovable.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.i: cmake_force
@@ -395,9 +421,22 @@ CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Immovable.cpp -o CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.s
 
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableObject.cpp
+
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableObject.cpp > CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.i
+
+CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableObject.cpp -o CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.s
+
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o: ClientePrueba/src/server_src/collisions/ImmovableWall.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/ImmovableWall.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.i: cmake_force
@@ -410,7 +449,7 @@ CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o: ClientePrueba/src/server_src/collisions/QuadNode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/QuadNode.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.i: cmake_force
@@ -423,7 +462,7 @@ CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o: ClientePrueba/src/server_src/collisions/Quadtree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Quadtree.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.i: cmake_force
@@ -436,7 +475,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o: ClientePrueba/src/server_src/collisions/Rectangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/collisions/Rectangle.cpp
 
 CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.i: cmake_force
@@ -449,7 +488,7 @@ CMakeFiles/server.dir/src/server_src/collisions/Rectangle.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPInventory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPInventory.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.i: cmake_force
@@ -462,7 +501,7 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPInventory.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWChainCannon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWChainCannon.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.i: cmake_force
@@ -475,7 +514,7 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.s: cmake_fo
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWGun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWGun.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.i: cmake_force
@@ -488,7 +527,7 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWKnife.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWKnife.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.i: cmake_force
@@ -501,7 +540,7 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.s: cmake_force
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.i: cmake_force
@@ -512,9 +551,22 @@ CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.s: cmake_for
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWMachineGun.cpp -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.s
 
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.cpp
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.cpp > CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.i
+
+CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWRocketLauncher.cpp -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.s
+
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o: ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o -c /home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/ClientePrueba/src/server_src/sp_inventory/SPWeapon.cpp
 
 CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.i: cmake_force
@@ -549,10 +601,13 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/src/common_src/thread.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o" \
+"CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o" \
+"CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o" \
+"CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o" \
@@ -562,6 +617,7 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o" \
+"CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o" \
 "CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o"
 
 # External object files for target server
@@ -589,10 +645,13 @@ server: CMakeFiles/server.dir/src/common_src/socket.cpp.o
 server: CMakeFiles/server.dir/src/common_src/thread.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/CollectAmmo.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/CollectHeal.cpp.o
+server: CMakeFiles/server.dir/src/server_src/collisions/CollectKey.cpp.o
+server: CMakeFiles/server.dir/src/server_src/collisions/CollectTreasure.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/CollectWeapon.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/Collectible.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/Collidable.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/Immovable.cpp.o
+server: CMakeFiles/server.dir/src/server_src/collisions/ImmovableObject.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/ImmovableWall.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/QuadNode.cpp.o
 server: CMakeFiles/server.dir/src/server_src/collisions/Quadtree.cpp.o
@@ -602,10 +661,11 @@ server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWChainCannon.cpp.o
 server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWGun.cpp.o
 server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWKnife.cpp.o
 server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWMachineGun.cpp.o
+server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWRocketLauncher.cpp.o
 server: CMakeFiles/server.dir/src/server_src/sp_inventory/SPWeapon.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ari/Escritorio/FIUBA/Taller_de_programacion/Entregas/TP4/TallerTPGrupal/tpIntegrado/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

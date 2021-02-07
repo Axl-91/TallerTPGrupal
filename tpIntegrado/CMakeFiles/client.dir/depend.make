@@ -46,7 +46,6 @@ CMakeFiles/client.dir/src/client_src/Map.cpp.o: ClientePrueba/src/common_src/typ
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/Install.h
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/Objects.cpp
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/Objects.h
-CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/SDLHandler.h
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/client_src/SpritesHandler.h
 CMakeFiles/client.dir/src/client_src/Objects.cpp.o: ClientePrueba/src/common_src/Vector.h
 

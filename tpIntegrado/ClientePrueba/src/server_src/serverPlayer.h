@@ -82,6 +82,9 @@ public:
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
+    int grabKey(game_key_t k);
+    int addPoints(int p);
+
     size_t getID();
     // void setID(size_t newID);
 };
