@@ -13,15 +13,19 @@ class ServerGame{
 private:
     std::map<size_t, ServerPlayer> &players;
     std::vector<std::vector<int>> &lvl1;
-    UpdateHandler &updateHandler;
+    UpdateHandler updateHandler;
     CollisionMap colMap;
+    std::queue<UpdateHandler> &uQ; 
 
 public:
     ServerGame(std::map<size_t, ServerPlayer> &p,
                 std::vector<std::vector<int>> &l,
-                UpdateHandler &uH);
+                UpdateHandler &uH,
+                std::queue<UpdateHandler> &q);
     // ~ServerGame();
     float shootRaycaster(ServerPlayer &player);
+
+
 
     void update();
     void movePlayer(ServerPlayer &player);

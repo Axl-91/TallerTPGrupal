@@ -64,19 +64,14 @@ event_t SDL_EventHandler::pollEvent(){
 	if (SDL_PollEvent(&SDLEvent)){
 		//POLL EVENT PLAYER
 		exitPollEvent(SDLEvent, event);		
-		// if (SDLEvent.type == SDL_KEYDOWN){
 		if (SDLEvent.key.state == SDL_PRESSED){
 			if(SDLEvent.key.repeat!=0)
 				return event;
 
 			event = keyDownEvents[SDLEvent.key.keysym.sym];
-			std::cout<<"key down"<<std::endl;
 		}
-		// if (SDLEvent.type == SDL_KEYUP){
 		if (SDLEvent.key.state == SDL_RELEASED){
 			event = keyUpEvents[SDLEvent.key.keysym.sym];
-			std::cout<<"key up----------------"<<std::endl;
-
 		}
 	}
 	return event;
@@ -87,12 +82,11 @@ bool SDL_EventHandler::finished(){
 }
 
 void SDL_EventHandler::exitPollEvent(SDL_Event &SDLEvent, event_t &event){
-	// if (SDLEvent.type == SDL_QUIT){
-	// 	event = GAME_QUIT;
-	// }
+	if (SDLEvent.type == SDL_QUIT){
+		event = GAME_QUIT;
+	}
 	if (SDLEvent.type == SDL_KEYDOWN && SDLEvent.key.keysym.sym == SDLK_ESCAPE){
 			event = GAME_QUIT;
-			// is_running = false;
 			quitGameRead = true;
 	}
 }

@@ -96,7 +96,9 @@ void Client::run(){
                     s.shutdown_writing();
                     continue;
                 }
+                std::this_thread::sleep_for(std::chrono::milliseconds(40));
                 // SDL_Delay(60);
+
             }
             game.join();
             

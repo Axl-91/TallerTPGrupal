@@ -25,7 +25,7 @@ Match::Match(std::string matchName):
     name(matchName),
     lvl1(lvl2),
     connectionNumber(0),
-    game(players, lvl1, updateHandler)
+    game(players, lvl1, updateHandler, uQ)
 {}
 
 Match::~Match(){
@@ -50,9 +50,8 @@ void Match::run(){
             auto initial = std::chrono::high_resolution_clock::now();
             // if(readEvents()==true){
             readEvents();
-
-                game.update();
-                updateUsers();
+            game.update();
+            updateUsers();
             // }
     		// sleep(30/60);
             auto final = std::chrono::high_resolution_clock::now();
@@ -135,10 +134,12 @@ bool Match::readEvents(){
 
 
 void Match::updateUsers(){
-    for(auto user:users)
-        user.second->update(updateHandler);
-
-    updateHandler.updated();
+    while (uQ.empty()==false){
+        for(auto user:users)
+            user.second->update(uQ.front());
+        uQ.pop();
+    }
+    // updateHandler.updated();
 }
 
 void Match::stop(){

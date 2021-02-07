@@ -36,23 +36,20 @@ private:
     size_t ID;
     size_t lifes;
     size_t score;
-    // Inventory inventory;
-   	// Hud hudGame;
-
-
-    // weapon_t secondaryWP;
     player_weapons_t currentWP;
 
     size_t ammo;
     bool key;
     bool shooting;
-	// PlayerWeapon *currentWeapon;
+    bool updateAvailable;
     weapon_t getSecondaryWPtype();
 
 public:
     void shoot();
 
     int health;
+    bool updateIsAvailable();
+    void updated();
 
     ServerPlayer(float x, float y, float a, size_t ID);
     ~ServerPlayer();
@@ -75,8 +72,6 @@ public:
     void setMoveOrientation(player_move_orientation_t o);
     void seteRotateOrientation(player_rotate_orientation_t o);
     float getDist(ServerPlayer &enemy);
-
-
 
     void move();
     void setCurrentWeapon(player_weapons_t aWeapon);

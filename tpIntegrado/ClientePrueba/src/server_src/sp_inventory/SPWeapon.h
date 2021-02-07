@@ -14,10 +14,10 @@ class SPWeapon{
 protected:
     bool estaDisparando = false;
     weapon_t type;
-
-    void disparar();
+    bool shooting;
+    // void disparar();
 public:
-
+    void shootingTrue();
     virtual float shoot(float dist, bool &isShooting) = 0;
     SPWeapon();
 	SPWeapon(const SPWeapon &copy) = delete;

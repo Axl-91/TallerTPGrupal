@@ -31,6 +31,7 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	moveOrientation = MOVE_QUIET;
 	rotateOrientation = ROTATE_QUIET;
 	ID = newID;
+	updateAvailable=true;
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -66,11 +67,22 @@ int toGrados(float radiales){
 	return anguloInt;
 }
 
+bool ServerPlayer::updateIsAvailable(){
+	return updateAvailable;
+}
+
+void ServerPlayer::updated(){
+	updateAvailable=false;
+}
+
+
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
 	if (ang < 0 || ang >= 2*PI){
 		ang += 2*PI*rotateOrientation;
 	}
+	if(rotateOrientation!=ROTATE_QUIET)
+		updateAvailable=true;
 
 	dirx = step*cos(ang);
 	diry = step*sin(ang);
@@ -79,6 +91,9 @@ void ServerPlayer::rotate(){
 void ServerPlayer::move(){
 	position.x+=dirx*moveOrientation;
 	position.y+=diry*moveOrientation;
+	if(moveOrientation!=MOVE_QUIET)
+		updateAvailable=true;
+
 	setDirection(step*cos(ang), step*sin(ang));
 }
 
@@ -91,6 +106,7 @@ void ServerPlayer::setCurrentWeapon(player_weapons_t aWeapon){
 	if(aWeapon < 1 || aWeapon > MAX_WEAPONS)
 		return;
 
+	updateAvailable=true;
 	currentWP=aWeapon;
 	currentWeapon=inventory.getWeapon(currentWeapon, aWeapon);
 }
@@ -103,6 +119,7 @@ void ServerPlayer::seteRotateOrientation(player_rotate_orientation_t o){
 }
 
 void ServerPlayer::startShooting(){
+	currentWeapon->shootingTrue();
 	shooting = true;
 }
 
@@ -112,6 +129,7 @@ void ServerPlayer::stopShooting(){
 
 weapon_t ServerPlayer::equip(weapon_t weapon){
 	weapon_t last;
+	updateAvailable=true;
 	if((last=inventory.equip(weapon))!=NONE);
 		setCurrentWeapon(WP_SECONDARY);
 
@@ -179,10 +197,17 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 
 void ServerPlayer::beDamaged(int damage){
 	health-=damage;
+	updateAvailable=true;
+	if(health<=0)
+		//MORIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+		health=0;
 	std::cout<<"vida: "<<health<<std::endl;
 }
 
 bool ServerPlayer::isShooting(){
+	if(shooting == true)
+		updateAvailable=true;
+
 	return shooting;
 }
 
@@ -198,6 +223,7 @@ int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)
 		return 0;
 	std::cout<<"health before: "<<health<<std::endl;
+	updateAvailable=true;
 
 	health=health+h;
 	if(health>MAX_HEALTH)
@@ -212,6 +238,7 @@ int ServerPlayer::reload(int a){
 	if(ammo>=MAX_AMMO)
 		return 0;
 
+	updateAvailable=true;
 	std::cout<<"ammo before: "<<ammo<<std::endl;
 	ammo+=a;
 	if(ammo>MAX_AMMO)

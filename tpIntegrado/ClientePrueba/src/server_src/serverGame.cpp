@@ -3,14 +3,14 @@
 
 ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
                         std::vector<std::vector<int>> &l,
-                        UpdateHandler &uH):
+                        UpdateHandler &uH,
+						std::queue<UpdateHandler> &q):
     players(p),
     lvl1(l),
-    updateHandler(uH),
-    colMap(lvl1)
-{
-
-}
+    // updateHandler(uH),
+    colMap(lvl1),
+	uQ(q)
+{}
 
 
 void ServerGame::update(){
@@ -20,7 +20,11 @@ void ServerGame::update(){
 	    if(aPlayer.second.isShooting()==true){
         	handlePlayerShoot(aPlayer.second);
     	}
-		updateHandler.updatePlayerPosition(aPlayer.second);
+		if(aPlayer.second.updateIsAvailable()==true){
+			updateHandler.updatePlayerPosition(aPlayer.second);
+			uQ.emplace(std::move(updateHandler));
+			aPlayer.second.updated();
+		}
 	}
 }
 
@@ -34,7 +38,7 @@ void ServerGame::handlePlayerShoot(ServerPlayer &player){
 			continue;
 
 		player.getDamageCoefficient(p.second, coef, wallDist);
-		if(coef!=0)
+		// if(coef!=0)
 			player.shoot(p.second, coef);
 	}
 }

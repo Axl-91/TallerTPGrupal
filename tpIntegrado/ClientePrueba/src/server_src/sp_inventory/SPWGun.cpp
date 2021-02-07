@@ -6,7 +6,11 @@ SPWGun::SPWGun(){
 SPWGun::~SPWGun(){}
 
 float SPWGun::shoot(float dist, bool &isShooting){
-    isShooting=false;
+    if(shooting==false){
+        isShooting=false;
+        return 0;
+    }
     std::cout<<"disparo con pistola"<<std::endl;   
+    shooting=false;
     return 10;
 }

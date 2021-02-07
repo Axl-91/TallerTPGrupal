@@ -124,23 +124,6 @@ void Player::setID(size_t newID){
 }
 
 void Player::shoot(){
-	// std::map<int, Player_t>& enemies = mapPlayer.getEnemies();
-	// float damageCoef;
-	// Vector enemyPos;
-
-	// for(auto e: enemies){
-	// 	Vector pos(e.second.x, e.second.y);
-
-	// 	enemyPos = pos;
-		
-	// 	// if(enemyInShootRange(enemyPos)==false)
-	// 	// 	continue;
-	// 	getDamageCoefficient(enemyPos, damageCoef);
-	// 			// if(damageCoef!=0)
-	// 	// 	currentWeapon->getDamage(enemyPos, damageCoef)
-	// 	std::cout<<"coeficiente: "<<damageCoef<<std::endl;
-	// }
-
 	currentWeapon->shoot();
 }
 
@@ -201,17 +184,15 @@ void Player::updateInfo(Player_t &p){
 	score = p.score;
 	inventory.setAmmo(p.ammo);
 	health = p.health;
-	std::cout<<"vida: "<<health<<std::endl;
+	// std::cout<<"vida: "<<health<<std::endl;
 	// ammo = p.ammo;
 
-	std::cout<<"p.secondaryWP: "<<p.secondaryWP<<std::endl;
-	std::cout<<"p.currentWP: "<<p.currentWP<<std::endl;
+	// std::cout<<"p.secondaryWP: "<<p.secondaryWP<<std::endl;
+	// std::cout<<"p.currentWP: "<<p.currentWP<<std::endl;
 
 	equip(p.secondaryWP);
-	std::cout<<"equipada: "<<std::endl;
 
 	setWeapon(p.currentWP);
-	std::cout<<"seteada: "<<std::endl;
 
 	if(p.shooting){
 		currentWeapon->shoot();

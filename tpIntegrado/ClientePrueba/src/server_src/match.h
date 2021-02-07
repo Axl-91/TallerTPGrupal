@@ -43,6 +43,7 @@ private:
     std::string name;
     std::vector<std::vector<int>> lvl1;
     UpdateHandler updateHandler;
+    std::queue<UpdateHandler> uQ; 
     size_t connectionNumber;
     void welcomeUser(User* user);
     ServerGame game;
