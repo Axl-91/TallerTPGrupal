@@ -19,5 +19,6 @@ main.cpp
 Game.cpp
 Menu.cpp
 TextHandler.cpp
+SDL_Sounds.cpp
 )
 
