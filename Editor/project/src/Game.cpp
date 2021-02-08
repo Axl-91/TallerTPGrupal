@@ -35,23 +35,18 @@ void Game::initialize(){
 	SDL_RenderSetLogicalSize(renderer, largo, alto);
 
 	main.setRenderer(renderer);
-
-	//TTF_Init();
 }
 
 void Game::exitPollEvent(SDL_Event &evento){
-	if (evento.type == SDL_QUIT){
+	if ((evento.type == SDL_QUIT)|| 
+		(evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE)){
 		gameOver = true;
-	}
-	if (evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE){
-			gameOver = true;
+		sett.saveChanges();
 	}
 }
 
 void Game::update(){
     SDL_Event evento;
-	int xMouse, yMouse;
-	SDL_GetGlobalMouseState(&xMouse,&yMouse);
 
 	if (SDL_PollEvent(&evento)){
 		exitPollEvent(evento);
@@ -70,8 +65,6 @@ bool Game::isGameOver(){
 }
 
 Game::~Game(){	
-	/*TTF_CloseFont(gFont);	
-    TTF_Quit();*/
 	SDL_DestroyTexture(textura);
 	if (renderer){
 		SDL_DestroyRenderer(renderer);
@@ -80,6 +73,7 @@ Game::~Game(){
 	if (window){
 		SDL_DestroyWindow(window);
 		window = nullptr;
-	}			
+	}
+	//TTF_Quit();				
 	SDL_Quit();
 }

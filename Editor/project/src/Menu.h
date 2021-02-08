@@ -7,7 +7,6 @@
 #include "SDLHandler.h"
 
 #define MAIN_CREATE 85
-//#define MAIN_JOIN 110
 #define MAIN_OPTIONS 110
 #define MAIN_EXIT 135
 
@@ -34,7 +33,6 @@ private:
 	SDL_Renderer* menuRenderer;
 
 	SDL_Texture* createGame;
-	//SDL_Texture* joinGame;
 	SDL_Texture* optionsGame;
 	SDL_Texture* exitGame;
 	SDL_Texture* resolution;
@@ -48,8 +46,6 @@ private:
 
 	SDLHandler mainMenu;
 	SDLHandler optionsMenu;
-	SDLHandler newGameMenu;
-	//SDLHandler joinGameMenu;
 	SDLHandler selection;
 
 	void initialize();
@@ -64,6 +60,8 @@ private:
 public:
 	Menu();
 	bool getFullScreen();
+	int getWinHeight() const;
+	int getWinWidth() const;
 	void render();
 	void pollEvent();
 	bool quitGame();

@@ -8,9 +8,7 @@
 Menu::Menu(): 
 	mainMenu(0, 0, 320, 240, "MainMenu.png"),
 	optionsMenu(0, 0, 320, 240, "OptionsMenu.png"),
-	newGameMenu(0, 0, 320, 240, "JoinMenu.png"),
 	selection(0, 0, 23, 33, "SelectionMenu.png")
-	//joinGameMenu(0, 0, 320, 240, "NewMenu.png"),
 	
 {
 		initialize();
@@ -18,19 +16,14 @@ Menu::Menu():
 }
 
 void Menu::createText(){
-	//MEJORAR CON UN HANDLER DE TEXTOS QUIZAS?
 	SDL_Surface* surfaceText;
 	TTF_Font* font = TTF_OpenFont("beamweapon.ttf", 24);
 	SDL_Color white = {255, 255, 255};
 	SDL_Color yellow = {255, 204, 0};
 
-	surfaceText = TTF_RenderText_Blended(font, "Edit Map", white);
+	surfaceText = TTF_RenderText_Blended(font, "Create Map", white);
 	createGame = SDL_CreateTextureFromSurface(menuRenderer, surfaceText);
 	SDL_FreeSurface(surfaceText);
-
-	/*surfaceText = TTF_RenderText_Blended(font, "Join Game", white);
-	joinGame = SDL_CreateTextureFromSurface(menuRenderer, surfaceText);
-	SDL_FreeSurface(surfaceText);*/
 
 	surfaceText = TTF_RenderText_Blended(font, "Options", white);
 	optionsGame = SDL_CreateTextureFromSurface(menuRenderer, surfaceText);
@@ -91,8 +84,6 @@ void Menu::initialize(){
 
 	mainMenu.setRenderer(menuRenderer);
 	optionsMenu.setRenderer(menuRenderer);
-	newGameMenu.setRenderer(menuRenderer);
-	//joinGameMenu.setRenderer(menuRenderer);
 	selection.setRenderer(menuRenderer);
 	selection.setSrc(0, 0, 23, 16);
 
@@ -101,28 +92,24 @@ void Menu::initialize(){
 
 void Menu::renderTextMain(){
 	SDL_Rect create_rect = {100,75,110,30};
-	/*SDL_Rect join_rect = {100,100,110,30};
-	SDL_Rect options_rect = {100,125,90,30};
-	SDL_Rect exit_rect = {100,150,50,30};*/
 	SDL_Rect options_rect = {100,100,110,30};
 	SDL_Rect exit_rect = {100,125,90,30};
 
-	SDL_RenderCopy(menuRenderer, createGame, NULL, &create_rect);
-	//SDL_RenderCopy(menuRenderer, joinGame, NULL, &join_rect);
+	SDL_RenderCopy(menuRenderer, createGame, NULL, &create_rect);	
 	SDL_RenderCopy(menuRenderer, optionsGame, NULL, &options_rect);
 	SDL_RenderCopy(menuRenderer, exitGame, NULL, &exit_rect);
 }
 
 void Menu::renderTextOptions(){
 	SDL_Rect create_rect = {100,75,55,15};
-	//SDL_Rect join_rect = {100,100,55,15};
+	SDL_Rect join_rect = {100,100,55,15};
 	SDL_Rect back_rect = {100,125,55,15};
 
 	SDL_Rect res_rect = {175, 75, 45, 15};
 	SDL_Rect switch_rect = {175,100,15,15};
 
 	SDL_RenderCopy(menuRenderer, resolution, NULL, &create_rect);
-	//SDL_RenderCopy(menuRenderer, fullScreen, NULL, &join_rect);
+	SDL_RenderCopy(menuRenderer, fullScreen, NULL, &join_rect);
 	SDL_RenderCopy(menuRenderer, back, NULL, &back_rect);
 
 	if (winLargo == 640){
@@ -170,6 +157,14 @@ void Menu::doActionMain(){
 			hasQuitGame = true;
 			break;
 	}
+}
+
+int Menu::getWinWidth() const{
+	return winLargo;
+}
+
+int Menu::getWinHeight() const{
+	return winAlto;
 }
 
 void Menu::doActionOpt(){
@@ -336,12 +331,12 @@ bool Menu::enterGame(){
 
 Menu::~Menu(){
 	SDL_DestroyTexture(createGame);
-	//SDL_DestroyTexture(joinGame);
 	SDL_DestroyTexture(optionsGame);
 	SDL_DestroyTexture(exitGame);
 	SDL_DestroyTexture(resolution);
 	SDL_DestroyTexture(fullScreen);
 	SDL_DestroyTexture(on);
+	SDL_DestroyTexture(back);
 	SDL_DestroyTexture(off);
 	SDL_DestroyTexture(resOne);
 	SDL_DestroyTexture(resTwo);

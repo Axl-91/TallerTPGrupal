@@ -19,7 +19,8 @@ void Settings::init(char* _filename){
 }
 
 void Settings::saveChanges(){
-    std::ofstream fout(filename);    
+    std::ofstream fout(filename);
+    config["map"] = map; 
     fout << config;
 }
 

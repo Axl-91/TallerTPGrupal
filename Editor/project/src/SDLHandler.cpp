@@ -11,8 +11,8 @@ imgFile(iFile){
 }
 
 SDLHandler::~SDLHandler(){
-    // if(textura!=NULL)
-    //     SDL_DestroyTexture(textura);
+     if(textura!=NULL)
+         SDL_DestroyTexture(textura);
 }
 
 
