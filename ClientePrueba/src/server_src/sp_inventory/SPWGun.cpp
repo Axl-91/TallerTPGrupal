@@ -17,7 +17,7 @@ float SPWGun::shoot(float dist, shooting_state_t &shootingState){
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     if(waited.count()<GUN_WAIT_TIME){
-        shootingState = SHOOTING_STATE_QUIET;
+//        shootingState = SHOOTING_STATE_QUIET;
         return 0;
     }
 

@@ -15,7 +15,9 @@ class PlayerWeapon{
 protected:
     int offset = 65;
     int numAuxiliar = 0;
-    shooting_state_t &shootingState;
+    // shooting_state_t &shootingState;
+    shooting_state_t shootingState;
+
     weapon_t type;
     SpritesHandler textureHandler;
 

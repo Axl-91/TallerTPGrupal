@@ -185,19 +185,14 @@ void Player::updateInfo(Player_t &p){
 	score = p.score;
 	inventory.setAmmo(p.ammo);
 	health = p.health;
-	// std::cout<<"vida: "<<health<<std::endl;
-	// ammo = p.ammo;
-
-	// std::cout<<"p.secondaryWP: "<<p.secondaryWP<<std::endl;
-	// std::cout<<"p.currentWP: "<<p.currentWP<<std::endl;
-
 	equip(p.secondaryWP);
 
 	setWeapon(p.currentWP);
 	shootingState=p.shootingState;
-	// if(p.shootingState != SHOOTING_STATE_QUIET){
-	// 	currentWeapon->shoot();
-	// }
+
+	if(p.shootingState == SHOOTING_STATE_STARTED){
+		currentWeapon->shoot();
+	}
 }
 
 size_t Player::getID(){
