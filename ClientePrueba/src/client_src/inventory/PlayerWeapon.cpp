@@ -5,7 +5,8 @@
 #include "PlayerWeapon.h"
 #include "../Install.h"
 
-PlayerWeapon::PlayerWeapon(std::vector<std::string> &imgs):
+PlayerWeapon::PlayerWeapon(shooting_state_t &sS, std::vector<std::string> &imgs):
+shootingState(sS),
 textureHandler(imgs){}
 
 void PlayerWeapon::setRenderer(SDL_Renderer* renderer){

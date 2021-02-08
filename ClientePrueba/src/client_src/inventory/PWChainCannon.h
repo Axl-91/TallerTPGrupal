@@ -5,7 +5,7 @@
 
 class PWChainCannon: public PlayerWeapon{
 public:
-    PWChainCannon();
+    PWChainCannon(shooting_state_t &sS);
     ~PWChainCannon();
     void render(int posX, int posY) override;
 

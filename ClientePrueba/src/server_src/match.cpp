@@ -26,7 +26,7 @@ Match::Match(std::string matchName):
     name(matchName),
     lvl1(lvl2),
     connectionNumber(0),
-    game(players, lvl1, updateHandler, uQ)
+    game(players, lvl1, uQ)
 {}
 
 Match::~Match(){

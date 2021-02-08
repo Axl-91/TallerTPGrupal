@@ -8,8 +8,8 @@ std::vector<std::string> PWGunSprites={
     "Media/WeaponSprites/PWGun4.png"
 };
 
-PWGun::PWGun():
-PlayerWeapon(PWGunSprites){
+PWGun::PWGun(shooting_state_t &sS):
+PlayerWeapon(sS, PWGunSprites){
     type=GUN;
 }
 
@@ -18,7 +18,12 @@ void PWGun::render(int largoWin, int altoWin){
     int delay = 10;
     int frame = 0;
 
-    if (shootingState!=SHOOTING_STATE_QUIET){
+
+    // if (shootingState!=SHOOTING_STATE_QUIET){
+    //     frame=0;
+    // }else
+    std::cout<<"shootingState: "<<shootingState<<std::endl;
+    if (shootingState!=SHOOTING_STATE_QUIET && shootingState != SHOOTING_STATE_STOPED){
         numAuxiliar++;
         frame = numAuxiliar/ delay;
 
@@ -28,6 +33,21 @@ void PWGun::render(int largoWin, int altoWin){
              shootingState=SHOOTING_STATE_QUIET;
         }
     }
+    // if(shootingState==SHOOTING_STATE_QUIET)
+    //     frame=0;
+    
+    // if(shootingState==SHOOTING_STATE_STARTED)
+    //     frame=1;
+
+    // if(shootingState==SHOOTING_STATE_SHOOTING)
+    //     frame=2;
+
+    // if(shootingState==SHOOTING_STATE_WAITING)
+    //     frame=3;
+
+    // if(shootingState==SHOOTING_STATE_STOPED)
+    //     frame=4;
+
     textureHandler.render(96, 72, GUNL, GUNA, frame);
 }
 

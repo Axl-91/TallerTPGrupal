@@ -20,7 +20,6 @@ private:
 public:
     ServerGame(std::map<size_t, ServerPlayer> &p,
                 std::vector<std::vector<int>> &l,
-                UpdateHandler &uH,
                 std::queue<UpdateHandler> &q);
     // ~ServerGame();
     float shootRaycaster(ServerPlayer &player);

@@ -20,8 +20,6 @@
 
 class Player{
 private:
-    // SDL_EventHandler s;
-    // SpritesHandler p;
     circle position;
     float angulo;
     float dx;
@@ -35,7 +33,7 @@ private:
     Inventory inventory;
    	Hud hudGame;
     size_t ID;
-
+    shooting_state_t shootingState;
 	PlayerWeapon *currentWeapon;
 
     SDL_Renderer* rendererPlayer;

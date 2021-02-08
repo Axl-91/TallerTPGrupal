@@ -12,11 +12,11 @@
 class Inventory{
     std::map<int,PlayerWeapon*> weapons;
     SDL_Renderer *weaponRenderer;
-    
+    shooting_state_t &shootingState;
     int ammo;
     bool key;
 public:
-    Inventory();
+    Inventory(shooting_state_t &sS);
     ~Inventory();
     bool equip(weapon_t w);
     // int reload(int a);

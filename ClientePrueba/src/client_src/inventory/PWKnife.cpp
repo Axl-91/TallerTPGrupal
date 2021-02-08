@@ -9,14 +9,15 @@ std::vector<std::string> PWKnifeSprites={
 };
 
 
-PWKnife::PWKnife():
-PlayerWeapon(PWKnifeSprites){
+PWKnife::PWKnife(shooting_state_t &sS):
+PlayerWeapon(sS, PWKnifeSprites){
     type=KNIFE;
 }
 
 void PWKnife::render(int largoWin, int altoWin){
     int delay = 10;
     int frame = 0;
+
 
     if (shootingState != SHOOTING_STATE_QUIET && shootingState != SHOOTING_STATE_STOPED){
         numAuxiliar++;

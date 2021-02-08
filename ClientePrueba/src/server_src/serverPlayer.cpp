@@ -10,6 +10,11 @@
 #define COEF_SHOOTING_ANGLE_DIVISOR 96
 
 
+int toGrados(float radiales){
+	float anguloGrados = (radiales / PI) * 180;
+	int anguloInt = round(anguloGrados);
+	return anguloInt;
+}
 
 ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID):
 currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
@@ -63,11 +68,6 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 // 	ID = newID;
 // }
 
-int toGrados(float radiales){
-	float anguloGrados = (radiales / PI) * 180;
-	int anguloInt = round(anguloGrados);
-	return anguloInt;
-}
 
 bool ServerPlayer::updateIsAvailable(){
 	return updateAvailable;
@@ -187,6 +187,8 @@ void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	std::cout<<"DISPARO!! "<<std::endl;
 	std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
 	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
+    std::cout<<"shootingState: "<<shootingState<<std::endl;
+
 	weaponDamage *= coef;
 	totalDamage = (int) weaponDamage;
 	enemy.beDamaged(totalDamage);
@@ -210,14 +212,26 @@ void ServerPlayer::beDamaged(int damage){
 	std::cout<<"vida: "<<health<<std::endl;
 }
 
-bool ServerPlayer::isShooting(){
-	updateAvailable=true;
-	if(shootingState != SHOOTING_STATE_QUIET){
+// bool ServerPlayer::isShooting(){
+// 	updateAvailable=true;
+// 	if(shootingState != SHOOTING_STATE_QUIET){
+// 		return true;
+// 	}
+
+// 	return false;
+// }
+
+
+bool ServerPlayer::startedShooting(){
+	if(shootingState == SHOOTING_STATE_STARTED){
+		updateAvailable = true;
 		return true;
 	}
 
 	return false;
+
 }
+
 
 size_t ServerPlayer::getID(){
 	return ID;

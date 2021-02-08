@@ -3,11 +3,9 @@
 
 ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
                         std::vector<std::vector<int>> &l,
-                        UpdateHandler &uH,
 						std::queue<UpdateHandler> &q):
     players(p),
     lvl1(l),
-    // updateHandler(uH),
     colMap(lvl1),
 	uQ(q)
 {}
@@ -17,7 +15,7 @@ void ServerGame::update(){
 	for(auto &aPlayer: players){
 	    movePlayer(aPlayer.second);
     	aPlayer.second.rotate();
-	    if(aPlayer.second.isShooting()==true){
+	    if(aPlayer.second.startedShooting()==true){
         	handlePlayerShoot(aPlayer.second);
     	}
 		if(aPlayer.second.updateIsAvailable()==true){
@@ -34,7 +32,7 @@ void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	// player.shoot();
 
 	for(auto &p: players){
-		if(p.first==player.getID())
+		if(p.first==player.getID())// DESCOMENTAR PARA MULTI JUGADOR
 			continue;
 
 		player.getDamageCoefficient(p.second, coef, wallDist);

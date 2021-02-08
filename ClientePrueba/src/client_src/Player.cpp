@@ -14,6 +14,7 @@ float toGrados(float radiales){
 }
 Player::Player(Map &m): 
 	mapPlayer(m),
+	inventory(shootingState),
 	currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
 	// health=MAX_HEALTH;
@@ -193,10 +194,10 @@ void Player::updateInfo(Player_t &p){
 	equip(p.secondaryWP);
 
 	setWeapon(p.currentWP);
-
-	if(p.shootingState != SHOOTING_STATE_QUIET){
-		currentWeapon->shoot();
-	}
+	shootingState=p.shootingState;
+	// if(p.shootingState != SHOOTING_STATE_QUIET){
+	// 	currentWeapon->shoot();
+	// }
 }
 
 size_t Player::getID(){

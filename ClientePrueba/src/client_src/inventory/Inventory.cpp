@@ -8,10 +8,11 @@
 
 #define MAX_AMMO 100
 
-Inventory::Inventory(){
+Inventory::Inventory(shooting_state_t &sS):
+shootingState(sS){
     ammo=50;
-    weapons[WP_KNIFE]= new PWKnife();
-    weapons[WP_GUN]= new PWGun();
+    weapons[WP_KNIFE]= new PWKnife(sS);
+    weapons[WP_GUN]= new PWGun(sS);
     weapons[WP_SECONDARY]= NULL;
     weaponRenderer = NULL;
 }
@@ -89,14 +90,14 @@ bool Inventory::equip(weapon_t w){
 
 void Inventory::equipMachineGun(){
     delete weapons[WP_SECONDARY];
-    weapons[WP_SECONDARY]= new PWMachineGun();
+    weapons[WP_SECONDARY]= new PWMachineGun(shootingState);
 }
 
 void Inventory::equipChainGun(){
     delete weapons[WP_SECONDARY];
-    weapons[WP_SECONDARY]= new PWChainCannon();
+    weapons[WP_SECONDARY]= new PWChainCannon(shootingState);
 }
 void Inventory::equipRocketLauncher(){
     delete weapons[WP_SECONDARY];
-    weapons[WP_SECONDARY]= new PWRocketLauncher();    
+    weapons[WP_SECONDARY]= new PWRocketLauncher(shootingState);    
 }

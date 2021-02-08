@@ -5,7 +5,7 @@
 
 class PWMachineGun: public PlayerWeapon{
 public:
-    PWMachineGun();
+    PWMachineGun(shooting_state_t &sS);
     ~PWMachineGun();
     void render(int posX, int posY) override;
 
