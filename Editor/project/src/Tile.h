@@ -5,7 +5,8 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <string>
-#include "Position.h"
+
+const int TILE_SIZE = 16;
 
 class Tile{
 private:        
@@ -17,7 +18,8 @@ public:
     int getX() const;
     int getY() const;
     int getType() const;
-    void render( SDL_Rect& camera, SDL_Rect& gTileClips );
+    void setType(int);
+    bool existPosition(int,int,int,int) const;
     SDL_Rect getBox() const;
     void init();
     ~Tile();

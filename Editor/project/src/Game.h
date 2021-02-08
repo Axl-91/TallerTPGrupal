@@ -6,13 +6,11 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include "Settings.h"
-#include "Position.h"
 #include "Map.h"
 #include "SDLHandler.h"
 
 class Game{
 private:	
-	TTF_Font *gFont = NULL;
 	bool gameOver = false;
 	bool isFullScreen = false;;
 	int largo = 320;
