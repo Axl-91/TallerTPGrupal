@@ -109,13 +109,14 @@ void Menu::renderTextCreate(){
 	}
 	int sizeGame = 7*nameGame.size();
 	textGameCreateHandler.render(163,96,sizeGame,15);
-
-	if (mapChange){
-		textMapHandler.setText(vectorMaps[mapPos]);
-		mapChange = false;
-	}
-	int mapName = 7*vectorMaps[mapPos].size();
-	textMapHandler.render(170,123,mapName,15);
+	if(vectorMaps.size() != 0){
+		if (mapChange){
+			textMapHandler.setText(vectorMaps[mapPos]);
+			mapChange = false;
+		}
+		int mapNameSize = 7*vectorMaps[mapPos].size();
+		textMapHandler.render(170,123,mapNameSize,15);
+	} 
 }
 
 void Menu::renderTextJoin(){
@@ -284,6 +285,7 @@ void Menu::renderSelectionMap(int pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
 	newGameTextMap.render(0, 0, largo, alto);
+									std::cout << "menu.287" << std::endl;
 	if (vectorMaps.size() > 0){
 		TextHandler handler(vectorMaps[pos]);
 		handler.setRenderer(menuRenderer, yellow);
@@ -299,9 +301,30 @@ void Menu::renderSelectionMap(int pos){
 	SDL_RenderPresent(menuRenderer);
 }
 
+void setMatchVector(std::vector<std::string> &vectorMatches, std::string list){
+	std::stringstream aStream(list);
+	std::cout << "estoy por imprimir listado de maps" << list <<std::endl;
+	std::string aux;
+	
+	vectorMatches.clear();
+	while (getline(aStream,aux)){
+        if (aux.length() == 0)
+            continue;
+		vectorMatches.push_back(aux);
+	}
+}
+
 void Menu::selectMap(){
 
 	bool selected = false;
+
+	std::string auxString;
+	receiver.receiveString(auxString);
+
+									std::cout << "menu.324" << std::endl;
+	if(auxString.length() > 0)
+		setMatchVector(vectorMaps, auxString);
+
 	SDL_Event event;
 	renderSelectionMap(mapPos);
 
@@ -310,19 +333,23 @@ void Menu::selectMap(){
 			if (event.type == SDL_KEYDOWN){
 				switch (event.key.keysym.sym){
 					case SDLK_RIGHT:
+									std::cout << "menu.335" << std::endl;
 						if (vectorMaps.size() > mapPos+1){
 							mapPos += 1;
 							renderSelectionMap(mapPos);
 						}
 						break;
 					case SDLK_LEFT:
+									std::cout << "menu.342" << std::endl;
 						if (mapPos > 0){
 							mapPos -= 1;
 							renderSelectionMap(mapPos);
 						}
 						break;
 					case SDLK_RETURN:
+									std::cout << "menu.349" << std::endl;
 						if (vectorMaps.size() > 0){
+							mapName = vectorMaps[mapPos];
 							mapChange = true;
 							selected = true;
 						}
@@ -341,22 +368,33 @@ void Menu::doActionCreate(){
 	switch (posSelectCreate){
 		case CREATE_NAME:
 			nameChange = inputText(namePlayer,168,69, CREATE_PLAYER);
-																	event.event = NEW_NAME;
-																	event.info = namePlayer;
-																	menuEventQ.push(event);
+			event.event = NEW_NAME;
+			event.info = namePlayer;
+			menuEventQ.push(event);
 			break;
 		case CREATE_MATCH:
 			gameChange = inputText(nameGame,163,96, CREATE_GAME);
-																	event.event = NEW_MATCH;
-																	event.info = nameGame;			
-																	menuEventQ.push(event);
+			// event.event = NEW_MATCH;
+			// event.info = nameGame;			
+			// menuEventQ.push(event);
 			break;
 		case CREATE_MAP:
+			event.event = GET_MAPS;
+			event.info = "";
+        	// std::cout << "mando el mapa: " << mapName << std::endl;
+			menuEventQ.push(event);
 			selectMap();
+			event.event = SET_MAP;
+			event.info = mapName;
+        	std::cout << "mando el mapa: " << mapName << std::endl;
+			menuEventQ.push(event);
 			break;
 		case CREATE_PLAY:
 			if (namePlayer.size() > 0 && nameGame.size() > 0){
 				hasCreateGame = true;
+				event.event = NEW_MATCH;
+				event.info = nameGame;
+				menuEventQ.push(event);
 			}
 			break;
 		case CREATE_BACK:
@@ -385,18 +423,7 @@ void Menu::renderSelectionMatch(int pos){
 	SDL_RenderPresent(menuRenderer);
 }
 
-void setMatchVector(std::vector<std::string> &vectorMatches, std::string list){
-	std::stringstream aStream(list);
-	std::cout << list <<std::endl;
-	std::string aux;
-	
-	vectorMatches.clear();
-	while (getline(aStream,aux)){
-        if (aux.length() == 0)
-            continue;
-		vectorMatches.push_back(aux);
-	}
-}
+
 
 void Menu::selectMatch(){
 

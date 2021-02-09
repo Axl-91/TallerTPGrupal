@@ -9,9 +9,14 @@
 #include "../common_src/protectedQueue.h"
 #include "../common_src/protectedEventQueue.h"
 
+
+// Recibe una cola de eventos de menu y una cola de eventos de la partida. 
+// Al ver que una de las colas no está vacía, envía el evento que encuentre al servidor.
 class ClientTransmitter : public Thread {
 public:
-    ClientTransmitter(Socket &socket, ProtectedQueue<event_t> &gQ, ProtectedQueue<menu_event_t> &mQ);
+    ClientTransmitter(Socket &socket, 
+            ProtectedQueue<event_t> &gQ, 
+            ProtectedQueue<menu_event_t> &mQ);
     void operator()();
     bool isRunning();
     void sendGameEvent();

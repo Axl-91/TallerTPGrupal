@@ -14,10 +14,16 @@
 #include "serverPlayer.h"
 #include "serverGame.h"
 
+struct initPos{
+    int x;
+    int y;
+};
+
+
 class Match : public Thread
 {
 public:
-    Match(std::string matchName);
+    Match(std::string &matchName, std::string &chosenMap);
     ~Match();
     void addUser();
     virtual void run() override;
@@ -34,9 +40,11 @@ public:
     bool readEvents();
     void getPlayerIndex(size_t index);
 private:
+    std::map<size_t, initPos> initPositions;
     ProtectedMatchEventQueue q;
     std::map<size_t, User*> users;
     std::map<size_t, ServerPlayer> players;
+    std::map<std::string, std::vector<std::vector<int>>> availableMaps;
     std::atomic<bool> is_running;
     std::atomic<bool> gameStarted;
     // std::stringstream game;
@@ -45,8 +53,10 @@ private:
     UpdateHandler updateHandler;
     std::queue<UpdateHandler> uQ; 
     size_t connectionNumber;
-    void welcomeUser(User* user);
     ServerGame game;
+    void initializeInitPosition();
+    void initializeMaps();
+    void welcomeUser(User* user);
 };
 
 #endif

@@ -16,6 +16,7 @@ public:
     virtual void run() override;
     void operator()();
     void sendMatches();
+    void sendMaps();
     void processInput();
     bool isMatchAvailable(size_t i);
     void stop();
@@ -24,10 +25,13 @@ public:
     void newMatch(std::string &newMatch);
     void joinMatch(std::string &newName);
     void changeUserName(std::string &newName);
+    void setChosenMap(std::string &newName);
 private:
     std::atomic<bool> is_running;
     MatchHandler &matches;
     User* user;
+    std::string chosenMap;
+    std::string chosenMatch;
 };
 
 #endif

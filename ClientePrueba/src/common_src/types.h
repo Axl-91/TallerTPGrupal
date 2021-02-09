@@ -20,6 +20,7 @@ typedef enum{
     TAG_MAP_CHANGE,
     TAG_MAP_INIT,
     TAG_MATCH_LIST,
+    TAG_MAP_LIST,
     TAG_NAME_NOT_AVAILABLE
 }update_tag_t;
 
@@ -40,6 +41,9 @@ typedef enum{
     NEW_MATCH,
     NEW_NAME,
     GET_MATCHES,
+    GET_MAPS,
+    SET_MAP,
+    START_GAME,
     PICHIWAR,
     JOIN
 }event_t;

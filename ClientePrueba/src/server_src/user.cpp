@@ -91,7 +91,6 @@ std::string User::getName(){
 }
 
 void User::sendPlayerInfo(Player_t &p){
-    std::cout << "USer.sendplayerinfo(), ID de player que se envia: " << p.ID << std::endl;
     transmitter.sendPlayer(p);
 }
 
@@ -99,12 +98,7 @@ void User::update(UpdateHandler &uHandler){
     
     update_tag_t aTag;
     Player_t playerInfo;
-    // std::cout << "El secondaryWP es: " << playerInfo.secondaryWP << std::endl;
-
-    // std::cout << "Usser::update() playerInfo.currentWP: " << playerInfo.currentWP << std::endl;
-    // std::cout
     uHandler.getPlayerChange(playerInfo);    
-    // std::cout << "USer.update(), ID de player que se envia: " << playerInfo.ID << std::endl;
 
     if(uHandler.mapChangeAvailable()){
         aTag = TAG_MAP_CHANGE;
@@ -118,14 +112,8 @@ void User::update(UpdateHandler &uHandler){
     }
     transmitter.sendPlayer(playerInfo);   
 
-    // uHandler.updated();
 }
 
 void User::setID(size_t newID){
     ID = newID;
-    // std::stringstream updateMsg;
-    // updateMsg << "playerInfo";
-
-    // sendGameUpdate(updateMsg);
-    // transmitter.sendPlayerID(ID);
 }

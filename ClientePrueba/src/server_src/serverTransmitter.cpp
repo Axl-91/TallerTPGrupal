@@ -16,20 +16,18 @@ void ServerTransmitter::sendString(std::string &aString){
     std::stringstream aux(aString);
     uint32_t length = aux.str().length();
     const size_t SIZE_OF_UINT32 = 4;
-	std::cout << "envio largo: " << length << std::endl;
     length = htonl(length);
     socket.send((char *) &length, SIZE_OF_UINT32);
-	std::cout << "envio string: " << aString << std::endl;
     socket.send(aux.str().data(), aux.str().length());   
 }
 
-void printVector(std::vector<std::vector<uint32_t>> lvl1){
-    for(auto v:lvl1){
-        for(auto num:v)
-            std::cout << num;
-        std::cout << std::endl;
-    }
-}
+// void printVector(std::vector<std::vector<uint32_t>> lvl1){
+//     for(auto v:lvl1){
+//         for(auto num:v)
+//             std::cout << num;
+//         std::cout << std::endl;
+//     }
+// }
 
 void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
     // printVector(lvl1);
@@ -38,12 +36,9 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
     uint32_t columnas = lvl1[0].size();
     columnas = htonl(columnas);
     const size_t SIZE_OF_UINT32 = 4;
-    std::cout << "voy a enviar filas" << std::endl;
     socket.send((char *) &filas, SIZE_OF_UINT32);
-    std::cout << "voy a enviar columnas" << std::endl;
     socket.send((char *) &columnas, SIZE_OF_UINT32);
 
-    std::cout << "voy a enviar mapa" << std::endl;
     for(auto v:lvl1){
         for(auto celda:v){
             std::cout << celda;
@@ -51,12 +46,9 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
             socket.send((char *) &celda, SIZE_OF_UINT32);
         }
     }
-    std::cout << "termine de enviar mapa" << std::endl;
 }
 
 void ServerTransmitter::sendPlayer(Player_t &player){
-    // std::cout << "voy a enviar playerInfo: \n player.x:" << player.x << "\t player.y:" << player.y << std::endl;
-    // std::cout<< player.health<<std::endl;
     socket.send((char *) &player, sizeof(Player_t));
 }
 

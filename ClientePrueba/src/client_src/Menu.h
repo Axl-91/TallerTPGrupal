@@ -76,18 +76,16 @@ private:
 	std::string namePlayer = "";
 	std::string nameGame = "";
 	std::string nameJoin = "";
+	std::string mapName = "";
 
 	std::vector<std::string> vectorSelectionText = {
 		"On", "Off", "640x480", "800x600", "1024x768"
 	};
 
 	std::vector<std::string> vectorMatches;
-	// std::vector<std::string> vectorMatches = { "pichiwar" };
 	int matchPos = 0;
 
-	std::vector<std::string> vectorMaps = {
-		"Map01", "Map02", "Map03"
-	};
+	std::vector<std::string> vectorMaps;
 	int mapPos = 0;
 
 	/*Crear o modificar SDLHandler en el que pueda

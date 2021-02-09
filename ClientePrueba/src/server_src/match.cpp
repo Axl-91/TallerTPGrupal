@@ -20,14 +20,75 @@ std::vector<std::vector<int>> lvl2 = {
 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
 };
 
+std::vector<std::vector<int>> lvl3 = {
+	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,141,000,000,201,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,000,000,434,434,434},
+	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+};
 
-Match::Match(std::string matchName):
+std::vector<std::vector<int>> lvl4 = {
+	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,434,434,434},
+	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+};
+std::map<std::string, std::vector<std::vector<int>>> lvls = {
+        {"map1",lvl2},
+        {"map2",lvl3},
+        {"map3",lvl4}
+};
+Match::Match(std::string &matchName, std::string &chosenMap):
     is_running(true),
     name(matchName),
-    lvl1(lvl2),
+    lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
     game(players, lvl1, uQ)
-{}
+{
+    initializeInitPosition();
+    initializeMaps();
+    // lvl1 = availableMaps.at(chosenMap);
+}
+
+void Match::initializeMaps(){
+    availableMaps.emplace("map1", lvl2);
+    availableMaps.emplace("map2", lvl3);
+    availableMaps.emplace("map3", lvl4);
+}
+
+void Match::initializeInitPosition(){
+    initPos aux0;
+    aux0.x = 96;
+    aux0.y = 96;
+    initPos aux1;
+    aux1.x = 196;
+    aux1.y = 196;
+    initPos aux2;
+    aux2.x = 296;
+    aux2.y = 296;
+    initPos aux3;
+    aux3.x = 396;
+    aux3.y = 396;
+    initPositions.emplace(0, aux0);
+    initPositions.emplace(1, aux1);
+    initPositions.emplace(2, aux2);
+    initPositions.emplace(3, aux3);
+}
 
 Match::~Match(){
     for (auto user:users){
@@ -116,17 +177,6 @@ bool Match::readEvents(){
     if(event.event==JOIN)
         return false;
 
-    // game.movePlayer(aPlayer);
-    // aPlayer.rotate();
-    // updateHandler.updatePlayerPosition(aPlayer);
-
-    // if(aPlayer.isShooting()==true){
-    //     game.handlePlayerShoot(aPlayer);
-    // }
-    // for(auto user:users)
-    //     user.second->update(updateHandler);
-
-    // updateHandler.updated();
     return true;
 }
 
@@ -137,20 +187,14 @@ void Match::updateUsers(){
             user.second->update(uQ.front());
         uQ.pop();
     }
-    // updateHandler.updated();
 }
 
 void Match::stop(){
     is_running = false;
 }
 
-
+// Le manda al usuario su información inicial
 void Match::welcomeUser(User* user){
-    std::stringstream welcome;
-    welcome << "Te uniste a la partida: " << name << std::endl;
-    welcome << "Bienvenido!\nPodes chatear con otros jugadores en la sala." << std::endl;
-    welcome << "Cantidad de jugadores en la sala: " << users.size() << std::endl;
-    // user->sendText(welcome);
     update_tag_t aTag = TAG_PLAYER_INFO;
     user->sendGameUpdate(aTag);
 
@@ -163,9 +207,13 @@ void Match::welcomeUser(User* user){
     user->sendMap(lvl1);
 }
 
+// Carga al usuario y sus atributos iniciales al contenedor
 void Match::addUser(User* user){
-    ServerPlayer aux(96, 96, 0, connectionNumber);
-    players.emplace(connectionNumber, std::move(aux));
+    initPos auxPos;
+    auxPos = initPositions.at(connectionNumber % 4);
+
+    ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
+    players.emplace(connectionNumber, std::move(auxPlayer));
     user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);
     users[connectionNumber] = user;

@@ -11,6 +11,8 @@
 #include "protectedUpdateQueue.h"
 #include "Game.h"
 
+// Recibe los mensajes del servidor. Durante etapa de menu encola respuestas de menu en cola de respuestas. 
+// Durante partida encola updates del juego en una cola de actualizaciones del juego.
 class ClientReceiver : public Thread {
 public:   
     ClientReceiver(Socket &socket, 
@@ -26,6 +28,7 @@ public:
     bool matchFinished();
     void receiveString(std::string &aString);
     void receiveMatchList();
+    void receiveMapList();
 
 private:
     Socket &socket;

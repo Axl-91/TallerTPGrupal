@@ -16,7 +16,6 @@ void MenuHandler::addUser(User *user){
     UserHandler *userHandler = new UserHandler(user, matches);
     (*userHandler)();
     menuHandlers.push_back(userHandler);
-                                std::cout << "Menuhandler.19: agregue un usuario" << std::endl;
     delete_finish_clients(menuHandlers);
 }
 

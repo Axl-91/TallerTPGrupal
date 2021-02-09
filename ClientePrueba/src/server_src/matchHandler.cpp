@@ -31,9 +31,9 @@ void MatchHandler::getMatchList(std::stringstream &matchesList){
     }
 }
 
-void MatchHandler::newMatch(std::string matchName){
+void MatchHandler::newMatch(std::string &matchName, std::string &chosenMap){
     // checkear que no haya nombre ocupado
-    Match *match = new Match(matchName);
+    Match *match = new Match(matchName, chosenMap);
     (*match)();
     matches[match->getName()] = match;
 }

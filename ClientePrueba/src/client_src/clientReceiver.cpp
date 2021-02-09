@@ -75,6 +75,27 @@ void ClientReceiver::receiveGame(){
     if(aTag == TAG_MATCH_LIST){
         receiveMatchList();
     }
+    if(aTag == TAG_MAP_LIST){
+        receiveMapList();
+    }
+}
+
+void ClientReceiver::receiveMapList(){
+    menu_event_t menuEvent;
+    menuEvent.event = GET_MAPS;
+    uint32_t length = 0;
+    const size_t SIZE_OF_UINT32 = 4;
+
+    socket.receive((char *) &length, SIZE_OF_UINT32);
+    length = ntohl(length);
+    if(length == 0){
+        menuEvent.info = "";
+        return;
+    }
+    std::vector<char> buffer(length+1, 0);
+    socket.receive(buffer.data(), length);
+    menuEvent.info = buffer.data();
+    menuResponseQ.push(menuEvent);
 }
 
 void ClientReceiver::receiveMatchList(){
@@ -100,19 +121,14 @@ void ClientReceiver::receiveString(std::string &aString){
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
 
-	std::cout << "antes de recibir largo" << std::endl;
     socket.receive((char *) &length, SIZE_OF_UINT32);
-	std::cout << "despues de recibir largo" << std::endl;
     length = ntohl(length);
     if(length == 0){
         return;
     }
     std::vector<char> buffer(length+1, 0);
-	std::cout << "antes de recibir string" << std::endl;
     socket.receive(buffer.data(), length);
-	std::cout << "antes de compiar string" << std::endl;
     aString = buffer.data();
-    std::cout << "recibi partidas:" << aString << "." << std::endl;
 }
 
 void ClientReceiver::receivePlayerInfo(Update_t &anUpdate){

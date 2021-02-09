@@ -13,7 +13,7 @@ public:
     ~MatchHandler();
     // virtual void run() override;
     // void operator()();
-    void newMatch(std::string matchName);
+    void newMatch(std::string &matchName, std::string &chosenMap);
     // bool isMatchAvailable(size_t i);
     bool addUserToMatch(User *user, std::string matchName);
     void getMatchList(std::stringstream &matchesList);

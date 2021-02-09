@@ -13,7 +13,10 @@
 #include "../common_src/protectedQueue.h"
 
 //
-//Clase que se ocupa de la logica del renderizado
+// Clase que se ocupa de la logica del renderizado del juego
+// Comienza a correr cuando el jugador entra a una partida. 
+// Recibe actualizaciones a partir de una cola de actualizaciones de juego. 
+// Contiene sólo el estado actual de jugadores y objetos en la partida. No procesa lógica de la partida.
 class Game : public Thread{
 private:
     int largoReal = 320;

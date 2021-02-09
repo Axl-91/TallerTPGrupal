@@ -5,8 +5,6 @@ UserHandler::UserHandler(User *user, MatchHandler &matches):
     matches(matches),
     user(user)
 {
-            std::cout << "userHandler: meto un usuario" << std::endl;
-
 }
 
 UserHandler::~UserHandler(){
@@ -24,7 +22,6 @@ void UserHandler::run(){
     std::stringstream welcomeMessage;
     welcomeMessage <<  "Bienvenido a Wolfestein3D!\n\n";
 
-        std::cout << "userHandler: empiezo a corre" << std::endl;
     // user->sendGameUpdate(welcomeMessage);
     try{
         while(is_running){
@@ -40,7 +37,7 @@ void UserHandler::run(){
                 processInput();
         }
     } catch (const std::exception &e){
-        std::cerr << "Error encontrado en menuHandler.run()" << std::endl;
+        std::cerr << "Error encontrado en userHandler.run()" << std::endl;
         std::cerr << e.what() << std::endl;
         return;
     } catch (...) { // ellipsis: catch anything
@@ -53,23 +50,28 @@ void UserHandler::processInput(){
     user->readMenuEvent(event);
 
     if(event.event == NEW_NAME){
-        std::cout << "llego NEWNAME" << std::endl;
         changeUserName(event.info);
     }
     if(event.event == JOIN){
-        std::cout << "llego JOIN" << std::endl;
-        
         addUserToMatch(event.info);
     }
     if(event.event == GET_MATCHES){
-        std::cout << "se pidio partidas"     << std::endl;
         sendMatches();
     }
+    if(event.event == GET_MAPS){
+        sendMaps();
+    }
     if(event.event == NEW_MATCH){
-        std::cout << "llego NEW_MATCH" << std::endl;
         newMatch(event.info);
         addUserToMatch(event.info);
     }
+    if(event.event == SET_MAP){
+        setChosenMap(event.info);
+    }
+}
+
+void UserHandler::setChosenMap(std::string &newName){
+    chosenMap = newName;
 }
 
 void UserHandler::changeUserName(std::string &newName){
@@ -77,7 +79,7 @@ void UserHandler::changeUserName(std::string &newName){
 }
 
 void UserHandler::newMatch(std::string &matchName){
-    matches.newMatch(matchName);
+    matches.newMatch(matchName, chosenMap);
 }
 
 void UserHandler::addUserToMatch(std::string matchName){
@@ -89,10 +91,19 @@ void UserHandler::addUserToMatch(std::string matchName){
     }
 }
 
+void UserHandler::sendMaps(){
+    std::stringstream mapsList;
+    mapsList << "map1\nmap2\nmap3";
+    // maps.getMapList(mapsList);
+    menu_event_t anEvent;
+    anEvent.event = GET_MAPS;
+    anEvent.info = mapsList.str();
+    user->sendString(anEvent.info);
+}
+
 void UserHandler::sendMatches(){
     std::stringstream matchesList;
     matches.getMatchList(matchesList);
-    std::cout << "se manda partidas:" << matchesList.str() << "." << std::endl;
     menu_event_t anEvent;
     anEvent.event = GET_MATCHES;
     anEvent.info = matchesList.str();

@@ -10,7 +10,8 @@
 #include "../common_src/types.h"
 #include "../common_src/protectedQueue.h"
 
-
+// Comienza a correr cuando el jugador entra a una partida. 
+// Captura los eventos ingresados por el usuario y los encola para ser transmitidos al servidor.
 class SDL_EventHandler : public Thread{
 private: 
     std::map<SDL_Keycode, event_t> keyDownEvents;
