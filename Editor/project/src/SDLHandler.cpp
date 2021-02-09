@@ -27,7 +27,7 @@ void SDLHandler::getTexture(){
         throw std::exception(); 
     }
 
-    auto color = SDL_MapRGB(surface->format, 152, 0, 136);
+    auto color = SDL_MapRGB(surface->format, 255, 255, 255);
     SDL_SetColorKey(surface, SDL_TRUE, color);
 
     textura = SDL_CreateTextureFromSurface(rendererWin, surface);

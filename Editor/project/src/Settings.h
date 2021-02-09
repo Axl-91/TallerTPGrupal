@@ -21,7 +21,7 @@ public:
     Settings();
     void init(char* _filename);
     void close();
-    void saveChanges();
+    void saveChanges(std::vector<std::vector<int>>map);
     int getresW() const;    
     int getresH() const;    
     int getminplayers() const;    

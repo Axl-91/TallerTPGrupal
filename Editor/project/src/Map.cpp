@@ -20,8 +20,10 @@ void Map::renderSelected(){
 void Map::renderMap(){
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 		SDL_Rect clip = opt.at((*it).getType()).getBox();
-		mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
-		mapHandler.render((*it).getX(), (*it).getY(), TILE_SIZE, TILE_SIZE);						
+		//if(checkCollision(camera, clip)){
+			mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
+			mapHandler.render((*it).getX(), (*it).getY(), TILE_SIZE, TILE_SIZE);						
+		//}
 	}
 }	
 
@@ -37,7 +39,7 @@ void Map::load(){
 	for (int fil = 0; fil < rows; ++fil){
 		for (int col = 0; col < columns; ++col){
 			int type = map[fil][col];
-			Tile tile = Tile(TILE_SIZE*col+x,TILE_SIZE*fil+y,type);						
+			Tile tile = Tile(TILE_SIZE*col+x,TILE_SIZE*fil+y,type,fil,col);						
 			tileSet.push_back(tile);
 		}
 	}	
@@ -93,7 +95,7 @@ void Map::load_objectTiles(){
 				type = typeKey;
 				typeKey++;
 			}
-			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type);				
+			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type,fil,col);				
 			opt.insert({ type, tile });				
 			element++;
 		}
@@ -127,18 +129,27 @@ void Map::pollEvent(SDL_Event &evento){
 			changeSelected();
 			putTileMap();
 		}
+	}if ((evento.type == SDL_QUIT)|| 
+		(evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE)){			
+				updateModel();
 	}
-	updateModel();
+}
+
+int Map::getTypebyFilCol(int _fil, int _col){
+	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
+		if((*it).existbyFilCol(_fil,_col)){
+			return (*it).getType();
+		}
+	}
+	return 0;
 }
 
 void Map::updateModel(){
-	/*for (int fil = rows; fil < rows; ++fil){
+	for (int fil = 0; fil < rows; ++fil){
 		for (int col = 0; col < columns; ++col){
-			int type = map[fil][col];
-			Tile tile = Tile(TILE_SIZE*col+x,TILE_SIZE*fil+y,type);						
-			tileSet.push_back(tile);
+			map[fil][col] = getTypebyFilCol(fil,col);
 		}
-	}*/
+	}
 }
 
 void Map::initText(){	
@@ -216,6 +227,9 @@ bool Map::checkCollision( SDL_Rect a, SDL_Rect b ){
         return false;
     }    
     return true;
+}
+std::vector<std::vector<int>> Map::getMap() const{
+	return map;
 }
 
 Map::~Map(){}

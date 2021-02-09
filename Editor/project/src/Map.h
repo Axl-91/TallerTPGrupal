@@ -19,6 +19,7 @@ enum class Elements { wall = 11, door = 14, heal = 17, weapon =20, ammo = 21, en
 
 class Map{
 	private:
+	SDL_Point clickOffset;
 	int x = 15;
 	int y = 70;
 	int xRelative, yRelative;        		
@@ -52,10 +53,12 @@ class Map{
 	void updateClick();
 	bool checkCollision( SDL_Rect a, SDL_Rect b );
 	void updateModel();
+	int getTypebyFilCol(int _fil, int _col);
 public:
 	Map();	
     void pollEvent(SDL_Event &evento);    
 	void init(Settings &set, SDL_Renderer* renderer);
+	std::vector<std::vector<int>> getMap() const;
 	void render();
 	void update();	
 	~Map();

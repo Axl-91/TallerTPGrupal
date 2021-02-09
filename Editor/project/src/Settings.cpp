@@ -18,9 +18,10 @@ void Settings::init(char* _filename){
     map = config["map"].as<std::vector<std::vector<int>>>();    
 }
 
-void Settings::saveChanges(){
+void Settings::saveChanges(std::vector<std::vector<int>> _map){
     std::ofstream fout(filename);
-    config["map"] = map; 
+    std::cout<<"aqui"<<_map[0][0];
+    config["map"] = _map; 
     fout << config;
 }
 

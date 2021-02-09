@@ -33,6 +33,7 @@ void Game::initialize(){
 	}
 
 	SDL_RenderSetLogicalSize(renderer, largo, alto);
+	
 
 	main.setRenderer(renderer);
 }
@@ -41,16 +42,16 @@ void Game::exitPollEvent(SDL_Event &evento){
 	if ((evento.type == SDL_QUIT)|| 
 		(evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE)){
 		gameOver = true;
-		sett.saveChanges();
+		sett.saveChanges(map.getMap());
 	}
 }
 
 void Game::update(){
     SDL_Event evento;
 
-	if (SDL_PollEvent(&evento)){
-		exitPollEvent(evento);
+	if (SDL_PollEvent(&evento)){		
 		map.pollEvent(evento);
+		exitPollEvent(evento);
 	}	
 }
 

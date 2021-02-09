@@ -21,8 +21,8 @@ class Menu{
 private:
     int largo = 320;
     int alto = 240;
-    int winLargo = 640;
-	int winAlto = 480;
+    int winLargo = 800;
+	int winAlto = 600;
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;
 	bool hasEnterGame = false;
