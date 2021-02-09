@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <vector>
+#include <map>
 #include "Settings.h"
 #include "SDLHandler.h"
 #include "Tile.h"
@@ -25,7 +26,7 @@ class Map{
 	
 	std::vector<std::vector<int>> map;
 	std::vector<Tile> tileSet;
-	std::vector<Tile> tileOptions;
+	std::map<int, Tile> opt;
 	
 	TTF_Font* font = NULL;
 	Tile selected;

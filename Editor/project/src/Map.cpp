@@ -18,21 +18,19 @@ void Map::renderSelected(){
 }
 
 void Map::renderMap(){
-	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    			
-		if(checkCollision( camera, (*it).getBox())){
-			SDL_Rect clip = tileOptions[(*it).getType()].getBox();
-			mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
-			mapHandler.render((*it).getX() - camera.x, (*it).getY()-camera.y, TILE_SIZE, TILE_SIZE);				
-		}
+	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
+		SDL_Rect clip = opt.at((*it).getType()).getBox();
+		mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
+		mapHandler.render((*it).getX(), (*it).getY(), TILE_SIZE, TILE_SIZE);						
 	}
 }	
 
 void Map::renderOptionsMap(){
-	for (std::vector<Tile>::iterator it = tileOptions.begin() ; it != tileOptions.end(); ++it){		    					
-			SDL_Rect clip = (*it).getBox();
-			mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
-			mapHandler.render((*it).getX() + OFFSET_X, (*it).getY() + OFFSET_Y , TILE_SIZE, TILE_SIZE);						
-	}	
+	 for (auto itr = opt.begin(); itr != opt.end(); ++itr) {
+		SDL_Rect clip = (itr->second).getBox();
+		mapHandler.setSrc(clip.x,clip.y,clip.h,clip.w);
+		mapHandler.render((itr->second).getX() + OFFSET_X, (itr->second).getY() + OFFSET_Y , TILE_SIZE, TILE_SIZE);						
+    }	
 }
 
 void Map::load(){	
@@ -53,23 +51,26 @@ void Map::updateClick(){
 }
 
 void Map::load_objectTiles(){		
-	int typeKey = 100;
+	int typeKey = 101;
 	int typeEnemy = 108;
-	int typeHeal = 110;
-	int typeAmmo = 120;	
-	int typeWeapon = 130;
-	int typeTreasure = 140;
-	int typeInmovable = 200;
+	int typeHeal = 111;
+	int typeAmmo = 121;	
+	int typeWeapon = 133;
+	int typeTreasure = 141;
+	int typeInmovable = 201;
 	int typeDoor = 400;
 	int typeWall = 403;
 	int type;
 	int element = 0;	
 	for (int fil = 0; fil < OPTION_ROW; ++fil){
 		for (int col = 0; col < OPTION_COL; ++col){
-			if(element<=11){
+			if(element == 0){
+				type = 0;
+			}
+			if((element>0)&&(element<=11)){
 				type = typeWall;
 				typeWall++;
-			}if((element >11)&&(element<=14)){
+			}if((element>11)&&(element<=14)){
 				type = typeDoor;
 				typeDoor++;
 			}if((element >14)&&(element<=17)){
@@ -92,21 +93,22 @@ void Map::load_objectTiles(){
 				type = typeKey;
 				typeKey++;
 			}
-			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type);						
-			tileOptions.push_back(tile);
+			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type);				
+			opt.insert({ type, tile });				
 			element++;
 		}
 	}
 	//inicializo seleccion con el 1er wall posible
-	selected = tileOptions[0];
+	selected = opt.at(0);
 }
 
-void Map::changeSelected(){	
-	for (std::vector<Tile>::iterator it = tileOptions.begin() ; it != tileOptions.end(); ++it){		    					
-			if((*it).existPosition(xRelative,yRelative,OFFSET_X,OFFSET_Y)){
-				selected = (*it);
+void Map::changeSelected(){		
+	for (auto itr = opt.begin(); itr != opt.end(); ++itr) {
+		if((itr)->second.existPosition(xRelative,yRelative,OFFSET_X,OFFSET_Y)){
+				selected = (itr)->second;
+				std::cout<<selected.getType()<<std::endl;
 			}
-		}
+    }			
 }
 
 void Map::putTileMap(){
@@ -118,12 +120,12 @@ void Map::putTileMap(){
 }
 
 void Map::pollEvent(SDL_Event &evento){
+	updateClick();
 	setCamera();
 	if(evento.type == SDL_MOUSEBUTTONDOWN){
-		if(evento.button.button == SDL_BUTTON_LEFT){
-			updateClick();
+		if(evento.button.button == SDL_BUTTON_LEFT){									
 			changeSelected();
-			//putTileMap();
+			putTileMap();
 		}
 	}
 	updateModel();
@@ -164,24 +166,21 @@ void Map::init(Settings &set, SDL_Renderer* _renderer){
 }
 
 void Map::setCamera(){		
-    int xOffset = 0, yOffset = 0;    
-    SDL_GetMouseState(&xOffset, &yOffset);
+	camera.x = (xRelative)- camera.w/2; 
+	camera.y = (yRelative)- camera.h/2;
 
-	camera.x = (xOffset)- 200/2; 
-	camera.y = (yOffset)- 200/2;
-
-	if( camera.x < 0 ){ 
-		camera.x = 0;
+	if( camera.x < 15 ){ 
+		camera.x = 15;
 	}
-	if( camera.y < 0 ){
-		camera.y = 0;
+	if( camera.y < 75 ){
+		camera.y = 75;
 	}
-	if( camera.x > 320 - camera.w )	{
+	/*if( camera.x > 320 - camera.w )	{
 		camera.x = 320 - camera.w;
 	}
-	if(camera.y > 240 - camera.h ){
-		camera.y = 240 - camera.h;
-	}
+	if(camera.y > 144 - camera.h ){
+		camera.y = 144 - camera.h;
+	}*/
 }
 
 bool Map::checkCollision( SDL_Rect a, SDL_Rect b ){    
