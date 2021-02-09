@@ -26,6 +26,7 @@
 
 #include <chrono>
 
+//Clase padre que se ocupa del manejo de armas y disparo
 class SPWeapon{
 protected:
     int damage;

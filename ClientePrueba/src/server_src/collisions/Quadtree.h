@@ -6,6 +6,9 @@
 #include "QuadNode.h"
 #include "../../common_src/Circle.h"
 
+
+
+//arbol de deteccion de colisiones
 class Quadtree{
     QuadNode root;
 public:

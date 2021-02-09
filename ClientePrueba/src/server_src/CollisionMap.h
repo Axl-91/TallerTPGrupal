@@ -7,6 +7,7 @@
 
 #include "../common_src/Circle.h"
 
+//Clase que se ocupa de relacionar las colisiones con el comportamiento del jugador
 class CollisionMap{
    	int largoBloque;
 	int rows;
@@ -23,17 +24,11 @@ public:
 	void insert(float x, float y, int value);
 	void detectCollision(circle &c, float dx, float dy, std::vector<Collidable*> &col);
 
-
-
-
-
-		int getLongBloques();
+	int getLongBloques();
 	bool hayCoordenadas(float &x, float &y);
 	bool hayCoordenadas(Vector &posicion);
 	int getBloque(float &x, float &y);
 	int getBloque(Vector &posicion);
-
-
 };
 
 

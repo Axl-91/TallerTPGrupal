@@ -9,6 +9,9 @@
 #include "CollisionMap.h"
 #include "updateHandler.h"
 
+
+//
+//Clase que se ocupa de la logica del juego
 class ServerGame{
 private:
     std::map<size_t, ServerPlayer> &players;

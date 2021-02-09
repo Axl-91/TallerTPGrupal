@@ -17,6 +17,7 @@ xInit(xI), xEnd(xE), yInit(yI), yEnd(yE){}
 
 Collidable::~Collidable(){}
 
+//Crea el tipo de Collidable segun el valor que se le pasa en opt
 Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
     if(opt>WEAPON_OFFSET && opt<WEAPON_OFFSET + COLLECTIBLE_OFFSET){
         return new CollectWeapon(xI, yI, cellWidth, opt-WEAPON_OFFSET);

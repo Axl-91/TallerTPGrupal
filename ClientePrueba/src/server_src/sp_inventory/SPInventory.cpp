@@ -8,6 +8,8 @@
 
 #define MAX_AMMO 100
 
+//
+//El jugador empieza con cuchillo y pistola equipados en el inventario
 SPInventory::SPInventory(){
     weapons[WP_KNIFE]= new SPWKnife();
     weapons[WP_GUN]= new SPWGun();
@@ -31,12 +33,19 @@ SPInventory::~SPInventory(){
         }
 }
 
+//
+//selecciona arma equipada para cambiarla por la actual
 SPWeapon* SPInventory::getWeapon(SPWeapon* pw, int i){
     if(weapons[i]!=NULL)
         pw=weapons[i];
     return pw;
 }
 
+//
+//Equipa arma secundaria y devuelve un enum con el arma anterior para que se actualice el mapa
+//Si ya la tenia no equipa nada: devuelve GUN
+//Si no tenia arma, la equipa y devuelve NONE
+//Si tenia otra arma, la equipa  y devuelve un enum con el arma secundaria anterior
 weapon_t SPInventory::equip(weapon_t w){
     weapon_t last;
     if(weapons[WP_SECONDARY]!=NULL)
@@ -62,7 +71,6 @@ weapon_t SPInventory::equip(weapon_t w){
 weapon_t SPInventory::getSecondaryWPtype(){
     if(weapons[WP_SECONDARY]==NULL)
         return NONE;
-
     return weapons[WP_SECONDARY]->getType();
 }
 

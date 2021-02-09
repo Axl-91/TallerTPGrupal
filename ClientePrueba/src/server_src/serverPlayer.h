@@ -9,6 +9,9 @@
 #include "sp_inventory/SPInventory.h"
 
 
+
+//
+//Clase que se ocupa de la logica del jugador
 class ServerPlayer{
 private:
     circle position;
@@ -25,6 +28,7 @@ private:
     size_t lifes;
     size_t score;
     player_weapons_t currentWP;
+    int health;
 
     size_t ammo;
     bool key;
@@ -36,7 +40,6 @@ private:
 public:
     void shoot();
 
-    int health;
     bool updateIsAvailable();
     void updated();
 

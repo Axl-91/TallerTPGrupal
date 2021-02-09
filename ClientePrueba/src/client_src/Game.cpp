@@ -5,6 +5,7 @@
 // #include "Hud.h"
 #include "Map.h"
 
+//cuando se inicializa, inicia SDL
 Game::Game(int largo, int alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
 	mapGame(lvl),
 	player(mapGame),
@@ -61,6 +62,7 @@ void Game::run(){
     } 
 }
 
+//actualiza caracteristicas mapa y jugador
 void Game::update(){
 	if(uQ.isEmpty()){
 		return;
@@ -71,6 +73,7 @@ void Game::update(){
 	if(anUpdate.mapChangeAvailable == true)
 		updateMap(anUpdate.mapChange);
 }
+
 void Game::updatePlayer(Player_t &p){
 	// std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 

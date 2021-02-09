@@ -13,7 +13,6 @@ void CollisionMap::detectCollision(circle &c, float dx, float dy, std::vector<Co
 	collisionTree.detectCollision(c, dx,dy, col);
 }
 
-
 void CollisionMap::erase(float x, float y){
 	collisionTree.erase(x, y);
 }
@@ -27,9 +26,6 @@ void CollisionMap::insert(float x, float y, int value){
 	int yAux=y/largoBloque;
 	collisionTree.insert(xAux, yAux, largoBloque, value);
 }
-
-
-
 
 int CollisionMap::getLongBloques(){
 	return largoBloque;

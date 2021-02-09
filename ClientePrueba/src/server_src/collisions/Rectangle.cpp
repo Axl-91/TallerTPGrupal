@@ -19,34 +19,17 @@ bool Rectangle::contains(Collidable &c) {
 
 
 bool Rectangle::contains(circle &c) {
-    // std::cout<<"Rectangle::contains"<<std::endl;
-    // std::cout<<"x: "<<c.x<<std::endl;
-    // std::cout<<"y: "<<c.y<<std::endl;
-
-    // std::cout<<*this<<std::endl;
-
     Rectangle aux(xInit-c.radius,yInit-c.radius, xEnd+c.radius, yEnd+c.radius);
 
     return aux.contains(c.x, c.y);
 }
 
-
-
 bool Rectangle::contains(float x, float y) {
-    // std::cout<<"Rectangle::contains"<<std::endl;
-    // std::cout<<"x: "<<x<<std::endl;
-    // std::cout<<"y: "<<y<<std::endl;
-
-    // std::cout<<*this<<std::endl;
-
     bool contX = xInit<=x && xEnd>=x;
     bool contY = yInit<=y && yEnd>=y;
 
     return contX && contY;
 }
-
-
-
 
 std::ostream & operator<< (std::ostream &os, Rectangle &r){
     os<<"xInit: "<<r.xInit<<std::endl;

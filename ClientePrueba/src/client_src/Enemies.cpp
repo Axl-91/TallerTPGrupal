@@ -16,6 +16,8 @@ void Enemies::setAngle(int angle){
     angleEnemy = angle;
 }
 
+
+//usa trigonometria para definia la vista del enemigo
 void Enemies::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sprite){
     Vector enemyPos(enemy.playerInfo.x, enemy.playerInfo.y);
     sprite=0;

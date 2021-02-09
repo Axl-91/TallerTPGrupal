@@ -4,6 +4,7 @@
 #include <math.h>
 #include <vector>
 
+//se creaa un nodo raiz vacio
 QuadNode::QuadNode(int x_, int y_, int w_, int h_, std::string n, size_t l, int cW):
     bounds(x_,y_,w_,h_), data(0)
 {
@@ -29,13 +30,11 @@ QuadNode::~QuadNode(){
     if (SE != nullptr) delete SE;
 }
 
-
+//si no fuera una hoja, ningun puntero podria ser nulo
 bool QuadNode::isLeaf(){return NW==nullptr;}
 
 
 bool QuadNode::insert(Collidable *point){//Método que inserta puntos en el árbol
-    // std::cout << "#######insert######## "<< std::endl;
-    // std::cout << "name: "<<name << std::endl;
     if(!bounds.contains(*point)){
         return false;
     }
@@ -43,8 +42,6 @@ bool QuadNode::insert(Collidable *point){//Método que inserta puntos en el árb
 
         if (data.size() < capacity){
             data.push_back(point);
-            // std::cout<<"inserted"<<std::endl;
-            // std::cout<<*(data.back());
             return true;
         }
         split(); //Si el nodo alcanza su capacidad máxima se divide
@@ -68,7 +65,6 @@ bool QuadNode::insert(Collidable *point){//Método que inserta puntos en el árb
 }
 
 void QuadNode::split(){ //método que divide el nodo en 4 subnodos
-    // std::cout << "----------------------------Spliting------------------------- " <<name<<" "<<lvl<< std::endl;
     int x= bounds.xInit;
     int y= bounds.yInit;
     int w= bounds.xEnd;
@@ -92,26 +88,18 @@ void QuadNode::split(){ //método que divide el nodo en 4 subnodos
     // encuentra un hijo en el cual incluir cada punto de los que estan en data[]
     for(int i = 0; i < data.size(); i++){
         if(NW->insert(data[i])){
-            // std::cout << " Intentando NW! " << std::endl;
-            continue;
-        }else
-        if(NE->insert(data[i])){
-            // std::cout << " Intentando NE! " << std::endl;
-            continue;
-        }else
-        if(SW->insert(data[i])){
-            // std::cout << " Intentando SW! " << std::endl;
-            continue;
-        }else
-        if(SE->insert(data[i])){
-            // std::cout << " Intentando SE! " << std::endl;
-            continue;
-        }else{
-            aux.push_back(data[i]);
-            // std::cout<<aux.back()<<std::endl;
             continue;
         }
-        // std::cerr << "failed to place existing point after subdivide()" << std::endl;  
+        if(NE->insert(data[i])){
+            continue;
+        }
+        if(SW->insert(data[i])){
+            continue;
+        }
+        if(SE->insert(data[i])){
+            continue;
+        }
+        aux.push_back(data[i]);
     }
 
     while(data.empty()!=true)
@@ -120,8 +108,6 @@ void QuadNode::split(){ //método que divide el nodo en 4 subnodos
     for(size_t i=0; i<aux.size();i++){
         data.push_back(aux[i]);
     }
-    // std::cout << "----------------------------End split------------------------- " <<std::endl;
-
 }
 
 bool QuadNode::erase(float x, float y){

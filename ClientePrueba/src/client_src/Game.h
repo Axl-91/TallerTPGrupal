@@ -6,13 +6,14 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <atomic>
-// #include "CollisionMap.h"
 #include "Player.h"
 #include "Map.h"
 #include "../common_src/types.h"
 #include "../common_src/thread.h"
 #include "../common_src/protectedQueue.h"
 
+//
+//Clase que se ocupa de la logica del renderizado
 class Game : public Thread{
 private:
     int largoReal = 320;

@@ -6,24 +6,18 @@
 #include "../../common_src/types.h"
 
 
-
-
-
+//
+//Clase que se ocupa del manejo de las armas equipadas
+//
 class SPInventory{
     std::map<int,SPWeapon*> weapons;
     
-    // int ammo;
-    // bool key;
 public:
     SPInventory();
     SPInventory(SPInventory &&other);
     ~SPInventory();
     weapon_t equip(weapon_t w);
 
-    // bool equip(weapon_t w);
-    // int reload(int a);
-    //int getAmmo();
-    //void setAmmo(int a);
     void equipMachineGun();
     void equipChainGun();
     void equipRocketLauncher();

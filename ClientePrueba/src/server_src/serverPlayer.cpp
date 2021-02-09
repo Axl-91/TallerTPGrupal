@@ -9,12 +9,13 @@
 #define SHOOTING_SIZE 20
 #define COEF_SHOOTING_ANGLE_DIVISOR 96
 
-
+//funcion para debugear
 int toGrados(float radiales){
 	float anguloGrados = (radiales / PI) * 180;
 	int anguloInt = round(anguloGrados);
 	return anguloInt;
 }
+
 
 ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID):
 currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
@@ -45,23 +46,21 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	inventory(std::move(other.inventory)),
 	currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
-    position.x=other.position.x;
-    position.y=other.position.y;
-    position.radius=16;
+	position = other.position;
     ang=other.ang;
-    step=5;
+    step=other.step;
 	dirx = other.dirx;
 	diry = other.diry;
-	currentWP = WP_KNIFE;
-	health = 50;
-	ammo = 50;
-	key = false;
+	currentWP = other.currentWP;
+	health = other.health;
+	ammo = other.ammo;
+	key = other.key;
 	// shooting = false;
-	shootingState = SHOOTING_STATE_QUIET;
-	lifes = 3;
-	score = 123;
-	moveOrientation = MOVE_QUIET;
-	rotateOrientation = ROTATE_QUIET;
+	shootingState = other.shootingState;
+	lifes = other.lifes;
+	score = other.score;
+	moveOrientation = other.moveOrientation;
+	rotateOrientation = other.rotateOrientation;
 	ID = other.ID;
 }
 // void ServerPlayer::setID(size_t newID){
@@ -141,8 +140,8 @@ weapon_t ServerPlayer::equip(weapon_t weapon){
 	return last;
 }
 
-
-
+//Usa trigonometria para definir la proporcion de daño que le sacara al enemigo
+//de acuerdo a la distancia (ad=adyacente) y angulo (op=opuesto)
 void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist){
 	float eX;
 	float eY;
@@ -169,7 +168,7 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 		coef=0;
 		return;
 	}
-	float coefDistance= COEF_SHOOTING_DISTANCE_OFFSET+exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
+	float coefDistance = COEF_SHOOTING_DISTANCE_OFFSET+exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
 	float coefAng= exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
 	coef=coefDistance*coefAng;
 	if(coef>1)
@@ -177,18 +176,10 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 }
 
-// void ServerPlayer::shoot(){
-// 	currentWeapon->shoot();
-// }
-
 void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
 	float weaponDamage;
 	int totalDamage;
-	std::cout<<"DISPARO!! "<<std::endl;
-	std::cout<<"tipo de arma: "<<currentWeapon->getType()<<std::endl;
 	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
-    std::cout<<"shootingState: "<<shootingState<<std::endl;
-
 	weaponDamage *= coef;
 	totalDamage = (int) weaponDamage;
 	enemy.beDamaged(totalDamage);
@@ -207,19 +198,10 @@ void ServerPlayer::beDamaged(int damage){
 	health-=damage;
 	updateAvailable=true;
 	if(health<=0)
-		//MORIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+		//logica de muerte
 		health=0;
-	std::cout<<"vida: "<<health<<std::endl;
 }
 
-// bool ServerPlayer::isShooting(){
-// 	updateAvailable=true;
-// 	if(shootingState != SHOOTING_STATE_QUIET){
-// 		return true;
-// 	}
-
-// 	return false;
-// }
 
 
 bool ServerPlayer::startedShooting(){
@@ -227,11 +209,8 @@ bool ServerPlayer::startedShooting(){
 		updateAvailable = true;
 		return true;
 	}
-
 	return false;
-
 }
-
 
 size_t ServerPlayer::getID(){
 	return ID;
@@ -244,13 +223,11 @@ float ServerPlayer::getAngle(){
 int ServerPlayer::heal(int h){
 	if(health>=MAX_HEALTH)
 		return 0;
-	std::cout<<"health before: "<<health<<std::endl;
 	updateAvailable=true;
 
 	health=health+h;
 	if(health>MAX_HEALTH)
 		health=MAX_HEALTH;
-	std::cout<<"health after: "<<health<<std::endl;
 
 	return 1;
 }
@@ -267,18 +244,14 @@ int ServerPlayer::addPoints(int p){
 	return 1;
 }
 
-
-
 int ServerPlayer::reload(int a){
 	if(ammo>=MAX_AMMO)
 		return 0;
 
 	updateAvailable=true;
-	std::cout<<"ammo before: "<<ammo<<std::endl;
 	ammo+=a;
 	if(ammo>MAX_AMMO)
 		ammo=MAX_AMMO;
-	std::cout<<"ammo after: "<<ammo<<std::endl;
 
 	return 1;
 }
@@ -288,8 +261,6 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
     p.ang = ang;
     p.dirx = dirx;
     p.diry = diry;
-	// p.currentWP = currentWP;
-	// p.secondaryWP = secondaryWP;
 	p.currentWP = currentWP;
 	p.secondaryWP = getSecondaryWPtype();
 	p.moving = moveOrientation;
@@ -300,9 +271,8 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	p.score = score;
 	p.key = key;
 	p.shootingState = shootingState;
-	// p.shooting = shooting;
 	p.ID = ID;
-    // p.step = step;
+    p.step = step;
 }
 
 player_move_orientation_t ServerPlayer::getMoveOrientation(){
@@ -330,3 +300,16 @@ void ServerPlayer::getDirection(float &x, float &y){
 	x=dirx;
 	y=diry;
 }
+
+// void ServerPlayer::shoot(){
+// 	currentWeapon->shoot();
+// }
+
+// bool ServerPlayer::isShooting(){
+// 	updateAvailable=true;
+// 	if(shootingState != SHOOTING_STATE_QUIET){
+// 		return true;
+// 	}
+
+// 	return false;
+// }

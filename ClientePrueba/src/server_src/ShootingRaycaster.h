@@ -7,6 +7,8 @@
 
 #define PI 3.14159265358979323846
 
+//clase que realiza raycasting
+//para definir si hay una pared antes de diparar
 class ShootingRaycaster{
 private:
     Vector rayV;

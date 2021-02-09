@@ -3,6 +3,7 @@
 #include "QuadNode.h"
 #include "Collidable.h"
 
+//se crea cargando el mapa
 Quadtree::Quadtree(int rows, int cols, std::vector<std::vector<int>> map, int cellWidth):
 root(0, 0, cols*cellWidth, rows*cellWidth, "root", 1, cellWidth){
     int i,j;
@@ -23,9 +24,12 @@ root(0, 0, cols*cellWidth, rows*cellWidth, "root", 1, cellWidth){
     }
 }
 
+//elimina el elemento en contacto con el circulo
 void Quadtree::erase(circle pPos){
     root.erase(pPos);
 }
+
+//elimina el elemento en el punto (x,y)
 void Quadtree::erase(float x, float y){
     root.erase(x, y);
 }

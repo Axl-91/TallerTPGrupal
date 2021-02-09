@@ -7,7 +7,6 @@ int stoGradosRay(float radiales){
 	return anguloInt;
 }
 
-
 ShootingRaycaster::ShootingRaycaster(Vector &pos, float &anguloPlayer, CollisionMap &map):
     mapRay(map), posPlayer(pos), angPlayer(anguloPlayer), rayH(0,0){
 }
@@ -118,23 +117,16 @@ void ShootingRaycaster::raycasterVertical(){
 }
 
 void ShootingRaycaster::calcularRayFinal(){
-	//axel, arreglame esto (arreglado, creo?)
-
     if (distH < distV){
         distT = distH;
         rayFinal = rayH;
-		// mapRay.setWall(rayFinal, false);
 		float rayX = rayFinal.getX();
-		// mapRay.setColWall(rayX);
 
     } else{
         distT = distV;
         rayFinal = rayV;
-		// mapRay.setWall(rayFinal, true);
 		float rayY = rayFinal.getY();
-		// mapRay.setColWall(rayY);
     }
-	/* Para evitar efecto fisheye */
 	float angNuevo = angPlayer - angRay;
 	if (angNuevo < 0) {angNuevo +=2*PI;}
 	if (angNuevo > 2*PI) {angNuevo -= 2*PI;}

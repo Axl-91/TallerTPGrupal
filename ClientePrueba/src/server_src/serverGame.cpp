@@ -10,7 +10,9 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
 	uQ(q)
 {}
 
-
+//
+//Genera actualizaciones en el mapa y 
+//el jugador de a acuerdo a los cambio en cada evento
 void ServerGame::update(){
 	for(auto &aPlayer: players){
 	    movePlayer(aPlayer.second);
@@ -26,23 +28,22 @@ void ServerGame::update(){
 	}
 }
 
+
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist=shootRaycaster(player);
 	float coef;
-	// player.shoot();
 
 	for(auto &p: players){
-		if(p.first==player.getID())// DESCOMENTAR PARA MULTI JUGADOR
+		if(p.first==player.getID())
 			continue;
 
 		player.getDamageCoefficient(p.second, coef, wallDist);
-		// if(coef!=0)
 		player.shoot(p.second, coef);
 	}
 }
 
 
-
+//devuelve la distancia a la pared mas cercana en la direccion del jugador
 float ServerGame::shootRaycaster(ServerPlayer &player){
 	circle pPosition;
 	float pAngle=player.getAngle();
@@ -61,7 +62,8 @@ float ServerGame::shootRaycaster(ServerPlayer &player){
 }
 
 
-
+//evalua posible colisiones en la posicion siguiente del jugador
+//maneja las colisiones
 void ServerGame::movePlayer(ServerPlayer &player){
 	float dx;
 	float dy;
@@ -86,6 +88,7 @@ void ServerGame::movePlayer(ServerPlayer &player){
 	player.move();
 }
 
+//actualiza el mapa de acuerdo a la colision del jugador
 void ServerGame::handleCollision(circle &playerPos, int c){
 	Collidable *maker;
     int largoBloque = 64;
@@ -95,12 +98,9 @@ void ServerGame::handleCollision(circle &playerPos, int c){
 
 	colMap.erase(playerPos);
     value=0;
-	// mapGame.eraseObj(playerPos.x,playerPos.y);
 	if(c>130&&c<140){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
         value = c;
-		// mapGame.insertWeapon(playerPos.x, playerPos.y, c);
 	}
-
     updateHandler.updateMap(playerPos.x, playerPos.y, value);
 }

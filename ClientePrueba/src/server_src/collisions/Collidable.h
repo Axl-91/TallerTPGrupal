@@ -28,6 +28,13 @@
 #define HEAL_MEDICAL_EQUIPMENT 20
 
 
+
+//
+//Clase padre que se ocupa del manejo de colisiones
+//Los Colidable se subdividen segun el comportamiento de la colision:
+//-Collectible (recolectable): se levanta del mapa (armas, llaves, etc..-)
+//-Movable (movible): la colision implica un movimiento del objeto (puertas)
+//-Inmovable: paredes y objetos inamovibles
 class Collidable{
 protected:
     float xInit;
