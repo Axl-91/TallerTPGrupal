@@ -32,7 +32,7 @@ private:
 	ProtectedQueue<Update_t> &uQ;
     std::atomic<bool> is_running;
 public:
-	Game(int largo, int ancho, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q);
+	Game(int &largo, int &ancho, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q);
 	~Game();
 	void operator()();
     virtual void run() override;

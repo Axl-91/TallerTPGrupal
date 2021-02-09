@@ -44,14 +44,14 @@ class Menu{
 private:
 	ProtectedQueue<menu_event_t> &menuEventQ;
 	ClientReceiver &receiver;
+    int &winLargo;
+	int &winAlto;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
 	SDL_Sounds* menuSounds = SDL_Sounds::getInstance();
 	
     int largo = 320;
     int alto = 240;
-    int winLargo = 640;
-	int winAlto = 480;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;
@@ -128,7 +128,7 @@ private:
 	void selectMap();
 	void renderSelectionMap(int pos);
 public:
-	Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r);
+	Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a);
 	void render();
 	void pollEvent();
 	bool quitGame();

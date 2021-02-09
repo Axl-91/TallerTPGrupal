@@ -14,6 +14,9 @@
 //Clase que se ocupa de la logica del jugador
 class ServerPlayer{
 private:
+    float init_posx;
+    float init_posy;
+
     circle position;
     player_move_orientation_t moveOrientation;
     player_rotate_orientation_t rotateOrientation;
@@ -39,7 +42,7 @@ private:
 
 public:
     void shoot();
-
+    void respawn();
     bool updateIsAvailable();
     void updated();
 

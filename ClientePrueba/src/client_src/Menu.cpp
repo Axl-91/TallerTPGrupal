@@ -5,9 +5,11 @@
 #include <iostream>
 #include "SDLHandler.h"
 
-Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r): 
+Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a): 
 	menuEventQ(eQ),
 	receiver(r),
+	winLargo(l),
+	winAlto(a),
 	mainMenu(0, 0, largo, alto, "Media/Menu/MainMenu.png"),
 	optionsMenu(0, 0, largo, alto, "Media/Menu/OptionsMenu.png"),
 	newGameMenu(0, 0, largo, alto, "Media/Menu/NewMenu.png"),

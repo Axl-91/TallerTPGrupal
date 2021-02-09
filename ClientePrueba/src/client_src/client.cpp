@@ -8,37 +8,27 @@ Client::Client(const char *host_name, const char *port):
     eHandler(gameEventQ),
     is_running(false)
 {
-    std::cout << "empiezo a construir client" << std::endl;
     s.connect(host_name, port);
-    std::cout << "conecte client" << std::endl;
     if(!s.isConnected())
         return;
     transmitter();
     // receiver();
-    std::cout << "termine de construir client" << std::endl;
-
 }
 
 Client::~Client(){
-    std::cout << "\n\n destructor client" << std::endl;
     is_running = false;
     if(transmitter.isRunning()){
         transmitter.stop();
-        std::cout << "hice stop a transmitter" << std::endl;
         transmitter.join();
     }
     if(!receiver.isDead()){
         receiver.stop();
-        std::cout << "hice stop a receiver" << std::endl;
     }
     receiver.join();
     if(!eHandler.isDead()){
         eHandler.stop();
-        std::cout << "hice stop a ehandler" << std::endl;
     }
     eHandler.join();
-        std::cout << "salgo de destructor" << std::endl;
-
 }
 
 void Client::read_petition(){
@@ -65,8 +55,11 @@ void Client::run(){
 
         // Recibe actualmente todo lo envia por quienes estan en mismo match. Cambiar despues a enviar modelo.
         
-        while(is_running == true){            {
-                Menu menu(menuEventQ, receiver);
+        while(is_running == true){            
+            int winLargo = 640;
+            int winAlto = 480;
+            {
+                Menu menu(menuEventQ, receiver, winLargo, winAlto);
                 while (!menu.quitGame() && !menu.createGame() && !menu.joinGame()){
                     menu.pollEvent();
                     menu.render();
@@ -84,7 +77,7 @@ void Client::run(){
             std::cout << "client: isInMatch" << std::endl;
             
             std::cout << "___________________________________ \n" << std::endl;
-            Game game(640, 480, lvl2, gameUpdateQ);
+            Game game(winLargo, winAlto, lvl2, gameUpdateQ);
 
             std::cout << "___________________________________ \n" << std::endl;
             game();

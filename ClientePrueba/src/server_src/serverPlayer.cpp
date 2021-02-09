@@ -20,6 +20,8 @@ int toGrados(float radiales){
 ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID):
 currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
+	init_posx = x;
+	init_posy = y;
     position.x=x;
     position.y=y;
     position.radius=16;
@@ -46,6 +48,8 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	inventory(std::move(other.inventory)),
 	currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
+	init_posx = other.init_posx;
+	init_posy = other.init_posy;
 	position = other.position;
     ang=other.ang;
     step=other.step;
@@ -76,6 +80,10 @@ void ServerPlayer::updated(){
 	updateAvailable=false;
 }
 
+void ServerPlayer::respawn(){
+	position.x = init_posx;
+	position.y = init_posy;
+}
 
 void ServerPlayer::rotate(){
 	ang -= PI/36*rotateOrientation;
@@ -197,9 +205,16 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 void ServerPlayer::beDamaged(int damage){
 	health-=damage;
 	updateAvailable=true;
-	if(health<=0)
-		//logica de muerte
-		health=0;
+	if(health<=0){
+		respawn();
+		health = 100;
+		lifes -= 1;
+		if(lifes <= 0){
+			lifes = 0;
+			// logica muerte
+		}
+			
+	}
 }
 
 
