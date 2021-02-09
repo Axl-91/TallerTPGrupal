@@ -11,6 +11,21 @@ sudo apt-get install
 	libsdl2-image-dev
 	libsdl2-ttf-dev
 
+## Para correr Wolfestein3D:
+	
+	mkdir build
+	cd build
+	cmake ../ClientePrueba
+	make install
+	
+Para ejecutar servidor:
+	
+	./server <puerto/servicio>
+	
+Para ejecutar cliente:
+
+	./client <ip/hostname> <port/service>
+
 ## Grupo 14
 
     Ariel Lowy.                 Padrón: 98298
