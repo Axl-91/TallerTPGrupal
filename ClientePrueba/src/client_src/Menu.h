@@ -70,6 +70,8 @@ private:
 	bool nameChange = false;
 	bool gameChange = false;
 	bool joinChange = false;
+	bool mapChange = true;
+	
 	int menu = MAIN_MENU;
 	std::string namePlayer = "";
 	std::string nameGame = "";
@@ -83,8 +85,10 @@ private:
 	// std::vector<std::string> vectorMatches = { "pichiwar" };
 	int matchPos = 0;
 
-	std::vector<std::string> vectorMaps;
-	int mapsPos = 0;
+	std::vector<std::string> vectorMaps = {
+		"Map01", "Map02", "Map03"
+	};
+	int mapPos = 0;
 
 	/*Crear o modificar SDLHandler en el que pueda
 	 meter muchas imagenes juntas */
@@ -93,6 +97,7 @@ private:
 	SDLHandler newGameMenu;
 	SDLHandler newGameTextPlayer;
 	SDLHandler newGameTextGame;
+	SDLHandler newGameTextMap;
 	SDLHandler joinGameMenu;
 	SDLHandler joinGameTextPlayer;
 	SDLHandler joinGameTextGame;
@@ -102,6 +107,7 @@ private:
 	TextHandler textNameHandler;
 	TextHandler textGameCreateHandler;
 	TextHandler textGameJoinHandler;
+	TextHandler textMapHandler;
 
 	void initialize();
 	void createText();
@@ -121,6 +127,8 @@ private:
 	void renderCreateForInput(std::string &input, int x, int y, int tipo);
 	void selectMatch();
 	void renderSelectionMatch(int pos);
+	void selectMap();
+	void renderSelectionMap(int pos);
 public:
 	Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r);
 	void render();
@@ -129,6 +137,7 @@ public:
 	bool createGame();
 	bool joinGame();
 	void setMatches(std::vector<std::string> matches);
+	void setMaps(std::vector<std::string> maps);
 	std::string playerName();
 	std::string gameCreated();
 	std::string gameJoined();

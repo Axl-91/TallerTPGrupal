@@ -13,6 +13,7 @@ Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r):
 	newGameMenu(0, 0, largo, alto, "Media/Menu/NewMenu.png"),
 	newGameTextPlayer(0, 0, largo, alto, "Media/Menu/NewMenuName.png"),
 	newGameTextGame(0, 0, largo, alto, "Media/Menu/NewMenuGame.png"),
+	newGameTextMap(0, 0, largo, alto, "Media/Menu/NewMenuMap.png"),
 	joinGameMenu(0, 0, largo, alto, "Media/Menu/JoinMenu.png"),
 	joinGameTextPlayer(0, 0, largo, alto, "Media/Menu/JoinMenuName.png"),
 	joinGameTextGame(0, 0, largo, alto, "Media/Menu/JoinMenuGame.png"),
@@ -20,7 +21,8 @@ Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r):
 	textSelectHandler(vectorSelectionText),
 	textNameHandler(" "),
 	textGameCreateHandler(" "),
-	textGameJoinHandler(" ")
+	textGameJoinHandler(" "),
+	textMapHandler(" ")
 {
 		initialize();
 		createText();
@@ -34,6 +36,7 @@ void Menu::createText(){
 	textNameHandler.setRenderer(menuRenderer, white);
 	textGameCreateHandler.setRenderer(menuRenderer, white);
 	textGameJoinHandler.setRenderer(menuRenderer, white);
+	textMapHandler.setRenderer(menuRenderer, white);
 }
 
 void Menu::initialize(){
@@ -57,6 +60,7 @@ void Menu::initialize(){
 	newGameMenu.setRenderer(menuRenderer);
 	newGameTextPlayer.setRenderer(menuRenderer);
 	newGameTextGame.setRenderer(menuRenderer);
+	newGameTextMap.setRenderer(menuRenderer);
 	joinGameMenu.setRenderer(menuRenderer);
 	joinGameTextPlayer.setRenderer(menuRenderer);
 	joinGameTextGame.setRenderer(menuRenderer);
@@ -103,9 +107,15 @@ void Menu::renderTextCreate(){
 		}
 		gameChange = false;
 	}
-
 	int sizeGame = 7*nameGame.size();
 	textGameCreateHandler.render(163,96,sizeGame,15);
+
+	if (mapChange){
+		textMapHandler.setText(vectorMaps[mapPos]);
+		mapChange = false;
+	}
+	int mapName = 7*vectorMaps[mapPos].size();
+	textMapHandler.render(170,123,mapName,15);
 }
 
 void Menu::renderTextJoin(){
@@ -269,6 +279,63 @@ bool Menu::inputText(std::string &input, int x, int y, int tipo){
 	return hasChange;
 }
 
+// Imprime los mapas
+void Menu::renderSelectionMap(int pos){
+	SDL_Color yellow = {245,244,0};
+	SDL_RenderClear(menuRenderer);
+	newGameTextMap.render(0, 0, largo, alto);
+	if (vectorMaps.size() > 0){
+		TextHandler handler(vectorMaps[pos]);
+		handler.setRenderer(menuRenderer, yellow);
+		int sizeJoin = 7*vectorMaps[pos].size();
+		handler.render(170,123,sizeJoin,15);
+	} else {
+		std::string msj = "No Maps";
+		TextHandler handler(msj);
+		handler.setRenderer(menuRenderer, yellow);
+		int sizeJoin = 7*msj.size();
+		handler.render(170,123,sizeJoin,15);
+	}
+	SDL_RenderPresent(menuRenderer);
+}
+
+void Menu::selectMap(){
+
+	bool selected = false;
+	SDL_Event event;
+	renderSelectionMap(mapPos);
+
+	while (!selected){
+		if (SDL_PollEvent(&event)){
+			if (event.type == SDL_KEYDOWN){
+				switch (event.key.keysym.sym){
+					case SDLK_RIGHT:
+						if (vectorMaps.size() > mapPos+1){
+							mapPos += 1;
+							renderSelectionMap(mapPos);
+						}
+						break;
+					case SDLK_LEFT:
+						if (mapPos > 0){
+							mapPos -= 1;
+							renderSelectionMap(mapPos);
+						}
+						break;
+					case SDLK_RETURN:
+						if (vectorMaps.size() > 0){
+							mapChange = true;
+							selected = true;
+						}
+						break;
+					case SDLK_ESCAPE:
+						selected = true;
+						break;
+				}
+			}
+		}
+	}
+}
+
 void Menu::doActionCreate(){
 	menu_event_t event;
 	switch (posSelectCreate){
@@ -283,6 +350,9 @@ void Menu::doActionCreate(){
 																	event.event = NEW_MATCH;
 																	event.info = nameGame;			
 																	menuEventQ.push(event);
+			break;
+		case CREATE_MAP:
+			selectMap();
 			break;
 		case CREATE_PLAY:
 			if (namePlayer.size() > 0 && nameGame.size() > 0){
@@ -580,6 +650,10 @@ bool Menu::joinGame(){
 
 void Menu::setMatches(std::vector<std::string> matches){
 	vectorMatches = matches;
+}
+
+void Menu::setMaps(std::vector<std::string> maps){
+	vectorMaps = maps;
 }
 
 std::string Menu::playerName(){
