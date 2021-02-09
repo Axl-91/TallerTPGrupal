@@ -29,7 +29,7 @@ add_executable (server src/server_src/main.cpp ${SERVER_SRC_FILES} ${COMMON_SRC_
 
 add_executable (client src/client_src/main.cpp ${CLIENT_SRC_FILES} ${COMMON_SRC_FILES} ${INVENTORY_FILES})
 
-target_link_libraries(client SDL2 SDL2_image SDL2_ttf pthread)
+target_link_libraries(client SDL2 SDL2_image SDL2_ttf SDL2_mixer pthread)
 target_link_libraries(server pthread)
 
 install(FILES 
@@ -39,3 +39,6 @@ assets/walls.png
 assets/objects.png 
 DESTINATION ${CMAKE_BINARY_DIR})
 
+install(DIRECTORY
+../Media
+DESTINATION ${CMAKE_BINARY_DIR})

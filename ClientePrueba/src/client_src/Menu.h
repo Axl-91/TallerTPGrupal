@@ -12,6 +12,7 @@
 #include "../common_src/protectedQueue.h"
 #include "../common_src/types.h"
 #include "clientReceiver.h"
+#include "SDL_Sounds.h"
 
 #define MAIN_CREATE 80
 #define MAIN_JOIN 107
@@ -22,10 +23,11 @@
 #define OPT_FS 109
 #define OPT_BACK 144
 
-#define CREATE_NAME 74
-#define CREATE_MATCH 109
-#define CREATE_PLAY 144
-#define CREATE_BACK 179
+#define CREATE_NAME 69
+#define CREATE_MATCH 96
+#define CREATE_MAP 123
+#define CREATE_PLAY 150
+#define CREATE_BACK 177
 
 #define JOIN_NAME 85
 #define JOIN_MATCH 112
@@ -44,6 +46,7 @@ private:
 	ClientReceiver &receiver;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
+	SDL_Sounds* menuSounds = SDL_Sounds::getInstance();
 	
     int largo = 320;
     int alto = 240;
@@ -57,7 +60,7 @@ private:
 
 	int offsetSelectMain = 27;
 	int offsetSelectOpt = 35;
-	int offsetSelectCreate = 35;
+	int offsetSelectCreate = 27;
 	int offsetSelectJoin = 27;
 
 	bool hasCreateGame = false;
@@ -79,6 +82,9 @@ private:
 	std::vector<std::string> vectorMatches;
 	// std::vector<std::string> vectorMatches = { "pichiwar" };
 	int matchPos = 0;
+
+	std::vector<std::string> vectorMaps;
+	int mapsPos = 0;
 
 	/*Crear o modificar SDLHandler en el que pueda
 	 meter muchas imagenes juntas */

@@ -24,6 +24,7 @@ Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r):
 {
 		initialize();
 		createText();
+		menuSounds->playMusic(MENU_MUSIC);
 }
 
 void Menu::createText(){
@@ -91,7 +92,7 @@ void Menu::renderTextCreate(){
 		nameChange = false;
 	}
 	int sizeName = 7*namePlayer.size();
-	textNameHandler.render(168,73,sizeName,15);
+	textNameHandler.render(168,69,sizeName,15);
 
 
 	if (gameChange){
@@ -104,7 +105,7 @@ void Menu::renderTextCreate(){
 	}
 
 	int sizeGame = 7*nameGame.size();
-	textGameCreateHandler.render(163,108,sizeGame,15);
+	textGameCreateHandler.render(163,96,sizeGame,15);
 }
 
 void Menu::renderTextJoin(){
@@ -272,13 +273,13 @@ void Menu::doActionCreate(){
 	menu_event_t event;
 	switch (posSelectCreate){
 		case CREATE_NAME:
-			nameChange = inputText(namePlayer,168,73, CREATE_PLAYER);
+			nameChange = inputText(namePlayer,168,69, CREATE_PLAYER);
 																	event.event = NEW_NAME;
 																	event.info = namePlayer;
 																	menuEventQ.push(event);
 			break;
 		case CREATE_MATCH:
-			gameChange = inputText(nameGame,163,108, CREATE_GAME);
+			gameChange = inputText(nameGame,163,96, CREATE_GAME);
 																	event.event = NEW_MATCH;
 																	event.info = nameGame;			
 																	menuEventQ.push(event);
@@ -501,6 +502,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_DOWN:
+					menuSounds->playEffect(MENU_MOVE);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_DOWN);
@@ -517,6 +519,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_UP:
+					menuSounds->playEffect(MENU_MOVE);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_UP);
@@ -533,6 +536,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_RETURN:
+					menuSounds->playEffect(MENU_SELECT);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_ENTER);
