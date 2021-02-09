@@ -4,7 +4,8 @@ Este proyecto es un remake del juego Wolfestein 3D, juego del año 1992.
 En esta versión el juego contará con partidas del estilo deathmatch, de manera multijugador, soportando el uso de inteligencia artificial para ingresar jugadores manejados por la computadora.
 
 ## Librerias necesarias para compilar:
-apt-get install 
+sudo apt-get install 
+
 	libsdl2-mixer-dev
 	libsdl2-dev 
 	libsdl2-image-dev
