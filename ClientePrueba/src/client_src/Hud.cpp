@@ -7,7 +7,7 @@
 Hud::Hud():
 textureHandler(0, 0, HUDL, HUDA,INSTALLED_TEXTURE_HUD), 
 gun(0, 41, HGUNL, HGUNA,INSTALLED_TEXTURE_HUD),
-numbers(228, 41, HNUML, HNUMA,INSTALLED_TEXTURE_HUD){}
+numbers(0, 66, HNUML, HNUMA,INSTALLED_TEXTURE_HUD){}
 
 void Hud::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);
@@ -23,7 +23,7 @@ void Hud::renderNumber(int number, int x, int y){
     while (true){
         int numero = number % 10;
 
-        numbers.src.x = initNum + offsetNum * numero;
+        numbers.src.x = offsetNum * numero;
         numbers.render(x, y, HNUML, HNUMA);
 
         number = number / 10;

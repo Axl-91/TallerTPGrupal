@@ -22,7 +22,6 @@
 class Hud{
 private:
     int offsetGun = 49;
-    int initNum = 228;
     int offsetNum = 9;
     SDL_Rect srcKey = {196, 41, HKEYL, HKEYA};
     SDLHandler textureHandler;
