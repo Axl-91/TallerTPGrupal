@@ -7,12 +7,14 @@
 Hud::Hud():
 textureHandler(0, 0, HUDL, HUDA,INSTALLED_TEXTURE_HUD), 
 gun(0, 41, HGUNL, HGUNA,INSTALLED_TEXTURE_HUD),
-numbers(0, 66, HNUML, HNUMA,INSTALLED_TEXTURE_HUD){}
+numbers(0, 66, HNUML, HNUMA,INSTALLED_TEXTURE_HUD),
+faces(25,0,HFACEL, HFACEA, INSTALLED_TEXTURE_HUD_FACES){}
 
 void Hud::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);
     gun.setRenderer(renderer);
     numbers.setRenderer(renderer);
+    faces.setRenderer(renderer);
 }
 
 void Hud::setWeapon(weapon_t aWeapon){
@@ -34,6 +36,26 @@ void Hud::renderNumber(int number, int x, int y){
 
 void Hud::renderHealth(int health){
     renderNumber(health, 184, 216);
+    renderFace(health);
+}
+
+void Hud::renderFace(int health){
+    if (health > 85){
+        faces.src.y = (HFACEA+1)*0;
+    } else if (health > 70){
+        faces.src.y = (HFACEA+1)*1;
+    } else if (health > 55){
+        faces.src.y = (HFACEA+1)*2;
+    } else if (health > 40){
+        faces.src.y = (HFACEA+1)*3;
+    } else if (health > 25){
+        faces.src.y = (HFACEA+1)*4;
+    } else if (health > 10){
+        faces.src.y = (HFACEA+1)*5;
+    } else {
+        faces.src.y = (HFACEA+1)*6;
+    }
+    faces.render(136, 204, HFACEL, HFACEA);
 }
 
 void Hud::renderAmmo(int ammo){
@@ -47,7 +69,6 @@ void Hud::renderLife(int life){
 void Hud::renderScore(int score){
     renderNumber(score, 82, 216);
 }
-
 
 void Hud::render(int largoWin, int altoWin){
     textureHandler.render(largoWin-HUDL, altoWin-HUDA, HUDL, HUDA);

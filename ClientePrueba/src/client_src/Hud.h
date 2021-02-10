@@ -18,6 +18,9 @@
 //Largo y alto de llave en HUD
 #define HKEYL 8
 #define HKEYA 16
+//Largo y alto de las caras
+#define HFACEL 24
+#define HFACEA 32
 
 class Hud{
 private:
@@ -27,6 +30,7 @@ private:
     SDLHandler textureHandler;
     SDLHandler gun;
     SDLHandler numbers;
+    SDLHandler faces;
 
     void getTexture();
     void renderNumber(int number, int x, int y);
@@ -42,6 +46,7 @@ public:
     void renderAmmo(int ammo);
     void renderLife(int life);
     void renderScore(int score);
+    void renderFace(int health);
     ~Hud();
 };
 

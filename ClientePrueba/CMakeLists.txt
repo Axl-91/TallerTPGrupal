@@ -34,7 +34,6 @@ target_link_libraries(server pthread)
 
 install(FILES 
 assets/guns.png 
-assets/hud.png 
 assets/walls.png 
 assets/objects.png 
 DESTINATION ${CMAKE_BINARY_DIR})
