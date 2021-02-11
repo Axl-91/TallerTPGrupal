@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "../SDLHandler.h"
+#include "../SpritesHandler.h"
 #include "../../common_src/types.h"
 #include "../SpritesHandler.h"
 

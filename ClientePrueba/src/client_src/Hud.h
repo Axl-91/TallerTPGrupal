@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "SDLHandler.h"
+#include "SpritesHandler.h"
 #include "../common_src/types.h"
 
 //Largo y alto del HUD
@@ -27,10 +27,10 @@ private:
     int offsetGun = 49;
     int offsetNum = 9;
     SDL_Rect srcKey = {196, 41, HKEYL, HKEYA};
-    SDLHandler textureHandler;
-    SDLHandler gun;
-    SDLHandler numbers;
-    SDLHandler faces;
+    SpritesHandler textureHandler;
+    SpritesHandler gun;
+    SpritesHandler numbers;
+    SpritesHandler faces;
 
     void getTexture();
     void renderNumber(int number, int x, int y);

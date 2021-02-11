@@ -7,7 +7,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "SDLHandler.h"
+#include "SpritesHandler.h"
 #include "TextHandler.h"
 #include "../common_src/protectedQueue.h"
 #include "../common_src/types.h"
@@ -33,6 +33,9 @@
 #define JOIN_MATCH 112
 #define JOIN_PLAY 139
 #define JOIN_BACK 166
+
+enum VECTOR_MENUS { M_MAIN, M_OPTIONS, M_NEW, M_NEWNAME, M_NEWGAME,
+ M_NEWMAP, M_JOIN, M_JOINNAME, M_JOINMATCH};
 
 enum SELECT_TIPO {ON_TEXT, OFF_TEXT, RES_ONE_TEXT, RES_TWO_TEXT,
 	RES_THREE_TEXT};
@@ -88,18 +91,15 @@ private:
 	std::vector<std::string> vectorMaps;
 	int mapPos = 0;
 
-	/*Crear o modificar SDLHandler en el que pueda
-	 meter muchas imagenes juntas */
-	SDLHandler mainMenu;
-	SDLHandler optionsMenu;
-	SDLHandler newGameMenu;
-	SDLHandler newGameTextPlayer;
-	SDLHandler newGameTextGame;
-	SDLHandler newGameTextMap;
-	SDLHandler joinGameMenu;
-	SDLHandler joinGameTextPlayer;
-	SDLHandler joinGameTextGame;
-	SDLHandler selection;
+	std::vector<std::string> vectorMenus = {
+		"Media/Menu/MainMenu.png", "Media/Menu/OptionsMenu.png",
+		"Media/Menu/NewMenu.png", "Media/Menu/NewMenuName.png",
+		"Media/Menu/NewMenuGame.png", "Media/Menu/NewMenuMap.png",
+		"Media/Menu/JoinMenu.png", "Media/Menu/JoinMenuName.png",
+		"Media/Menu/JoinMenuGame.png"
+	};
+	SpritesHandler menusHandler;
+	SpritesHandler selection;
 
 	TextHandler textSelectHandler;
 	TextHandler textNameHandler;

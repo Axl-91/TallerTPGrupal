@@ -3,8 +3,7 @@
 
 // #include <SDL2/SDL.h>
 // #include <SDL2/SDL_image.h>
-#include "SDLHandler.h"
-// #include "SpritesHandler.h"
+#include "SpritesHandler.h"
 
 class Walls{
 private:
@@ -12,8 +11,7 @@ private:
     int srcY = 0;
     int offset = 64;
     int wall;
-    // SpritesHandler textureHandler;
-    SDLHandler textureHandler;
+    SpritesHandler textureHandler;
 public:
     Walls();
     void setRenderer(SDL_Renderer* renderer);

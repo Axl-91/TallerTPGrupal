@@ -5,7 +5,7 @@
 #include "Walls.h"
 #include "Install.h"
 
-Walls::Walls():textureHandler(srcX, srcY, offset, offset,INSTALLED_TEXTURE_WALLS){}
+Walls::Walls():textureHandler(INSTALLED_TEXTURE_WALLS){}
 
 void Walls::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);

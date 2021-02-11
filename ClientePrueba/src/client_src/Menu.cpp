@@ -3,23 +3,15 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
-#include "SDLHandler.h"
+#include "SpritesHandler.h"
 
 Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a): 
 	menuEventQ(eQ),
 	receiver(r),
 	winLargo(l),
 	winAlto(a),
-	mainMenu(0, 0, largo, alto, "Media/Menu/MainMenu.png"),
-	optionsMenu(0, 0, largo, alto, "Media/Menu/OptionsMenu.png"),
-	newGameMenu(0, 0, largo, alto, "Media/Menu/NewMenu.png"),
-	newGameTextPlayer(0, 0, largo, alto, "Media/Menu/NewMenuName.png"),
-	newGameTextGame(0, 0, largo, alto, "Media/Menu/NewMenuGame.png"),
-	newGameTextMap(0, 0, largo, alto, "Media/Menu/NewMenuMap.png"),
-	joinGameMenu(0, 0, largo, alto, "Media/Menu/JoinMenu.png"),
-	joinGameTextPlayer(0, 0, largo, alto, "Media/Menu/JoinMenuName.png"),
-	joinGameTextGame(0, 0, largo, alto, "Media/Menu/JoinMenuGame.png"),
-	selection(0, 0, 23, 33, "Media/Menu/SelectionMenu.png"),
+	menusHandler(vectorMenus, largo, alto),
+	selection("Media/Menu/SelectionMenu.png", 23, 33),
 	textSelectHandler(vectorSelectionText),
 	textNameHandler(" "),
 	textGameCreateHandler(" "),
@@ -57,15 +49,7 @@ void Menu::initialize(){
 	SDL_SetWindowTitle(menuWindow, "WOLFENSTEIN 3D");
 	SDL_RenderSetLogicalSize(menuRenderer, largo, alto);
 
-	mainMenu.setRenderer(menuRenderer);
-	optionsMenu.setRenderer(menuRenderer);
-	newGameMenu.setRenderer(menuRenderer);
-	newGameTextPlayer.setRenderer(menuRenderer);
-	newGameTextGame.setRenderer(menuRenderer);
-	newGameTextMap.setRenderer(menuRenderer);
-	joinGameMenu.setRenderer(menuRenderer);
-	joinGameTextPlayer.setRenderer(menuRenderer);
-	joinGameTextGame.setRenderer(menuRenderer);
+	menusHandler.setRenderer(menuRenderer);
 	selection.setRenderer(menuRenderer);
 
 	TTF_Init();
@@ -148,18 +132,18 @@ void Menu::renderTextJoin(){
 
 void Menu::renderMenu(){
     if (menu == MAIN_MENU){
-		mainMenu.render(0, 0, largo, alto);
+		menusHandler.render(0, 0, largo, alto, M_MAIN);
 		selection.render(60, posSelectMain, 23, 16);
 	} else if (menu == OPTIONS_MENU){
-		optionsMenu.render(0, 0 ,largo ,alto);
+		menusHandler.render(0, 0 ,largo ,alto, M_OPTIONS);
 		selection.render(60, posSelectOpt, 23, 16);
 		renderTextOptions();
 	} else if (menu == CREATE_MENU){
-		newGameMenu.render(0, 0 ,largo ,alto);
+		menusHandler.render(0, 0 ,largo ,alto, M_NEW);
 		selection.render(30, posSelectCreate, 23, 16);
 		renderTextCreate();
 	} else if (menu == JOIN_MENU){
-		joinGameMenu.render(0, 0 ,largo ,alto);
+		menusHandler.render(0, 0 ,largo ,alto, M_JOIN);
 		selection.render(36, posSelectJoin, 23, 16);
 		renderTextJoin();
 	}
@@ -228,11 +212,11 @@ void Menu::renderCreateForInput(std::string &input, int x, int y, int tipo){
 	SDL_Color yellow = {255, 204, 0};
 	SDL_RenderClear(menuRenderer);
 	if (tipo == CREATE_PLAYER){
-		newGameTextPlayer.render(0, 0 ,largo ,alto);
+		menusHandler.render(0, 0 ,largo ,alto, M_NEWNAME);
 	} else if (tipo == CREATE_GAME){
-		newGameTextGame.render(0, 0 ,largo ,alto);
+		menusHandler.render(0, 0 ,largo ,alto, M_NEWGAME);
 	}else if (tipo == JOIN_PLAYER){
-		joinGameTextPlayer.render(0, 0, largo, alto);
+		menusHandler.render(0, 0, largo, alto, M_JOINNAME);
 	}
 	if (input.size() > 0){
 		TextHandler handler(input);
@@ -286,7 +270,7 @@ bool Menu::inputText(std::string &input, int x, int y, int tipo){
 void Menu::renderSelectionMap(int pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	newGameTextMap.render(0, 0, largo, alto);
+	menusHandler.render(0, 0, largo, alto, M_NEWMAP);
 									std::cout << "menu.287" << std::endl;
 	if (vectorMaps.size() > 0){
 		TextHandler handler(vectorMaps[pos]);
@@ -409,7 +393,7 @@ void Menu::doActionCreate(){
 void Menu::renderSelectionMatch(int pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	joinGameTextGame.render(0, 0, largo, alto);
+	menusHandler.render(0, 0, largo, alto, M_JOINMATCH);
 	if (vectorMatches.size() > 0){
 		TextHandler handler(vectorMatches[pos]);
 		handler.setRenderer(menuRenderer, yellow);

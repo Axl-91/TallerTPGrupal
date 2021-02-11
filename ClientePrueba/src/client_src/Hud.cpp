@@ -5,10 +5,14 @@
 #include "Install.h"
 
 Hud::Hud():
-textureHandler(0, 0, HUDL, HUDA,INSTALLED_TEXTURE_HUD), 
-gun(0, 41, HGUNL, HGUNA,INSTALLED_TEXTURE_HUD),
-numbers(0, 66, HNUML, HNUMA,INSTALLED_TEXTURE_HUD),
-faces(25,0,HFACEL, HFACEA, INSTALLED_TEXTURE_HUD_FACES){}
+textureHandler(INSTALLED_TEXTURE_HUD, HUDL, HUDA), 
+gun(INSTALLED_TEXTURE_HUD, HGUNL, HGUNA),
+numbers(INSTALLED_TEXTURE_HUD, HNUML, HNUMA),
+faces(INSTALLED_TEXTURE_HUD_FACES, HFACEL, HFACEA){
+    gun.setPos(0, 41);
+    numbers.setPos(0, 66);
+    faces.setPos(25, 0);
+}
 
 void Hud::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);

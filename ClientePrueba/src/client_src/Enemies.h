@@ -5,7 +5,6 @@
 #include <SDL2/SDL_image.h>
 #include "../common_src/types.h"
 #include "../common_src/Vector.h"
-#include "SDLHandler.h"
 #include "SpritesHandler.h"
 
 #define LARGO 64

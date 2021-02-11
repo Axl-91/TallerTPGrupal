@@ -3,8 +3,15 @@
 #include <iostream>
 #include "SpritesHandler.h"
 
-SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles):
-imgFiles(iFiles){}
+SpritesHandler::SpritesHandler(std::string file, int largo, int alto){
+    imgFiles = {file};
+    src = {0, 0, largo, alto};
+}
+
+SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles, int largo, int alto)
+    :imgFiles(iFiles){
+        src = {0, 0, largo, alto};
+}
 
 SpritesHandler::~SpritesHandler(){
     destroyTextures();
@@ -44,9 +51,22 @@ void SpritesHandler::setSrc(int posX, int posY, int largo, int alto){
     src = {posX, posY, largo, alto};
 }
 
+void SpritesHandler::setPos(int posX, int posY){
+    src.x = posX;
+    src.y = posY;
+}
+
+void SpritesHandler::setSize(int largo, int alto){
+    src.h = alto;
+    src.w = largo;
+}
 
 void SpritesHandler::render(int posX, int posY, int largo, int alto, int text){
     SDL_Rect rect = {posX, posY, largo, alto};    
     SDL_RenderCopy(rendererWin, texturas[text], &src, &rect);
 }
 
+void SpritesHandler::render(int posX, int posY, int largo, int alto){
+    SDL_Rect rect = {posX, posY, largo, alto};    
+    SDL_RenderCopy(rendererWin, texturas[0], &src, &rect);
+}
