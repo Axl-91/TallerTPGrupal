@@ -42,6 +42,7 @@ enum SELECT_TIPO {ON_TEXT, OFF_TEXT, RES_ONE_TEXT, RES_TWO_TEXT,
 enum MENU_TIPO {MAIN_MENU, OPTIONS_MENU, CREATE_MENU, JOIN_MENU};
 enum EVENT_KEY {KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT, KEY_ENTER};
 enum TIPO_INPUT {CREATE_PLAYER, CREATE_GAME, JOIN_PLAYER};
+enum ERROR_TIPO {ERROR_MAP, ERROR_MATCH, ERROR_NAME};
 
 class Menu{
 private:
@@ -70,6 +71,10 @@ private:
 	bool hasJoinGame = false;
 	bool hasQuitGame = false;
 	bool isFullScreen = false;
+
+	bool validName = true;
+	bool validMatch = true;
+
 	bool nameChange = false;
 	bool gameChange = false;
 	bool joinChange = false;
@@ -83,6 +88,10 @@ private:
 
 	std::vector<std::string> vectorSelectionText = {
 		"On", "Off", "640x480", "800x600", "1024x768"
+	};
+	std::vector <std::string> vectorErrors = {
+		"No maps loaded", "No matches found", 
+		"Name already in use"
 	};
 
 	std::vector<std::string> vectorMatches;
@@ -102,6 +111,7 @@ private:
 	SpritesHandler selection;
 
 	TextHandler textSelectHandler;
+	TextHandler textErrorHandler;
 	TextHandler textNameHandler;
 	TextHandler textGameCreateHandler;
 	TextHandler textGameJoinHandler;

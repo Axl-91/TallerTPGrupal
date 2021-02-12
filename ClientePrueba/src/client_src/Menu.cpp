@@ -13,6 +13,7 @@ Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a):
 	menusHandler(vectorMenus, largo, alto),
 	selection("Media/Menu/SelectionMenu.png", 23, 33),
 	textSelectHandler(vectorSelectionText),
+	textErrorHandler(vectorErrors),
 	textNameHandler(" "),
 	textGameCreateHandler(" "),
 	textGameJoinHandler(" "),
@@ -27,6 +28,7 @@ void Menu::createText(){
 	SDL_Color yellow = {255, 204, 0};
 	SDL_Color white = {255, 255, 255};
 	textSelectHandler.setRenderer(menuRenderer, yellow);
+	textErrorHandler.setRenderer(menuRenderer, yellow);
 	textNameHandler.setRenderer(menuRenderer, white);
 	textGameCreateHandler.setRenderer(menuRenderer, white);
 	textGameJoinHandler.setRenderer(menuRenderer, white);
@@ -85,7 +87,7 @@ void Menu::renderTextCreate(){
 	textNameHandler.render(168,69,sizeName,15);
 
 
-	if (gameChange){
+	if (gameChange && validMatch){
 		if (nameGame.size() == 0){
 			textGameCreateHandler.setText(" ");
 		} else {
@@ -93,8 +95,13 @@ void Menu::renderTextCreate(){
 		}
 		gameChange = false;
 	}
-	int sizeGame = 7*nameGame.size();
-	textGameCreateHandler.render(163,96,sizeGame,15);
+	if (!validMatch){
+		int sizeError = 6*vectorErrors[ERROR_NAME].size();
+		textErrorHandler.render(163,96,sizeError,15, ERROR_NAME);
+	}else {
+		int sizeGame = 7*nameGame.size();
+		textGameCreateHandler.render(163,96,sizeGame,15);
+	}
 	if(vectorMaps.size() != 0){
 		if (mapChange){
 			textMapHandler.setText(vectorMaps[mapPos]);
@@ -106,7 +113,7 @@ void Menu::renderTextCreate(){
 }
 
 void Menu::renderTextJoin(){
-	if (nameChange){
+	if (nameChange && validName){
 		if (namePlayer.size() == 0){
 			textNameHandler.setText(" ");
 		} else {
@@ -114,8 +121,13 @@ void Menu::renderTextJoin(){
 		}
 		nameChange = false;
 	}
-	int sizeName = 7*namePlayer.size();
-	textNameHandler.render(170,85,sizeName,15);
+	if (!validName){
+		int sizeError = 6*vectorErrors[ERROR_NAME].size();
+		textErrorHandler.render(170,85,sizeError,15,ERROR_NAME);
+	} else {
+		int sizeName = 7*namePlayer.size();
+		textNameHandler.render(170,85,sizeName,15);
+	}
 
 	if (joinChange){
 		if (nameJoin.size() == 0){
@@ -278,11 +290,8 @@ void Menu::renderSelectionMap(int pos){
 		int sizeJoin = 7*vectorMaps[pos].size();
 		handler.render(170,123,sizeJoin,15);
 	} else {
-		std::string msj = "No Maps";
-		TextHandler handler(msj);
-		handler.setRenderer(menuRenderer, yellow);
-		int sizeJoin = 7*msj.size();
-		handler.render(170,123,sizeJoin,15);
+		int sizeJoin = 6*vectorErrors[ERROR_MAP].size();
+		textErrorHandler.render(170,123,sizeJoin,15, ERROR_MAP);
 	}
 	SDL_RenderPresent(menuRenderer);
 }
@@ -360,9 +369,10 @@ void Menu::doActionCreate(){
 			break;
 		case CREATE_MATCH:
 			gameChange = inputText(nameGame,163,96, CREATE_GAME);
-			// event.event = NEW_MATCH;
-			// event.info = nameGame;			
-			// menuEventQ.push(event);
+
+			/*REVISAR SI EL NOMBRE DE LA PARTIDA YA EXISTE
+			Y MODIFICAR LA VARIABLE VALIDMATCH */
+
 			break;
 		case CREATE_MAP:
 			event.event = GET_MAPS;
@@ -376,7 +386,7 @@ void Menu::doActionCreate(){
 			menuEventQ.push(event);
 			break;
 		case CREATE_PLAY:
-			if (namePlayer.size() > 0 && nameGame.size() > 0){
+			if (namePlayer.size() > 0 && nameGame.size() > 0 && validMatch){
 				hasCreateGame = true;
 				event.event = NEW_MATCH;
 				event.info = nameGame;
@@ -400,11 +410,8 @@ void Menu::renderSelectionMatch(int pos){
 		int sizeJoin = 7*vectorMatches[pos].size();
 		handler.render(170,112,sizeJoin,15);
 	} else {
-		std::string msj = "No Matches";
-		TextHandler handler(msj);
-		handler.setRenderer(menuRenderer, yellow);
-		int sizeJoin = 7*msj.size();
-		handler.render(170,112,sizeJoin,15);
+		int sizeJoin = 5*vectorErrors[ERROR_MATCH].size();
+		textErrorHandler.render(170,112,sizeJoin,15, ERROR_MATCH);
 	}
 	SDL_RenderPresent(menuRenderer);
 }
@@ -461,15 +468,25 @@ void Menu::doActionJoin(){
 	switch (posSelectJoin){
 		case JOIN_NAME:
 			nameChange = inputText(namePlayer,170,85, JOIN_PLAYER);
+			if (nameGame.size() > 0){
+
+				/*LUEGO DE INGRESAR EL NOMBRE REVISAR SI EXISTE
+				EN LA PARTIDA Y MODIFICAR EL VALIDNAME*/
+
+			}
 			break;
 		case JOIN_MATCH:
 			event.event = GET_MATCHES;
 			event.info = "";
 			menuEventQ.push(event);
 			selectMatch();
+
+			/*LUEGO DE SELECCIONAR PARTIDA REVISAR SI EXISTE EL NOMBRE
+			EN LA PARTIDA Y MODIFICAR EL VALIDNAME*/
+
 			break;
 		case JOIN_PLAY:
-			if (namePlayer.size() > 0 && nameJoin.size() > 0){
+			if (namePlayer.size() > 0 && nameJoin.size() > 0 && validName){
 				event.event = JOIN;
 				event.info = nameJoin;
 				menuEventQ.push(event);
