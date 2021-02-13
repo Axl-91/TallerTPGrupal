@@ -5,9 +5,13 @@
 #include <iostream>
 #include "SpritesHandler.h"
 
-Menu::Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a): 
-	menuEventQ(eQ),
+Menu::Menu(ClientReceiver &r, 
+			ClientTransmitter &t, 
+			int &l, 
+			int &a): 
+	// menuEventQ(eQ),
 	receiver(r),
+	transmitter(t),
 	winLargo(l),
 	winAlto(a),
 	menusHandler(vectorMenus, largo, alto),
@@ -365,7 +369,8 @@ void Menu::doActionCreate(){
 			nameChange = inputText(namePlayer,168,69, CREATE_PLAYER);
 			event.event = NEW_NAME;
 			event.info = namePlayer;
-			menuEventQ.push(event);
+			transmitter.sendMenuEvent(event);
+			// menuEventQ.push(event);
 			break;
 		case CREATE_MATCH:
 			gameChange = inputText(nameGame,163,96, CREATE_GAME);
@@ -377,20 +382,22 @@ void Menu::doActionCreate(){
 		case CREATE_MAP:
 			event.event = GET_MAPS;
 			event.info = "";
-        	// std::cout << "mando el mapa: " << mapName << std::endl;
-			menuEventQ.push(event);
+			transmitter.sendMenuEvent(event);
+			// menuEventQ.push(event);
 			selectMap();
 			event.event = SET_MAP;
 			event.info = mapName;
         	std::cout << "mando el mapa: " << mapName << std::endl;
-			menuEventQ.push(event);
+			transmitter.sendMenuEvent(event);
+			// menuEventQ.push(event);
 			break;
 		case CREATE_PLAY:
 			if (namePlayer.size() > 0 && nameGame.size() > 0 && validMatch){
 				hasCreateGame = true;
 				event.event = NEW_MATCH;
 				event.info = nameGame;
-				menuEventQ.push(event);
+				transmitter.sendMenuEvent(event);
+				// menuEventQ.push(event);
 			}
 			break;
 		case CREATE_BACK:
@@ -478,7 +485,8 @@ void Menu::doActionJoin(){
 		case JOIN_MATCH:
 			event.event = GET_MATCHES;
 			event.info = "";
-			menuEventQ.push(event);
+			transmitter.sendMenuEvent(event);
+			// menuEventQ.push(event);
 			selectMatch();
 
 			/*LUEGO DE SELECCIONAR PARTIDA REVISAR SI EXISTE EL NOMBRE
@@ -489,7 +497,8 @@ void Menu::doActionJoin(){
 			if (namePlayer.size() > 0 && nameJoin.size() > 0 && validName){
 				event.event = JOIN;
 				event.info = nameJoin;
-				menuEventQ.push(event);
+				transmitter.sendMenuEvent(event);
+				// menuEventQ.push(event);
 				hasJoinGame = true;
 			}
 			break;

@@ -31,14 +31,17 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	SDL_SetWindowTitle(window, title);
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 	mapGame.setRenderer(renderer);
-	if(uQ.isEmpty()){
-		std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
-	}
-	Update_t anUpdate = uQ.pop();
+	// if(uQ.isEmpty()){
+	// 	std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
+	// }
+	Update_t anUpdate;
+	uQ.pop(anUpdate);
+
+	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 	player.setID(anUpdate.playerUpdate.ID);
 	player.updateInfo(anUpdate.playerUpdate);
 	player.setRenderer(renderer);
-	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
+	render();
 }
 
 void Game::operator()(){
@@ -73,10 +76,11 @@ void Game::run(){
 
 //actualiza caracteristicas mapa y jugador
 void Game::update(){
-	if(uQ.isEmpty()){
-		return;
-	}
-	Update_t anUpdate = uQ.pop();
+	// if(uQ.isEmpty()){
+	// 	return;
+	// }
+	Update_t anUpdate;
+	uQ.pop(anUpdate);
 	
 	updatePlayer(anUpdate.playerUpdate);
 	if(anUpdate.mapChangeAvailable == true)

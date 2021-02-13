@@ -32,8 +32,8 @@ private:
     std::atomic<bool> atMenus;
     std::atomic<bool> connectedToMatch;
     ProtectedQueue<event_t> gameEventQ;
-    ProtectedQueue<menu_event_t> menuEventQ;
-    ProtectedQueue<menu_event_t> menuResponseQ;
+    // ProtectedQueue<menu_event_t> menuEventQ;
+    // ProtectedQueue<menu_event_t> menuResponseQ;
     ClientTransmitter transmitter;
     ClientReceiver receiver;
     SDL_EventHandler eHandler;

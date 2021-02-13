@@ -2,15 +2,13 @@
 
 ClientReceiver::ClientReceiver(Socket &socket, 
     std::vector<std::vector<int>> &m, 
-    ProtectedQueue<Update_t> &q,
-    ProtectedQueue<menu_event_t> &mQ):
+    ProtectedQueue<Update_t> &q):
     socket(socket),
     is_running(false),
     inMatch(false),
     map(m),
     matchEnded(false),
-    uQ(q),
-    menuResponseQ(mQ)
+    uQ(q)
 {}
 
 void ClientReceiver::operator()(){ 
@@ -71,50 +69,6 @@ void ClientReceiver::receiveGame(){
     if(aTag == TAG_GAME_QUIT){
         matchEnded = true;
     }
-
-    if(aTag == TAG_MATCH_LIST){
-        receiveMatchList();
-    }
-    if(aTag == TAG_MAP_LIST){
-        receiveMapList();
-    }
-}
-
-void ClientReceiver::receiveMapList(){
-    menu_event_t menuEvent;
-    menuEvent.event = GET_MAPS;
-    uint32_t length = 0;
-    const size_t SIZE_OF_UINT32 = 4;
-
-    socket.receive((char *) &length, SIZE_OF_UINT32);
-    length = ntohl(length);
-    if(length == 0){
-        menuEvent.info = "";
-        return;
-    }
-    std::vector<char> buffer(length+1, 0);
-    socket.receive(buffer.data(), length);
-    menuEvent.info = buffer.data();
-    menuResponseQ.push(menuEvent);
-}
-
-void ClientReceiver::receiveMatchList(){
-    menu_event_t menuEvent;
-    menuEvent.event = GET_MATCHES;
-    uint32_t length = 0;
-    const size_t SIZE_OF_UINT32 = 4;
-
-    socket.receive((char *) &length, SIZE_OF_UINT32);
-    length = ntohl(length);
-    if(length == 0){
-        menuEvent.info = "";
-        return;
-    }
-    std::vector<char> buffer(length+1, 0);
-    socket.receive(buffer.data(), length);
-    menuEvent.info = buffer.data();
-    std::cout << "recibi partidas:" << menuEvent.info << "." << std::endl;
-    menuResponseQ.push(menuEvent);
 }
 
 void ClientReceiver::receiveString(std::string &aString){
@@ -144,14 +98,6 @@ void ClientReceiver::receiveMapChange(Update_t &anUpdate){
     anUpdate.mapChangeAvailable = true;
 }
 
-void printVector(std::vector<std::vector<int>> &lvl2){
-    for(auto v:lvl2){
-        std::cout << v.size() << std::endl;
-        for(auto num:v)
-            std::cout << num;
-        std::cout << std::endl;
-    }
-}
 void ClientReceiver::receiveMap(){
     uint32_t filas = 0;
     uint32_t columnas = 0;

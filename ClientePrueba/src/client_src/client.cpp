@@ -3,19 +3,23 @@
 Client::Client(const char *host_name, const char *port):
     atMenus(true),
     connectedToMatch(false),
-    transmitter(s,gameEventQ, menuEventQ),
-    receiver(s,lvl2, gameUpdateQ, menuResponseQ),
+    // transmitter(s,gameEventQ, menuEventQ),
+    // receiver(s,lvl2, gameUpdateQ, menuResponseQ),
+    transmitter(s,gameEventQ),
+    receiver(s,lvl2, gameUpdateQ),
     eHandler(gameEventQ),
     is_running(false)
 {
     s.connect(host_name, port);
     if(!s.isConnected())
         return;
-    transmitter();
+    // transmitter();
     // receiver();
 }
 
 Client::~Client(){
+    gameUpdateQ.close();
+    gameEventQ.close();
     is_running = false;
     if(transmitter.isRunning()){
         transmitter.stop();
@@ -59,7 +63,7 @@ void Client::run(){
             int winLargo = 640;
             int winAlto = 480;
             {
-                Menu menu(menuEventQ, receiver, winLargo, winAlto);
+                Menu menu(receiver, transmitter, winLargo, winAlto);
                 while (!menu.quitGame() && !menu.createGame() && !menu.joinGame()){
                     menu.pollEvent();
                     menu.render();
@@ -67,12 +71,13 @@ void Client::run(){
                     std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 }
             }
-            receiver();
 
+            receiver();
             while(!receiver.isInMatch()){
                 sleep(1/60);
             }
             eHandler();
+            transmitter();
 
             std::cout << "client: isInMatch" << std::endl;
             
@@ -86,6 +91,8 @@ void Client::run(){
                 if(eHandler.finished()){
                     game.quitGame();
                     is_running = false;
+                    gameUpdateQ.close();
+                    // menuEventQ.close();
                     continue;
                     // MATAR TODO
                 }
@@ -95,6 +102,7 @@ void Client::run(){
                     game.quitGame();
                     receiver.quitMatch();
                     is_running = false;
+                    gameUpdateQ.close();
                     s.shutdown_read();
                     s.shutdown_writing();
                     continue;
@@ -118,7 +126,6 @@ void Client::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
-    std::cout << "salgo de run cliente " << std::endl;
 }
 
 

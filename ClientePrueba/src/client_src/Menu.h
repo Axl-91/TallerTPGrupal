@@ -12,6 +12,7 @@
 #include "../common_src/protectedQueue.h"
 #include "../common_src/types.h"
 #include "clientReceiver.h"
+#include "clientTransmitter.h"
 #include "SDL_Sounds.h"
 
 #define MAIN_CREATE 80
@@ -46,8 +47,8 @@ enum ERROR_TIPO {ERROR_MAP, ERROR_MATCH, ERROR_NAME};
 
 class Menu{
 private:
-	ProtectedQueue<menu_event_t> &menuEventQ;
 	ClientReceiver &receiver;
+	ClientTransmitter &transmitter;
     int &winLargo;
 	int &winAlto;
 	SDL_Window* menuWindow;
@@ -138,7 +139,10 @@ private:
 	void selectMap();
 	void renderSelectionMap(int pos);
 public:
-	Menu(ProtectedQueue<menu_event_t> &eQ, ClientReceiver &r, int &l, int &a);
+	Menu(ClientReceiver &r, 
+		ClientTransmitter &t,
+		int &l, 
+		int &a);
 	void render();
 	void pollEvent();
 	bool quitGame();

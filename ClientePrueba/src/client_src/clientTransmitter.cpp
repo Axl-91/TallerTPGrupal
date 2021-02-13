@@ -1,11 +1,11 @@
 #include "clientTransmitter.h"
 
-ClientTransmitter::ClientTransmitter(Socket &socket, ProtectedQueue<event_t> &gQ, ProtectedQueue<menu_event_t> &mQ):
+ClientTransmitter::ClientTransmitter(Socket &socket, 
+                        ProtectedQueue<event_t> &gQ):
     socket(socket),
     is_running(false),
     atMenus(true),
-    gameEventQ(gQ),
-    menuEventQ(mQ)
+    gameEventQ(gQ)
 {}
 
     // ~Transmitter(){}
@@ -19,10 +19,7 @@ void ClientTransmitter::run(){
     is_running = true;
     try{
         while(is_running == true){
-            if(!gameEventQ.isEmpty())
-                sendGameEvent();
-            if(!menuEventQ.isEmpty())
-                sendMenuEvent();
+            sendGameEvent();
         }
     } catch (const SocketError &e){
         std::cerr << "Excepcion en clientTransmitter.run()" << std::endl;
@@ -39,19 +36,17 @@ void ClientTransmitter::sendGameEvent(){
     event_t event;
     event = NO_EVENT;
 
-    event = gameEventQ.pop();
+    gameEventQ.pop(event);
 
     if(event!=NO_EVENT)
         socket.send((char*) &event, sizeof(event_t));    
 }
 
-void ClientTransmitter::sendMenuEvent(){
-    menu_event_t event;
-    event.event = NO_EVENT;
+void ClientTransmitter::sendMenuEvent(menu_event_t &event){
+    if(event.event == NO_EVENT)
+        return;
 
-    event = menuEventQ.pop();
-    if(event.event!=NO_EVENT)
-        socket.send((char*) &event.event, sizeof(event_t));  
+    socket.send((char*) &event.event, sizeof(event_t));  
 
     uint32_t length = event.info.length();
     const size_t SIZE_OF_UINT32 = 4;
