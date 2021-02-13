@@ -105,7 +105,7 @@ void Match::operator()(){
 }
 
 void Match::run(){
-    long timeStep= 30;
+    long timeStep= 40;
     try{
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();

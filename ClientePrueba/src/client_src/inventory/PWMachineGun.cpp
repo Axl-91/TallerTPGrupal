@@ -16,7 +16,7 @@ PlayerWeapon(sS, PWMachineGunSprites){
 
 
 void PWMachineGun::render(int posX, int posY){
-    int delay = 10;
+    int delay = 2;
     int frame = 0;
 
 

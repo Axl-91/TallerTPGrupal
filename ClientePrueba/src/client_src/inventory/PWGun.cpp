@@ -15,7 +15,7 @@ PlayerWeapon(sS, PWGunSprites){
 
 
 void PWGun::render(int largoWin, int altoWin){
-    int delay = 10;
+    int delay = 2;
     int frame = 0;
 
 

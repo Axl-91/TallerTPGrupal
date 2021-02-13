@@ -26,6 +26,7 @@ target_link_libraries(editor sdl-lib SDL2 SDL2_image SDL2_ttf ${YAMLCPP_LIBRARIE
 
 install(FILES 
 data/tiles.png
+data/SelectionMenu.png
 data/nivel.yaml
 data/MainMenu.png
 data/OptionsMenu.png

@@ -46,12 +46,21 @@ void Game::operator()(){
 }
 
 void Game::run(){
+    long timeStep= 10;
 	is_running = true;
     try{
 		while(is_running){
+            auto initial = std::chrono::high_resolution_clock::now();
+
 			update();
 			render();
 			//SLEEP?
+            auto final = std::chrono::high_resolution_clock::now();
+            auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
+            long sleepTime = timeStep - loopDuration.count();
+            if (sleepTime > 0) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
+            }
 		}
     } catch (const std::exception &e){
         std::cerr << "Excepcion en Game.run()" << std::endl;
