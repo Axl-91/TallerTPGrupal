@@ -21,14 +21,14 @@ private:
     ServerTransmitter transmitter;
     ServerReceiver receiver;
     std::atomic<bool> userIsRunning;
-    ProtectedMatchEventQueue *q;
+    ProtectedQueue<MatchEvent_t> *q;
     std::atomic<bool> started;
     std::string userName;
     size_t ID;
 public:
     User(Socket socket);
     void operator()();
-    void setProtectedMatchEventQueue(ProtectedMatchEventQueue *q);
+    void setProtectedMatchEventQueue(ProtectedQueue<MatchEvent_t> *q);
     std::string getName();
     virtual void run() override;
     void readEvent(event_t &event);

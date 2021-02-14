@@ -16,4 +16,5 @@ serverTransmitter.cpp
 thAcceptor.cpp
 user.cpp
 ShootingRaycaster.cpp
+matchEventHandler.cpp
 )

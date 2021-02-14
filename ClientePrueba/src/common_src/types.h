@@ -44,7 +44,6 @@ typedef enum{
     GET_MAPS,
     SET_MAP,
     START_GAME,
-    PICHIWAR,
     JOIN
 }event_t;
 

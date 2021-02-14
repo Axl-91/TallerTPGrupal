@@ -14,7 +14,7 @@ void User::operator()(){
     this->start();
 }
 
-void User::setProtectedMatchEventQueue(ProtectedMatchEventQueue *q){
+void User::setProtectedMatchEventQueue(ProtectedQueue<MatchEvent_t> *q){
     this->q = q;
 }
 
