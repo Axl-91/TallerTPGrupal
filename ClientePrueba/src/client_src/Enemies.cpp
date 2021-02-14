@@ -24,7 +24,7 @@ void Enemies::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sprite){
     float auxAngle=enemyPos.getAngle(posPlayer);
 
     sprite += enemy.moving_frame * FRAME_OFFSET;
-    std::cout<<"sprite sin angulo:" <<sprite<<std::endl;
+    // std::cout<<"sprite sin angulo:" <<sprite<<std::endl;
 
     if(auxAngle>=2*PI)
         auxAngle-=2*PI;
@@ -57,7 +57,7 @@ void Enemies::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sprite){
     } else if (angleDif > 292.5  && angleDif <= 337.5){
         sprite += 7;
     }
-    std::cout<<"sprite con angulo:" <<sprite<<std::endl;
+    // std::cout<<"sprite con angulo:" <<sprite<<std::endl;
 
     sprite+=100;
 }

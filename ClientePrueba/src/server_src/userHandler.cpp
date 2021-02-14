@@ -4,8 +4,7 @@ UserHandler::UserHandler(User *user, MatchHandler &matches):
     is_running(true),
     matches(matches),
     user(user)
-{
-}
+{}
 
 UserHandler::~UserHandler(){
     if(user != NULL){
@@ -19,27 +18,13 @@ void UserHandler::operator()(){
 }
 
 void UserHandler::run(){
-    std::stringstream welcomeMessage;
-    welcomeMessage <<  "Bienvenido a Wolfestein3D!\n\n";
-
-    // user->sendGameUpdate(welcomeMessage);
     try{
         while(is_running){
-            std::string instrucciones = "Ingrese\t\t\t\t\t\t\tNombre de usuario: " + user->getName() + "\n\
-                cambiarnombre - para cambiar nombre de usuario.\n\
-                verpartidas - para ver las partidas disponibles.\n\
-                unirme - para ingresar el nombre de la partida a la que desea unirse.\n\
-                crear - para crear una nueva partida.\n\
-                quit - para desconectarse del juego.\n\n";
-                std::stringstream instr(instrucciones);
-                // user->sendGameUpdate(instr);
-
                 processInput();
         }
     } catch (const std::exception &e){
         std::cerr << "Error encontrado en userHandler.run()" << std::endl;
         std::cerr << e.what() << std::endl;
-        return;
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     }

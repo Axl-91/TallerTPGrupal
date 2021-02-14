@@ -20,7 +20,6 @@ class Client{
 public:
     Client(const char *host_name, const char *port);
     ~Client();
-    void read_petition();
     void shutdown_writing();
     void connect(const char *host_name, const char *port);
     void run();
@@ -29,7 +28,7 @@ public:
 private:
     std::stringstream petition;
     Socket s;
-    std::atomic<bool> atMenus;
+    std::atomic<bool> gameStarted;
     std::atomic<bool> connectedToMatch;
     ProtectedQueue<event_t> gameEventQ;
     // ProtectedQueue<menu_event_t> menuEventQ;
@@ -43,6 +42,8 @@ private:
     // Map_change_t mapChange;
     // Update_t anUpdate;
     ProtectedQueue<Update_t> gameUpdateQ;
+    void runMenu(int &winLargo, int &winAlto);
+    void runGame(int &winLargo, int &winAlto);
 };
 
 #endif

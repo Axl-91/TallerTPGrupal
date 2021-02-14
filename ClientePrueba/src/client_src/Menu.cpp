@@ -719,3 +719,6 @@ Menu::~Menu(){
 	TTF_Quit();
 	SDL_Quit();
 }
+bool Menu::joinedMatch(){
+	return hasJoinGame | hasCreateGame;
+}

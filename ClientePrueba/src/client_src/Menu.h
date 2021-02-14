@@ -153,6 +153,7 @@ public:
 	std::string playerName();
 	std::string gameCreated();
 	std::string gameJoined();
+	bool joinedMatch();
     ~Menu();
 };
 
