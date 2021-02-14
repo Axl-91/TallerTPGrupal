@@ -17,4 +17,6 @@ thAcceptor.cpp
 user.cpp
 ShootingRaycaster.cpp
 matchEventHandler.cpp
+bot.cpp
+AILua.cpp
 )

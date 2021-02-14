@@ -14,6 +14,7 @@
 #include "serverPlayer.h"
 #include "serverGame.h"
 #include "matchEventReader.h"
+#include "bot.h"
 struct initPos{
     int x;
     int y;
@@ -59,7 +60,7 @@ private:
     void initializeInitPosition();
     void initializeMaps();
     void welcomeUser(User* user);
-    ServerPlayer bot;
+    Bot bot;
     MatchEventReader matchEventReader;
 };
 
