@@ -16,7 +16,6 @@ SDL_EventHandler::SDL_EventHandler(ProtectedQueue<event_t> &q):
 	keyDownEvents[SDLK_RIGHT] = PLAYER_START_ROTATING_RIGHT;
 	keyDownEvents[SDLK_LEFT] = PLAYER_START_ROTATING_LEFT;
 	keyDownEvents[SDLK_SPACE] = PLAYER_SHOOT;
-	keyDownEvents[SDLK_p] = PICHIWAR;
 	keyDownEvents[SDLK_u] = JOIN;
 
 	keyUpEvents[SDLK_UP] = PLAYER_STOP_MOVING;

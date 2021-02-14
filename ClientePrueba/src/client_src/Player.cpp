@@ -30,33 +30,11 @@ void Player::equip(weapon_t w){
 	if(inventory.equip(w)==true);
 		setWeapon(WP_SECONDARY);
 }
-/*
-int Player::heal(int h){
-	if(health>=MAX_HEALTH)
-		return 0;
-	std::cout<<"health before: "<<health<<std::endl;
 
-	health=health+h;
-	if(health>MAX_HEALTH)
-		health=MAX_HEALTH;
-	std::cout<<"health after: "<<health<<std::endl;
-
-	// hudGame.setHealth(health);
-	return 1;
-}
-
-int Player::reload(int ammo){
-	int used=inventory.reload(ammo);
-	// hudGame.setAmmo(ammo);
-
-	return used;
-}
-*/
 void Player::setPos(float x, float y){
     position.x = x;
     position.y = y;
 }
-
 
 void Player::setRenderer(SDL_Renderer* renderer){
 	hudGame.setRenderer(renderer);
@@ -64,13 +42,10 @@ void Player::setRenderer(SDL_Renderer* renderer){
     rendererPlayer = renderer;
 }
 
-
 void Player::setDirection(float x, float y){
 	dx=x;
 	dy=y;
 }
-
-
 
 void Player::setWeapon(player_weapons_t aWeapon){
 	if(aWeapon < 1 || aWeapon > MAX_WEAPONS)
@@ -80,14 +55,11 @@ void Player::setWeapon(player_weapons_t aWeapon){
 	hudGame.setWeapon(currentWeapon->getType());
 }
 
-
-
 void Player::getPosition(circle &c){
 	c.x=position.x;
 	c.y=position.y;
 	c.radius=position.radius;
 }
-
 
 void Player::getPosition(float &x, float &y){
 	x=position.x;
@@ -98,7 +70,6 @@ void Player::getDirection(float &x, float &y){
 	x=dx;
 	y=dy;
 }
-
 
 void Player::renderRaycaster(){
 	Vector vectorPos(position.x, position.y);
@@ -119,7 +90,6 @@ void Player::renderRaycaster(){
 	}
 }
 
-
 void Player::setID(size_t newID){
 	ID = newID;
 }
@@ -129,13 +99,11 @@ void Player::shoot(){
 }
 
 
-
 void Player::renderObjects(){
 	int uno = 1;
 	Vector posJugador = Vector(position.x, position.y);
 	std::vector<Objeto> orderedObjets;
 	orderedObjets=mapPlayer.ordenarObjects(posJugador);
-	
 
 	for (int obj = 0; obj < orderedObjets.size(); ++obj){
 		Vector posObjeto = orderedObjets[obj].posicion;

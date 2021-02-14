@@ -58,11 +58,21 @@ Match::Match(std::string &matchName, std::string &chosenMap):
     name(matchName),
     lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
-    game(players, lvl1, uQ)
+    game(players, lvl1, uQ),
+    bot(q, 110, 110, 0, connectionNumber),
+    matchEventReader(players, q)
 {
     initializeInitPosition();
     initializeMaps();
     // lvl1 = availableMaps.at(chosenMap);
+    initPos auxPos;
+    auxPos = initPositions.at(connectionNumber % 4);
+
+    ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
+    players.emplace(connectionNumber, std::move(auxPlayer));
+    connectionNumber++;
+
+    matchEventReader();
 }
 
 void Match::initializeMaps(){
@@ -91,6 +101,7 @@ void Match::initializeInitPosition(){
 }
 
 Match::~Match(){
+    q.close();
     for (auto user:users){
         if(user.second->hasStarted()){
             user.second->stop();
@@ -98,6 +109,10 @@ Match::~Match(){
         }
         delete(user.second);
     }
+    if(!matchEventReader.isDead()){
+        matchEventReader.stop();
+    }
+    matchEventReader.join();
 }
 
 void Match::operator()(){
@@ -109,10 +124,11 @@ void Match::run(){
     try{
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
-            readEvents();
+            // readEvents();
+            bot.makeDecision();
             game.update();
             updateUsers();
-
+            
             auto final = std::chrono::high_resolution_clock::now();
             auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
             long sleepTime = timeStep - loopDuration.count();
@@ -129,67 +145,20 @@ void Match::run(){
     }
 }
 
-bool Match::readEvents(){
-    if(users.size() == 0)
-        return false;
-
-    // Player_t auxPlayer;
-    MatchEvent_t event;
-
-    if(q.isEmpty())
-        return false;
-
-    event = q.pop();
-    std::string command;
-    std::stringstream paraEnviar;
-
-    if(event.event == NO_EVENT)
-        return false;    
-
-    ServerPlayer &aPlayer = players.at(event.playerTag);
-    if(event.event==PLAYER_SET_WEAPON_KNIFE)
-        aPlayer.setCurrentWeapon(WP_KNIFE);
-    if(event.event==PLAYER_SET_WEAPON_GUN)
-        aPlayer.setCurrentWeapon(WP_GUN);
-    if(event.event==PLAYER_SET_WEAPON_SECONDARY)
-        aPlayer.setCurrentWeapon(WP_SECONDARY);
-    if(event.event==PLAYER_SHOOT)
-        aPlayer.startShooting();
-    if(event.event==PLAYER_STOP_SHOOTING)
-        aPlayer.stopShooting();
-    if(event.event==PLAYER_START_MOVING_FORWARD)
-        aPlayer.setMoveOrientation(FORWARD);
-    if(event.event==PLAYER_START_MOVING_BACKWARD)
-        aPlayer.setMoveOrientation(BACKWARD);
-    if(event.event==PLAYER_STOP_MOVING)
-        aPlayer.setMoveOrientation(MOVE_QUIET);
-    if(event.event==PLAYER_START_ROTATING_RIGHT)
-        aPlayer.seteRotateOrientation(RIGHT);
-    if(event.event==PLAYER_START_ROTATING_LEFT)
-        aPlayer.seteRotateOrientation(LEFT);
-    if(event.event==PLAYER_STOP_ROTATING)
-        aPlayer.seteRotateOrientation(ROTATE_QUIET);
-
-    if(event.event==GAME_QUIT)
-        return false;
-    if(event.event==PICHIWAR)
-        return false;
-    if(event.event==JOIN)
-        return false;
-
-    return true;
-}
-
-
 void Match::updateUsers(){
     while (uQ.empty()==false){
         for(auto user:users)
             user.second->update(uQ.front());
+        // for(auto bot:bots)
+        //     bot.second->update(uQ.front());
+        bot.update(uQ.front());
         uQ.pop();
     }
 }
 
 void Match::stop(){
+    q.close();
+    matchEventReader.stop();
     is_running = false;
 }
 
@@ -215,6 +184,7 @@ void Match::addUser(User* user){
     ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
     players.emplace(connectionNumber, std::move(auxPlayer));
     user->setProtectedMatchEventQueue(&q);
+    // user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);
     users[connectionNumber] = user;
 

@@ -15,6 +15,7 @@
 class ServerGame{
 private:
     std::map<size_t, ServerPlayer> &players;
+
     std::vector<std::vector<int>> &lvl1;
     UpdateHandler updateHandler;
     CollisionMap colMap;

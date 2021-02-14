@@ -13,7 +13,8 @@
 #include "../common_src/types.h"
 #include "serverPlayer.h"
 #include "serverGame.h"
-
+#include "matchEventReader.h"
+#include "bot.h"
 struct initPos{
     int x;
     int y;
@@ -37,11 +38,13 @@ public:
     std::string getName();
     bool started();
     void delete_finish_clients(std::vector<User*>& threads);
-    bool readEvents();
+    // bool readEvents();
     void getPlayerIndex(size_t index);
+
 private:
     std::map<size_t, initPos> initPositions;
-    ProtectedMatchEventQueue q;
+    // ProtectedMatchEventQueue q;
+    ProtectedQueue<MatchEvent_t> q;
     std::map<size_t, User*> users;
     std::map<size_t, ServerPlayer> players;
     std::map<std::string, std::vector<std::vector<int>>> availableMaps;
@@ -57,6 +60,8 @@ private:
     void initializeInitPosition();
     void initializeMaps();
     void welcomeUser(User* user);
+    Bot bot;
+    MatchEventReader matchEventReader;
 };
 
 #endif
