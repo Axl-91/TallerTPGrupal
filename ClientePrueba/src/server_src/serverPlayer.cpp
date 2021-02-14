@@ -134,7 +134,7 @@ void ServerPlayer::startShooting(){
 }
 
 void ServerPlayer::stopShooting(){
-	shootingState = SHOOTING_STATE_STOPED;
+	shootingState = SHOOTING_STATE_QUIET;
 
 	// shooting = false;
 }
@@ -205,7 +205,7 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 void ServerPlayer::beDamaged(int damage){
 	health-=damage;
 	updateAvailable=true;
-	if(health<=0){
+	if(health <= 0){
 		respawn();
 		health = 100;
 		lifes -= 1;
@@ -219,13 +219,13 @@ void ServerPlayer::beDamaged(int damage){
 
 
 
-bool ServerPlayer::startedShooting(){
-	if(shootingState == SHOOTING_STATE_STARTED){
-		updateAvailable = true;
-		return true;
-	}
-	return false;
-}
+// bool ServerPlayer::startedShooting(){
+// 	if(shootingState != SHOOTING_STATE_QUIET){
+// 		updateAvailable = true;
+// 		return true;
+// 	}
+// 	return false;
+// }
 
 size_t ServerPlayer::getID(){
 	return ID;
@@ -320,11 +320,10 @@ void ServerPlayer::getDirection(float &x, float &y){
 // 	currentWeapon->shoot();
 // }
 
-// bool ServerPlayer::isShooting(){
-// 	updateAvailable=true;
-// 	if(shootingState != SHOOTING_STATE_QUIET){
-// 		return true;
-// 	}
-
-// 	return false;
-// }
+bool ServerPlayer::isShooting(){
+	if(shootingState != SHOOTING_STATE_QUIET){
+		updateAvailable=true;
+		return true;
+	}
+	return false;
+}

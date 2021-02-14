@@ -17,7 +17,7 @@ void ServerGame::update(){
 	for(auto &aPlayer: players){
 	    movePlayer(aPlayer.second);
     	aPlayer.second.rotate();
-	    if(aPlayer.second.startedShooting()==true){
+	    if(aPlayer.second.isShooting()==true){
         	handlePlayerShoot(aPlayer.second);
     	}
 		if(aPlayer.second.updateIsAvailable()==true){
@@ -31,13 +31,13 @@ void ServerGame::update(){
 
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist=shootRaycaster(player);
-	float coef;
+	float coef=0;
 
 	for(auto &p: players){
-		if(p.first==player.getID())
-			continue;
+		// if(p.first==player.getID()) DESCOMENTAR PARA MULTIJUGADOR
+		// 	continue;
 
-		player.getDamageCoefficient(p.second, coef, wallDist);
+		// player.getDamageCoefficient(p.second, coef, wallDist);
 		player.shoot(p.second, coef);
 	}
 }

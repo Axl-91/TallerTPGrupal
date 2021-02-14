@@ -73,7 +73,7 @@ public:
     void startShooting();
     void stopShooting();
     bool isShooting();
-    bool startedShooting();
+    // bool startedShooting();
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);

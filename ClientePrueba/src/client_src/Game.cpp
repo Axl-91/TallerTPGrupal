@@ -2,8 +2,10 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
-// #include "Hud.h"
 #include "Map.h"
+
+
+#define CLIENT_TIME_STEP 1000/60
 
 //cuando se inicializa, inicia SDL
 Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
@@ -49,7 +51,7 @@ void Game::operator()(){
 }
 
 void Game::run(){
-    long timeStep= 10;
+    long timeStep = CLIENT_TIME_STEP;
 	is_running = true;
     try{
 		while(is_running){

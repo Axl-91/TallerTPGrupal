@@ -5,12 +5,12 @@
 #include "Walls.h"
 //#include "Objects.h"
 
-#define KEY_OFFSET 101
-#define WEAPON_OFFSET 127
-#define HEAL_OFFSET 109
-#define AMMO_OFFSET 116
-#define TREASURE_OFFSET 132
-#define INMOVABLE_OBJECT_OFFSET 188
+#define KEY_OFFSET_VALUE 101
+#define WEAPON_OFFSET_VALUE 127
+#define HEAL_OFFSET_VALUE 109
+#define AMMO_OFFSET_VALUE 116
+#define TREASURE_OFFSET_VALUE 132
+#define IMMOVABLE_OBJECT_OFFSET_VALUE 188
 
 
 #define ENEMY_VALUE 100
@@ -34,28 +34,28 @@ void Map::load(std::vector<std::vector<int>> lvl){
 		for (int j = 0; j < cols; ++j){
 			if(map[i][j]>=400)
 				map[i][j]-=400;
-			if(map[i][j]>=200&&map[i][j]<300){
-				insertObject(j,i,map[i][j]-INMOVABLE_OBJECT_OFFSET);
+			if(map[i][j]>=IMMOVABLE_OBJECT_OFFSET&&map[i][j]<IMMOVABLE_OBJECT_OFFSET+COLLIDABLE_OFFSET){
+				insertObject(j,i,map[i][j]-IMMOVABLE_OBJECT_OFFSET_VALUE);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=100&&map[i][j]<110){
-				insertObject(j,i,map[i][j]-KEY_OFFSET);
+			if(map[i][j]>=KEY_OFFSET&&map[i][j]<KEY_OFFSET+COLLECTIBLE_OFFSET){
+				insertObject(j,i,map[i][j]-KEY_OFFSET_VALUE);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=110&&map[i][j]<120){
-				insertObject(j,i,map[i][j]-HEAL_OFFSET);
+			if(map[i][j]>=HEAL_OFFSET&&map[i][j]<HEAL_OFFSET+COLLECTIBLE_OFFSET){
+				insertObject(j,i,map[i][j]-HEAL_OFFSET_VALUE);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=120&&map[i][j]<130){
-				insertObject(j,i,map[i][j]-AMMO_OFFSET);
+			if(map[i][j]>=AMMO_OFFSET&&map[i][j]<AMMO_OFFSET+COLLECTIBLE_OFFSET){
+				insertObject(j,i,map[i][j]-AMMO_OFFSET_VALUE);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=130&&map[i][j]<140){
-				insertObject(j,i,map[i][j]-WEAPON_OFFSET);
+			if(map[i][j]>=WEAPON_OFFSET&&map[i][j]<WEAPON_OFFSET+COLLECTIBLE_OFFSET){
+				insertObject(j,i,map[i][j]-WEAPON_OFFSET_VALUE);
 				map[i][j]=0;
 			}
-			if(map[i][j]>=140&&map[i][j]<150){
-				insertObject(j,i,map[i][j]-TREASURE_OFFSET);
+			if(map[i][j]>=TREASURE_OFFSET&&map[i][j]<TREASURE_OFFSET+COLLECTIBLE_OFFSET){
+				insertObject(j,i,map[i][j]-TREASURE_OFFSET_VALUE);
 				map[i][j]=0;
 			}
 
@@ -66,7 +66,7 @@ void Map::load(std::vector<std::vector<int>> lvl){
 void Map::insertWeaponWithCoords(int x, int y, int obj){
 	int j=x/largoBloque;
 	int i=y/largoBloque;
-	insertObject(j,i,obj-WEAPON_OFFSET);
+	insertObject(j,i,obj-WEAPON_OFFSET_VALUE);
 }
 
 void Map::insertEnemy(Player_t &p){

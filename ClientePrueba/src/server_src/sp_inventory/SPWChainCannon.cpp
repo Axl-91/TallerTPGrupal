@@ -13,10 +13,11 @@ float SPWChainCannon::shoot(float dist, shooting_state_t &shootingState){
     std::cout<<"diasparo con el chain Canon"<<std::endl;
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
-
+    shootingState=SHOOTING_STATE_SHOOTING;
     if(waited.count()<CHAIN_CANNON_WAIT_TIME)
         return 0;
 
+    before = now;
     return damage;
 
 }

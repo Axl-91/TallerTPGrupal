@@ -190,7 +190,7 @@ void Player::updateInfo(Player_t &p){
 	setWeapon(p.currentWP);
 	shootingState=p.shootingState;
 
-	if(p.shootingState == SHOOTING_STATE_STARTED){
+	if(p.shootingState != SHOOTING_STATE_QUIET){
 		currentWeapon->shoot();
 	}
 }
