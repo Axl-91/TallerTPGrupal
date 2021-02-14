@@ -22,11 +22,11 @@ public:
     Socket(Socket&& socket);
     void shutdown_read();
     void shutdown_writing();
-    int bind_and_listen(const char *service);
+    void bind_and_listen(const char *service);
     Socket accept();
-    int connect(const char *host_name, const char *service);
-    int send(const char *buffer, size_t buf_l);
-    int receive(char *buffer, size_t buf_l);
+    void connect(const char *host_name, const char *service);
+    void send(const char *buffer, size_t buf_l);
+    void receive(char *buffer, size_t buf_l);
     bool isConnected();
 private:
     explicit Socket(int fd);

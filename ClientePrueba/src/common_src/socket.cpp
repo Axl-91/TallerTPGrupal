@@ -26,7 +26,7 @@ bool Socket::isConnected(){
     return true;
 }
 
-int Socket::bind_and_listen(const char *service){
+void Socket::bind_and_listen(const char *service){
     struct addrinfo hints, *results, *rp;
     int status = 0;
     hints.ai_family = AF_INET;    
@@ -37,7 +37,7 @@ int Socket::bind_and_listen(const char *service){
 
     status = getaddrinfo(0, service, &hints, &results);  
     if (status != 0) { 
-        return ERROR;
+        throw SocketError("Error en socket.bin_and_listen().");
     }
     for (rp = results; rp != NULL; rp = rp->ai_next){
         fd = ::socket(AF_INET, SOCK_STREAM, 0);
@@ -45,7 +45,7 @@ int Socket::bind_and_listen(const char *service){
         if (s == -1) {
             close(fd);
             fd = -1;
-            return 1;
+            throw SocketError("Error en socket.bin_and_listen().");
         }
         if (bind(fd, rp->ai_addr, rp->ai_addrlen) == 0){
             break;               
@@ -57,15 +57,10 @@ int Socket::bind_and_listen(const char *service){
     if (listen(fd, 10) == -1){ 
         close(fd);
         fd = -1;
-        return ERROR;
+        throw SocketError("Error en socket.bin_and_listen().");
     }
-    return 0;
 }
 
-
-// Averiguar si sería mejor 
-// devolver fd
-// pasar por referencia un socket invalido
 Socket Socket::accept(){
     int accepted_fd = 0;
     accepted_fd = ::accept(fd, NULL, NULL);
@@ -78,7 +73,7 @@ Socket Socket::accept(){
     return std::move(Socket(accepted_fd));
 }
 
-int Socket::connect(const char *host_name, const char *service){
+void Socket::connect(const char *host_name, const char *service){
     struct addrinfo hints, *result, *rp;
     int skt = 0;
     memset(&hints, 0, sizeof(struct addrinfo));
@@ -91,7 +86,7 @@ int Socket::connect(const char *host_name, const char *service){
     if (skt != 0) {
         close(fd);
         fd = -1;
-        return ERROR;
+        throw SocketError("Error en socket.connect().");
     }
     for (rp = result; rp != NULL; rp = rp->ai_next){
         fd = ::socket(AF_INET, SOCK_STREAM, 0);
@@ -102,14 +97,12 @@ int Socket::connect(const char *host_name, const char *service){
         fd = -1;
     }
     if (rp == NULL){              
-        // freeaddrinfo(result); 
-        return ERROR;
+        throw SocketError("Error en socket.connect().");
     }
     freeaddrinfo(result); 
-    return 0;          
 }
 
-int Socket::send(const char *buffer, size_t buf_l){
+void Socket::send(const char *buffer, size_t buf_l){
     size_t bytes_sent;
     bytes_sent = 0;
 
@@ -117,15 +110,13 @@ int Socket::send(const char *buffer, size_t buf_l){
         int s = 0;
         s = ::send(fd, &buffer[bytes_sent], buf_l - bytes_sent, MSG_NOSIGNAL);
         if (s <= 0){ 
-            return ERROR;
+            throw SocketError("Error en socket.receive()");
         }
         bytes_sent += s;
     }
-
-    return 0;
 }
  
-int Socket::receive(char *buffer, size_t buf_l){
+void Socket::receive(char *buffer, size_t buf_l){
     size_t bytes_recv = 0;
 
     while (bytes_recv < buf_l){
@@ -135,11 +126,9 @@ int Socket::receive(char *buffer, size_t buf_l){
             throw SocketError("Error en socket.receive()");
         }else if (r == 0){
             throw SocketClosed("Se cerro el socket.");
-            /* Cerraron socket, hacer excepcion para esto */
             break;
         }else{
             bytes_recv += r;
         }
     }
-    return 0;
 }

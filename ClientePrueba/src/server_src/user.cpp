@@ -10,7 +10,6 @@ User::User(Socket socket):
 {}
 
 void User::operator()(){
-    std::cout << "ServerReceiver.run(): arranco"  << std::endl;
     this->start();
 }
 
@@ -40,6 +39,7 @@ void User::run(){
         }
     } catch (const SocketError &e){
         std::cerr << "Excepcion en User.run():" << std::endl;
+        std::cerr << e.what() << std::endl;
     } catch (const std::exception &e){
         std::cerr << "Excepcion en User.run()" << std::endl;
         std::cerr << e.what() << std::endl;
@@ -55,7 +55,6 @@ bool User::hasStarted(){
     return started;
 }
 
-
 void User::readMenuEvent(menu_event_t &menuEvent){
     receiver.readMenuEvent(menuEvent);
 }
@@ -63,9 +62,6 @@ void User::readMenuEvent(menu_event_t &menuEvent){
 void User::readEvent(event_t &event){
     receiver.readGameEvent(event);
 }
-// void User::readInput(std::string &input){
-//     receiver.readInput(input);
-// }
 
 void User::stop(){
     userIsRunning = false;
