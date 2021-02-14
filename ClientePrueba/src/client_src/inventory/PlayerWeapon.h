@@ -21,7 +21,7 @@ protected:
     SpritesHandler textureHandler;
 
     void getTexture();
-
+    float frameTime;
     std::chrono::_V2::system_clock::time_point before;
     std::chrono::_V2::system_clock::time_point now;
 

@@ -11,7 +11,7 @@
 #include "../common_src/types.h"
 #include "../common_src/thread.h"
 #include "../common_src/protectedQueue.h"
-
+#include "gameUpdater.h"
 //
 // Clase que se ocupa de la logica del renderizado del juego
 // Comienza a correr cuando el jugador entra a una partida. 
@@ -19,6 +19,7 @@
 // Contiene sólo el estado actual de jugadores y objetos en la partida. No procesa lógica de la partida.
 class Game : public Thread{
 private:
+	std::mutex m;
     int largoReal = 320;
     int altoReal = 240;
 	bool gameOver = false;
@@ -31,6 +32,7 @@ private:
     void fill();
 	ProtectedQueue<Update_t> &uQ;
     std::atomic<bool> is_running;
+	GameUpdater gameUpdater;
 public:
 	Game(int &largo, int &ancho, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q);
 	~Game();

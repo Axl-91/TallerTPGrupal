@@ -12,7 +12,17 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),
-	is_running(false){
+	is_running(false),
+	gameUpdater(player,uQ, mapGame, m)
+{
+
+	Update_t anUpdate;
+	uQ.pop(anUpdate);
+
+	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
+	player.setID(anUpdate.playerUpdate.ID);
+	player.updateInfo(anUpdate.playerUpdate);
+
 
     int hayError;
     winLargo = largo;
@@ -36,12 +46,12 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	// if(uQ.isEmpty()){
 	// 	std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
 	// }
-	Update_t anUpdate;
-	uQ.pop(anUpdate);
+	// Update_t anUpdate;
+	// uQ.pop(anUpdate);
 
-	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
-	player.setID(anUpdate.playerUpdate.ID);
-	player.updateInfo(anUpdate.playerUpdate);
+	// std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
+	// player.setID(anUpdate.playerUpdate.ID);
+	// player.updateInfo(anUpdate.playerUpdate);
 	player.setRenderer(renderer);
 	render();
 }
@@ -51,15 +61,18 @@ void Game::operator()(){
 }
 
 void Game::run(){
+	gameUpdater();
     long timeStep = CLIENT_TIME_STEP;
 	is_running = true;
     try{
 		while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
+   std::unique_lock<std::mutex> lock(m);
 
-			update();
+//			update();
 			render();
 			//SLEEP?
+			lock.unlock();
             auto final = std::chrono::high_resolution_clock::now();
             auto loopDuration = std::chrono::duration_cast<std::chrono::milliseconds>(final - initial);
             long sleepTime = timeStep - loopDuration.count();

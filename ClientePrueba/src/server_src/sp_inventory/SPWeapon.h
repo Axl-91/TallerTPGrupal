@@ -3,27 +3,6 @@
 
 #include "../../common_src/types.h"
 #include <iostream>
-
-#define KNIFE_ATTACK_RANGE 16
-
-#define KNIFE_DAMAGE 10
-#define GUN_DAMAGE 10
-#define MACHINE_GUN_DAMAGE 2
-#define CHAIN_CANNON_DAMAGE 2
-#define ROCKET_LAUNCHER_DAMAGE 50
-
-
-#define MACHINE_GUN_BULLET_COUNTER 5 
-
-#define KNIFE_WAIT_TIME 500 //ms
-#define GUN_WAIT_TIME 500 //ms
-
-#define MACHINE_GUN_BULLET_WAIT_TIME 40 //ms
-#define MACHINE_GUN_WAIT_TIME 1000 //ms
-#define CHAIN_CANNON_WAIT_TIME 100 //ms
-#define ROCKET_LAUNCHE_WAIT_TIME 1000 //ms
-
-
 #include <chrono>
 
 //Clase padre que se ocupa del manejo de armas y disparo

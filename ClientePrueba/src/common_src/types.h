@@ -7,7 +7,35 @@
 #define MAX_AMMO 100
 #define PI 3.14159265358979323846
 
+/***************************************************************************/
+//
+//                          WEAPON STATS
+//
+/***************************************************************************/
+#define KNIFE_ATTACK_RANGE 16
 
+#define KNIFE_DAMAGE 10
+#define GUN_DAMAGE 10
+#define MACHINE_GUN_DAMAGE 2
+#define CHAIN_CANNON_DAMAGE 2
+#define ROCKET_LAUNCHER_DAMAGE 50
+
+
+#define MACHINE_GUN_BULLET_COUNTER 5 
+
+#define KNIFE_WAIT_TIME 500 //ms
+#define GUN_WAIT_TIME 500 //ms
+
+#define MACHINE_GUN_BULLET_WAIT_TIME 40 //ms
+#define MACHINE_GUN_WAIT_TIME 1000 //ms
+#define CHAIN_CANNON_WAIT_TIME 100 //ms
+#define ROCKET_LAUNCHE_WAIT_TIME 1000 //ms
+
+/***************************************************************************/
+//
+//                          COLLIDABLE OFFSETS
+//
+/***************************************************************************/
 #define COLLIDABLE_OFFSET 100
 #define COLLECTIBLE_OFFSET 10
 #define KEY_OFFSET 100
@@ -18,6 +46,12 @@
 #define IMMOVABLE_OBJECT_OFFSET 200
 #define WALL_OFFSET 400
 
+
+/***************************************************************************/
+//
+//                          ITEM STATS
+//
+/***************************************************************************/
 #define MAP_AMMO 5
 
 #define TREASURE_POINTS_CROSS 100
@@ -28,7 +62,7 @@
 #define HEAL_BLOOD 1
 #define HEAL_FOOD 10
 #define HEAL_MEDICAL_EQUIPMENT 20
-
+////////////////////////////////////////////////////////////////////////////////////
 typedef enum{
     WP_KNIFE = 1,
     WP_GUN = 2,
