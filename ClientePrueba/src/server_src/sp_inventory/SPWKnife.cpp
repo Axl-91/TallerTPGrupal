@@ -21,11 +21,11 @@ float SPWKnife::shoot(float dist, shooting_state_t &shootingState){
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     if(waited.count()<KNIFE_WAIT_TIME){
 //        shootingState = SHOOTING_STATE_QUIET;
+        shooting=false;
         return 0;
     }
 
     before=now;
-    std::cout<<"disparo con pistola"<<std::endl;   
     shooting=false;
     return damage;
 }

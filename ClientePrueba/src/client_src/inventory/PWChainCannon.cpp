@@ -11,18 +11,26 @@ std::vector<std::string> PWChainCannonSprites={
 
 PWChainCannon::PWChainCannon(shooting_state_t &sS):
 PlayerWeapon(sS, PWChainCannonSprites){
+    
     type=CHAIN_CANNON;
 }
 
 void PWChainCannon::render(int posX, int posY){
     int delay = 2;
     int frame = 0;
+            std::cout<<"render shoot chain connon";
 
 
-    if (shootingState != SHOOTING_STATE_QUIET && shootingState != SHOOTING_STATE_STOPED){
+    if (shootingState != SHOOTING_STATE_QUIET){
         numAuxiliar++;
         frame = numAuxiliar/ delay;
-
+        if (shootingState == SHOOTING_STATE_SHOOTING){
+         if (frame > 3){
+             numAuxiliar = 1*delay;
+             frame = 1;
+             shootingState=SHOOTING_STATE_QUIET;
+         }
+        }else
          if (frame > 4){
              numAuxiliar = 0;
              frame = 0;

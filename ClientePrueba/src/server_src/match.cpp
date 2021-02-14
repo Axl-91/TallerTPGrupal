@@ -59,7 +59,7 @@ Match::Match(std::string &matchName, std::string &chosenMap):
     lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
     game(players, lvl1, uQ),
-    bot(q, 110, 110, 0, connectionNumber),
+    bot(q, 110, 110, 0, 1),
     matchEventReader(players, q)
 {
     initializeInitPosition();
@@ -69,8 +69,8 @@ Match::Match(std::string &matchName, std::string &chosenMap):
     auxPos = initPositions.at(connectionNumber % 4);
 
     ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
-    players.emplace(connectionNumber, std::move(auxPlayer));
-    connectionNumber++;
+    // players.emplace(connectionNumber, std::move(auxPlayer));
+ //   connectionNumber++;
 
     matchEventReader();
 }
@@ -125,7 +125,7 @@ void Match::run(){
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
             // readEvents();
-            bot.makeDecision();
+//            bot.makeDecision();
             game.update();
             updateUsers();
             
@@ -151,7 +151,7 @@ void Match::updateUsers(){
             user.second->update(uQ.front());
         // for(auto bot:bots)
         //     bot.second->update(uQ.front());
-        bot.update(uQ.front());
+//        bot.update(uQ.front());
         uQ.pop();
     }
 }

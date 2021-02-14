@@ -7,7 +7,9 @@
 
 PlayerWeapon::PlayerWeapon(shooting_state_t &sS, std::vector<std::string> &imgs):
 shootingState(sS),
-textureHandler(imgs){}
+textureHandler(imgs){
+    before = std::chrono::high_resolution_clock::now();
+}
 
 void PlayerWeapon::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);
@@ -20,8 +22,8 @@ bool PlayerWeapon::estaEnAccion(){
     return false;
 }
 
-void PlayerWeapon::shoot(){
-    shootingState = SHOOTING_STATE_STARTED;
+void PlayerWeapon::shoot(shooting_state_t sS){
+    shootingState = sS;
 }
 
 

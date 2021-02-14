@@ -74,8 +74,8 @@ typedef enum{
     SHOOTING_STATE_QUIET = 0,
     SHOOTING_STATE_STARTED = 1,
     SHOOTING_STATE_SHOOTING = 2,
-    SHOOTING_STATE_WAITING = 3,
-    SHOOTING_STATE_STOPED = 4
+    // SHOOTING_STATE_WAITING = 3,
+    // SHOOTING_STATE_STOPED = 4
 }shooting_state_t;
 
 typedef enum{

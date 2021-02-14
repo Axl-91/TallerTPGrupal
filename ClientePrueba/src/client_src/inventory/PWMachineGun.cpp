@@ -20,7 +20,7 @@ void PWMachineGun::render(int posX, int posY){
     int frame = 0;
 
 
-    if (shootingState != SHOOTING_STATE_QUIET && shootingState != SHOOTING_STATE_STOPED){
+    if (shootingState != SHOOTING_STATE_QUIET){
         numAuxiliar++;
         frame = numAuxiliar/ delay;
 

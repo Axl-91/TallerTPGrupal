@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <chrono>
 #include "../SpritesHandler.h"
 #include "../../common_src/types.h"
 #include "../SpritesHandler.h"
@@ -15,17 +16,19 @@ class PlayerWeapon{
 protected:
     int offset = 65;
     int numAuxiliar = 0;
-    // shooting_state_t &shootingState;
     shooting_state_t shootingState;
-
     weapon_t type;
     SpritesHandler textureHandler;
 
     void getTexture();
-    // void disparar();
+
+    std::chrono::_V2::system_clock::time_point before;
+    std::chrono::_V2::system_clock::time_point now;
+
 public:
 
-    void shoot();
+//    void shoot();
+    void shoot(shooting_state_t sS);
 
     PlayerWeapon(shooting_state_t &sS, std::vector<std::string> &imgs);
 

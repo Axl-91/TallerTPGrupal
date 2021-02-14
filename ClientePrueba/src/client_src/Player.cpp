@@ -95,7 +95,7 @@ void Player::setID(size_t newID){
 }
 
 void Player::shoot(){
-	currentWeapon->shoot();
+	currentWeapon->shoot(shootingState);
 }
 
 
@@ -159,7 +159,7 @@ void Player::updateInfo(Player_t &p){
 	shootingState=p.shootingState;
 
 	if(p.shootingState != SHOOTING_STATE_QUIET){
-		currentWeapon->shoot();
+		currentWeapon->shoot(shootingState);
 	}
 }
 
@@ -170,7 +170,7 @@ size_t Player::getID(){
 void Player::render(int largoWin, int altoWin){
 	renderRaycaster();
 	renderObjects();
-
+//	std::cout<<"rederizo"<<std::endl;
 	currentWeapon->render(largoWin, altoWin);
 	hudGame.render(largoWin, altoWin);
 	hudGame.renderHealth(health);

@@ -36,7 +36,7 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	shootingState = SHOOTING_STATE_QUIET;
 	// shooting = false;
 	lifes = 3;
-	score = 123;
+	score = 0;
 	moveOrientation = MOVE_QUIET;
 	rotateOrientation = ROTATE_QUIET;
 	ID = newID;
@@ -321,8 +321,10 @@ void ServerPlayer::getDirection(float &x, float &y){
 // }
 
 bool ServerPlayer::isShooting(){
-	if(shootingState != SHOOTING_STATE_QUIET){
 		updateAvailable=true;
+
+	if(shootingState != SHOOTING_STATE_QUIET){
+		// updateAvailable=true;
 		return true;
 	}
 	return false;

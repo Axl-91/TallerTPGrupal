@@ -19,7 +19,7 @@ void PWKnife::render(int largoWin, int altoWin){
     int frame = 0;
 
 
-    if (shootingState != SHOOTING_STATE_QUIET && shootingState != SHOOTING_STATE_STOPED){
+    if (shootingState != SHOOTING_STATE_QUIET/*||frame!=0*/){
         numAuxiliar++;
         frame = numAuxiliar/ delay;
 
