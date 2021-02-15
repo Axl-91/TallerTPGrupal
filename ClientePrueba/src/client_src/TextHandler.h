@@ -18,9 +18,9 @@ public:
     TextHandler(std::string text);
     TextHandler(std::vector<std::string> &texts);
     void setRenderer(SDL_Renderer* renderer, SDL_Color color);
-    void setSrc(int posX, int posY, int largo, int alto);
-    void render(int posX, int posY, int largo, int alto, int pos);
-    void render(int posX, int posY, int largo, int alto);
+    void setSrc(int posX, int posY, int length, int height);
+    void render(int posX, int posY, int length, int height, int pos);
+    void render(int posX, int posY, int length, int height);
     void setText(std::string newText);
     ~TextHandler();
 };

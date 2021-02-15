@@ -57,13 +57,13 @@ void ShootingRaycaster::raycasterHorizontal(){
 	}
 
 	while (noHayColision){
-		distH = posPlayer.distancia(rayH);
+		distH = posPlayer.getDistance(rayH);
 
 		if (!mapRay.hayCoordenadas(rayH)){
 			break;
 		}
 		if (mapRay.getBloque(rayH) == 0){
-			rayH.sumar(raySuma);
+			rayH.add(raySuma);
 		} else {
 			noHayColision = false;
 		}
@@ -103,13 +103,13 @@ void ShootingRaycaster::raycasterVertical(){
 	}
 
 	while (noHayColision){
-		distV = posPlayer.distancia(rayV);
+		distV = posPlayer.getDistance(rayV);
 
 		if (!mapRay.hayCoordenadas(rayV)){
 			break;
 		}
 		if (mapRay.getBloque(rayV) == 0){
-			rayV.sumar(raySuma);
+			rayV.add(raySuma);
 		} else {
 			noHayColision = false;
 		}

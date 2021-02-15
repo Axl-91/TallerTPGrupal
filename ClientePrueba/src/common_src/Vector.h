@@ -12,16 +12,16 @@ public:
 	Vector(float x=0, float y=0);
     float getX();
     float getY();
-        float getAngle(Vector v);
+    float getAngle(Vector v);
     float getAngle();
 
     Vector operator-(Vector &v);
     void setX(float &x);
     void setY(float &y);
     void set(float &x,float &y);
-    void sumar (Vector vector);
-    void restar (Vector vector);
-    float distancia (Vector vector);
+    void add (Vector vector);
+    void sub (Vector vector);
+    float getDistance (Vector vector);
     friend std::ostream & operator<< (std::ostream &os, Vector &v);
 	~Vector();
 };

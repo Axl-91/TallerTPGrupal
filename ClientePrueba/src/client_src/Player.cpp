@@ -9,9 +9,9 @@
 #define PLAYER_RADIUS 16
 #define PLAYER_START_ANGLE 0
 
-float toGrados(float radiales){
-	return (radiales / PI) * 180;
-}
+#define LONG_SCREEN 320
+#define HIGH_SCREEN 200
+
 Player::Player(Map &m): 
 	mapPlayer(m),
 	inventory(shootingState),
@@ -19,9 +19,9 @@ Player::Player(Map &m):
 {
 	// health=MAX_HEALTH;
 	health=50;
-	angulo = PLAYER_START_ANGLE;
-    dx = cos(angulo);
-    dy = sin(angulo);
+	angPlayer = PLAYER_START_ANGLE;
+    dx = cos(angPlayer);
+    dy = sin(angPlayer);
 	position.radius=PLAYER_RADIUS;
 	step=PLAYER_STEP;
 }
@@ -73,20 +73,20 @@ void Player::getDirection(float &x, float &y){
 
 void Player::renderRaycaster(){
 	Vector vectorPos(position.x, position.y);
-	Raycaster raycaster(vectorPos, angulo, mapPlayer);
-	float anguloRay = angulo-PI/6;
+	Raycaster raycaster(vectorPos, angPlayer, mapPlayer);
+	float angleRay = angPlayer-PI/6;
 
-	for (int pos=0; pos < 320; ++pos){
+	for (int pos=0; pos < LONG_SCREEN; ++pos){
 
-		if (anguloRay < 0){
-			anguloRay += 2*PI;
-		} else if (anguloRay > 2*PI){
-			anguloRay -=2*PI;
+		if (angleRay < 0){
+			angleRay += 2*PI;
+		} else if (angleRay > 2*PI){
+			angleRay -=2*PI;
 		}
-		raycaster.crearRay(anguloRay);
+		raycaster.makeRay(angleRay);
 		raycaster.render(pos);
-		distBuffer[pos] = raycaster.getDistancia();
-		anguloRay += PI/960;
+		distBuffer[pos] = raycaster.getDistance();
+		angleRay += PI/960;
 	}
 }
 
@@ -98,47 +98,47 @@ void Player::shoot(){
 	currentWeapon->shoot(shootingState);
 }
 
-
 void Player::renderObjects(){
-	int uno = 1;
-	Vector posJugador = Vector(position.x, position.y);
-	std::vector<Objeto> orderedObjets;
-	orderedObjets=mapPlayer.ordenarObjects(posJugador);
+	int one = 1;
+	Vector posPlayer = Vector(position.x, position.y);
+	std::vector<Object_t> orderedObjets;
+	orderedObjets=mapPlayer.orderObjects(posPlayer);
 
 	for (int obj = 0; obj < orderedObjets.size(); ++obj){
-		Vector posObjeto = orderedObjets[obj].posicion;
-		if (!objEsVisible(posObjeto)){
+		Vector posObjeto = orderedObjets[obj].position;
+		if (!objIsVisible(posObjeto)){
 			continue;
 		}
 		// int tipoObj = mapPlayer.getTipoObj(obj);
-		int tipoObj = orderedObjets[obj].tipoObjecto;
-
-		float distanciaObj = posJugador.distancia(posObjeto);
+		int typeObj = orderedObjets[obj].objType;
+		int longTiles = mapPlayer.getLongTiles();
+		float distObj = posPlayer.getDistance(posObjeto);
 
 		//Coordenadas en Y
-		float sizeObj = (64 * 320) / distanciaObj;
-		float yo = 100 - (sizeObj/2);
+		float sizeObj = (longTiles * LONG_SCREEN) / distObj;
+		float yo = (HIGH_SCREEN/2) - (sizeObj/2);
 		//Coordenadas en X
 		float dx = position.x - posObjeto.getX();
 		float dy = position.y - posObjeto.getY();
 
-		float anguloObj = atan2(dy, dx) - angulo;
-		float xo = tan(anguloObj) * 277.1281;
-		float x = round((320/2) + xo - (sizeObj/2));
+		float angObj = atan2(dy, dx) - angPlayer;
+		float distProyPlane = (LONG_SCREEN/2) / tan(PI/6);
+		float xo = tan(angObj) * distProyPlane;
+		float x = round((LONG_SCREEN/2) + xo - (sizeObj/2));
 
-		float anchura = sizeObj / 64;
+		float longObj = sizeObj / longTiles;
 		int yoInt = yo;
 		int sizeObjInt = sizeObj;
-		mapPlayer.setObj(tipoObj);
+		mapPlayer.setObj(typeObj);
 
-		for (int i = 0; i < 64; ++i){
-			for (int j = 0; j < anchura; ++j){
-				int z = round(x)+((i)*anchura)+j;
-				if (z < 0 || z > 320){ continue; }
+		for (int i = 0; i < longTiles; ++i){
+			for (int j = 0; j < longObj; ++j){
+				int z = round(x)+((i)*longObj)+j;
+				if (z < 0 || z > LONG_SCREEN){ continue; }
 
-				if (distBuffer[z] > distanciaObj){
-					mapPlayer.setColObject(i,orderedObjets[obj].tipoObjecto);
-					mapPlayer.renderObject(z, yoInt, uno, sizeObjInt,orderedObjets[obj].tipoObjecto);
+				if (distBuffer[z] > distObj){
+					mapPlayer.setColObject(i,orderedObjets[obj].objType);
+					mapPlayer.renderObject(z, yoInt, one, sizeObjInt,orderedObjets[obj].objType);
 				}
 			}
 		}
@@ -148,7 +148,7 @@ void Player::renderObjects(){
 void Player::updateInfo(Player_t &p){
 	position.x = p.x;
 	position.y = p.y;
-	angulo = p.ang;
+	angPlayer = p.ang;
 	lifes = p.lifes;
 	score = p.score;
 	inventory.setAmmo(p.ammo);
@@ -179,7 +179,7 @@ void Player::render(int largoWin, int altoWin){
 	hudGame.renderScore(score);
 }
 
-bool Player::objEsVisible(Vector &posObj){
+bool Player::objIsVisible(Vector &posObj){
 	/*Visibilidad hacia izq y derecha en radiales
 	serian 30 grados pero agrego 5 mas para que
 	se vea mas el sprite del objeto */
@@ -189,8 +189,8 @@ bool Player::objEsVisible(Vector &posObj){
 	float dx = posObj.getX() - position.x;
 	float dy = posObj.getY() - position.y;
 
-	float anguloObj = atan2(dy, dx);
-	float difAng = angulo - anguloObj;
+	float angleObj = atan2(dy, dx);
+	float difAng = angPlayer - angleObj;
 
 	if (difAng < -PI){
 		difAng += 2*PI;

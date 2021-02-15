@@ -41,7 +41,7 @@ public:
     void setWeapon(weapon_t aWeapon);
 
     void setRenderer(SDL_Renderer* renderer);
-    void render(int largoWin, int altoWin);
+    void render(int longWin, int highWin);
     void renderHealth(int health);
     void renderAmmo(int ammo);
     void renderLife(int life);

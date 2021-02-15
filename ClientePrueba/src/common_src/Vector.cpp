@@ -11,17 +11,17 @@ float Vector::getY(){
     return posY;
 }
 
-void Vector::sumar(Vector vector){
+void Vector::add(Vector vector){
     posX += vector.getX();
     posY += vector.getY();
 }
 
-void Vector::restar(Vector vector){
+void Vector::sub(Vector vector){
     posX -= vector.getX();
     posY -= vector.getY();
 }
 
-float Vector::distancia(Vector vector){
+float Vector::getDistance(Vector vector){
     float x = vector.getX() - posX;
     float y = vector.getY() - posY;
     return (sqrt((x*x) + (y*y)));

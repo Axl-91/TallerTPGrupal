@@ -156,7 +156,7 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	enemy.getPosition(eX,eY);
 	Vector enemyPos(eX,eY);
 	Vector pos(position.x, position.y);
-	float distance = pos.distancia(enemyPos); 
+	float distance = pos.getDistance(enemyPos); 
 	float anguloObj = pos.getAngle(enemyPos);
 	float difAng = ang - anguloObj;
 
@@ -198,7 +198,7 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
 	Vector ePos(enemy.position.x, enemy.position.y);
 
-	return pPos.distancia(ePos)-2*position.radius;
+	return pPos.getDistance(ePos)-2*position.radius;
 }
 
 

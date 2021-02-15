@@ -7,10 +7,8 @@
 // #include "SDLHandler.h"
 #include "SpritesHandler.h"
 
-#define LARGO 64
-#define ALTO 64
-
-
+#define LONG 64
+#define HIGH 64
 
 class Objects{
 private:
@@ -41,8 +39,8 @@ public:
     Objects();
     void setRenderer(SDL_Renderer* renderer);
     void setObject(int num);
-    void recortar(int x, int y, int largo = LARGO, int alto = ALTO);
-    void render(int x, int y, int largo = LARGO, int alto = ALTO);
+    void cutFromTexture(int x, int y, int length = LONG, int height = HIGH);
+    void render(int x, int y, int length = LONG, int height = HIGH);
     ~Objects();
 };
 

@@ -21,7 +21,7 @@
 class Player{
 private:
     circle position;
-    float angulo;
+    float angPlayer;
     float dx;
     float dy;
     float step;
@@ -38,7 +38,7 @@ private:
 
     SDL_Renderer* rendererPlayer;
     void renderRaycaster();
-    bool objEsVisible(Vector &posObj);
+    bool objIsVisible(Vector &posObj);
     void renderObjects();
 public:
 //    Player();
@@ -47,7 +47,7 @@ public:
     void setPos(float x, float y);
     void setMap(Map &map);
     void setRenderer(SDL_Renderer* renderer);
-    void render(int largoWin, int altoWin);
+    void render(int longWin, int highWin);
 
     void setDirection(float x, float y);
 

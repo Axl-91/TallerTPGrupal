@@ -3,14 +3,14 @@
 #include <iostream>
 #include "SpritesHandler.h"
 
-SpritesHandler::SpritesHandler(std::string file, int largo, int alto){
+SpritesHandler::SpritesHandler(std::string file, int lenght, int height){
     imgFiles = {file};
-    src = {0, 0, largo, alto};
+    src = {0, 0, lenght, height};
 }
 
-SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles, int largo, int alto)
+SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles, int lenght, int height)
     :imgFiles(iFiles){
-        src = {0, 0, largo, alto};
+        src = {0, 0, lenght, height};
 }
 
 SpritesHandler::~SpritesHandler(){
@@ -18,8 +18,8 @@ SpritesHandler::~SpritesHandler(){
 }
 
 void SpritesHandler::destroyTextures(){
-    for(size_t i=0; i<texturas.size(); i++){
-        SDL_DestroyTexture(texturas[i]);
+    for(size_t i=0; i<texturesVector.size(); i++){
+        SDL_DestroyTexture(texturesVector[i]);
     }
 }
 
@@ -36,8 +36,8 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL
         }
-        texturas.push_back(SDL_CreateTextureFromSurface(rendererWin, surface));
-        if (!texturas.back()) {
+        texturesVector.push_back(SDL_CreateTextureFromSurface(rendererWin, surface));
+        if (!texturesVector.back()) {
             // destroyTextures();
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL
@@ -46,8 +46,8 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
     }
 }
 
-void SpritesHandler::setSrc(int posX, int posY, int largo, int alto){
-    src = {posX, posY, largo, alto};
+void SpritesHandler::setSrc(int posX, int posY, int lenght, int height){
+    src = {posX, posY, lenght, height};
 }
 
 void SpritesHandler::setPos(int posX, int posY){
@@ -55,17 +55,17 @@ void SpritesHandler::setPos(int posX, int posY){
     src.y = posY;
 }
 
-void SpritesHandler::setSize(int largo, int alto){
-    src.h = alto;
-    src.w = largo;
+void SpritesHandler::setSize(int lenght, int height){
+    src.h = height;
+    src.w = lenght;
 }
 
-void SpritesHandler::render(int posX, int posY, int largo, int alto, int text){
-    SDL_Rect rect = {posX, posY, largo, alto};    
-    SDL_RenderCopy(rendererWin, texturas[text], &src, &rect);
+void SpritesHandler::render(int posX, int posY, int lenght, int height, int type){
+    SDL_Rect rect = {posX, posY, lenght, height};
+    SDL_RenderCopy(rendererWin, texturesVector[type], &src, &rect);
 }
 
-void SpritesHandler::render(int posX, int posY, int largo, int alto){
-    SDL_Rect rect = {posX, posY, largo, alto};    
-    SDL_RenderCopy(rendererWin, texturas[0], &src, &rect);
+void SpritesHandler::render(int posX, int posY, int lenght, int height){
+    SDL_Rect rect = {posX, posY, lenght, height};
+    SDL_RenderCopy(rendererWin, texturesVector[0], &src, &rect);
 }

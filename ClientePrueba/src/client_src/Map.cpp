@@ -64,8 +64,8 @@ void Map::load(std::vector<std::vector<int>> lvl){
 }
 
 void Map::insertWeaponWithCoords(int x, int y, int obj){
-	int j=x/largoBloque;
-	int i=y/largoBloque;
+	int j=x/longTile;
+	int i=y/longTile;
 	insertObject(j,i,obj-WEAPON_OFFSET_VALUE);
 }
 
@@ -84,15 +84,15 @@ std::map<int, Enemy_t>& Map::getEnemies(){
 }
 
 void Map::insertObject(int x, int y, int obj){
-	Vector posVect((x+1)*largoBloque-largoBloque/2,(y+1)*largoBloque-largoBloque/2);
-	Objeto auxObj = {posVect, obj};
+	Vector posVect((x+1)*longTile-longTile/2,(y+1)*longTile-longTile/2);
+	Object_t auxObj = {posVect, obj};
 	std::pair<int,int> posPair(posVect.posX, posVect.posY);
 	mapObj[posPair]=auxObj;
 }
 
 void Map::eraseObj(float x, float y){
-	int posX = x - (int)x%largoBloque+largoBloque/2;
-	int posY = y - (int)y%largoBloque+largoBloque/2;
+	int posX = x - (int)x%longTile+longTile/2;
+	int posY = y - (int)y%longTile+longTile/2;
 	mapObj.erase(std::pair<int,int>(posX, posY));
 
 }
@@ -107,13 +107,13 @@ void Map::setRenderer(SDL_Renderer* renderer){
 	enemies.setRenderer(renderer);
 }
 
-int Map::getLongBloques(){
-	return largoBloque;
+int Map::getLongTiles(){
+	return longTile;
 }
 
-bool Map::hayCoordenadas(float &x, float &y){
-	int posX = x/largoBloque;
-	int posY = y/largoBloque;
+bool Map::validPosition(float &x, float &y){
+	int posX = x/longTile;
+	int posY = y/longTile;
 
 	if (posX >= cols || posX < 0){
 		return false;
@@ -125,26 +125,26 @@ bool Map::hayCoordenadas(float &x, float &y){
 	return true;
 }
 
-bool Map::hayCoordenadas(Vector &vector){
+bool Map::validPosition(Vector &vector){
 	float x = vector.getX();
 	float y = vector.getY();	
-	return hayCoordenadas(x, y);
+	return validPosition(x, y);
 }
 
-int Map::getBloque(float &x, float &y){
-	int posX = x/largoBloque;
-	int posY = y/largoBloque;
+int Map::getTile(float &x, float &y){
+	int posX = x/longTile;
+	int posY = y/longTile;
 	return map[posY][posX];
 }
 
-int Map::getBloque(Vector &vector){
+int Map::getTile(Vector &vector){
 	float x = vector.getX();
 	float y = vector.getY();
-	return getBloque(x, y);
+	return getTile(x, y);
 }
 
 void Map::setWall(Vector &vector, bool dark){
-	int tipoWall = getBloque(vector) - 1;
+	int tipoWall = getTile(vector) - 1;
 	walls.setWall(tipoWall);
 	if (dark){
 		walls.setDark();
@@ -153,27 +153,27 @@ void Map::setWall(Vector &vector, bool dark){
 
 void Map::setColWall(float &pos){
 	int y = 0;
-	int largoCol = 1;
+	int lenghtCol = 1;
 	int rayInt = floor(pos);
-	int posWall = rayInt % largoBloque;
-	walls.recortar(posWall, y, largoCol, largoBloque);
+	int posWall = rayInt % longTile;
+	walls.cutFromTexture(posWall, y, lenghtCol, longTile);
 }
 
-void Map::renderWall(int &posX, int &posY, int &largo, int &alto){
-	walls.render(posX, posY, largo, alto);
+void Map::renderWall(int &posX, int &posY, int &lenght, int &height){
+	walls.render(posX, posY, lenght, height);
 }
 
-void Map::addObject(Vector &posicion, int tipo){
-	std::pair<int,int> auxPair(posicion.posX,posicion.posY);
-	Objeto obj = {posicion, tipo};
+void Map::addObject(Vector &pos, int tipo){
+	std::pair<int,int> auxPair(pos.posX,pos.posY);
+	Object_t obj = {pos, tipo};
 	mapObj[auxPair]=obj;
 }
 
-void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
-	float dist = pos.distancia(obj.posicion);
+void addVectDist(std::vector<Object_t> &v, Object_t &obj, Vector &pos){
+	float dist = pos.getDistance(obj.position);
 	for (auto i = v.begin(); i != v.end(); ++i){
-		Objeto objVec = *i;
-		float distV = pos.distancia(objVec.posicion);
+		Object_t objVec = *i;
+		float distV = pos.getDistance(objVec.position);
 		if (dist > distV){
 			v.insert(i, obj);
 			return;
@@ -182,51 +182,51 @@ void agregarVectDist(std::vector<Objeto> &v, Objeto &obj, Vector &pos){
 	v.push_back(obj);
 }
 
-std::vector<Objeto> Map::ordenarObjects(Vector &pos){
-	std::vector<Objeto> vectorAux;
+std::vector<Object_t> Map::orderObjects(Vector &pos){
+	std::vector<Object_t> vectorAux;
 	int auxSprite;
-	Objeto auxObj;
+	Object_t auxObj;
 	for (auto obj : mapObj){
-		agregarVectDist(vectorAux, obj.second, pos);
+		addVectDist(vectorAux, obj.second, pos);
 	}
 	for (auto enemy : mapEnemies){
 		enemies.defineSprite(enemy.second, pos, auxSprite);
 		Vector auxPos(enemy.second.playerInfo.x, enemy.second.playerInfo.y);
 		auxObj={auxPos, auxSprite};
-		agregarVectDist(vectorAux, auxObj, pos);
+		addVectDist(vectorAux, auxObj, pos);
 	}
 	return vectorAux;
 }
 
-void Map::setObj(int &tipo){
-	if(tipo>=100)
-		enemies.setEnemy(tipo);
+void Map::setObj(int &type){
+	if(type>=100)
+		enemies.setEnemy(type);
 	else
-		objects.setObject(tipo);
+		objects.setObject(type);
 }
 
-void Map::setColObject(int &pos, int type ){
+void Map::setColObject(int &pos, int type){
 	if(type>=100){
 		setColEnemy(pos);
 	}else
-		objects.recortar(pos, 0, 1, 64);
+		objects.cutFromTexture(pos, 0, 1, 64);
 }
 
 void Map::setColEnemy(int &pos){
-	enemies.recortar(pos, 0, 1, 64);
+	enemies.cutFromTexture(pos, 0, 1, 64);
 }
 
-void Map::renderEnemy(int &posX, int &posY, int &largo, int &alto){
-	enemies.render(posX, posY, largo, alto);
+void Map::renderEnemy(int &posX, int &posY, int &lenght, int &height){
+	enemies.render(posX, posY, lenght, height);
 }
 
 
-void Map::renderObject(int &posX, int &posY, int &largo, int &alto, int type){
+void Map::renderObject(int &posX, int &posY, int &lenght, int &height, int type){
 	if(type>=100){
-		renderEnemy(posX, posY, largo, alto);
+		renderEnemy(posX, posY, lenght, height);
 	}
 	else{
-		objects.render(posX, posY, largo, alto);
+		objects.render(posX, posY, lenght, height);
 	}
 }
 

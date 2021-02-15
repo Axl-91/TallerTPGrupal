@@ -7,8 +7,8 @@
 #include "../common_src/Vector.h"
 #include "SpritesHandler.h"
 
-#define LARGO 64
-#define ALTO 64
+#define LONG 64
+#define HIGH 64
 
 
 #define FRAME_OFFSET 8
@@ -57,8 +57,8 @@ public:
     void setAngle(int angle);
     // void setPos(int anglePlayer);
     void setEnemy(int sprite);
-    void recortar(int x, int y, int largo = LARGO, int alto = ALTO);
-    void render(int x, int y, int largo = LARGO, int alto = ALTO);
+    void cutFromTexture(int x, int y, int length = LONG, int height = HIGH);
+    void render(int x, int y, int length = LONG, int height = HIGH);
     ~Enemies();
 };
 

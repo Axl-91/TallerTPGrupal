@@ -74,8 +74,8 @@ void Hud::renderScore(int score){
     renderNumber(score, 82, 216);
 }
 
-void Hud::render(int largoWin, int altoWin){
-    textureHandler.render(largoWin-HUDL, altoWin-HUDA, HUDL, HUDA);
+void Hud::render(int longWin, int highWin){
+    textureHandler.render(longWin-HUDL, highWin-HUDA, HUDL, HUDA);
     gun.render(255, 210, HGUNL, HGUNA);
 }
 

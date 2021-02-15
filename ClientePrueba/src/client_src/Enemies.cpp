@@ -76,12 +76,12 @@ void Enemies::setEnemy(int e){
     pos=e;
 }
 
-void Enemies::recortar(int x, int y, int largo, int alto){
-    EnemiesHandler.setSrc(x, y, largo,alto);
+void Enemies::cutFromTexture(int x, int y, int length, int height){
+    EnemiesHandler.setSrc(x, y, length,height);
 }
 
-void Enemies::render(int x, int y, int largo, int alto){
-    EnemiesHandler.render(x, y, largo, alto, pos-100);
+void Enemies::render(int x, int y, int length, int height){
+    EnemiesHandler.render(x, y, length, height, pos-100);
 }
 
 Enemies::~Enemies(){}
