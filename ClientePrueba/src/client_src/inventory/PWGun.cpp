@@ -11,21 +11,25 @@ std::vector<std::string> PWGunSprites={
 PWGun::PWGun(shooting_state_t &sS):
 PlayerWeapon(sS, PWGunSprites){
     type=GUN;
+    frameTime = GUN_FRAME_TIME;
 }
 
 
 void PWGun::render(int largoWin, int altoWin){
-    int delay = 2;
     int frame = 0;
+    
+    //    std::cout<<"render shoot chain connon";
+    now = std::chrono::high_resolution_clock::now();
+    auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
 
 
-    // if (shootingState!=SHOOTING_STATE_QUIET){
-    //     frame=0;
-    // }else
     std::cout<<"shootingState: "<<shootingState<<std::endl;
-    if (shootingState!=SHOOTING_STATE_QUIET){
-        numAuxiliar++;
-        frame = numAuxiliar/ delay;
+    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+        if(waited.count()>=frameTime){
+            numAuxiliar++;
+            before=now;
+        }
+        frame = numAuxiliar;
 
          if (frame > 4){
              numAuxiliar = 0;
@@ -33,21 +37,6 @@ void PWGun::render(int largoWin, int altoWin){
              shootingState=SHOOTING_STATE_QUIET;
         }
     }
-    // if(shootingState==SHOOTING_STATE_QUIET)
-    //     frame=0;
-    
-    // if(shootingState==SHOOTING_STATE_STARTED)
-    //     frame=1;
-
-    // if(shootingState==SHOOTING_STATE_SHOOTING)
-    //     frame=2;
-
-    // if(shootingState==SHOOTING_STATE_WAITING)
-    //     frame=3;
-
-    // if(shootingState==SHOOTING_STATE_STOPED)
-    //     frame=4;
-
     textureHandler.render(96, 72, GUNL, GUNA, frame);
 }
 

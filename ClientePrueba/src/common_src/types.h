@@ -29,7 +29,19 @@
 #define MACHINE_GUN_BULLET_WAIT_TIME 40 //ms
 #define MACHINE_GUN_WAIT_TIME 1000 //ms
 #define CHAIN_CANNON_WAIT_TIME 100 //ms
-#define ROCKET_LAUNCHE_WAIT_TIME 1000 //ms
+#define ROCKET_LAUNCHER_WAIT_TIME 1000 //ms
+
+/***************************************************************************/
+//
+//                          WEAPON FRAME TIMES
+//
+/***************************************************************************/
+#define KNIFE_FRAME_TIME 40 //ms
+#define GUN_FRAME_TIME 40 //ms
+#define MACHINE_GUN_FRAME_TIME 33 //ms
+#define CHAIN_CANNON_FRAME_TIME 33 //ms
+#define ROCKET_LAUNCHER_FRAME_TIME 40 //ms
+
 
 /***************************************************************************/
 //

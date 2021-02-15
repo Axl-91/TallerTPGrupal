@@ -11,17 +11,21 @@ std::vector<std::string> PWKnifeSprites={
 
 PWKnife::PWKnife(shooting_state_t &sS):
 PlayerWeapon(sS, PWKnifeSprites){
-    type=KNIFE;
+    type = KNIFE;
+    frameTime = KNIFE_FRAME_TIME;
 }
 
 void PWKnife::render(int largoWin, int altoWin){
-    int delay = 2;
     int frame = 0;
+    now = std::chrono::high_resolution_clock::now();
+    auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
 
-
-    if (shootingState != SHOOTING_STATE_QUIET/*||frame!=0*/){
-        numAuxiliar++;
-        frame = numAuxiliar/ delay;
+    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+        if(waited.count()>=frameTime){
+            numAuxiliar++;
+            before=now;
+        }
+        frame = numAuxiliar;
 
          if (frame > 4){
              numAuxiliar = 0;

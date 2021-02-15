@@ -12,17 +12,21 @@ std::vector<std::string> PWMachineGunSprites={
 PWMachineGun::PWMachineGun(shooting_state_t &sS):
 PlayerWeapon(sS, PWMachineGunSprites){
     type=MACHINE_GUN;
+    frameTime = MACHINE_GUN_FRAME_TIME;
 }
 
 
 void PWMachineGun::render(int posX, int posY){
-    int delay = 2;
     int frame = 0;
+    now = std::chrono::high_resolution_clock::now();
+    auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
 
-
-    if (shootingState != SHOOTING_STATE_QUIET){
-        numAuxiliar++;
-        frame = numAuxiliar/ delay;
+    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+        if(waited.count()>=frameTime){
+            numAuxiliar++;
+            before=now;
+        }
+        frame = numAuxiliar;
 
          if (frame > 4){
              numAuxiliar = 0;
@@ -31,8 +35,6 @@ void PWMachineGun::render(int posX, int posY){
         }
     }
     textureHandler.render(96, 72, GUNL, GUNA, frame);
-
-    std::cout<<"render MACHINE GUN"<<std::endl;
 }
 
 

@@ -34,10 +34,10 @@ void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float coef=0;
 
 	for(auto &p: players){
-		// if(p.first==player.getID()) DESCOMENTAR PARA MULTIJUGADOR
-		// 	continue;
+		if(p.first==player.getID())
+			continue;
 
-		// player.getDamageCoefficient(p.second, coef, wallDist);
+		player.getDamageCoefficient(p.second, coef, wallDist);
 		player.shoot(p.second, coef);
 	}
 }
