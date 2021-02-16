@@ -27,7 +27,7 @@ Para ejecutar cliente:
 
 	./client <ip/hostname> <port/service>
 
-# Para correr Editor:
+### Para correr Editor:
 	
 	mkdir build
 	cd build
