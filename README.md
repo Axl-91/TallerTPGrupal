@@ -10,6 +10,7 @@ sudo apt-get install
 	libsdl2-dev 
 	libsdl2-image-dev
 	libsdl2-ttf-dev
+	(yaml-cpp) https://github.com/jbeder/yaml-cpp/releases/tag/yaml-cpp-0.6.3
 
 ## Para correr Wolfestein3D:
 	
@@ -25,6 +26,18 @@ Para ejecutar servidor:
 Para ejecutar cliente:
 
 	./client <ip/hostname> <port/service>
+
+# Para correr Editor:
+	
+	mkdir build
+	cd build
+	cmake ..
+	make install
+	
+Para ejecutar servidor:
+	
+	./editor 
+	
 
 ## Grupo 14
 
