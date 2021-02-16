@@ -8,6 +8,7 @@ Hud::Hud():
 textureHandler(INSTALLED_TEXTURE_HUD, HUDL, HUDA), 
 gun(INSTALLED_TEXTURE_HUD, HGUNL, HGUNA),
 numbers(INSTALLED_TEXTURE_HUD, HNUML, HNUMA),
+keys(INSTALLED_TEXTURE_HUD, HKEYA,HKEYL),
 faces(INSTALLED_TEXTURE_HUD_FACES, HFACEL, HFACEA){
     gun.setPos(0, 41);
     numbers.setPos(0, 66);
@@ -18,6 +19,7 @@ void Hud::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);
     gun.setRenderer(renderer);
     numbers.setRenderer(renderer);
+    keys.setRenderer(renderer);
     faces.setRenderer(renderer);
 }
 
@@ -72,6 +74,16 @@ void Hud::renderLife(int life){
 
 void Hud::renderScore(int score){
     renderNumber(score, 82, 216);
+}
+
+void Hud::renderGoldenKey(){
+    keys.setPos(245,41);
+    keys.render(240,205,HKEYL,HKEYA);
+}
+
+void Hud::renderSilverKey(){
+    keys.setPos(254,41);
+    keys.render(240,221,HKEYL,HKEYA);
 }
 
 void Hud::render(int longWin, int highWin){

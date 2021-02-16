@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "SpritesHandler.h"
+#include "FilesHandler.h"
 #include "TextHandler.h"
 #include "../common_src/protectedQueue.h"
 #include "../common_src/types.h"
@@ -101,13 +102,8 @@ private:
 	std::vector<std::string> vectorMaps;
 	int mapPos = 0;
 
-	std::vector<std::string> vectorMenus = {
-		"Media/Menu/MainMenu.png", "Media/Menu/OptionsMenu.png",
-		"Media/Menu/NewMenu.png", "Media/Menu/NewMenuName.png",
-		"Media/Menu/NewMenuGame.png", "Media/Menu/NewMenuMap.png",
-		"Media/Menu/JoinMenu.png", "Media/Menu/JoinMenuName.png",
-		"Media/Menu/JoinMenuGame.png"
-	};
+	FilesHandler menuFiles;
+	std::vector<std::string> vectorMenus;
 	SpritesHandler menusHandler;
 	SpritesHandler selection;
 
