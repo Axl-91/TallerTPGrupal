@@ -104,12 +104,6 @@ void Map::insertObject(int x, int y, int obj){
 	mapObj[posPair]=auxObj;
 }
 
-void Map::eraseObj(float x, float y){
-	int posX = x - (int)x%longTile+longTile/2;
-	int posY = y - (int)y%longTile+longTile/2;
-	mapObj.erase(std::pair<int,int>(posX, posY));
-
-}
 
 void Map::setRenderer(SDL_Renderer* renderer){
 	walls.setRenderer(renderer);
@@ -247,8 +241,20 @@ void Map::renderObject(int &posX, int &posY, int &lenght, int &height, int type)
 Map::~Map(){}
 
 void Map::update(Map_change_t &aMapChange){
-	eraseObj(aMapChange.x, aMapChange.y) ;
-	if(aMapChange.value != 0){
+
+	// if(aMapChange.value > 300){
+	// 	openDoor(aMapChange.x,aMapChange.y, aMapChange.value);
+	// }
+
+	eraseObj(aMapChange.x, aMapChange.y);
+	if(aMapChange.value != 0&& aMapChange.value <300){
 		insertWeaponWithCoords(aMapChange.x,aMapChange.y, aMapChange.value);
 	}
+}
+
+void Map::eraseObj(float x, float y){
+	int posX = x - (int)x%longTile+longTile/2;
+	int posY = y - (int)y%longTile+longTile/2;
+	mapObj.erase(std::pair<int,int>(posX, posY));
+
 }
