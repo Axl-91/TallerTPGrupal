@@ -5,8 +5,6 @@
 #include "Map.h"
 #include "../common_src/Vector.h"
 
-#define PI 3.14159265358979323846
-
 class Raycaster{
 private:
     Vector rayV;
@@ -21,11 +19,11 @@ private:
     float distT;
     void raycasterVertical();
     void raycasterHorizontal();
-    void calcularRayFinal();
+    void finalRay();
 public:
-    Raycaster(Vector &pos, float &anguloPlayer, Map &map);
-    void crearRay(float &anguloRay);
-    float getDistancia();
+    Raycaster(Vector &pos, float &angPlayer, Map &map);
+    void makeRay(float &angleRay);
+    float getDistance();
     void render(int &pos);
     ~Raycaster();
 };

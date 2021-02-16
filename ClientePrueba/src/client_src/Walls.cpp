@@ -12,10 +12,10 @@ void Walls::setRenderer(SDL_Renderer* renderer){
 }
 
 
-void Walls::recortar(int &posX, int &posY, int &largo, int &alto){
+void Walls::cutFromTexture(int &posX, int &posY, int &length, int &height){
     int x = srcX+posX;
     int y = srcY+posY;
-    textureHandler.setSrc(x, y, largo, alto);
+    textureHandler.setSrc(x, y, length, height);
 }
 
 void Walls::setWall(int &num){
@@ -33,8 +33,8 @@ void Walls::setDark(){
     textureHandler.src.x += offset;
 }
 
-void Walls::render(int &posX, int &posY, int &largo, int &alto){
-    textureHandler.render(posX, posY, largo, alto);
+void Walls::render(int &posX, int &posY, int &length, int &height){
+    textureHandler.render(posX, posY, length, height);
 }
 
 Walls::~Walls(){}

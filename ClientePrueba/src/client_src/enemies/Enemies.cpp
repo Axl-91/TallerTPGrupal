@@ -44,8 +44,8 @@ void Enemies::setEnemyRenderSprite(int sprite){
     enemySpriteHandler[type]->setEnemyRenderSprite(sprite%100);
 }
 
-void Enemies::recortar(int x, int y, int largo, int alto){
-    enemySpriteHandler[type]->recortar(x, y, largo, alto);
+void Enemies::cutFromTexture(int x, int y, int largo, int alto){
+    enemySpriteHandler[type]->cutFromTexture(x, y, largo, alto);
 }
 
 void Enemies::render(int x, int y, int largo, int alto){

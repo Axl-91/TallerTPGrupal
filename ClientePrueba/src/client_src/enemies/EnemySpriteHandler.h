@@ -78,7 +78,7 @@ public:
     void defineFrame(Enemy_t &enemy);
     void setRenderer(SDL_Renderer* renderer);
     void setEnemyRenderSprite(int sprite);
-    void recortar(int x, int y, int largo, int alto);
+    void cutFromTexture(int x, int y, int largo, int alto);
     void render(int x, int y, int largo, int alto);
 
 private:

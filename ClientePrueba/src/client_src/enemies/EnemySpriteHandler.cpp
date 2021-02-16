@@ -137,7 +137,7 @@ void EnemySpriteHandler::setEnemyRenderSprite(int sprite){
     frame=sprite;
 }
 
-void EnemySpriteHandler::recortar(int x, int y, int largo, int alto){
+void EnemySpriteHandler::cutFromTexture(int x, int y, int largo, int alto){
     spritesHandler.setSrc(x, y, largo,alto);
 }
 

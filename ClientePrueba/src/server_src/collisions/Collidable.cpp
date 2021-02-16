@@ -43,7 +43,7 @@ bool Collidable::isInside(circle &c){
     Vector init(xInit,yInit);
     Vector end(xEnd,yEnd);
     Vector cCenter(c.x, c.y);
-    if(cCenter.distancia(init)<c.radius&&cCenter.distancia(end)<c.radius)
+    if(cCenter.getDistance(init)<c.radius&&cCenter.getDistance(end)<c.radius)
         return true;
     return false;
 }

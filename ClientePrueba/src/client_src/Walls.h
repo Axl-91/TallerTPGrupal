@@ -15,10 +15,10 @@ private:
 public:
     Walls();
     void setRenderer(SDL_Renderer* renderer);
-    void recortar(int &posX, int &posY, int &largo, int &ancho);
+    void cutFromTexture(int &posX, int &posY, int &length, int &height);
     void setWall(int &num);
     void setDark();
-    void render(int &posX, int &posY, int &largo, int &ancho);
+    void render(int &posX, int &posY, int &length, int &height);
     ~Walls();
 };
 

@@ -26,11 +26,11 @@ class Hud{
 private:
     int offsetGun = 49;
     int offsetNum = 9;
-    SDL_Rect srcKey = {196, 41, HKEYL, HKEYA};
     SpritesHandler textureHandler;
     SpritesHandler gun;
     SpritesHandler numbers;
     SpritesHandler faces;
+    SpritesHandler keys;
 
     void getTexture();
     void renderNumber(int number, int x, int y);
@@ -41,11 +41,13 @@ public:
     void setWeapon(weapon_t aWeapon);
 
     void setRenderer(SDL_Renderer* renderer);
-    void render(int largoWin, int altoWin);
+    void render(int longWin, int highWin);
     void renderHealth(int health);
     void renderAmmo(int ammo);
     void renderLife(int life);
     void renderScore(int score);
+    void renderGoldenKey();
+    void renderSilverKey();
     void renderFace(int health);
     ~Hud();
 };

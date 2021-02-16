@@ -14,12 +14,12 @@ void Objects::setObject(int num){
     objSelected = num;
 }
 
-void Objects::recortar(int x, int y, int largo, int alto){
-    objHandler.setSrc(x, y, largo,alto);
+void Objects::cutFromTexture(int x, int y, int length, int height){
+    objHandler.setSrc(x, y, length,height);
 }
 
-void Objects::render(int x, int y, int largo, int alto){
-    objHandler.render(x, y, largo, alto, objSelected);
+void Objects::render(int x, int y, int length, int height){
+    objHandler.render(x, y, length, height, objSelected);
 }
 
 Objects::~Objects(){}

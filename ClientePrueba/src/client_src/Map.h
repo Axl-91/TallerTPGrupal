@@ -13,14 +13,14 @@
 
 #include "../common_src/types.h"
 
-typedef struct Objeto {
-	Vector posicion;
-	int tipoObjecto;
-} Objeto;
+typedef struct Object_t {
+	Vector position;
+	int objType;
+} Object_t;
 
 class Map{
 private:
-	int largoBloque = 64;
+	int longTile = 64;
 	int rows;
 	int cols;
 	std::vector<std::vector<int>> map;
@@ -30,7 +30,7 @@ private:
 	Enemies enemies;
 
 	std::map<int, Enemy_t> mapEnemies;
-	std::map<std::pair<int,int>, Objeto> mapObj;
+	std::map<std::pair<int,int>, Object_t> mapObj;
 public:
 	Map(std::vector<std::vector<int>> &lvl);
 	~Map();
@@ -41,27 +41,27 @@ public:
 	std::map<int, Enemy_t>& getEnemies();
 	void load(std::vector<std::vector<int>> lvl);
 	void setRenderer(SDL_Renderer* renderer);
-	int getLongBloques();
-	bool hayCoordenadas(float &x, float &y);
-	bool hayCoordenadas(Vector &posicion);
-	int getBloque(float &x, float &y);
-	int getBloque(Vector &posicion);
-	void setWall(Vector &posicion, bool dark);
+	int getLongTiles();
+	bool validPosition(float &x, float &y);
+	bool validPosition(Vector &pos);
+	int getTile(float &x, float &y);
+	int getTile(Vector &pos);
+	void setWall(Vector &pos, bool dark);
 	void setColWall(float &pos);
-	void renderWall(int &posX, int &posY, int &largo, int &alto);
-	void addObject(Vector &posicion, int tipo);
-	std::vector<Objeto> ordenarObjects(Vector &pos);
+	void renderWall(int &posX, int &posY, int &lenght, int &height);
+	void addObject(Vector &pos, int type);
+	std::vector<Object_t> orderObjects(Vector &pos);
 	// int getCantObjects();
 	void eraseObj(float x, float y);
 	// Vector getPosObj(int &pos);
 	// int getTipoObj(int &pos);
 	void setObj(int &pos);
-	void renderEnemy(int &posX, int &posY, int &largo, int &alto);
+	void renderEnemy(int &posX, int &posY, int &lenght, int &height);
 	void setColEnemy(int &pos);
 
 	void setColObject(int &pos, int type);
 	// void setColObject(int &pos);
-	void renderObject(int &posX, int &posY, int &largo, int &alto, int type);
+	void renderObject(int &posX, int &posY, int &lenght, int &height, int type);
 	// void renderObject(int &posX, int &posY, int &largo, int &alto);
 	void update(Map_change_t &aMapChange);
 	void updateEnemy(Player_t &p);

@@ -43,13 +43,13 @@ void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color color){
     }
 }
 
-void TextHandler::render(int posX, int posY, int largo, int alto, int pos){
-    SDL_Rect rect = {posX, posY, largo, alto};
+void TextHandler::render(int posX, int posY, int length, int height, int pos){
+    SDL_Rect rect = {posX, posY, length, height};
     SDL_RenderCopy(rendererWin, vectorTextures[pos], NULL, &rect);
 }
 
-void TextHandler::render(int posX, int posY, int largo, int alto){
-    SDL_Rect rect = {posX, posY, largo, alto};
+void TextHandler::render(int posX, int posY, int length, int height){
+    SDL_Rect rect = {posX, posY, length, height};
     SDL_RenderCopy(rendererWin, vectorTextures[0], NULL, &rect);
 }
 

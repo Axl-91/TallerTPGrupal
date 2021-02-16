@@ -11,7 +11,6 @@ client.cpp
 clientReceiver.cpp
 Map.cpp
 Objects.cpp
-Enemies.cpp
 client Transmitter.cpp
 Walls.cpp
 main.cpp
@@ -20,5 +19,6 @@ Menu.cpp
 TextHandler.cpp
 SDL_Sounds.cpp
 gameUpdater.cpp
+FilesHandler.cpp
 )
 
