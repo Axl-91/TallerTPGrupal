@@ -29,7 +29,7 @@ Para ejecutar cliente:
 
 ### Para correr Editor:
 	
-	mkdir build
+	mkdir buildEditor
 	cd build
 	cmake ..
 	make install
