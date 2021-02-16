@@ -13,7 +13,7 @@
 #define IMMOVABLE_OBJECT_OFFSET_VALUE 188
 
 
-#define ENEMY_VALUE 100
+#define ENEMY_OFFSET 100
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 	rows=lvl.size();
@@ -22,9 +22,16 @@ Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
 }
 
 void Map::updateEnemy(Player_t &p){
+	if(p.currentWP!=WP_SECONDARY)
+		mapEnemies[p.ID].type = (enemy_type_t) p.currentWP;
+	else
+		mapEnemies[p.ID].type = (enemy_type_t) p.secondaryWP;
+
+	if(p.lifes == 0)
+		mapEnemies[p.ID].dead = true;
+		
 	mapEnemies[p.ID].playerInfo = p;
 	enemies.defineFrame(mapEnemies[p.ID]);
-	// insertEnemy(p);
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
@@ -75,6 +82,7 @@ void Map::insertEnemy(Player_t &p){
 	e.dead = false;
 	e.moving_frame = 0;
 	e.shooting_frame = 0;
+	e.dead_frame = 0;
 	e.type=(enemy_type_t) p.currentWP;
 	mapEnemies[p.ID] = e;
 }
@@ -190,6 +198,12 @@ std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 		agregarVectDist(vectorAux, obj.second, pos);
 	}
 	for (auto enemy : mapEnemies){
+
+
+//		enemies.defineFrame(enemy.second);
+
+
+
 		enemies.defineSprite(enemy.second, pos, auxSprite);
 		Vector auxPos(enemy.second.playerInfo.x, enemy.second.playerInfo.y);
 		auxObj={auxPos, auxSprite};
@@ -199,14 +213,14 @@ std::vector<Objeto> Map::ordenarObjects(Vector &pos){
 }
 
 void Map::setObj(int &tipo){
-	if(tipo>=100)
-		enemies.setEnemy(tipo);
+	if(tipo>=ENEMY_OFFSET)
+		enemies.setEnemyRenderSprite(tipo);
 	else
 		objects.setObject(tipo);
 }
 
 void Map::setColObject(int &pos, int type ){
-	if(type>=100){
+	if(type>=ENEMY_OFFSET){
 		setColEnemy(pos);
 	}else
 		objects.recortar(pos, 0, 1, 64);
@@ -222,7 +236,7 @@ void Map::renderEnemy(int &posX, int &posY, int &largo, int &alto){
 
 
 void Map::renderObject(int &posX, int &posY, int &largo, int &alto, int type){
-	if(type>=100){
+	if(type>=ENEMY_OFFSET){
 		renderEnemy(posX, posY, largo, alto);
 	}
 	else{

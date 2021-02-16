@@ -16,14 +16,9 @@ PlayerWeapon(sS, PWChainCannonSprites){
 }
 
 void PWChainCannon::render(int posX, int posY){
-    // int delay = 2;
-
     int frame = 0;
-    //    std::cout<<"render shoot chain connon";
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
-
-    std::cout<<"frame: "<<frame<<std::endl;
 
     if (shootingState != SHOOTING_STATE_QUIET){
         if(waited.count()>=frameTime){
@@ -36,7 +31,6 @@ void PWChainCannon::render(int posX, int posY){
             if (frame > 3){
                 numAuxiliar = 1;
                 frame = numAuxiliar;
-               // shootingState=SHOOTING_STATE_QUIET;
             }
         }else
          if (frame > 4){
@@ -45,11 +39,8 @@ void PWChainCannon::render(int posX, int posY){
              shootingState=SHOOTING_STATE_QUIET;
         }
     }
-    std::cout<<"frame: "<<frame<<std::endl;
-
     textureHandler.render(96, 72, GUNL, GUNA, frame);
 
-    // std::cout<<"render CHAIN CANNON"<<std::endl;
 }
 
 

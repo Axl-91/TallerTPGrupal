@@ -9,7 +9,7 @@
 #include "../common_src/Vector.h"
 #include "Walls.h"
 #include "Objects.h"
-#include "Enemies.h"
+#include "enemies/Enemies.h"
 
 #include "../common_src/types.h"
 

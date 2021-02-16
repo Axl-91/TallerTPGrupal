@@ -5,6 +5,7 @@
 #include <sstream>
 #include "../common_src/socket.h"
 #include "../common_src/types.h"
+#include <mutex>
 
 class ServerTransmitter {
 public:
@@ -19,6 +20,7 @@ public:
     void sendString(std::string &aString);
 
 private:
+    std::mutex m;
     Socket &socket;
 };
 

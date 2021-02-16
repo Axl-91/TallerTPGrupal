@@ -204,6 +204,7 @@ typedef struct{
     int shooting_frame;
     enemy_type_t type;
     bool dead;
+    int dead_frame;
 }Enemy_t;
 
 
