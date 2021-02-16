@@ -41,6 +41,12 @@ void Map::load(std::vector<std::vector<int>> lvl){
 		for (int j = 0; j < cols; ++j){
 			if(map[i][j]>=400)
 				map[i][j]-=400;
+
+			if(map[i][j]>=MOVABLE_DOOR_OFFSET&&map[i][j]<MOVABLE_DOOR_OFFSET+COLLIDABLE_OFFSET){
+				map[i][j]-=300;
+			}
+
+
 			if(map[i][j]>=IMMOVABLE_OBJECT_OFFSET&&map[i][j]<IMMOVABLE_OBJECT_OFFSET+COLLIDABLE_OFFSET){
 				insertObject(j,i,map[i][j]-IMMOVABLE_OBJECT_OFFSET_VALUE);
 				map[i][j]=0;
@@ -198,12 +204,6 @@ std::vector<Object_t> Map::orderObjects(Vector &pos){
 		addVectDist(vectorAux, obj.second, pos);
 	}
 	for (auto enemy : mapEnemies){
-
-
-//		enemies.defineFrame(enemy.second);
-
-
-
 		enemies.defineSprite(enemy.second, pos, auxSprite);
 		Vector auxPos(enemy.second.playerInfo.x, enemy.second.playerInfo.y);
 		auxObj={auxPos, auxSprite};

@@ -36,11 +36,19 @@ private:
     size_t ammo;
     bool key;
     shooting_state_t shootingState;
-    // bool shooting;
+
+    bool openingDoor;
     bool updateAvailable;
     weapon_t getSecondaryWPtype();
 
 public:
+
+    void startOpenDoor();
+    void stopOpenDoor();
+    bool isOpeningDoor();
+
+
+
     void shoot();
     void respawn();
     bool updateIsAvailable();
@@ -51,7 +59,6 @@ public:
     ServerPlayer(ServerPlayer&& other);
     void rotate();
 
-    // bool enemyInShootRange(ServerPlayer &enemy, float wallDist);
     void getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist);
     float getAngle();
 	void shoot(ServerPlayer &enemy, float coef);
@@ -73,7 +80,6 @@ public:
     void startShooting();
     void stopShooting();
     bool isShooting();
-    // bool startedShooting();
     weapon_t equip(weapon_t weapon);
     int heal(int h);
     int reload(int ammo);
@@ -81,7 +87,6 @@ public:
     int addPoints(int p);
 
     size_t getID();
-    // void setID(size_t newID);
 };
 
 #endif

@@ -7,34 +7,23 @@ spritesHandler(enemiesSprites){
     shootingFrameTimer = 0;
     deadFrameTimer = 0;
     movingFrameTime = 100;
-    shootingFrameTime = 200;
+    shootingFrameTime = 100;
     deadFrameTime = 200;
 
 }
-
-// EnemySpriteHandler::EnemySpriteHandler(): 
-// spritesHandler(eS){
-// }
-
 
 void EnemySpriteHandler::setRenderer(SDL_Renderer* renderer){
     spritesHandler.setRenderer(renderer);
 }
 
-// void EnemySpriteHandler::setAngle(int angle){
-//     angleEnemy = angle;
-// }
-
 
 //usa trigonometria para definia la vista del enemigo
 void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sprite){
     Vector enemyPos(enemy.playerInfo.x, enemy.playerInfo.y);
-//    defineFrame(enemy);
     sprite=0;
     float auxAngle=enemyPos.getAngle(posPlayer);
 
     sprite += enemy.moving_frame * MOVEMENT_FRAME_OFFSET;
-    // std::cout<<"sprite sin angulo:" <<sprite<<std::endl;
 
     if(auxAngle>=2*PI)
         auxAngle-=2*PI;
@@ -49,13 +38,6 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
         angleDif+=2*PI;
 
     angleDif=angleDif*180/PI;
-
-
-    std::cout<<"define sprite:-------------------------------------------------" <<std::endl;
-
-    std::cout<<"shootingFrameTimer:" <<shootingFrameTimer<<std::endl;
-    std::cout<<"enemy.shooting_frame:" <<enemy.shooting_frame<<std::endl;
-
 
     if (angleDif <= 22.5 && angleDif >= 0||angleDif <= 360 && angleDif > 337.5){
         sprite += 0;
@@ -110,14 +92,15 @@ void EnemySpriteHandler::defineShootingFrame(Enemy_t &enemy){
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     shootingFrameTimer += waited.count();
     
-    if((enemy.playerInfo.shootingState==SHOOTING_STATE_QUIET && enemy.shooting_frame==0)|| enemy.shooting_frame>=shootingFrames-1)
-        enemy.shooting_frame = 0;
+    if(enemy.playerInfo.shootingState==SHOOTING_STATE_QUIET && enemy.shooting_frame!=1)
+        enemy.shooting_frame = 0;    
     else if(shootingFrameTimer >= shootingFrameTime){
-        enemy.shooting_frame++;
+        if(enemy.shooting_frame>=shootingFrames-1)
+            enemy.shooting_frame = 1;
+        else 
+            enemy.shooting_frame++;
         shootingFrameTimer = 0;
     }
-
-    
 }
 
 void EnemySpriteHandler::defineDeadFrame(Enemy_t &enemy){

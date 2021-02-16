@@ -98,9 +98,13 @@ void ServerGame::handleCollision(circle &playerPos, int c){
 
 	colMap.erase(playerPos);
     value=0;
-	if(c>130&&c<140){
+	
+	if(c>WEAPON_OFFSET+2&&c<WEAPON_OFFSET+COLLECTIBLE_OFFSET){
 	 	colMap.insert(playerPos.x, playerPos.y, c);
         value = c;
 	}
+	if(c>300&&c<400)
+        value = c;
+
     updateHandler.updateMap(playerPos.x, playerPos.y, value);
 }

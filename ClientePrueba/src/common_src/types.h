@@ -56,6 +56,8 @@
 #define WEAPON_OFFSET 130
 #define TREASURE_OFFSET 140
 #define IMMOVABLE_OBJECT_OFFSET 200
+#define MOVABLE_DOOR_OFFSET 300
+
 #define WALL_OFFSET 400
 
 
@@ -112,7 +114,9 @@ typedef enum{
     GET_MAPS,
     SET_MAP,
     START_GAME,
-    JOIN
+    JOIN,
+    PLAYER_START_OPENING_DOOR,
+    PLAYER_STOP_OPENING_DOOR
 }event_t;
 
 

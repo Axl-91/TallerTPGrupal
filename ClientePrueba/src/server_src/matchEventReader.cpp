@@ -65,6 +65,10 @@ void MatchEventReader::readEvent(){
         aPlayer.seteRotateOrientation(LEFT);
     if(event.event==PLAYER_STOP_ROTATING)
         aPlayer.seteRotateOrientation(ROTATE_QUIET);
+    if(event.event==PLAYER_START_OPENING_DOOR)
+        aPlayer.startOpenDoor();
+    if(event.event==PLAYER_STOP_OPENING_DOOR)
+        aPlayer.stopOpenDoor();
 
     // if(event.event==GAME_QUIT)
     //     return false;

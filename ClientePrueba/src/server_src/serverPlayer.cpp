@@ -41,6 +41,7 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	rotateOrientation = ROTATE_QUIET;
 	ID = newID;
 	updateAvailable=true;
+	openingDoor=false;
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -66,6 +67,7 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	moveOrientation = other.moveOrientation;
 	rotateOrientation = other.rotateOrientation;
 	ID = other.ID;
+	openingDoor=other.openingDoor;
 }
 // void ServerPlayer::setID(size_t newID){
 // 	ID = newID;
@@ -218,14 +220,17 @@ void ServerPlayer::beDamaged(int damage){
 }
 
 
+void ServerPlayer::startOpenDoor(){
+	openingDoor = true;
+}
 
-// bool ServerPlayer::startedShooting(){
-// 	if(shootingState != SHOOTING_STATE_QUIET){
-// 		updateAvailable = true;
-// 		return true;
-// 	}
-// 	return false;
-// }
+void ServerPlayer::stopOpenDoor(){
+	openingDoor = false;
+}
+
+bool ServerPlayer::isOpeningDoor(){
+	return openingDoor;
+}
 
 size_t ServerPlayer::getID(){
 	return ID;

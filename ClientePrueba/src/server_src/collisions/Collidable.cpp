@@ -7,6 +7,7 @@
 #include "CollectAmmo.h"
 #include "CollectKey.h"
 #include "CollectTreasure.h"
+#include "MovableDoor.h"
 
 #include "../../common_src/Vector.h"
 #include "Rectangle.h"
@@ -33,6 +34,8 @@ Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
         return new ImmovableObject(xI, yI, cellWidth, opt-IMMOVABLE_OBJECT_OFFSET);
     }else if(opt>WALL_OFFSET && opt<WALL_OFFSET + COLLIDABLE_OFFSET){
         return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);
+    }else if(opt>MOVABLE_DOOR_OFFSET && opt<MOVABLE_DOOR_OFFSET + COLLIDABLE_OFFSET){
+        return new MovableDoor(xI, yI, cellWidth, opt-MOVABLE_DOOR_OFFSET);
     }else {
         //TIRAR ERROR!!!
         return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);

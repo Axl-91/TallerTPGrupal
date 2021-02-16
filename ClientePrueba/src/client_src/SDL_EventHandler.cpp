@@ -16,6 +16,8 @@ SDL_EventHandler::SDL_EventHandler(ProtectedQueue<event_t> &q):
 	keyDownEvents[SDLK_RIGHT] = PLAYER_START_ROTATING_RIGHT;
 	keyDownEvents[SDLK_LEFT] = PLAYER_START_ROTATING_LEFT;
 	keyDownEvents[SDLK_SPACE] = PLAYER_SHOOT;
+	keyDownEvents[SDLK_z] = PLAYER_START_OPENING_DOOR;
+
 	keyDownEvents[SDLK_u] = JOIN;
 
 	keyUpEvents[SDLK_UP] = PLAYER_STOP_MOVING;
@@ -23,6 +25,8 @@ SDL_EventHandler::SDL_EventHandler(ProtectedQueue<event_t> &q):
 	keyUpEvents[SDLK_RIGHT] = PLAYER_STOP_ROTATING;
 	keyUpEvents[SDLK_LEFT] = PLAYER_STOP_ROTATING;
 	keyUpEvents[SDLK_SPACE] = PLAYER_STOP_SHOOTING;
+	keyUpEvents[SDLK_z] = PLAYER_STOP_OPENING_DOOR;
+
 }
 SDL_EventHandler::~SDL_EventHandler(){}
 

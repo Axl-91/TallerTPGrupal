@@ -133,7 +133,7 @@ bool QuadNode::erase(float x, float y){
 }
 
 bool QuadNode::erase(circle &pPos){
-    std::cout<<"erase col"<<std::endl;
+//    std::cout<<"erase col"<<std::endl;
 
     bool coll=false;
     if(bounds.contains(pPos)==false){
@@ -142,7 +142,7 @@ bool QuadNode::erase(circle &pPos){
 
     for(int i=0; i<data.size(); i++){
         if(data[i]->detectCollision(pPos, 0, 0)==true){
-            std::cout<<"eliminado"<<std::endl;
+//            std::cout<<"eliminado"<<std::endl;
             delete data[i];
             data.erase(data.begin()+i);
             coll=true;
@@ -168,7 +168,7 @@ bool QuadNode::detectCollision(circle &c, float dX, float dY, std::vector<Collid
 
     for(int i=0; i<data.size(); i++){
         if(data[i]->detectCollision(c, dX,dY)==true){
-            std::cout<<"colision detectada"<<std::endl;
+//            std::cout<<"colision detectada"<<std::endl;
             col.push_back(data[i]);
             coll=true;
         }
