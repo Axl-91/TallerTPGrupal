@@ -1,3 +1,6 @@
+#ifndef __FILES_HANDLER__
+#define __FILES_HANDLER__
+
 #include <iostream>
 #include <string.h>
 #include <vector>
@@ -13,3 +16,5 @@ public:
     std::vector<std::string> getVectorFiles();
     ~FilesHandler();
 };
+
+#endif

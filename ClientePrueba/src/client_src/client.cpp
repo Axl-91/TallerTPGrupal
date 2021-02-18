@@ -77,7 +77,7 @@ void Client::runMenu(int &winLargo, int &winAlto){
     // while (!menu.leftMenu()){
         menu.pollEvent();
         menu.render();
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(40));
     }
     gameStarted = menu.joinedMatch();
 }
