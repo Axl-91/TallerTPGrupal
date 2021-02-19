@@ -27,25 +27,32 @@ void Hud::setWeapon(weapon_t aWeapon){
     gun.src.x = offsetGun*(aWeapon - 1);
 }
 
-void Hud::renderNumber(int number, int x, int y){
+void Hud::renderNumber(int number, int &x, int &y){
+    int offsetRenderNum = 8;
+    int decimal = 10;
+
     while (true){
-        int numero = number % 10;
+        int numero = number % decimal;
 
         numbers.src.x = offsetNum * numero;
         numbers.render(x, y, HNUML, HNUMA);
 
-        number = number / 10;
+        number = number / decimal;
         if (number == 0) return;
-        x -= 8;
+        x -= offsetRenderNum;
     }
 }
 
-void Hud::renderHealth(int health){
-    renderNumber(health, 184, 216);
+void Hud::renderHealth(int &health){
+    int posX = 184;
+    int posY = 216;
+    renderNumber(health, posX, posY);
     renderFace(health);
 }
 
-void Hud::renderFace(int health){
+void Hud::renderFace(const int &health){
+    int posX = 136;
+    int posY = 204;
     if (health > 85){
         faces.src.y = (HFACEA+1)*0;
     } else if (health > 70){
@@ -61,36 +68,50 @@ void Hud::renderFace(int health){
     } else {
         faces.src.y = (HFACEA+1)*6;
     }
-    faces.render(136, 204, HFACEL, HFACEA);
+    faces.render(posX, posY, HFACEL, HFACEA);
 }
 
-void Hud::renderAmmo(int ammo){
-    renderNumber(ammo, 220, 216);
+void Hud::renderAmmo(const int &ammo){
+    int posX = 220;
+    int posY = 216;
+    renderNumber(ammo, posX, posY);
 }
 
-void Hud::renderLife(int life){
-    renderNumber(life, 112, 216);
+void Hud::renderLife(const int &life){
+    int posX = 112;
+    int posY = 216;
+    renderNumber(life, posX, posY);
 }
 
-void Hud::renderScore(int score){
-    renderNumber(score, 82, 216);
+void Hud::renderScore(const int &score){
+    int posX = 82;
+    int posY = 216;
+    renderNumber(score, posX, posY);
 }
 
 void Hud::renderGoldenKey(){
-    keys.setPos(245,41);
-    keys.render(240,205,HKEYL,HKEYA);
+    int keyX = 245;
+    int keyY = 41;
+    int posX = 240;
+    int posY = 205;
+    keys.setPos(keyX,keyY);
+    keys.render(posX,posY,HKEYL,HKEYA);
 }
 
 void Hud::renderSilverKey(){
-    keys.setPos(254,41);
-    keys.render(240,221,HKEYL,HKEYA);
+    int keyX = 254;
+    int keyY = 41;
+    int posX = 240;
+    int posY = 221;
+    keys.setPos(keyX,keyY);
+    keys.render(posX,posY,HKEYL,HKEYA);
 }
 
-void Hud::render(int longWin, int highWin){
+void Hud::render(int &longWin, int &highWin){
+    int posXGun = 255;
+    int posYGun = 210;
     textureHandler.render(longWin-HUDL, highWin-HUDA, HUDL, HUDA);
-    gun.render(255, 210, HGUNL, HGUNA);
+    gun.render(posXGun, posYGun, HGUNL, HGUNA);
 }
-
-
 
 Hud::~Hud(){}
