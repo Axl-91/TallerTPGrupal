@@ -63,14 +63,15 @@ class Menu{
 private:
 	ClientReceiver &receiver;
 	ClientTransmitter &transmitter;
-    int &winLargo;
-	int &winAlto;
+    int &winLength;
+	int &winHeight;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
 	SDL_Sounds menuSounds;
 	
-    int largo = 320;
-    int alto = 240;
+    int longWin = 320;
+    int highWin = 240;
+	int highFont = 15;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;
@@ -99,6 +100,7 @@ private:
 	bool numChange = false;
 	
 	int menu = MAIN_MENU;
+	std::string nonString = " ";
 	std::string namePlayer = "";
 	std::string nameGame = "";
 	std::string nameJoin = "";

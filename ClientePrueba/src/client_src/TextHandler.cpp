@@ -3,7 +3,7 @@
 #include <iostream>
 #include "TextHandler.h"
 
-TextHandler::TextHandler(std::string text){
+TextHandler::TextHandler(std::string &text){
     vectorText = {text};
 }
 
@@ -24,7 +24,7 @@ void TextHandler::setRenderer(SDL_Renderer* renderer, SDL_Color color){
 
 }
 
-void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color color){
+void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color &color){
     SDL_Surface* surfaceText;
 	TTF_Font* font = TTF_OpenFont("Media/Menu/DejaVuSans-Bold.ttf", 14);
 
@@ -44,17 +44,17 @@ void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color color){
     TTF_CloseFont(font);
 }
 
-void TextHandler::render(int posX, int posY, int length, int height, int pos){
+void TextHandler::render(int &posX, int &posY, int &length, int &height, const int &pos){
     SDL_Rect rect = {posX, posY, length, height};
     SDL_RenderCopy(rendererWin, vectorTextures[pos], NULL, &rect);
 }
 
-void TextHandler::render(int posX, int posY, int length, int height){
+void TextHandler::render(int &posX, int &posY, int &length, int &height){
     SDL_Rect rect = {posX, posY, length, height};
     SDL_RenderCopy(rendererWin, vectorTextures[0], NULL, &rect);
 }
 
-void TextHandler::setText(std::string newText){
+void TextHandler::setText(std::string &newText){
     destroyTextures();
     vectorText.push_back(newText);
     getTextures(rendererWin, colorText);
