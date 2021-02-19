@@ -12,6 +12,7 @@
 #include "../common_src/thread.h"
 #include "../common_src/protectedQueue.h"
 #include "gameUpdater.h"
+#include "SDL_Sounds.h"
 //
 // Clase que se ocupa de la logica del renderizado del juego
 // Comienza a correr cuando el jugador entra a una partida. 
@@ -23,6 +24,7 @@ private:
     int largoReal = 320;
     int altoReal = 240;
 	bool gameOver = false;
+	SDL_Sounds gameSounds;
 	int winLargo;
 	int winAlto;
 	Map mapGame;

@@ -54,7 +54,7 @@ private:
 	int &winAlto;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
-	SDL_Sounds* menuSounds = SDL_Sounds::getInstance();
+	SDL_Sounds menuSounds;
 	
     int largo = 320;
     int alto = 240;
@@ -120,20 +120,20 @@ private:
 	void renderTextOptions();
 	void renderTextCreate();
 	void renderTextJoin();
-	void pollEventMain(int key);
-	void pollEventOptions(int key);
-	void pollEventCreate(int key);
-	void pollEventJoin(int key);
+	void pollEventMain(const int &key);
+	void pollEventOptions(const int &key);
+	void pollEventCreate(const int &key);
+	void pollEventJoin(const int &key);
 	void doActionMain();
 	void doActionOpt();
 	void doActionCreate();
 	void doActionJoin();
-	bool inputText(std::string &input, int x, int y, int tipo);
-	void renderCreateForInput(std::string &input, int x, int y, int tipo);
+	bool inputText(std::string &input, int &x, int &y, const int &tipo);
+	void renderCreateForInput(std::string &input, int &x, int &y, const int &tipo);
 	void selectMatch();
-	void renderSelectionMatch(int pos);
+	void renderSelectionMatch(int &pos);
 	void selectMap();
-	void renderSelectionMap(int pos);
+	void renderSelectionMap(int &pos);
 public:
 	Menu(ClientReceiver &r, 
 		ClientTransmitter &t,
@@ -144,8 +144,8 @@ public:
 	bool quitGame();
 	bool createGame();
 	bool joinGame();
-	void setMatches(std::vector<std::string> matches);
-	void setMaps(std::vector<std::string> maps);
+	void setMatches(std::vector<std::string> &matches);
+	void setMaps(std::vector<std::string> &maps);
 	std::string playerName();
 	std::string gameCreated();
 	std::string gameJoined();

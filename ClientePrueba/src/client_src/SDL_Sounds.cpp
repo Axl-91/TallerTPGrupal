@@ -5,53 +5,49 @@
 #include <iostream>
 #include <string>
 
-SDL_Sounds* SDL_Sounds::soundInstance = 0;
-
-SDL_Sounds::SDL_Sounds(){
+SDL_Sounds::SDL_Sounds(): 
+    fileSFX("Media/SoundEffects/SoundEffects.txt"),
+    fileMusic("Media/Music/Music.txt")
+    {
     SDL_Init(SDL_INIT_AUDIO);
     Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-    loadChunk("Media/SoundEffects/sfxmenu2.wav");
-    loadChunk("Media/SoundEffects/sfxmenu1.wav");
-    loadChunk("Media/SoundEffects/STAB.wav");
-    loadChunk("Media/SoundEffects/GUNSHT.wav");
-    loadChunk("Media/SoundEffects/GUNSHT2.wav");
-    loadChunk("Media/SoundEffects/GUNSHT3.wav");
-    loadChunk("Media/SoundEffects/rocket.wav");
-    loadChunk("Media/SoundEffects/BJAAH.wav");
-    loadChunk("Media/SoundEffects/BJGRUNT.wav");
-    loadChunk("Media/SoundEffects/BJDIE.wav");
-    loadChunk("Media/SoundEffects/EPAIN.wav");
-    loadChunk("Media/SoundEffects/EDIE.wav");
+    std::vector<std::string> vectorAux;
 
-    loadMusic("Media/Music/xdeath.ogg");
-    loadMusic("Media/Music/xevil.ogg");
-    loadMusic("Media/Music/zerohour.ogg");
-    loadMusic("Media/Music/ultimate.ogg");
+    vectorAux = fileSFX.getVectorFiles();
+    for (std::string fileName : vectorAux){
+        loadChunk(fileName);
+    }
+
+    vectorAux = fileMusic.getVectorFiles();
+    for (std::string fileName : vectorAux){
+        loadMusic(fileName);
+    }
 }
 
-void SDL_Sounds::loadChunk(std::string nameChunk){
+void SDL_Sounds::loadChunk(std::string &nameChunk){
     Mix_Chunk* chunkLoad = Mix_LoadWAV(nameChunk.c_str());
-    Mix_VolumeChunk(chunkLoad, 50);
+    Mix_VolumeChunk(chunkLoad, 20);
     if (chunkLoad == 0){
         std::cout << "Error loading chunk: " << Mix_GetError() << std::endl;
     }
     vectorChunks.push_back(chunkLoad);
 }
 
-void SDL_Sounds::loadMusic(std::string nameMusic){
+void SDL_Sounds::loadMusic(std::string &nameMusic){
     Mix_Music* musicLoad = Mix_LoadMUS(nameMusic.c_str());
+    Mix_VolumeMusic(45);
     if (musicLoad == 0){
         std::cout << "Error loading music: " << Mix_GetError() << std::endl;
     }
     vectorMusic.push_back(musicLoad);
 }
 
-void SDL_Sounds::playEffect(int type){
+void SDL_Sounds::playEffect(const int &type){
     Mix_PlayChannel(-1, vectorChunks[type], 0);
 }
 
-void SDL_Sounds::playMusic(int type){
+void SDL_Sounds::playMusic(const int &type){
     Mix_PlayMusic(vectorMusic[type], -1);
 }
 
@@ -59,13 +55,18 @@ void SDL_Sounds::stopMusic(){
     Mix_HaltMusic();
 }
 
-SDL_Sounds::~SDL_Sounds(){
+void SDL_Sounds::freeVectors(){
     for (int i; i < vectorChunks.size(); i++){
         Mix_FreeChunk(vectorChunks[i]);
     }
     for (int j; j < vectorMusic.size(); j++){
         Mix_FreeMusic(vectorMusic[j]);
     }
+}
+
+SDL_Sounds::~SDL_Sounds(){
+    std::cout << "Endl" << std::endl;
+    freeVectors();
     Mix_CloseAudio();
     Mix_Quit();
 }

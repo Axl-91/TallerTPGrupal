@@ -54,6 +54,7 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	// player.updateInfo(anUpdate.playerUpdate);
 	player.setRenderer(renderer);
 	render();
+	gameSounds.playMusic(1);
 }
 
 void Game::operator()(){

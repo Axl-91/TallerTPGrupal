@@ -27,7 +27,7 @@ Menu::Menu(ClientReceiver &r,
 {
 		initialize();
 		createText();
-		menuSounds->playMusic(MENU_MUSIC);
+		menuSounds.playMusic(MENU_MUSIC);
 }
 
 void Menu::createText(){
@@ -226,7 +226,7 @@ void Menu::doActionOpt(){
 }
 
 // Imprime el texto que se va ingresando en las opciones
-void Menu::renderCreateForInput(std::string &input, int x, int y, int tipo){
+void Menu::renderCreateForInput(std::string &input, int &x, int &y, const int &tipo){
 	SDL_Color yellow = {255, 204, 0};
 	SDL_RenderClear(menuRenderer);
 	if (tipo == CREATE_PLAYER){
@@ -245,7 +245,7 @@ void Menu::renderCreateForInput(std::string &input, int x, int y, int tipo){
 	SDL_RenderPresent(menuRenderer);
 }
 
-bool Menu::inputText(std::string &input, int x, int y, int tipo){
+bool Menu::inputText(std::string &input, int &x, int &y, const int &tipo){
 	bool hasChange = false;
 	renderCreateForInput(input, x, y, tipo);
 	bool salida = false;
@@ -285,7 +285,7 @@ bool Menu::inputText(std::string &input, int x, int y, int tipo){
 }
 
 // Imprime los mapas
-void Menu::renderSelectionMap(int pos){
+void Menu::renderSelectionMap(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
 	menusHandler.render(0, 0, largo, alto, M_NEWMAP);
@@ -334,21 +334,18 @@ void Menu::selectMap(){
 			if (event.type == SDL_KEYDOWN){
 				switch (event.key.keysym.sym){
 					case SDLK_RIGHT:
-									std::cout << "menu.335" << std::endl;
 						if (vectorMaps.size() > mapPos+1){
 							mapPos += 1;
 							renderSelectionMap(mapPos);
 						}
 						break;
 					case SDLK_LEFT:
-									std::cout << "menu.342" << std::endl;
 						if (mapPos > 0){
 							mapPos -= 1;
 							renderSelectionMap(mapPos);
 						}
 						break;
 					case SDLK_RETURN:
-									std::cout << "menu.349" << std::endl;
 						if (vectorMaps.size() > 0){
 							mapName = vectorMaps[mapPos];
 							mapChange = true;
@@ -366,16 +363,21 @@ void Menu::selectMap(){
 
 void Menu::doActionCreate(){
 	menu_event_t event;
+	int posX, posY;
 	switch (posSelectCreate){
 		case CREATE_NAME:
-			nameChange = inputText(namePlayer,168,69, CREATE_PLAYER);
+			posX = 168;
+			posY = 69;
+			nameChange = inputText(namePlayer,posX,posY, CREATE_PLAYER);
 			event.event = NEW_NAME;
 			event.info = namePlayer;
 			transmitter.sendMenuEvent(event);
 			// menuEventQ.push(event);
 			break;
 		case CREATE_MATCH:
-			gameChange = inputText(nameGame,163,96, CREATE_GAME);
+			posX = 163;
+			posY = 96;
+			gameChange = inputText(nameGame,posX,posY, CREATE_GAME);
 
 			/*REVISAR SI EL NOMBRE DE LA PARTIDA YA EXISTE
 			Y MODIFICAR LA VARIABLE VALIDMATCH */
@@ -409,7 +411,7 @@ void Menu::doActionCreate(){
 }
 
 // Imprime las partidas
-void Menu::renderSelectionMatch(int pos){
+void Menu::renderSelectionMatch(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
 	menusHandler.render(0, 0, largo, alto, M_JOINMATCH);
@@ -424,8 +426,6 @@ void Menu::renderSelectionMatch(int pos){
 	}
 	SDL_RenderPresent(menuRenderer);
 }
-
-
 
 void Menu::selectMatch(){
 
@@ -474,9 +474,12 @@ void Menu::selectMatch(){
 
 void Menu::doActionJoin(){
 	menu_event_t event;
+	int posX, posY;
 	switch (posSelectJoin){
 		case JOIN_NAME:
-			nameChange = inputText(namePlayer,170,85, JOIN_PLAYER);
+			posX = 170;
+			posY = 85;
+			nameChange = inputText(namePlayer,posX,posY, JOIN_PLAYER);
 			if (nameGame.size() > 0){
 
 				/*LUEGO DE INGRESAR EL NOMBRE REVISAR SI EXISTE
@@ -510,7 +513,7 @@ void Menu::doActionJoin(){
 	}
 }
 
-void Menu::pollEventMain(int key){
+void Menu::pollEventMain(const int &key){
 	switch(key){
 		case KEY_DOWN:
 			if (posSelectMain != MAIN_EXIT){
@@ -532,7 +535,7 @@ void Menu::pollEventMain(int key){
 	}
 }
 
-void Menu::pollEventOptions(int key){
+void Menu::pollEventOptions(const int &key){
 	switch(key){
 		case KEY_DOWN:
 			if (posSelectOpt != OPT_BACK){
@@ -554,7 +557,7 @@ void Menu::pollEventOptions(int key){
 	}
 }
 
-void Menu::pollEventCreate(int key){
+void Menu::pollEventCreate(const int &key){
 	switch(key){
 		case KEY_DOWN:
 			if (posSelectCreate != CREATE_BACK){
@@ -576,7 +579,7 @@ void Menu::pollEventCreate(int key){
 	}
 }
 
-void Menu::pollEventJoin(int key){
+void Menu::pollEventJoin(const int &key){
 	switch(key){
 		case KEY_DOWN:
 			if (posSelectJoin != JOIN_BACK){
@@ -613,7 +616,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_DOWN:
-					menuSounds->playEffect(MENU_MOVE);
+					menuSounds.playEffect(MENU_MOVE);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_DOWN);
@@ -630,7 +633,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_UP:
-					menuSounds->playEffect(MENU_MOVE);
+					menuSounds.playEffect(MENU_MOVE);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_UP);
@@ -647,7 +650,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_RETURN:
-					menuSounds->playEffect(MENU_SELECT);
+					menuSounds.playEffect(MENU_SELECT);
 					switch (menu){
 						case MAIN_MENU:
 							pollEventMain(KEY_ENTER);
@@ -689,11 +692,11 @@ bool Menu::joinGame(){
 	return hasJoinGame;
 }
 
-void Menu::setMatches(std::vector<std::string> matches){
+void Menu::setMatches(std::vector<std::string> &matches){
 	vectorMatches = matches;
 }
 
-void Menu::setMaps(std::vector<std::string> maps){
+void Menu::setMaps(std::vector<std::string> &maps){
 	vectorMaps = maps;
 }
 
