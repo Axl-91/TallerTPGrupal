@@ -41,6 +41,7 @@ void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color color){
         }
         SDL_FreeSurface(surfaceText);
     }
+    TTF_CloseFont(font);
 }
 
 void TextHandler::render(int posX, int posY, int length, int height, int pos){
