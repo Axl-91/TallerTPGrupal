@@ -26,6 +26,8 @@ void ServerGame::update(){
 			aPlayer.second.updated();
 		}
 	}
+	updateHandler.updated();
+
 }
 
 
@@ -105,6 +107,5 @@ void ServerGame::handleCollision(circle &playerPos, int c){
 	}
 	if(c>300&&c<400)
         value = c;
-
     updateHandler.updateMap(playerPos.x, playerPos.y, value);
 }

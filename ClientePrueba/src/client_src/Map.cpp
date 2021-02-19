@@ -43,9 +43,9 @@ void Map::load(std::vector<std::vector<int>> lvl){
 				map[i][j]-=400;
 
 			if(map[i][j]>=MOVABLE_DOOR_OFFSET&&map[i][j]<MOVABLE_DOOR_OFFSET+COLLIDABLE_OFFSET){
-				map[i][j]-=300;
+				insertDoor(j,i,map[i][j]);
+				map[i][j]-=MOVABLE_DOOR_OFFSET;
 			}
-
 
 			if(map[i][j]>=IMMOVABLE_OBJECT_OFFSET&&map[i][j]<IMMOVABLE_OBJECT_OFFSET+COLLIDABLE_OFFSET){
 				insertObject(j,i,map[i][j]-IMMOVABLE_OBJECT_OFFSET_VALUE);
@@ -105,13 +105,18 @@ void Map::insertObject(int x, int y, int obj){
 }
 
 
+void Map::insertDoor(int x, int y, int obj){
+	Vector posVect((x+1)*longTile-longTile/2,(y+1)*longTile-longTile/2);
+	Object_t auxObj = {posVect, obj};
+	std::pair<int,int> posPair(posVect.posX, posVect.posY);
+	mapDoors[posPair]=auxObj;
+}
+
+
+
 void Map::setRenderer(SDL_Renderer* renderer){
 	walls.setRenderer(renderer);
-	std::cout << "map: setrenderer "<< std::endl;
-
 	objects.setRenderer(renderer);
-	std::cout << "map: objeto rederizado "<< std::endl;
-
 	enemies.setRenderer(renderer);
 }
 
@@ -241,10 +246,11 @@ void Map::renderObject(int &posX, int &posY, int &lenght, int &height, int type)
 Map::~Map(){}
 
 void Map::update(Map_change_t &aMapChange){
+	std::cout << "update "<< std::endl;
 
-	// if(aMapChange.value > 300){
-	// 	openDoor(aMapChange.x,aMapChange.y, aMapChange.value);
-	// }
+	if(aMapChange.value > 300){
+		openDoor(aMapChange.x,aMapChange.y);
+	}
 
 	eraseObj(aMapChange.x, aMapChange.y);
 	if(aMapChange.value != 0&& aMapChange.value <300){
@@ -258,3 +264,27 @@ void Map::eraseObj(float x, float y){
 	mapObj.erase(std::pair<int,int>(posX, posY));
 
 }
+
+
+void Map::openDoor(int posX, int posY){
+	Vector posPlayer(posX, posY);
+	int x;
+	int y;
+
+	for(auto door: mapDoors){
+		if(posPlayer.getDistance(door.second.position)<60){
+			x = (door.second.position.getX() - longTile/2) / longTile;
+			y = (door.second.position.getY() - longTile/2) / longTile;
+			map[y][x] = 0;
+		}
+	}
+}
+
+// void Map::closeDoor(int posX, int posY){
+// 	int x = (posX - longTile/2) / longTile;
+// 	int y = (posY - longTile/2) / longTile;
+// 	std::pair <int, int> pos={posY,posX};
+// 	int type = mapDoors[pos].objType;
+
+// 	map[x][y]=type;
+// }

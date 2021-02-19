@@ -1,6 +1,7 @@
 #ifndef TYPES__H
 #define TYPES__H
 #include <iostream>
+#include "Vector.h"
 
 #define MAX_WEAPONS 3
 #define MAX_HEALTH 100
@@ -17,7 +18,7 @@
 #define KNIFE_DAMAGE 10
 #define GUN_DAMAGE 10
 #define MACHINE_GUN_DAMAGE 2
-#define CHAIN_CANNON_DAMAGE 2
+#define CHAIN_CANNON_DAMAGE 5
 #define ROCKET_LAUNCHER_DAMAGE 50
 
 
@@ -118,14 +119,12 @@ typedef enum{
     PLAYER_START_OPENING_DOOR,
     PLAYER_STOP_OPENING_DOOR
 }event_t;
-
+ 
 
 typedef enum{
     SHOOTING_STATE_QUIET = 0,
     SHOOTING_STATE_STARTED = 1,
     SHOOTING_STATE_SHOOTING = 2,
-    // SHOOTING_STATE_WAITING = 3,
-    // SHOOTING_STATE_STOPED = 4
 }shooting_state_t;
 
 typedef enum{
@@ -146,11 +145,6 @@ typedef enum{
     CROWN = 4
 }treasure_t;
 
-typedef struct{
-    event_t event;
-    std::string info;
-}menu_event_t;
-
 typedef enum{
     NONE = 0,
     KNIFE = 1,
@@ -169,6 +163,12 @@ typedef enum{
 }enemy_type_t;
 
 typedef enum{
+    NO_KEY_DOOR = 50,
+    BLUE_KEY_DOOR = 52,
+    GOLD_KEY_DOOR = 53
+}door_type_t;
+
+typedef enum{
     FORWARD = 1,
     BACKWARD =-1,
     MOVE_QUIET = 0
@@ -180,6 +180,10 @@ typedef enum{
     ROTATE_QUIET = 0
 }player_rotate_orientation_t;
 
+typedef struct{
+    event_t event;
+    std::string info;
+}menu_event_t;
 
 typedef struct{
     size_t ID;
@@ -192,8 +196,8 @@ typedef struct{
     weapon_t secondaryWP;
     player_weapons_t currentWP;
     size_t ammo;
-    bool key;
-    // bool shooting;
+    bool blueKey;
+    bool goldKey;
     shooting_state_t shootingState;
     player_move_orientation_t moving;
     player_rotate_orientation_t rotating;
@@ -211,6 +215,14 @@ typedef struct{
     int dead_frame;
 }Enemy_t;
 
+
+typedef struct{
+    Vector pos;
+    int doorType;
+    bool needBlueKey;
+    bool needGoldKey;
+
+}Door_t;
 
 typedef struct{
     int x;

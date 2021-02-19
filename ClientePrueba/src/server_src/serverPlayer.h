@@ -34,7 +34,8 @@ private:
     int health;
 
     size_t ammo;
-    bool key;
+    bool blueKey;
+    bool goldKey;   
     shooting_state_t shootingState;
 
     bool openingDoor;
@@ -43,11 +44,11 @@ private:
 
 public:
 
+    bool hasGoldKey();
+    bool hasBlueKey();
     void startOpenDoor();
     void stopOpenDoor();
     bool isOpeningDoor();
-
-
 
     void shoot();
     void respawn();

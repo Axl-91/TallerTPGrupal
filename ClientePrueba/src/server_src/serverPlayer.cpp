@@ -32,7 +32,8 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	currentWP = WP_KNIFE;
 	health = 50;
 	ammo = 50;
-	key = false;
+	blueKey = false;
+	goldKey = false;
 	shootingState = SHOOTING_STATE_QUIET;
 	// shooting = false;
 	lifes = 3;
@@ -59,8 +60,9 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	currentWP = other.currentWP;
 	health = other.health;
 	ammo = other.ammo;
-	key = other.key;
-	// shooting = false;
+	blueKey = other.blueKey;
+	goldKey = other.goldKey;
+
 	shootingState = other.shootingState;
 	lifes = other.lifes;
 	score = other.score;
@@ -69,9 +71,6 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	ID = other.ID;
 	openingDoor=other.openingDoor;
 }
-// void ServerPlayer::setID(size_t newID){
-// 	ID = newID;
-// }
 
 
 bool ServerPlayer::updateIsAvailable(){
@@ -253,10 +252,19 @@ int ServerPlayer::heal(int h){
 }
 
 int ServerPlayer::grabKey(game_key_t k){
-	if(key==true)
-		return 0;
-	key=true;
-	return 1;
+	if(k==KEY_BLUE)
+		if(blueKey==false){
+			blueKey=true;
+			return 1;
+		}
+
+	if(k==KEY_GOLD)
+		if(goldKey==false){
+			goldKey = true;
+			return 1;
+		}
+
+	return 0;
 }
 
 int ServerPlayer::addPoints(int p){
@@ -289,7 +297,9 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	p.health = health;
 	p.lifes = lifes;
 	p.score = score;
-	p.key = key;
+	p.goldKey = goldKey;
+	p.blueKey = blueKey;
+
 	p.shootingState = shootingState;
 	p.ID = ID;
     p.step = step;
@@ -321,16 +331,18 @@ void ServerPlayer::getDirection(float &x, float &y){
 	y=diry;
 }
 
-// void ServerPlayer::shoot(){
-// 	currentWeapon->shoot();
-// }
-
 bool ServerPlayer::isShooting(){
-		updateAvailable=true;
-
+	updateAvailable=true;
 	if(shootingState != SHOOTING_STATE_QUIET){
-		// updateAvailable=true;
 		return true;
 	}
 	return false;
+}
+
+bool ServerPlayer::hasGoldKey(){
+	return goldKey;
+}
+
+bool ServerPlayer::hasBlueKey(){
+	return blueKey;
 }

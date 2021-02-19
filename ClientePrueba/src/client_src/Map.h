@@ -30,6 +30,8 @@ private:
 	Enemies enemies;
 
 	std::map<int, Enemy_t> mapEnemies;
+
+	std::map<std::pair<int,int>, Object_t> mapDoors;
 	std::map<std::pair<int,int>, Object_t> mapObj;
 public:
 	Map(std::vector<std::vector<int>> &lvl);
@@ -51,20 +53,19 @@ public:
 	void renderWall(int &posX, int &posY, int &lenght, int &height);
 	void addObject(Vector &pos, int type);
 	std::vector<Object_t> orderObjects(Vector &pos);
-	// int getCantObjects();
 	void eraseObj(float x, float y);
-	// Vector getPosObj(int &pos);
-	// int getTipoObj(int &pos);
 	void setObj(int &pos);
 	void renderEnemy(int &posX, int &posY, int &lenght, int &height);
 	void setColEnemy(int &pos);
-
 	void setColObject(int &pos, int type);
-	// void setColObject(int &pos);
 	void renderObject(int &posX, int &posY, int &lenght, int &height, int type);
-	// void renderObject(int &posX, int &posY, int &largo, int &alto);
 	void update(Map_change_t &aMapChange);
 	void updateEnemy(Player_t &p);
+
+
+	void insertDoor(int x, int y, int doorType);
+	void openDoor(int x, int y);
+
 };
 
 #endif

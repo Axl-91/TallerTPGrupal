@@ -177,6 +177,8 @@ void Player::render(int largoWin, int altoWin){
 	hudGame.renderLife(lifes);
 	hudGame.renderAmmo(inventory.getAmmo());
 	hudGame.renderScore(score);
+	hudGame.renderGoldenKey();
+//    hudGame.renderSilverKey();
 }
 
 bool Player::objIsVisible(Vector &posObj){

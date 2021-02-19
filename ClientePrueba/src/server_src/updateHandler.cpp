@@ -20,7 +20,7 @@ bool UpdateHandler::playerChangeAvailable(){
 }
 
 void UpdateHandler::getMapChange(Map_change_t &aMapChange){
-    aMapChange.x =mapChange.x;
+    aMapChange.x = mapChange.x;
     aMapChange.y = mapChange.y;
     aMapChange.value = mapChange.value;
 }
@@ -31,5 +31,4 @@ void UpdateHandler::getPlayerChange(Player_t &p){
 
 void UpdateHandler::updated(){
     mapChanged = false;
-    // playerChanged = false;
 }

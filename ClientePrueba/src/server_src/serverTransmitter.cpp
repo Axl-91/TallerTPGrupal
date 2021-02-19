@@ -65,7 +65,6 @@ void ServerTransmitter::sendPlayer(Player_t &player){
 
 void ServerTransmitter::sendMapUpdate(Map_change_t &aMapChange){
     std::unique_lock<std::mutex> lock(m);
-
     socket.send((char*) &aMapChange, sizeof(Map_change_t));
 }
 

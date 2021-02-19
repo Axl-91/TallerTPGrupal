@@ -5,9 +5,9 @@
 #include "Collidable.h"
 
 class MovableDoor: public Collidable{
-
+    door_type_t type;
 public:
-    MovableDoor(int xI, int yI, int cellWidth, int wall);
+    MovableDoor(int xI, int yI, int cellWidth, int type);
     int collide(ServerPlayer &p) override;
     bool detectCollision(circle &c, float dX,float dY) override;
 
