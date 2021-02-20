@@ -221,7 +221,6 @@ typedef struct{
     int doorType;
     bool needBlueKey;
     bool needGoldKey;
-
 }Door_t;
 
 typedef struct{
@@ -229,6 +228,16 @@ typedef struct{
     int y;
     int value;
 }Map_change_t;
+
+typedef struct{
+    size_t ID;
+    int step;
+    float x;
+    float y;
+    float dirx;
+    float diry;
+    int damage;
+}Misil_t;
 
 typedef struct{
     Player_t playerUpdate;
