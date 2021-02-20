@@ -15,23 +15,27 @@ public:
     ~UserHandler();
     virtual void run() override;
     void operator()();
-    void sendMatches();
-    void sendMaps();
-    void processInput();
-    bool isMatchAvailable(size_t i);
     void stop();
     bool is_dead();
-    void addUserToMatch(std::string matchName);
-    void newMatch(std::string &newMatch);
-    void joinMatch(std::string &newName);
-    void changeUserName(std::string &newName);
-    void setChosenMap(std::string &newName);
 private:
     std::atomic<bool> is_running;
     MatchHandler &matches;
     User* user;
     std::string chosenMap;
     std::string chosenMatch;
+    int numberOfPlayers;
+    int numberOfBots;
+    void sendMatches();
+    void sendMaps();
+    bool isMatchAvailable(size_t i);
+    void processInput();
+    void setMaxPlayers(std::string &newName);
+    void addUserToMatch(std::string matchName);
+    void newMatch(std::string &newMatch);
+    void joinMatch(std::string &newName);
+    void changeUserName(std::string &newName);
+    void setChosenMap(std::string &newName);
+    void setNumberOfBots(std::string &newName);
 };
 
 #endif

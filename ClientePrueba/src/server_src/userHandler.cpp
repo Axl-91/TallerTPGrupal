@@ -3,7 +3,9 @@
 UserHandler::UserHandler(User *user, MatchHandler &matches):
     is_running(true),
     matches(matches),
-    user(user)
+    user(user),
+    numberOfPlayers(1),
+    numberOfBots(0)
 {}
 
 UserHandler::~UserHandler(){
@@ -53,6 +55,25 @@ void UserHandler::processInput(){
     if(event.event == SET_MAP){
         setChosenMap(event.info);
     }
+    if(event.event == SELECT_MAX_PLAYER){
+        setMaxPlayers(event.info);
+    }
+    if(event.event == SELECT_NUMBER_OF_BOTS){
+        setNumberOfBots(event.info);
+    }
+
+}
+
+void UserHandler::setMaxPlayers(std::string &maxPlayers){
+    std::stringstream auxStream(maxPlayers);
+    std::cout << "_________ player:" << numberOfPlayers << std::endl;
+    auxStream >> numberOfPlayers;
+}
+
+void UserHandler::setNumberOfBots(std::string &botsNumber){
+    std::stringstream auxStream(botsNumber);
+    std::cout << "_________ bots:" << numberOfBots << std::endl;
+    auxStream >> numberOfBots;
 }
 
 void UserHandler::setChosenMap(std::string &newName){
@@ -64,7 +85,8 @@ void UserHandler::changeUserName(std::string &newName){
 }
 
 void UserHandler::newMatch(std::string &matchName){
-    matches.newMatch(matchName, chosenMap);
+    std::cout << "_________ bots:" << numberOfBots << std::endl;
+    matches.newMatch(matchName, chosenMap, numberOfPlayers, numberOfBots);
 }
 
 void UserHandler::addUserToMatch(std::string matchName){

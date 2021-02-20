@@ -24,7 +24,8 @@ struct initPos{
 class Match : public Thread
 {
 public:
-    Match(std::string &matchName, std::string &chosenMap);
+    Match(std::string &matchName, std::string &chosenMap,
+                    int &numberOfPlayers, int &numberOfBots);
     ~Match();
     void addUser();
     virtual void run() override;

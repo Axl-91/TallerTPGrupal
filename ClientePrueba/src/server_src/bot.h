@@ -14,7 +14,8 @@ private:
     AILua lua;
 public:
     Bot(ProtectedQueue<MatchEvent_t> &aQueue,
-        float x, float y, float ang, size_t ID);
+        float x, float y, float ang, size_t ID,
+        std::vector<std::vector<int>> &lvl);
     void pichula();
     // void update(Update_t &anUpdate);
     void makeDecision();

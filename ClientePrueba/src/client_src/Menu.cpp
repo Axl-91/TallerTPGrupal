@@ -509,6 +509,7 @@ void Menu::selectNumber(const int &typeMenu){
 							if (typeMenu == MAP_BOTS){
 								if (cantBots < 4){
 									cantBots ++;
+									std::cout << "estoy aca" << std::endl;
 								}
 							}
 						}
@@ -540,10 +541,21 @@ void Menu::doActionMap(){
 			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_PLAYERS:
+			event.event = SELECT_MAX_PLAYER;
+			event.info = "";
+			// transmitter.sendMenuEvent(event);
 			selectNumber(MAP_PLAYERS);
+			event.info = cantPlayers;
+			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BOTS:
+			event.event = SELECT_NUMBER_OF_BOTS;
+			event.info = "";
+			// transmitter.sendMenuEvent(event);
 			selectNumber(MAP_BOTS);
+			std::cout << "cant bots es:" << cantBots;
+			event.info = cantBots;
+			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BACK:
 			menu = CREATE_MENU;
