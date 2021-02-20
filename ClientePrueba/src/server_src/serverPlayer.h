@@ -46,6 +46,9 @@ public:
 
     bool hasGoldKey();
     bool hasBlueKey();
+    void usedGoldKey();
+    void usedBlueKey();
+
     void startOpenDoor();
     void stopOpenDoor();
     bool isOpeningDoor();

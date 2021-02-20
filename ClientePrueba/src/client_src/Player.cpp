@@ -24,6 +24,8 @@ Player::Player(Map &m):
     dy = sin(angPlayer);
 	position.radius=PLAYER_RADIUS;
 	step=PLAYER_STEP;
+	goldKey = false;
+	blueKey = false;
 }
 
 void Player::equip(weapon_t w){
@@ -154,6 +156,8 @@ void Player::updateInfo(Player_t &p){
 	inventory.setAmmo(p.ammo);
 	health = p.health;
 	equip(p.secondaryWP);
+    blueKey = p.blueKey;
+    goldKey = p.goldKey;   
 
 	setWeapon(p.currentWP);
 	shootingState=p.shootingState;
@@ -175,8 +179,10 @@ void Player::render(int largoWin, int altoWin){
 	hudGame.renderLife(lifes);
 	hudGame.renderAmmo(inventory.getAmmo());
 	hudGame.renderScore(score);
-	hudGame.renderGoldenKey();
-//    hudGame.renderSilverKey();
+	if(goldKey == true)
+		hudGame.renderGoldenKey();
+    if(blueKey == true)
+		hudGame.renderSilverKey();
 }
 
 bool Player::objIsVisible(Vector &posObj){

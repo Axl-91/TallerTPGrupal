@@ -346,3 +346,11 @@ bool ServerPlayer::hasGoldKey(){
 bool ServerPlayer::hasBlueKey(){
 	return blueKey;
 }
+
+void ServerPlayer::usedGoldKey(){
+	goldKey = false;
+}
+
+void ServerPlayer::usedBlueKey(){
+	blueKey = false;
+}

@@ -27,6 +27,9 @@ private:
     float step;
     float distBuffer[320];
     int health;
+    bool blueKey;
+    bool goldKey;   
+
     size_t lifes;
     size_t score;
     Map &mapPlayer;

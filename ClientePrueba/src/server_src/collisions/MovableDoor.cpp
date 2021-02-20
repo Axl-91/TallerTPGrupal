@@ -29,9 +29,17 @@ int MovableDoor::collide(ServerPlayer &p){
         dY=0;
 
     if(p.isOpeningDoor()==true){
-        if(type == NO_KEY_DOOR || type == BLUE_KEY_DOOR&&p.hasBlueKey() == true ||
-        type == GOLD_KEY_DOOR && p.hasGoldKey() == true)
+        if(type == NO_KEY_DOOR) 
             return 301;
+
+        if(type == BLUE_KEY_DOOR&&p.hasBlueKey() == true){
+            p.usedBlueKey();
+            return 301;
+        }
+        if(type == GOLD_KEY_DOOR && p.hasGoldKey() == true){
+            p.usedGoldKey();
+            return 301;
+        }
     }
 
     p.setDirection(dX, dY);
