@@ -443,7 +443,6 @@ void Menu::doActionCreate(){
 				event.event = NEW_MATCH;
 				event.info = nameGame;
 				transmitter.sendMenuEvent(event);
-				// menuEventQ.push(event);
 			}
 			break;
 		case CREATE_BACK:
@@ -543,18 +542,15 @@ void Menu::doActionMap(){
 		case MAP_PLAYERS:
 			event.event = SELECT_MAX_PLAYER;
 			event.info = "";
-			// transmitter.sendMenuEvent(event);
 			selectNumber(MAP_PLAYERS);
-			event.info = cantPlayers;
+			event.info += std::to_string(cantPlayers);
 			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BOTS:
 			event.event = SELECT_NUMBER_OF_BOTS;
 			event.info = "";
-			// transmitter.sendMenuEvent(event);
 			selectNumber(MAP_BOTS);
-			std::cout << "cant bots es:" << cantBots;
-			event.info = cantBots;
+			event.info += std::to_string(cantBots);
 			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BACK:

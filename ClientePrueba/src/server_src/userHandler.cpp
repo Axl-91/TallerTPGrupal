@@ -66,13 +66,11 @@ void UserHandler::processInput(){
 
 void UserHandler::setMaxPlayers(std::string &maxPlayers){
     std::stringstream auxStream(maxPlayers);
-    std::cout << "_________ player:" << numberOfPlayers << std::endl;
     auxStream >> numberOfPlayers;
 }
 
 void UserHandler::setNumberOfBots(std::string &botsNumber){
     std::stringstream auxStream(botsNumber);
-    std::cout << "_________ bots:" << numberOfBots << std::endl;
     auxStream >> numberOfBots;
 }
 
@@ -85,7 +83,6 @@ void UserHandler::changeUserName(std::string &newName){
 }
 
 void UserHandler::newMatch(std::string &matchName){
-    std::cout << "_________ bots:" << numberOfBots << std::endl;
     matches.newMatch(matchName, chosenMap, numberOfPlayers, numberOfBots);
 }
 
