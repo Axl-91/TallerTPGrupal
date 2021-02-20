@@ -1,65 +1,66 @@
 #include "Settings.h"
-#include<fstream>
+
+#include <string>
 #include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 
 Settings::Settings(){
-    config = YAML::LoadFile(filename);
+    YAML::Node config = YAML::LoadFile(cfg);
+    count = config["count"].as<int>();
+    rows = config["rows"].as<int>();
+    columns = config["columns"].as<int>();
+    path = config["path"].as<std::string>();
+    players = config["players"].as<std::vector<int>>();
+    UpdateFiles();
 }
 
-void Settings::init(char* _mapname){     
-    if(_mapname){
-        std::string mapname(_mapname);
-        const YAML::Node& nodes = config["maps"];
-
-        for(YAML::const_iterator it=nodes.begin(); it!=nodes.end(); ++it){
-            const YAML::Node& model = *it;    
-            if(mapname == model["name"].as<std::string>()){
-                maxPlayers = model["players"].as<int>();            
-                map = model["model"].as<std::vector<std::vector<int>>>();
-                rows = map.size();
-                columns = map[0].size();
-                found = true;
-            }
-            
-         } 
-    } if(found==false) {
-        rows = config["rows"].as<int>();
-        columns = config["col"].as<int>();
-        for (int fil = 0; fil < rows; ++fil){
-            std::vector<int> v1;
-	    	for (int col = 0; col < columns; ++col){
-                v1.push_back(default_value);
-		    }
-            map.push_back(v1);
-	    }
+void Settings::init(std::string &_mapname){ 
+    if(_mapname ==""){
+        _mapname = "map" + std::to_string(count);
     }
-
 }
 
-void Settings::list(){
-    int rows = map.size();
-	int columns = map[0].size();
-    std::cout<<columns<<":"	<<rows<<std::endl;
-    /*for (int fil = 0; fil < rows; ++fil){
-		for (int col = 0; col < columns; ++col){
-			int type = map[fil][col];
-			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type,fil,col);						
-			tileSet.push_back(tile);
-		}
-	}*/
+void Settings::UpdateFiles(){
+    maps.clear();
+    for (const auto & entry : fs::directory_iterator(path)){
+        std::string file = entry.path().filename().string();
+        std::string token = file.substr(0,file.find("."));
+        maps.push_back(token);
+    }
 }
 
-void Settings::saveChanges(std::vector<std::vector<int>> _map){
-    std::ofstream fout(filename);
-    std::cout<<"aqui"<<_map[0][0];
-    config["map"] = _map; 
-    fout << config;
+void Settings::saveChanges(std::vector<std::vector<int>> _map,std::string _mapname){
+    mapname = _mapname;
+    YAML::Emitter out;
+    YAML::Node doc;
+    doc["players"] = 3;
+    doc["model"] = _map;    
+    doc.SetStyle(YAML::EmitterStyle::Flow);    
+    std::ofstream fout(path + "/" + mapname + ".yaml");
+    out << doc;
+    fout << out.c_str();
 }
-std::vector<std::vector<int>> Settings::getmap() const{
-    return map;
-}
+
 int Settings::getmaxlayers() const{
     return maxPlayers;
+}
+
+int Settings::getRows() const{
+    return rows;
+}
+
+int Settings::getColumns() const{
+    return columns;
+}
+std::string Settings::getPath() const{
+    return path;
+}
+
+std::vector<std::string>  Settings::getMaps() const{
+    return maps;
 }
 
 Settings::~Settings(){}

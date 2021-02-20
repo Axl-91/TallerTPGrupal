@@ -7,7 +7,6 @@
 
 int main(int argc, char* argv[]){
 	Menu menu;
-
 	while (!menu.quitGame()){
 		menu.pollEvent();
 		menu.render();
