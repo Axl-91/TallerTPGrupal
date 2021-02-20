@@ -12,16 +12,16 @@ class TextHandler{
     SDL_Renderer* rendererWin;
     SDL_Color colorText;
     std::vector<std::string> vectorText;
-    void getTextures(SDL_Renderer* renderer, SDL_Color color);
+    void getTextures(SDL_Renderer* renderer, SDL_Color &color);
     void destroyTextures();
 public:
-    TextHandler(std::string text);
+    TextHandler(std::string &text);
     TextHandler(std::vector<std::string> &texts);
     void setRenderer(SDL_Renderer* renderer, SDL_Color color);
-    void setSrc(int posX, int posY, int length, int height);
-    void render(int posX, int posY, int length, int height, int pos);
-    void render(int posX, int posY, int length, int height);
-    void setText(std::string newText);
+    void setSrc(int &posX, int &posY, int &length, int &height);
+    void render(int &posX, int &posY, int &length, int &height, const int &pos);
+    void render(int &posX, int &posY, int &length, int &height);
+    void setText(std::string &newText);
     ~TextHandler();
 };
 

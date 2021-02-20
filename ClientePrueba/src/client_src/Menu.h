@@ -16,6 +16,9 @@
 #include "clientTransmitter.h"
 #include "SDL_Sounds.h"
 
+#define LONG_SELECT 23
+#define HIGH_SELECT 16
+
 #define MAIN_CREATE 80
 #define MAIN_JOIN 107
 #define MAIN_OPTIONS 134
@@ -31,17 +34,27 @@
 #define CREATE_PLAY 150
 #define CREATE_BACK 177
 
+#define MAP_SELECT 75
+#define MAP_PLAYERS 102
+#define MAP_BOTS 129
+#define MAP_BACK 156
+
 #define JOIN_NAME 85
 #define JOIN_MATCH 112
 #define JOIN_PLAY 139
 #define JOIN_BACK 166
 
 enum VECTOR_MENUS { M_MAIN, M_OPTIONS, M_NEW, M_NEWNAME, M_NEWGAME,
- M_NEWMAP, M_JOIN, M_JOINNAME, M_JOINMATCH};
+	M_MAP, M_MAPSELECT, M_MAPPLAYER, M_MAPBOTS,
+	M_JOIN, M_JOINNAME, M_JOINMATCH
+};
 
 enum SELECT_TIPO {ON_TEXT, OFF_TEXT, RES_ONE_TEXT, RES_TWO_TEXT,
-	RES_THREE_TEXT};
-enum MENU_TIPO {MAIN_MENU, OPTIONS_MENU, CREATE_MENU, JOIN_MENU};
+	RES_THREE_TEXT
+};
+
+enum NUMBER_TEXT {TEXT_0, TEXT_1, TEXT_2, TEXT_3, TEXT_4};
+enum MENU_TIPO {MAIN_MENU, OPTIONS_MENU, CREATE_MENU, JOIN_MENU, MAP_MENU};
 enum EVENT_KEY {KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT, KEY_ENTER};
 enum TIPO_INPUT {CREATE_PLAYER, CREATE_GAME, JOIN_PLAYER};
 enum ERROR_TIPO {ERROR_MAP, ERROR_MATCH, ERROR_NAME};
@@ -50,24 +63,27 @@ class Menu{
 private:
 	ClientReceiver &receiver;
 	ClientTransmitter &transmitter;
-    int &winLargo;
-	int &winAlto;
+    int &winLength;
+	int &winHeight;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
 	SDL_Sounds menuSounds;
 	
-    int largo = 320;
-    int alto = 240;
+    int longWin = 320;
+    int highWin = 240;
+	int highFont = 15;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;
 	int posSelectCreate = CREATE_NAME;
 	int posSelectJoin = JOIN_NAME;
+	int posSelectMap = MAP_SELECT;
 
 	int offsetSelectMain = 27;
 	int offsetSelectOpt = 35;
 	int offsetSelectCreate = 27;
 	int offsetSelectJoin = 27;
+	int offsetSelectMap = 27;
 
 	bool hasCreateGame = false;
 	bool hasJoinGame = false;
@@ -80,16 +96,23 @@ private:
 	bool nameChange = false;
 	bool gameChange = false;
 	bool joinChange = false;
-	bool mapChange = true;
+	bool mapChange = false;
+	bool numChange = false;
 	
 	int menu = MAIN_MENU;
+	std::string nonString = " ";
 	std::string namePlayer = "";
 	std::string nameGame = "";
 	std::string nameJoin = "";
 	std::string mapName = "";
+	int cantPlayers = 1;
+	int cantBots = 0;
 
 	std::vector<std::string> vectorSelectionText = {
-		"On", "Off", "640x480", "800x600", "1024x768"
+		"On", "Off", "640x480", "800x600", "1024x768",
+	};
+	std::vector <std::string> vectorNumbers = {
+		"0","1","2","3","4"
 	};
 	std::vector <std::string> vectorErrors = {
 		"No maps loaded", "No matches found", 
@@ -113,27 +136,41 @@ private:
 	TextHandler textGameCreateHandler;
 	TextHandler textGameJoinHandler;
 	TextHandler textMapHandler;
+	TextHandler numPlayerHandler;
+	TextHandler numBotsHandler;
 
 	void initialize();
 	void createText();
     void renderMenu();
+
 	void renderTextOptions();
 	void renderTextCreate();
 	void renderTextJoin();
+	void renderTextMap();
+
 	void pollEventMain(const int &key);
 	void pollEventOptions(const int &key);
 	void pollEventCreate(const int &key);
+	void pollEventMap(const int &key);
 	void pollEventJoin(const int &key);
+
 	void doActionMain();
 	void doActionOpt();
 	void doActionCreate();
+	void doActionMap();
 	void doActionJoin();
-	bool inputText(std::string &input, int &x, int &y, const int &tipo);
-	void renderCreateForInput(std::string &input, int &x, int &y, const int &tipo);
+
+	bool inputText(std::string &input, int &x, int &y, const int &typeMenu);
+	void renderCreateForInput(std::string &input, int &x, int &y, const int &typeMenu);
+	
 	void selectMatch();
 	void renderSelectionMatch(int &pos);
+
 	void selectMap();
 	void renderSelectionMap(int &pos);
+
+	void selectNumber(const int &typeMenu);
+	void renderSelectionNumber(const int &typeMenu);
 public:
 	Menu(ClientReceiver &r, 
 		ClientTransmitter &t,

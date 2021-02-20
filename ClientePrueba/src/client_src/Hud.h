@@ -33,7 +33,7 @@ private:
     SpritesHandler keys;
 
     void getTexture();
-    void renderNumber(int number, int x, int y);
+    void renderNumber(int number, int &x, int &y);
 public:
     Hud();
 	Hud(const Hud &copy) = delete;
@@ -41,14 +41,14 @@ public:
     void setWeapon(weapon_t aWeapon);
 
     void setRenderer(SDL_Renderer* renderer);
-    void render(int longWin, int highWin);
-    void renderHealth(int health);
-    void renderAmmo(int ammo);
-    void renderLife(int life);
-    void renderScore(int score);
+    void render(int &longWin, int &highWin);
+    void renderHealth(int &health);
+    void renderAmmo(const int &ammo);
+    void renderLife(const int &life);
+    void renderScore(const int &score);
     void renderGoldenKey();
     void renderSilverKey();
-    void renderFace(int health);
+    void renderFace(const int &health);
     ~Hud();
 };
 

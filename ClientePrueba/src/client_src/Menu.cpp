@@ -12,18 +12,20 @@ Menu::Menu(ClientReceiver &r,
 	// menuEventQ(eQ),
 	receiver(r),
 	transmitter(t),
-	winLargo(l),
-	winAlto(a),
+	winLength(l),
+	winHeight(a),
 	menuFiles("Media/Menu/menusFiles.txt"),
 	vectorMenus(menuFiles.getVectorFiles()),
-	menusHandler(vectorMenus, largo, alto),
+	menusHandler(vectorMenus, longWin, highWin),
 	selection("Media/Menu/SelectionMenu.png", 23, 33),
 	textSelectHandler(vectorSelectionText),
 	textErrorHandler(vectorErrors),
-	textNameHandler(" "),
-	textGameCreateHandler(" "),
-	textGameJoinHandler(" "),
-	textMapHandler(" ")
+	textNameHandler(nonString),
+	textGameCreateHandler(nonString),
+	textGameJoinHandler(nonString),
+	textMapHandler(nonString),
+	numPlayerHandler(nonString),
+	numBotsHandler(nonString)
 {
 		initialize();
 		createText();
@@ -39,6 +41,8 @@ void Menu::createText(){
 	textGameCreateHandler.setRenderer(menuRenderer, white);
 	textGameJoinHandler.setRenderer(menuRenderer, white);
 	textMapHandler.setRenderer(menuRenderer, white);
+	numPlayerHandler.setRenderer(menuRenderer, white);
+	numBotsHandler.setRenderer(menuRenderer, white);
 }
 
 void Menu::initialize(){
@@ -48,14 +52,14 @@ void Menu::initialize(){
 		std::cout << "ERROR : " << SDL_GetError()  << std::endl;
 	}
 
-	hayError = SDL_CreateWindowAndRenderer(winLargo, winAlto, 
+	hayError = SDL_CreateWindowAndRenderer(winLength, winHeight, 
 		SDL_RENDERER_ACCELERATED, &menuWindow, &menuRenderer);
 	if (hayError){
 		std::cout << "ERROR : " << SDL_GetError()  << std::endl;
 	}
 
 	SDL_SetWindowTitle(menuWindow, "WOLFENSTEIN 3D");
-	SDL_RenderSetLogicalSize(menuRenderer, largo, alto);
+	SDL_RenderSetLogicalSize(menuRenderer, longWin, highWin);
 
 	menusHandler.setRenderer(menuRenderer);
 	selection.setRenderer(menuRenderer);
@@ -64,49 +68,58 @@ void Menu::initialize(){
 }
 
 void Menu::renderTextOptions(){
+	int posX = 187;
+	int posY = 73;
+	int length = 45;
 
-	if (winLargo == 640){
-		textSelectHandler.render(187, 73, 45, 15, RES_ONE_TEXT);
-	} else if (winLargo == 800){
-		textSelectHandler.render(187, 73, 45, 15, RES_TWO_TEXT);
-	} else if (winLargo == 1024){
-		textSelectHandler.render(187, 73, 45, 15, RES_THREE_TEXT);
+	if (winLength == 640){
+		textSelectHandler.render(posX, posY, length, highFont, RES_ONE_TEXT);
+	} else if (winLength == 800){
+		textSelectHandler.render(posX, posY, length, highFont, RES_TWO_TEXT);
+	} else if (winLength == 1024){
+		textSelectHandler.render(posX, posY, length, highFont, RES_THREE_TEXT);
 	}
-	
+	posY = 108;
+	length = 15;
 	if (isFullScreen){
-		textSelectHandler.render(187, 108, 15, 15, ON_TEXT);
+		textSelectHandler.render(posX, posY, length, highFont, ON_TEXT);
 	} else {
-		textSelectHandler.render(187, 108, 15, 15, OFF_TEXT);
+		textSelectHandler.render(posX, posY, length, highFont, OFF_TEXT);
 	}
 }
 
 void Menu::renderTextCreate(){
+	int posX, posY;
 	if (nameChange){
 		if (namePlayer.size() == 0){
-			textNameHandler.setText(" ");
+			textNameHandler.setText(nonString);
 		} else {
 			textNameHandler.setText(namePlayer);
 		}
 		nameChange = false;
 	}
 	int sizeName = 7*namePlayer.size();
-	textNameHandler.render(168,69,sizeName,15);
+	posX = 168;
+	posY = 69;
+	textNameHandler.render(posX,posY,sizeName,highFont);
 
 
 	if (gameChange && validMatch){
 		if (nameGame.size() == 0){
-			textGameCreateHandler.setText(" ");
+			textGameCreateHandler.setText(nonString);
 		} else {
 			textGameCreateHandler.setText(nameGame);
 		}
 		gameChange = false;
 	}
+	posX = 163;
+	posY = 96;
 	if (!validMatch){
 		int sizeError = 6*vectorErrors[ERROR_NAME].size();
-		textErrorHandler.render(163,96,sizeError,15, ERROR_NAME);
+		textErrorHandler.render(posX,posY,sizeError,highFont, ERROR_NAME);
 	}else {
 		int sizeGame = 7*nameGame.size();
-		textGameCreateHandler.render(163,96,sizeGame,15);
+		textGameCreateHandler.render(posX,posY,sizeGame,highFont);
 	}
 	if(vectorMaps.size() != 0){
 		if (mapChange){
@@ -114,30 +127,61 @@ void Menu::renderTextCreate(){
 			mapChange = false;
 		}
 		int mapNameSize = 7*vectorMaps[mapPos].size();
-		textMapHandler.render(170,123,mapNameSize,15);
+		posX = 170;
+		posY = 123;
+		textMapHandler.render(posX,posY,mapNameSize,highFont);
 	} 
 }
 
+void Menu::renderTextMap(){
+	int posX, posY;
+	if (vectorMaps.size() != 0){
+		if (mapChange){
+			textMapHandler.setText(vectorMaps[mapPos]);
+			mapChange = false;
+		}
+		int mapNameSize = 7*vectorMaps[mapPos].size();
+		posX = 130;
+		posY = 74;
+		textMapHandler.render(posX,posY,mapNameSize,highFont);
+	}
+	if (numChange){
+		numPlayerHandler.setText(vectorNumbers[cantPlayers]);
+		numBotsHandler.setText(vectorNumbers[cantBots]);
+	}
+	int sizeNums = 7;
+	posX = 161;
+	posY = 102;
+	numPlayerHandler.render(posX, posY, sizeNums, highFont);
+	posX = 138;
+	posY = 129;
+	numBotsHandler.render(posX, posY, sizeNums, highFont);
+}
+
 void Menu::renderTextJoin(){
+	int posX, posY;
+
 	if (nameChange && validName){
 		if (namePlayer.size() == 0){
-			textNameHandler.setText(" ");
+			textNameHandler.setText(nonString);
 		} else {
 			textNameHandler.setText(namePlayer);
 		}
 		nameChange = false;
 	}
+	posX = 170;
+	posY = 85;
 	if (!validName){
 		int sizeError = 6*vectorErrors[ERROR_NAME].size();
-		textErrorHandler.render(170,85,sizeError,15,ERROR_NAME);
+		textErrorHandler.render(posX, posY,sizeError,highFont,ERROR_NAME);
 	} else {
 		int sizeName = 7*namePlayer.size();
-		textNameHandler.render(170,85,sizeName,15);
+		textNameHandler.render(posX, posY,sizeName,highFont);
 	}
 
 	if (joinChange){
 		if (nameJoin.size() == 0){
-			textGameJoinHandler.setText(" ");
+			textGameJoinHandler.setText(nonString);
 		} else {
 			textGameJoinHandler.setText(nameJoin);
 		}
@@ -145,23 +189,29 @@ void Menu::renderTextJoin(){
 	}
 
 	int sizeJoin = 7*nameJoin.size();
-	textGameJoinHandler.render(170,112,sizeJoin,15);
+	posX = 170;
+	posY = 112;
+	textGameJoinHandler.render(posX,posY,sizeJoin,highFont);
 }
 
 void Menu::renderMenu(){
     if (menu == MAIN_MENU){
-		menusHandler.render(0, 0, largo, alto, M_MAIN);
+		menusHandler.render(0, 0, longWin, highWin, M_MAIN);
 		selection.render(60, posSelectMain, 23, 16);
 	} else if (menu == OPTIONS_MENU){
-		menusHandler.render(0, 0 ,largo ,alto, M_OPTIONS);
+		menusHandler.render(0, 0 ,longWin ,highWin, M_OPTIONS);
 		selection.render(60, posSelectOpt, 23, 16);
 		renderTextOptions();
 	} else if (menu == CREATE_MENU){
-		menusHandler.render(0, 0 ,largo ,alto, M_NEW);
+		menusHandler.render(0, 0 ,longWin ,highWin, M_NEW);
 		selection.render(30, posSelectCreate, 23, 16);
 		renderTextCreate();
+	} else if (menu == MAP_MENU){
+		menusHandler.render(0, 0, longWin, highWin, M_MAP);
+		selection.render(60, posSelectMap, 23, 16);
+		renderTextMap();
 	} else if (menu == JOIN_MENU){
-		menusHandler.render(0, 0 ,largo ,alto, M_JOIN);
+		menusHandler.render(0, 0 ,longWin ,highWin, M_JOIN);
 		selection.render(36, posSelectJoin, 23, 16);
 		renderTextJoin();
 	}
@@ -195,17 +245,17 @@ void Menu::doActionMain(){
 void Menu::doActionOpt(){
 	switch (posSelectOpt){
 		case OPT_RES:
-			if (winLargo == 640){
-				winLargo = 800;
-				winAlto = 600;
-			} else if (winLargo == 800){
-				winLargo = 1024;
-				winAlto = 768;
-			} else if (winLargo == 1024){
-				winLargo = 640;
-				winAlto = 480;
+			if (winLength == 640){
+				winLength = 800;
+				winHeight = 600;
+			} else if (winLength == 800){
+				winLength = 1024;
+				winHeight = 768;
+			} else if (winLength == 1024){
+				winLength = 640;
+				winHeight = 480;
 			}
-			SDL_SetWindowSize(menuWindow, winLargo, winAlto);
+			SDL_SetWindowSize(menuWindow, winLength, winHeight);
 			SDL_SetWindowPosition(menuWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 			break;
 		case OPT_FS:
@@ -214,7 +264,7 @@ void Menu::doActionOpt(){
 				isFullScreen = true;
 			} else {
 				SDL_SetWindowFullscreen(menuWindow, 0);
-				SDL_SetWindowSize(menuWindow, winLargo, winAlto);
+				SDL_SetWindowSize(menuWindow, winLength, winHeight);
 				SDL_SetWindowPosition(menuWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 				isFullScreen = false;
 			}
@@ -226,28 +276,28 @@ void Menu::doActionOpt(){
 }
 
 // Imprime el texto que se va ingresando en las opciones
-void Menu::renderCreateForInput(std::string &input, int &x, int &y, const int &tipo){
+void Menu::renderCreateForInput(std::string &input, int &x, int &y, const int &typeMenu){
 	SDL_Color yellow = {255, 204, 0};
 	SDL_RenderClear(menuRenderer);
-	if (tipo == CREATE_PLAYER){
-		menusHandler.render(0, 0 ,largo ,alto, M_NEWNAME);
-	} else if (tipo == CREATE_GAME){
-		menusHandler.render(0, 0 ,largo ,alto, M_NEWGAME);
-	}else if (tipo == JOIN_PLAYER){
-		menusHandler.render(0, 0, largo, alto, M_JOINNAME);
+	if (typeMenu == CREATE_PLAYER){
+		menusHandler.render(0, 0 ,longWin ,highWin, M_NEWNAME);
+	} else if (typeMenu == CREATE_GAME){
+		menusHandler.render(0, 0 ,longWin ,highWin, M_NEWGAME);
+	}else if (typeMenu == JOIN_PLAYER){
+		menusHandler.render(0, 0, longWin, highWin, M_JOINNAME);
 	}
 	if (input.size() > 0){
 		TextHandler handler(input);
 		handler.setRenderer(menuRenderer, yellow);
 		int sizeName = 7*input.size();
-		handler.render(x,y,sizeName,15);
+		handler.render(x,y,sizeName,highFont);
 	}
 	SDL_RenderPresent(menuRenderer);
 }
 
-bool Menu::inputText(std::string &input, int &x, int &y, const int &tipo){
+bool Menu::inputText(std::string &input, int &x, int &y, const int &typeMenu){
 	bool hasChange = false;
-	renderCreateForInput(input, x, y, tipo);
+	renderCreateForInput(input, x, y, typeMenu);
 	bool salida = false;
 	SDL_StartTextInput();
 	SDL_Event event;
@@ -277,7 +327,7 @@ bool Menu::inputText(std::string &input, int &x, int &y, const int &tipo){
 			}
 		}
 		if (renderText){
-			renderCreateForInput(input, x, y, tipo);
+			renderCreateForInput(input, x, y, typeMenu);
 		}
 	}
 	SDL_StopTextInput();
@@ -288,16 +338,18 @@ bool Menu::inputText(std::string &input, int &x, int &y, const int &tipo){
 void Menu::renderSelectionMap(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	menusHandler.render(0, 0, largo, alto, M_NEWMAP);
-									std::cout << "menu.287" << std::endl;
+	menusHandler.render(0, 0, longWin, highWin, M_MAPSELECT);
+	int posX = 130;
+	int posY = 74;
+
 	if (vectorMaps.size() > 0){
 		TextHandler handler(vectorMaps[pos]);
 		handler.setRenderer(menuRenderer, yellow);
 		int sizeJoin = 7*vectorMaps[pos].size();
-		handler.render(170,123,sizeJoin,15);
+		handler.render(posX,posY,sizeJoin,highFont);
 	} else {
 		int sizeJoin = 6*vectorErrors[ERROR_MAP].size();
-		textErrorHandler.render(170,123,sizeJoin,15, ERROR_MAP);
+		textErrorHandler.render(posX,posY,sizeJoin,highFont, ERROR_MAP);
 	}
 	SDL_RenderPresent(menuRenderer);
 }
@@ -316,13 +368,11 @@ void setMatchVector(std::vector<std::string> &vectorMatches, std::string list){
 }
 
 void Menu::selectMap(){
-
 	bool selected = false;
 
 	std::string auxString;
 	receiver.receiveString(auxString);
 
-									std::cout << "menu.324" << std::endl;
 	if(auxString.length() > 0)
 		setMatchVector(vectorMaps, auxString);
 
@@ -384,16 +434,8 @@ void Menu::doActionCreate(){
 
 			break;
 		case CREATE_MAP:
-			event.event = GET_MAPS;
-			event.info = "";
-			transmitter.sendMenuEvent(event);
-			// menuEventQ.push(event);
-			selectMap();
-			event.event = SET_MAP;
-			event.info = mapName;
-        	std::cout << "mando el mapa: " << mapName << std::endl;
-			transmitter.sendMenuEvent(event);
-			// menuEventQ.push(event);
+			posSelectMap = MAP_SELECT;
+			menu = MAP_MENU;
 			break;
 		case CREATE_PLAY:
 			if (namePlayer.size() > 0 && nameGame.size() > 0 && validMatch){
@@ -410,19 +452,122 @@ void Menu::doActionCreate(){
 	}
 }
 
+void Menu::renderSelectionNumber(const int &typeMenu){
+	SDL_Color yellow = {255, 204, 0};
+	int posX, posY, number;
+	SDL_RenderClear(menuRenderer);
+
+	if (typeMenu == MAP_PLAYERS){
+		posX = 161;
+		posY = 102;
+		number = cantPlayers;
+		menusHandler.render(0, 0, longWin, highWin, M_MAPPLAYER);
+	} else {
+		posX = 138;
+		posY = 129;
+		number = cantBots;
+		menusHandler.render(0, 0, longWin, highWin, M_MAPBOTS);
+	}
+
+	TextHandler handler(vectorNumbers[number]);
+	handler.setRenderer(menuRenderer, yellow);
+	int sizeName = 7;
+	handler.render(posX,posY,sizeName,highFont);
+
+	SDL_RenderPresent(menuRenderer);
+}
+
+void Menu::selectNumber(const int &typeMenu){
+	bool selected = false;
+	SDL_Event event;
+	renderSelectionNumber(typeMenu);
+
+	while (!selected){
+		if (SDL_PollEvent(&event)){
+			if (event.type == SDL_KEYDOWN){
+				switch (event.key.keysym.sym){
+					case SDLK_LEFT:
+						if (typeMenu == MAP_PLAYERS){
+							if (cantPlayers > 1){
+								cantPlayers --;
+							}
+						} else {
+							if (typeMenu == MAP_BOTS){
+								if (cantBots > 0){
+									cantBots --;
+								}
+							}
+						}
+						renderSelectionNumber(typeMenu);
+						break;
+					case SDLK_RIGHT:
+						if (typeMenu == MAP_PLAYERS){
+							if (cantPlayers < 4){
+								cantPlayers ++;
+							}
+						} else {
+							if (typeMenu == MAP_BOTS){
+								if (cantBots < 4){
+									cantBots ++;
+								}
+							}
+						}
+						renderSelectionNumber(typeMenu);
+						break;
+					case SDLK_RETURN:
+						numChange = true;
+						selected = true;
+						break;
+					case SDLK_ESCAPE:
+						selected = true;
+						break;
+				}
+			}
+		}
+	}
+}
+
+void Menu::doActionMap(){
+	menu_event_t event;
+	switch (posSelectMap){
+		case MAP_SELECT:
+			event.event = GET_MAPS;
+			event.info = "";
+			transmitter.sendMenuEvent(event);
+			selectMap();
+			event.event = SET_MAP;
+			event.info = mapName;
+			transmitter.sendMenuEvent(event);
+			break;
+		case MAP_PLAYERS:
+			selectNumber(MAP_PLAYERS);
+			break;
+		case MAP_BOTS:
+			selectNumber(MAP_BOTS);
+			break;
+		case MAP_BACK:
+			menu = CREATE_MENU;
+			break;
+	}
+}
+
 // Imprime las partidas
 void Menu::renderSelectionMatch(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	menusHandler.render(0, 0, largo, alto, M_JOINMATCH);
+	menusHandler.render(0, 0, longWin, highWin, M_JOINMATCH);
+
+	int posX = 170;
+	int posY = 112;
+
 	if (vectorMatches.size() > 0){
 		TextHandler handler(vectorMatches[pos]);
 		handler.setRenderer(menuRenderer, yellow);
 		int sizeJoin = 7*vectorMatches[pos].size();
-		handler.render(170,112,sizeJoin,15);
+		handler.render(posX,posY,sizeJoin,highFont);
 	} else {
 		int sizeJoin = 5*vectorErrors[ERROR_MATCH].size();
-		textErrorHandler.render(170,112,sizeJoin,15, ERROR_MATCH);
+		textErrorHandler.render(posX,posY,sizeJoin,highFont, ERROR_MATCH);
 	}
 	SDL_RenderPresent(menuRenderer);
 }
@@ -519,7 +664,7 @@ void Menu::pollEventMain(const int &key){
 			if (posSelectMain != MAIN_EXIT){
 				posSelectMain += offsetSelectMain;
 			} else {
-						posSelectMain = MAIN_CREATE;
+				posSelectMain = MAIN_CREATE;
 			}
 			break;
 		case KEY_UP:
@@ -541,7 +686,7 @@ void Menu::pollEventOptions(const int &key){
 			if (posSelectOpt != OPT_BACK){
 				posSelectOpt += offsetSelectOpt;
 			} else {
-						posSelectOpt = OPT_RES;
+				posSelectOpt = OPT_RES;
 			}
 			break;
 		case KEY_UP:
@@ -563,7 +708,7 @@ void Menu::pollEventCreate(const int &key){
 			if (posSelectCreate != CREATE_BACK){
 				posSelectCreate += offsetSelectCreate;
 			} else {
-						posSelectCreate = CREATE_NAME;
+				posSelectCreate = CREATE_NAME;
 			}
 			break;
 		case KEY_UP:
@@ -579,13 +724,35 @@ void Menu::pollEventCreate(const int &key){
 	}
 }
 
+void Menu::pollEventMap(const int &key){
+	switch(key){
+		case KEY_DOWN:
+			if (posSelectMap != MAP_BACK){
+				posSelectMap += offsetSelectMap;
+			} else {
+				posSelectMap = MAP_SELECT;
+			}
+			break;
+		case KEY_UP:
+			if(posSelectMap != MAP_SELECT){
+				posSelectMap -= offsetSelectMap;
+			} else {
+				posSelectMap = MAP_BACK;
+			}
+			break;
+		case KEY_ENTER:
+			doActionMap();
+			break;
+	}
+}
+
 void Menu::pollEventJoin(const int &key){
 	switch(key){
 		case KEY_DOWN:
 			if (posSelectJoin != JOIN_BACK){
 				posSelectJoin += offsetSelectJoin;
 			} else {
-						posSelectJoin = JOIN_NAME;
+				posSelectJoin = JOIN_NAME;
 			}
 			break;
 		case KEY_UP:
@@ -611,7 +778,9 @@ void Menu::pollEvent(){
 	    if (event.type == SDL_KEYDOWN){
 		    switch(event.key.keysym.sym){
 		    	case SDLK_ESCAPE:
-		    		if (menu != MAIN_MENU){
+		    		if (menu == MAP_MENU){
+						menu = CREATE_MENU;
+					} else {
 						menu = MAIN_MENU;
 					}
 					break;
@@ -626,6 +795,9 @@ void Menu::pollEvent(){
 							break;
 						case CREATE_MENU:
 							pollEventCreate(KEY_DOWN);
+							break;
+						case MAP_MENU:
+							pollEventMap(KEY_DOWN);
 							break;
 						case JOIN_MENU:
 							pollEventJoin(KEY_DOWN);
@@ -644,6 +816,9 @@ void Menu::pollEvent(){
 						case CREATE_MENU:
 							pollEventCreate(KEY_UP);
 							break;
+						case MAP_MENU:
+							pollEventMap(KEY_UP);
+							break;
 						case JOIN_MENU:
 							pollEventJoin(KEY_UP);
 							break;
@@ -660,6 +835,9 @@ void Menu::pollEvent(){
 							break;
 						case CREATE_MENU:
 							pollEventCreate(KEY_ENTER);
+							break;
+						case MAP_MENU:
+							pollEventMap(KEY_ENTER);
 							break;
 						case JOIN_MENU:
 							pollEventJoin(KEY_ENTER);
