@@ -4,8 +4,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+
 class SDLHandler{
-    SDL_Texture* textura;
+    SDL_Texture* texture;
     SDL_Renderer* rendererWin;
     std::string imgFile;
     void getTexture();
