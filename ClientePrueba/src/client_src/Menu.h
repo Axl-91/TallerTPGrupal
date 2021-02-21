@@ -44,9 +44,9 @@
 #define JOIN_PLAY 139
 #define JOIN_BACK 166
 
-enum VECTOR_MENUS { M_MAIN, M_OPTIONS, M_NEW, M_NEWNAME, M_NEWGAME,
-	M_MAP, M_MAPSELECT, M_MAPPLAYER, M_MAPBOTS,
-	M_JOIN, M_JOINNAME, M_JOINMATCH
+enum VECTOR_MENUS { MENU_MAIN, MENU_OPTIONS, MENU_NEW, MENU_NEWNAME, MENU_NEWGAME,
+	MENU_MAP, MENU_MAPSELECT, MENU_MAPPLAYER, MENU_MAPBOTS,
+	MENU_JOIN, MENU_JOINNAME, MENU_JOINMATCH, MENU_LOBBY
 };
 
 enum SELECT_TIPO {ON_TEXT, OFF_TEXT, RES_ONE_TEXT, RES_TWO_TEXT,
@@ -54,7 +54,6 @@ enum SELECT_TIPO {ON_TEXT, OFF_TEXT, RES_ONE_TEXT, RES_TWO_TEXT,
 };
 
 enum NUMBER_TEXT {TEXT_0, TEXT_1, TEXT_2, TEXT_3, TEXT_4};
-enum MENU_TIPO {MAIN_MENU, OPTIONS_MENU, CREATE_MENU, JOIN_MENU, MAP_MENU};
 enum EVENT_KEY {KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT, KEY_ENTER};
 enum TIPO_INPUT {CREATE_PLAYER, CREATE_GAME, JOIN_PLAYER};
 enum ERROR_TIPO {ERROR_MAP, ERROR_MATCH, ERROR_NAME};
@@ -87,6 +86,7 @@ private:
 
 	bool hasCreateGame = false;
 	bool hasJoinGame = false;
+	bool startGame = false;
 	bool hasQuitGame = false;
 	bool isFullScreen = false;
 
@@ -99,7 +99,7 @@ private:
 	bool mapChange = false;
 	bool numChange = false;
 	
-	int menu = MAIN_MENU;
+	int menu = MENU_MAIN;
 	std::string nonString = " ";
 	std::string namePlayer = "";
 	std::string nameGame = "";
@@ -160,6 +160,9 @@ private:
 	void doActionMap();
 	void doActionJoin();
 
+	bool validCreate();
+	bool validJoin();
+
 	bool inputText(std::string &input, int &x, int &y, const int &typeMenu);
 	void renderCreateForInput(std::string &input, int &x, int &y, const int &typeMenu);
 	
@@ -171,6 +174,9 @@ private:
 
 	void selectNumber(const int &typeMenu);
 	void renderSelectionNumber(const int &typeMenu);
+
+	void waitingInLobby();
+
 public:
 	Menu(ClientReceiver &r, 
 		ClientTransmitter &t,
