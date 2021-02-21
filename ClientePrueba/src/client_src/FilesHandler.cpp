@@ -1,6 +1,6 @@
 #include "FilesHandler.h"
 
-FilesHandler::FilesHandler(std::string nameString){
+FilesHandler::FilesHandler(const std::string &nameString){
     streamFiles.open(nameString);
     createVectorFiles();
 }

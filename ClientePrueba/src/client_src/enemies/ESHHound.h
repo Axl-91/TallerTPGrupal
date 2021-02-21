@@ -7,7 +7,6 @@ class ESHHound: public EnemySpriteHandler{
 public:
     ESHHound();
     ~ESHHound();
-
 };
 
 #endif

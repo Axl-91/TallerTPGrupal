@@ -11,11 +11,11 @@
 //#include "Install.h"
 
 Enemies::Enemies(){
-   enemySpriteHandler[HOUND] = new ESHHound();
-   enemySpriteHandler[GUARD] = new ESHGuard();
-   enemySpriteHandler[OFFICIAL] = new ESHOfficial();
-   enemySpriteHandler[SS] = new ESHSS();
-   enemySpriteHandler[MUTANT] = new ESHMutant();
+    enemySpriteHandler[HOUND] = new ESHHound();
+    enemySpriteHandler[GUARD] = new ESHGuard();
+    enemySpriteHandler[OFFICIAL] = new ESHOfficial();
+    enemySpriteHandler[SS] = new ESHSS();
+    enemySpriteHandler[MUTANT] = new ESHMutant();
 }
 
 

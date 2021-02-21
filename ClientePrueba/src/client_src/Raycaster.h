@@ -11,8 +11,8 @@ private:
     Vector rayH;
     Vector rayFinal;
     Vector &posPlayer;
-    float distV = 10000;
-    float distH = 10000;
+    float distV = 1000000;
+    float distH = 1000000;
     float &angPlayer;
     float angRay;
     Map &mapRay;
