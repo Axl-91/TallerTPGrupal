@@ -12,20 +12,22 @@ class SpritesHandler{
 private:
     SDL_Renderer* rendererWin;
     std::vector<std::string> imgFiles;
+    std::vector<SDL_Texture*> texturesVector;
+    SDL_Rect src;
     void getTextures(SDL_Renderer* renderer);
     void destroyTextures();
-    std::vector<SDL_Texture*> texturesVector;
 public:
-    SDL_Rect src;
-    SpritesHandler(std::string file, int lenght = SIZE, int height = SIZE);
-    SpritesHandler(std::vector<std::string> &iFiles, int lenght = SIZE, int height = SIZE);
+    SpritesHandler(const std::string &file, const int &lenght = SIZE, const int &height = SIZE);
+    SpritesHandler(std::vector<std::string> &iFiles, const int &lenght = SIZE, const int &height = SIZE);
     void setRenderer(SDL_Renderer* renderer);
+    void setSrc(int &posX, int &posY, const int &lenght, const int &height);
+    int getPosX();
+    int getPosY();
+    void setPos(int &posX, int &posY);
+    void setSize(int &lenght, int &height);
+    void render(int &posX, int &posY, const int &lenght, const int &height, const int &text);
+    void render(int &posX, int &posY, const int &lenght, const int &height);
     ~SpritesHandler();
-    void setSrc(int posX, int posY, int lenght, int height);
-    void setPos(int posX, int posY);
-    void setSize(int lenght, int height);
-    void render(int posX, int posY, int lenght, int height, int text);
-    void render(int posX, int posY, int lenght, int height);
 };
 
 #endif

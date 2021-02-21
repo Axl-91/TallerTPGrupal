@@ -10,3 +10,4 @@ Media/Menu/NewMenuMapBots.png
 Media/Menu/JoinMenu.png
 Media/Menu/JoinMenuName.png
 Media/Menu/JoinMenuGame.png
+Media/Menu/MenuLobby.png

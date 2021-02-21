@@ -3,12 +3,12 @@
 #include <iostream>
 #include "SpritesHandler.h"
 
-SpritesHandler::SpritesHandler(std::string file, int lenght, int height){
+SpritesHandler::SpritesHandler(const std::string &file, const int &lenght, const int &height){
     imgFiles = {file};
     src = {0, 0, lenght, height};
 }
 
-SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles, int lenght, int height)
+SpritesHandler::SpritesHandler(std::vector<std::string> &iFiles, const int &lenght, const int &height)
     :imgFiles(iFiles){
         src = {0, 0, lenght, height};
 }
@@ -32,14 +32,11 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
     for(size_t i=0; i<imgFiles.size(); i++){
         SDL_Surface* surface = IMG_Load(imgFiles[i].data());
         if (!surface) {
-
-            // destroyTextures();
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL
         }
         texturesVector.push_back(SDL_CreateTextureFromSurface(rendererWin, surface));
         if (!texturesVector.back()) {
-            // destroyTextures();
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL
         }
@@ -47,26 +44,34 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
     }
 }
 
-void SpritesHandler::setSrc(int posX, int posY, int lenght, int height){
+void SpritesHandler::setSrc(int &posX, int &posY, const int &lenght, const int &height){
     src = {posX, posY, lenght, height};
 }
 
-void SpritesHandler::setPos(int posX, int posY){
+int SpritesHandler::getPosX(){
+    return src.x;
+}
+
+int SpritesHandler::getPosY(){
+    return src.y;
+}
+
+void SpritesHandler::setPos(int &posX, int &posY){
     src.x = posX;
     src.y = posY;
 }
 
-void SpritesHandler::setSize(int lenght, int height){
+void SpritesHandler::setSize(int &lenght, int &height){
     src.h = height;
     src.w = lenght;
 }
 
-void SpritesHandler::render(int posX, int posY, int lenght, int height, int type){
+void SpritesHandler::render(int &posX, int &posY, const int &lenght, const int &height, const int &type){
     SDL_Rect rect = {posX, posY, lenght, height};
     SDL_RenderCopy(rendererWin, texturesVector[type], &src, &rect);
 }
 
-void SpritesHandler::render(int posX, int posY, int lenght, int height){
+void SpritesHandler::render(int &posX, int &posY, const int &lenght, const int &height){
     SDL_Rect rect = {posX, posY, lenght, height};
     SDL_RenderCopy(rendererWin, texturesVector[0], &src, &rect);
 }

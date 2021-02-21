@@ -29,8 +29,8 @@ public:
     void setRenderer(SDL_Renderer* renderer);
 //    void setAngle(int angle);
     void setEnemyRenderSprite(int sprite);
-    void cutFromTexture(int x, int y, int largo = LARGO, int alto = ALTO);
-    void render(int x, int y, int largo = LARGO, int alto = ALTO);
+    void cutFromTexture(int &x, int &y, const int &largo = LARGO, const int &alto = ALTO);
+    void render(int &x, int &y, const int &largo = LARGO, const int &alto = ALTO);
     ~Enemies();
 };
 

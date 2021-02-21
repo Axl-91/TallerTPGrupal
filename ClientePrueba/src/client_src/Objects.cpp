@@ -10,15 +10,15 @@ void Objects::setRenderer(SDL_Renderer* renderer){
     objHandler.setRenderer(renderer);
 }
 
-void Objects::setObject(int num){
+void Objects::setObject(int &num){
     objSelected = num;
 }
 
-void Objects::cutFromTexture(int x, int y, int length, int height){
+void Objects::cutFromTexture(int &x, int &y, const int &length, const int &height){
     objHandler.setSrc(x, y, length,height);
 }
 
-void Objects::render(int x, int y, int length, int height){
+void Objects::render(int &x, int &y, const int &length, const int &height){
     objHandler.render(x, y, length, height, objSelected);
 }
 

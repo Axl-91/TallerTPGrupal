@@ -24,13 +24,14 @@ void Walls::setWall(int &num){
 
     srcX = x;
     srcY = y;
-    textureHandler.src.x = srcX;
-    textureHandler.src.y = srcY;
+    textureHandler.setPos(srcX, srcY);
 }
 
 void Walls::setDark(){
     srcX += offset;
-    textureHandler.src.x += offset;
+    int newSrcX = textureHandler.getPosX() + offset;
+    int srcY = textureHandler.getPosY();
+    textureHandler.setPos(newSrcX, srcY);
 }
 
 void Walls::render(int &posX, int &posY, int &length, int &height){
