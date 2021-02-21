@@ -31,9 +31,15 @@ void PWGun::render(int largoWin, int altoWin){
         }
         frame = numAuxiliar;
 
-         if (frame > 4){
+        if (!soundOn){
+            gunSounds.playEffect(GUN_SHOT, 20);
+            soundOn = true;
+        }
+
+        if (frame > 4){
              numAuxiliar = 0;
              frame = 0;
+             soundOn = false;
              shootingState=SHOOTING_STATE_QUIET;
         }
     }

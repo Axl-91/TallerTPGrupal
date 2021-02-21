@@ -74,6 +74,8 @@ private:
 	int highSelector = 16;
 	int highFont = 15;
 	int zero = 0;
+	int volMusic = 45;
+	int volSFX = 20;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;

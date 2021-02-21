@@ -45,7 +45,7 @@ Game::Game(int &largo, int &alto,
 	mapGame.setRenderer(renderer);
 	player.setRenderer(renderer);
 	render();
-	gameSounds.playMusic(1);
+	gameSounds.playMusic(GAME_MUSIC1, 45);
 }
 
 void Game::operator()(){
