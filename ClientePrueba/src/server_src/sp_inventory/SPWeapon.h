@@ -18,7 +18,10 @@ protected:
     // void disparar();
 public:
     void shootingTrue();
-    virtual float shoot(float dist, shooting_state_t &shootingState) = 0;
+
+	virtual float shoot(shooting_state_t &shootingState, bool &shootMissile) = 0;
+
+//    virtual float shoot(float dist, shooting_state_t &shootingState) = 0;
     SPWeapon();
 	SPWeapon(const SPWeapon &copy) = delete;
 //	PlayerWeapon operator=(const PlayerWeapon &copy) = delete;

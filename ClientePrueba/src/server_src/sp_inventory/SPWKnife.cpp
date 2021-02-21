@@ -1,7 +1,5 @@
 #include "SPWKnife.h"
 
-
-
 SPWKnife::SPWKnife(){
     type=KNIFE;
     damage=KNIFE_DAMAGE;
@@ -9,9 +7,8 @@ SPWKnife::SPWKnife(){
 }
 SPWKnife::~SPWKnife(){}
 
-float SPWKnife::shoot(float dist, shooting_state_t &shootingState){
-    std::cout<<"disparo con cuchillo"<<std::endl;   
-
+float SPWKnife::shoot(shooting_state_t &shootingState, bool &shootMissile){
+    shootMissile = false;
     if(shooting == false){
         shootingState = SHOOTING_STATE_QUIET;
         return 0;

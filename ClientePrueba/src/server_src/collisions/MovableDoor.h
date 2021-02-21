@@ -4,7 +4,7 @@
 #include "Movable.h"
 #include "Collidable.h"
 
-class MovableDoor: public Collidable{
+class MovableDoor: public Movable{
     door_type_t type;
 public:
     MovableDoor(int xI, int yI, int cellWidth, int type);

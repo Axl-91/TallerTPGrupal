@@ -4,7 +4,7 @@
 #include <string>
 #include "Collidable.h"
 #include "Rectangle.h"
-#include "../../common_src/Circle.h"
+#include "../../common_src/types.h"
 
 #define CAP 8 //Capacidad de nodos y arbol
 

@@ -19,4 +19,5 @@ ShootingRaycaster.cpp
 matchEventHandler.cpp
 bot.cpp
 AILua.cpp
+ServerMissile.cpp
 )

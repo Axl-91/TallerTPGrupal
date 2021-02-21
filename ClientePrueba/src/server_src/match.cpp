@@ -7,7 +7,7 @@ std::vector<std::vector<int>> lvl2 = {
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,133,000,201,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,133,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+	{434,000,000,000,000,135,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
 	{434,000,101,102,000,000,000,000,000,000,000,141,142,143,144,000,000,000,000,434},
 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
@@ -58,7 +58,7 @@ Match::Match(std::string &matchName, std::string &chosenMap):
     name(matchName),
     lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
-    game(players, lvl1, uQ),
+    game(players, lvl1, uQ, missileUQ),
     bot(q, 110, 110, 0, 1),
     matchEventReader(players, q)
 {
@@ -117,7 +117,7 @@ void Match::operator()(){
 }
 
 void Match::run(){
-    long timeStep= 40;
+    long timeStep = 1000/60;
     try{
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
@@ -150,6 +150,11 @@ void Match::updateUsers(){
         //     bot.second->update(uQ.front());
 //        bot.update(uQ.front());
         uQ.pop();
+    }
+    while (missileUQ.empty()==false){
+        for(auto user:users)
+            user.second->updateMissile(missileUQ.front());
+        missileUQ.pop();
     }
 }
 

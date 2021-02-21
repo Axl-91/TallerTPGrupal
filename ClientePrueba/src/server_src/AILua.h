@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "../common_src/types.h"
-#include "../common_src/Circle.h"
 
 class AILua {
 private:

@@ -1,7 +1,6 @@
 #ifndef SERVERPLAYER__T
 #define SERVERPLAYER__T
 
-#include "../common_src/Circle.h"
 #include <cmath>
 #include "../common_src/types.h"
 #include "../common_src/Vector.h"
@@ -53,7 +52,7 @@ public:
     void stopOpenDoor();
     bool isOpeningDoor();
 
-    void shoot();
+//    void shoot();
     void respawn();
     bool updateIsAvailable();
     void updated();
@@ -65,7 +64,9 @@ public:
 
     void getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist);
     float getAngle();
-	void shoot(ServerPlayer &enemy, float coef);
+//	void shoot(ServerPlayer &enemy, float coef);
+    int shoot(bool &shootMissile);
+
     void beDamaged(int damage);
 
 

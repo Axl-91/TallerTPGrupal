@@ -5,12 +5,11 @@
 #include <SDL2/SDL_image.h>
 #include <vector>
 #include <map>
-// #include <utility>
 #include "../common_src/Vector.h"
 #include "Walls.h"
 #include "Objects.h"
+#include "Missile.h"
 #include "enemies/Enemies.h"
-
 #include "../common_src/types.h"
 
 typedef struct Object_t {
@@ -28,8 +27,9 @@ private:
 	Walls walls;
 	Objects objects;
 	Enemies enemies;
-
+	Missile missiles;
 	std::map<int, Enemy_t> mapEnemies;
+	std::map<int, Render_missile_t> mapMissiles;
 
 	std::map<std::pair<int,int>, Object_t> mapDoors;
 	std::map<std::pair<int,int>, Object_t> mapObj;
@@ -61,11 +61,11 @@ public:
 	void renderObject(int &posX, int &posY, int &lenght, int &height, int type);
 	void update(Map_change_t &aMapChange);
 	void updateEnemy(Player_t &p);
-
+    void updateMissile(Missile_t &m);
+	void eraseExplodedMissiles();
 
 	void insertDoor(int x, int y, int doorType);
 	void openDoor(int x, int y);
-
 };
 
 #endif

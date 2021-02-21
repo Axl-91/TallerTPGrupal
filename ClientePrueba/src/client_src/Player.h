@@ -9,11 +9,7 @@
 #include "Hud.h"
 #include "inventory/PlayerWeapon.h"
 #include "inventory/Inventory.h"
-// #include "weapon_t.h"
-// #include "heal_t.h"
-#include "../common_src/Circle.h"
-// #include "SpritesHandler.h"
-// #include "SDL_EventHandler.h"
+#include "SpritesHandler.h"
 
 #define MAX_HEALTH 100
 
@@ -44,8 +40,6 @@ private:
     bool objIsVisible(Vector &posObj);
     void renderObjects();
 public:
-//    Player();
-
     Player(Map &m);
     void setPos(float x, float y);
     void setMap(Map &map);

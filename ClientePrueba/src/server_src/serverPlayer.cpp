@@ -22,13 +22,13 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
 	init_posx = x;
 	init_posy = y;
-    position.x=x;
-    position.y=y;
-    position.radius=16;
-    ang=a;
-    step=5;
-	dirx = step*cos(ang);
-	diry = step*sin(ang); 
+    position.x = x;
+    position.y = y;
+    position.radius = 16;
+    ang = a;
+    step = 5;
+	dirx = step * cos(ang);
+	diry = step * sin(ang); 
 	currentWP = WP_KNIFE;
 	health = 50;
 	ammo = 50;
@@ -41,8 +41,8 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	moveOrientation = MOVE_QUIET;
 	rotateOrientation = ROTATE_QUIET;
 	ID = newID;
-	updateAvailable=true;
-	openingDoor=false;
+	updateAvailable = true;
+	openingDoor = false;
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -53,8 +53,8 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	init_posx = other.init_posx;
 	init_posy = other.init_posy;
 	position = other.position;
-    ang=other.ang;
-    step=other.step;
+    ang = other.ang;
+    step = other.step;
 	dirx = other.dirx;
 	diry = other.diry;
 	currentWP = other.currentWP;
@@ -69,7 +69,7 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	moveOrientation = other.moveOrientation;
 	rotateOrientation = other.rotateOrientation;
 	ID = other.ID;
-	openingDoor=other.openingDoor;
+	openingDoor = other.openingDoor;
 }
 
 
@@ -78,7 +78,7 @@ bool ServerPlayer::updateIsAvailable(){
 }
 
 void ServerPlayer::updated(){
-	updateAvailable=false;
+	updateAvailable = false;
 }
 
 void ServerPlayer::respawn(){
@@ -87,38 +87,38 @@ void ServerPlayer::respawn(){
 }
 
 void ServerPlayer::rotate(){
-	ang -= PI/36*rotateOrientation;
+	ang -= PI/36 * rotateOrientation;
 	if (ang < 0 || ang >= 2*PI){
 		ang += 2*PI*rotateOrientation;
 	}
-	if(rotateOrientation!=ROTATE_QUIET)
-		updateAvailable=true;
+	if (rotateOrientation != ROTATE_QUIET)
+		updateAvailable = true;
 
-	dirx = step*cos(ang);
-	diry = step*sin(ang);
+	dirx = step * cos(ang);
+	diry = step * sin(ang);
 }
 
 void ServerPlayer::move(){
-	position.x+=dirx*moveOrientation;
-	position.y+=diry*moveOrientation;
-	if(moveOrientation!=MOVE_QUIET)
-		updateAvailable=true;
+	position.x += dirx * moveOrientation;
+	position.y += diry * moveOrientation;
+	if(moveOrientation != MOVE_QUIET)
+		updateAvailable = true;
 
-	setDirection(step*cos(ang), step*sin(ang));
+	setDirection(step * cos(ang), step * sin(ang));
 }
 
 void ServerPlayer::setDirection(float x, float y){
-	dirx=x;
-	diry=y;
+	dirx = x;
+	diry = y;
 }
 
 void ServerPlayer::setCurrentWeapon(player_weapons_t aWeapon){
 	if(aWeapon < 1 || aWeapon > MAX_WEAPONS)
 		return;
 
-	updateAvailable=true;
-	currentWP=aWeapon;
-	currentWeapon=inventory.getWeapon(currentWeapon, aWeapon);
+	updateAvailable = true;
+	currentWP = aWeapon;
+	currentWeapon = inventory.getWeapon(currentWeapon, aWeapon);
 }
 
 void ServerPlayer::setMoveOrientation(player_move_orientation_t o){
@@ -142,8 +142,8 @@ void ServerPlayer::stopShooting(){
 
 weapon_t ServerPlayer::equip(weapon_t weapon){
 	weapon_t last;
-	updateAvailable=true;
-	if((last=inventory.equip(weapon))!=NONE);
+	updateAvailable = true;
+	if ((last = inventory.equip(weapon)) != NONE);
 		setCurrentWeapon(WP_SECONDARY);
 
 	return last;
@@ -154,8 +154,8 @@ weapon_t ServerPlayer::equip(weapon_t weapon){
 void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist){
 	float eX;
 	float eY;
-	enemy.getPosition(eX,eY);
-	Vector enemyPos(eX,eY);
+	enemy.getPosition(eX, eY);
+	Vector enemyPos(eX, eY);
 	Vector pos(position.x, position.y);
 	float distance = pos.getDistance(enemyPos); 
 	float anguloObj = pos.getAngle(enemyPos);
@@ -167,57 +167,62 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	if (difAng > PI){
 		difAng -= 2*PI;
 	}
-	if(difAng<0)
-		difAng=-difAng;
+	if (difAng < 0)
+		difAng =- difAng;
 	//se forma un triangulo rectangulo con posicion del jugador,
 	//direccion de tiro y posicion del enemigo
-	float op=sin(difAng)*distance; //cateto opuesto
-	float ad=cos(difAng)*distance; //cateto adyacente
-	if(ad>wallDist || op > SHOOTING_SIZE){
-		coef=0;
+	float op = sin(difAng) * distance; //cateto opuesto
+	float ad = cos(difAng) * distance; //cateto adyacente
+	if(ad > wallDist || op > SHOOTING_SIZE){
+		coef = 0;
 		return;
 	}
-	float coefDistance = COEF_SHOOTING_DISTANCE_OFFSET+exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
-	float coefAng= exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
-	coef=coefDistance*coefAng;
-	if(coef>1)
-		coef=1;
 
+	float coefDistance = COEF_SHOOTING_DISTANCE_OFFSET + exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
+	float coefAng = exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
+	coef = coefDistance * coefAng;
+	if(coef > 1)
+		coef = 1;
 }
 
-void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
-	float weaponDamage;
-	int totalDamage;
-	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
-	weaponDamage *= coef;
-	totalDamage = (int) weaponDamage;
-	enemy.beDamaged(totalDamage);
+
+int ServerPlayer::shoot(bool &shootMissile){
+	return currentWeapon->shoot(shootingState, shootMissile);
 }
+
+
+
+
+// void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
+// 	float weaponDamage;
+// 	int totalDamage;
+// 	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
+// 	weaponDamage *= coef;
+// 	totalDamage = (int) weaponDamage;
+// 	enemy.beDamaged(totalDamage);
+// }
 
 
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
 	Vector ePos(enemy.position.x, enemy.position.y);
 
-	return pPos.getDistance(ePos)-2*position.radius;
+	return pPos.getDistance(ePos) - 2*position.radius;
 }
 
-
 void ServerPlayer::beDamaged(int damage){
-	health-=damage;
-	updateAvailable=true;
-	if(health <= 0){
+	health -= damage;
+	updateAvailable = true;
+	if (health <= 0){
 		respawn();
 		health = 100;
 		lifes -= 1;
-		if(lifes <= 0){
+		if (lifes <= 0){
 			lifes = 0;
 			// logica muerte
-		}
-			
+		}			
 	}
 }
-
 
 void ServerPlayer::startOpenDoor(){
 	openingDoor = true;
@@ -240,49 +245,48 @@ float ServerPlayer::getAngle(){
 }
 
 int ServerPlayer::heal(int h){
-	if(health>=MAX_HEALTH)
+	if (health >= MAX_HEALTH)
 		return 0;
-	updateAvailable=true;
+	updateAvailable = true;
 
-	health=health+h;
-	if(health>MAX_HEALTH)
-		health=MAX_HEALTH;
+	health = health + h;
+	if (health > MAX_HEALTH)
+		health = MAX_HEALTH;
 
 	return 1;
 }
 
 int ServerPlayer::grabKey(game_key_t k){
-	if(k==KEY_BLUE)
-		if(blueKey==false){
-			blueKey=true;
+	if (k == KEY_BLUE)
+		if (blueKey == false){
+			blueKey = true;
 			return 1;
 		}
-
-	if(k==KEY_GOLD)
-		if(goldKey==false){
+	if (k == KEY_GOLD)
+		if (goldKey == false){
 			goldKey = true;
 			return 1;
 		}
-
 	return 0;
 }
 
 int ServerPlayer::addPoints(int p){
-	score+=p;
+	score += p;
 	return 1;
 }
 
 int ServerPlayer::reload(int a){
-	if(ammo>=MAX_AMMO)
+	if (ammo >= MAX_AMMO)
 		return 0;
 
-	updateAvailable=true;
-	ammo+=a;
-	if(ammo>MAX_AMMO)
-		ammo=MAX_AMMO;
+	updateAvailable = true;
+	ammo += a;
+	if (ammo > MAX_AMMO)
+		ammo = MAX_AMMO;
 
 	return 1;
 }
+
 void ServerPlayer::getPlayerInfo(Player_t &p){
     p.x = position.x;
     p.y = position.y;
@@ -315,25 +319,25 @@ weapon_t ServerPlayer::getSecondaryWPtype(){
 
 
 void ServerPlayer::getPosition(circle &c){
-	c.x=position.x;
-	c.y=position.y;
-	c.radius=position.radius;
+	c.x = position.x;
+	c.y = position.y;
+	c.radius = position.radius;
 }
 
 
 void ServerPlayer::getPosition(float &x, float &y){
-	x=position.x;
-	y=position.y;
+	x = position.x;
+	y = position.y;
 }
 
 void ServerPlayer::getDirection(float &x, float &y){
-	x=dirx;
-	y=diry;
+	x = dirx;
+	y = diry;
 }
 
 bool ServerPlayer::isShooting(){
-	updateAvailable=true;
-	if(shootingState != SHOOTING_STATE_QUIET){
+	updateAvailable = true;
+	if (shootingState != SHOOTING_STATE_QUIET){
 		return true;
 	}
 	return false;

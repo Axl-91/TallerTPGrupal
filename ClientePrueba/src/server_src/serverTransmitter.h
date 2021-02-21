@@ -18,7 +18,7 @@ public:
     void sendMapUpdate(Map_change_t &aMapChange);
     void sendPlayerID(size_t &ID);
     void sendString(std::string &aString);
-
+    void sendMissileInfo(Missile_t &m);
 private:
     std::mutex m;
     Socket &socket;

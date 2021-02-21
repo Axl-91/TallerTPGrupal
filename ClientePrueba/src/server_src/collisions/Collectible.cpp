@@ -11,6 +11,9 @@ Collectible::Collectible(int xI, int yI, int cellWidth){
 
 Collectible::~Collectible(){}
 
+bool Collectible::collide(ServerMissile &m){
+    return false;
+}
 
 
 bool Collectible::detectCollision(circle &c, float dX,float dY){

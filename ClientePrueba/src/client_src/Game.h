@@ -36,7 +36,9 @@ private:
     std::atomic<bool> is_running;
 	GameUpdater gameUpdater;
 public:
-	Game(int &largo, int &ancho, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q);
+	Game(int &largo, int &ancho, 
+		std::vector<std::vector<int>> &lvl, 
+		ProtectedQueue<Update_t> &q);
 	~Game();
 	void operator()();
     virtual void run() override;
@@ -44,7 +46,7 @@ public:
 	void updatePlayer(Player_t &player);
     // void setFullScreen();
 	void render();
-	void update();
+	// void update();
 	bool isGameOver();
 	void quitGame();
 	SDL_Renderer* getRenderer();

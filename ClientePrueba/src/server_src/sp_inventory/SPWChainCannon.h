@@ -7,7 +7,9 @@ class SPWChainCannon: public SPWeapon{
 public:
     SPWChainCannon();
     ~SPWChainCannon();
-    float shoot(float dist, shooting_state_t &shootingState) override;
+  //  float shoot(float dist, shooting_state_t &shootingState) override;
+   	float shoot(shooting_state_t &shootingState, bool &shootMissile) override;
+
 };
 
 #endif

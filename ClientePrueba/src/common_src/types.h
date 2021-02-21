@@ -19,7 +19,7 @@
 #define GUN_DAMAGE 10
 #define MACHINE_GUN_DAMAGE 2
 #define CHAIN_CANNON_DAMAGE 5
-#define ROCKET_LAUNCHER_DAMAGE 50
+#define ROCKET_LAUNCHER_DAMAGE 70
 
 
 #define MACHINE_GUN_BULLET_COUNTER 5 
@@ -92,7 +92,8 @@ typedef enum{
     TAG_MAP_INIT,
     TAG_MATCH_LIST,
     TAG_MAP_LIST,
-    TAG_NAME_NOT_AVAILABLE
+    TAG_NAME_NOT_AVAILABLE,
+    TAG_MISSILE_INFO
 }update_tag_t;
 
 typedef enum{
@@ -180,6 +181,13 @@ typedef enum{
     ROTATE_QUIET = 0
 }player_rotate_orientation_t;
 
+
+typedef struct{
+    float x;
+    float y;
+    float radius;
+}circle;
+
 typedef struct{
     event_t event;
     std::string info;
@@ -234,15 +242,31 @@ typedef struct{
     int step;
     float x;
     float y;
-    float dirx;
-    float diry;
+    float ang;
+    float dirX;
+    float dirY;
     int damage;
-}Misil_t;
+    bool exploding;
+}Missile_t;
+
+typedef struct{
+    Missile_t info;
+    int explode_frame;
+}Render_missile_t;
+
+typedef enum{
+    MISSILE_UPDATE,
+    PLAYER_UPDATE,
+    MAP_CHANGE
+}update_type_t;
 
 typedef struct{
     Player_t playerUpdate;
     Map_change_t mapChange;
-    bool mapChangeAvailable;
+    Missile_t missileUpdate;
+    update_type_t type;
+    // bool 
+    // bool mapChangeAvailable;
 }Update_t;
 
 

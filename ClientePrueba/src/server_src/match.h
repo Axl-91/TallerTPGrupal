@@ -55,6 +55,8 @@ private:
     std::vector<std::vector<int>> lvl1;
     UpdateHandler updateHandler;
     std::queue<UpdateHandler> uQ; 
+    std::queue<Missile_t> missileUQ; 
+
     size_t connectionNumber;
     ServerGame game;
     void initializeInitPosition();

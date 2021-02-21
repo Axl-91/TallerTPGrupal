@@ -1,5 +1,5 @@
-#ifndef _MOVABLE_H_
-#define _MOVABLE_H_
+#ifndef _COLLECTIBLE_H_
+#define _COLLECTIBLE_H_
 
 #include "Collidable.h"
 
@@ -9,6 +9,7 @@ private:
 public:
     Collectible(int xI, int yI, int cellWidth);
     bool detectCollision(circle &c, float dX,float dY) override;
+    bool collide(ServerMissile &m) override;
 
     ~Collectible();
 };

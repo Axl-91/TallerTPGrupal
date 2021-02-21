@@ -16,6 +16,7 @@
 #include "protectedUpdateQueue.h"
 #include "Menu.h"
 #include "TextHandler.h"
+
 class Client{
 public:
     Client(const char *host_name, const char *port);
@@ -31,17 +32,13 @@ private:
     std::atomic<bool> gameStarted;
     std::atomic<bool> connectedToMatch;
     ProtectedQueue<event_t> gameEventQ;
-    // ProtectedQueue<menu_event_t> menuEventQ;
-    // ProtectedQueue<menu_event_t> menuResponseQ;
     ClientTransmitter transmitter;
     ClientReceiver receiver;
     SDL_EventHandler eHandler;
     std::vector<std::vector<int>> lvl2;
     std::atomic<bool> is_running;
-    // Player_t player;
-    // Map_change_t mapChange;
-    // Update_t anUpdate;
     ProtectedQueue<Update_t> gameUpdateQ;
+
     void runMenu(int &winLargo, int &winAlto);
     void runGame(int &winLargo, int &winAlto);
 };

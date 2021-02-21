@@ -26,6 +26,8 @@ private:
     std::string userName;
     size_t ID;
 public:
+    void updateMissile(Missile_t m); 
+
     User(Socket socket);
     void operator()();
     void setProtectedMatchEventQueue(ProtectedQueue<MatchEvent_t> *q);

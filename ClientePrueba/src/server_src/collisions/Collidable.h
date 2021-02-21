@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "../serverPlayer.h"
-#include "../../common_src/Circle.h"
+#include "../ServerMissile.h"
 #include "../../common_src/Vector.h"
 #include "../../common_src/types.h"
 
@@ -31,6 +31,9 @@ public:
     virtual bool detectCollision(circle &c, float dX,float dY)=0;
     bool detectCollision(float x, float y, float dX,float dY);
     virtual int collide(ServerPlayer &p) = 0;
+    
+    virtual bool collide(ServerMissile &m) = 0;
+
     Collidable& operator=(Collidable const &other); 
     friend std::ostream & operator<< (std::ostream &os, Collidable &c);
 

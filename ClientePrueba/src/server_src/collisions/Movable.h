@@ -10,6 +10,7 @@ private:
 public:
     Movable(/* args */);
     ~Movable();
+    bool collide(ServerMissile &m) override;
 };
 
 #endif

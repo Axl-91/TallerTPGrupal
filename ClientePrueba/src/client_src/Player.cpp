@@ -18,18 +18,18 @@ Player::Player(Map &m):
 	currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 {
 	// health=MAX_HEALTH;
-	health=50;
+	health = 50;
 	angPlayer = PLAYER_START_ANGLE;
     dx = cos(angPlayer);
     dy = sin(angPlayer);
-	position.radius=PLAYER_RADIUS;
-	step=PLAYER_STEP;
+	position.radius = PLAYER_RADIUS;
+	step = PLAYER_STEP;
 	goldKey = false;
 	blueKey = false;
 }
 
 void Player::equip(weapon_t w){
-	if(inventory.equip(w)==true);
+	if(inventory.equip(w) == true);
 		setWeapon(WP_SECONDARY);
 }
 
@@ -45,38 +45,38 @@ void Player::setRenderer(SDL_Renderer* renderer){
 }
 
 void Player::setDirection(float x, float y){
-	dx=x;
-	dy=y;
+	dx = x;
+	dy = y;
 }
 
 void Player::setWeapon(player_weapons_t aWeapon){
 	if(aWeapon < 1 || aWeapon > MAX_WEAPONS)
 		return;
 
-	currentWeapon=inventory.getWeapon(currentWeapon, aWeapon);
+	currentWeapon = inventory.getWeapon(currentWeapon, aWeapon);
 	hudGame.setWeapon(currentWeapon->getType());
 }
 
 void Player::getPosition(circle &c){
-	c.x=position.x;
-	c.y=position.y;
-	c.radius=position.radius;
+	c.x = position.x;
+	c.y = position.y;
+	c.radius = position.radius;
 }
 
 void Player::getPosition(float &x, float &y){
-	x=position.x;
-	y=position.y;
+	x = position.x;
+	y = position.y;
 }
 
 void Player::getDirection(float &x, float &y){
-	x=dx;
-	y=dy;
+	x = dx;
+	y = dy;
 }
 
 void Player::renderRaycaster(){
 	Vector vectorPos(position.x, position.y);
 	Raycaster raycaster(vectorPos, angPlayer, mapPlayer);
-	float angleRay = angPlayer-PI/6;
+	float angleRay = angPlayer - PI/6;
 
 	for (int pos=0; pos < LONG_SCREEN; ++pos){
 
@@ -104,7 +104,7 @@ void Player::renderObjects(){
 	int one = 1;
 	Vector posPlayer = Vector(position.x, position.y);
 	std::vector<Object_t> orderedObjets;
-	orderedObjets=mapPlayer.orderObjects(posPlayer);
+	orderedObjets = mapPlayer.orderObjects(posPlayer);
 
 	for (int obj = 0; obj < orderedObjets.size(); ++obj){
 		Vector posObjeto = orderedObjets[obj].position;
@@ -160,7 +160,7 @@ void Player::updateInfo(Player_t &p){
     goldKey = p.goldKey;   
 
 	setWeapon(p.currentWP);
-	shootingState=p.shootingState;
+	shootingState = p.shootingState;
 
 	currentWeapon->shoot(shootingState);
 }

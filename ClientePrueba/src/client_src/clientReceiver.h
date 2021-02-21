@@ -18,7 +18,6 @@ public:
     ClientReceiver(Socket &socket, 
                 std::vector<std::vector<int>> &m, 
                 ProtectedQueue<Update_t> &uQ);
-                // ProtectedQueue<menu_event_t> &mQ);
     void operator()();
     virtual void run() override;
     void stop();
@@ -37,11 +36,14 @@ private:
     std::atomic<bool> inMatch;
     std::atomic<bool> matchEnded;
     ProtectedQueue<Update_t> &uQ;
+
     // ProtectedQueue<menu_event_t> &menuResponseQ;
     void receivePlayerInfo(Update_t &anUpdate);
     void receiveMapChange(Update_t &anUpdate);
     void receiveGame();
     void receiveMap();
+    void receiveMissileInfo(Update_t &anUpdate);
+
 };
 
 #endif

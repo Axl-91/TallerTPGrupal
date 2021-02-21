@@ -110,6 +110,15 @@ void User::update(UpdateHandler &uHandler){
 
 }
 
+void User::updateMissile(Missile_t m){
+    update_tag_t aTag = TAG_MISSILE_INFO;
+    sendGameUpdate(aTag);
+    transmitter.sendMissileInfo(m);   
+}
+
+
+
+
 void User::setID(size_t newID){
     ID = newID;
 }

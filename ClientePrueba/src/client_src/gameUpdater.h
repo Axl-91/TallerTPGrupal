@@ -16,9 +16,12 @@ private:
     void update();
     void updatePlayer(Player_t &p);
     void updateMap(Map_change_t &aMapChange);
+    void updateMissile(Missile_t &m);
 
 public:
-    GameUpdater(Player &player, ProtectedQueue<Update_t> &aQueue, Map &mapGame, std::mutex &mut);
+    GameUpdater(Player &player, 
+                ProtectedQueue<Update_t> &aQueue, 
+                Map &mapGame, std::mutex &mut);
     void operator()();
     virtual void run() override;
     void stop();

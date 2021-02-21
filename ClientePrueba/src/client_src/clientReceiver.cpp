@@ -46,7 +46,7 @@ bool ClientReceiver::isDead(){
 
 void ClientReceiver::receiveGame(){
     Update_t anUpdate;
-    anUpdate.mapChangeAvailable = false;
+//    anUpdate.mapChangeAvailable = false;
     uint32_t length = 0;
     const size_t SIZE_OF_UINT32 = 4;
     update_tag_t aTag = TAG_NO_UPDATE;
@@ -55,21 +55,42 @@ void ClientReceiver::receiveGame(){
     if(aTag == TAG_MAP_INIT){
         receiveMap();
     }
+
+    if(aTag == TAG_MISSILE_INFO){
+        receiveMissileInfo(anUpdate);
+        anUpdate.type = MISSILE_UPDATE;
+        uQ.push(anUpdate);
+    }
+
     if(aTag == TAG_PLAYER_INFO){
         receivePlayerInfo(anUpdate);
+        anUpdate.type = PLAYER_UPDATE;
         uQ.push(anUpdate);
     }
     if(aTag == TAG_MAP_CHANGE){
         receiveMapChange(anUpdate);
         receivePlayerInfo(anUpdate);
-        anUpdate.mapChangeAvailable = true;
+        anUpdate.type = MAP_CHANGE;
         uQ.push(anUpdate);
     }
 
     if(aTag == TAG_GAME_QUIT){
         matchEnded = true;
     }
+}   
+
+
+void ClientReceiver::receiveMissileInfo(Update_t &anUpdate){
+    Missile_t aux;
+    socket.receive((char *) &aux, sizeof(Missile_t));
+    // std::cout<<"recibi misil: "<< aux.ID<<" daño: "<<aux.damage<<std::endl;
+    // std::cout<<"x: "<< aux.x<<" t: "<<aux.y<<std::endl;
+    // std::cout<<"ang: "<< aux.ang<<std::endl;
+
+
+    anUpdate.missileUpdate = aux;
 }
+
 
 void ClientReceiver::receiveString(std::string &aString){
     uint32_t length = 0;
@@ -95,7 +116,6 @@ void ClientReceiver::receiveMapChange(Update_t &anUpdate){
     Map_change_t aux;
     socket.receive((char *) &aux, sizeof(Map_change_t));
     anUpdate.mapChange = aux;
-    anUpdate.mapChangeAvailable = true;
 }
 
 void ClientReceiver::receiveMap(){

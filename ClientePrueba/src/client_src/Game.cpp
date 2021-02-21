@@ -8,21 +8,21 @@
 #define CLIENT_TIME_STEP 1000/60
 
 //cuando se inicializa, inicia SDL
-Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
+Game::Game(int &largo, int &alto, 
+			std::vector<std::vector<int>> &lvl, 
+			ProtectedQueue<Update_t> &q): 
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),
 	is_running(false),
 	gameUpdater(player,uQ, mapGame, m)
 {
-
 	Update_t anUpdate;
 	uQ.pop(anUpdate);
 
 	std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
 	player.setID(anUpdate.playerUpdate.ID);
 	player.updateInfo(anUpdate.playerUpdate);
-
 
     int hayError;
     winLargo = largo;
@@ -43,15 +43,6 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	SDL_SetWindowTitle(window, title);
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 	mapGame.setRenderer(renderer);
-	// if(uQ.isEmpty()){
-	// 	std::cout << "esto no deberia imprimirse en constructor de game" << std::endl;
-	// }
-	// Update_t anUpdate;
-	// uQ.pop(anUpdate);
-
-	// std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
-	// player.setID(anUpdate.playerUpdate.ID);
-	// player.updateInfo(anUpdate.playerUpdate);
 	player.setRenderer(renderer);
 	render();
 	gameSounds.playMusic(1);
@@ -88,19 +79,6 @@ void Game::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
-}
-
-//actualiza caracteristicas mapa y jugador
-void Game::update(){
-	// if(uQ.isEmpty()){
-	// 	return;
-	// }
-	Update_t anUpdate;
-	uQ.pop(anUpdate);
-	
-	updatePlayer(anUpdate.playerUpdate);
-	if(anUpdate.mapChangeAvailable == true)
-		updateMap(anUpdate.mapChange);
 }
 
 void Game::updatePlayer(Player_t &p){

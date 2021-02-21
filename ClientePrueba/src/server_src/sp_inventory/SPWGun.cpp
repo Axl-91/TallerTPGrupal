@@ -7,8 +7,8 @@ SPWGun::SPWGun(){
 }
 SPWGun::~SPWGun(){}
 
-float SPWGun::shoot(float dist, shooting_state_t &shootingState){
-
+float SPWGun::shoot(shooting_state_t &shootingState, bool &shootMissile){
+    shootMissile = false;
     if(shooting == false){
         shootingState = SHOOTING_STATE_QUIET;
         return 0;
@@ -22,7 +22,6 @@ float SPWGun::shoot(float dist, shooting_state_t &shootingState){
     }
 
     before=now;
-    std::cout<<"disparo con pistola"<<std::endl;   
     shooting=false;
     return damage;
 }

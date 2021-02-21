@@ -4,8 +4,7 @@
 #include <vector>
 #include "collisions/Quadtree.h"
 #include "collisions/Collidable.h"
-
-#include "../common_src/Circle.h"
+#include "../common_src/types.h"
 
 //Clase que se ocupa de relacionar las colisiones con el comportamiento del jugador
 class CollisionMap{

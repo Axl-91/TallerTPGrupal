@@ -7,7 +7,8 @@ class SPWKnife: public SPWeapon{
 public:
     SPWKnife();
     ~SPWKnife();
-    float shoot(float dist, shooting_state_t &shootingState) override;
+//    float shoot(float dist, shooting_state_t &shootingState) override;
+  	float shoot(shooting_state_t &shootingState, bool &shootMissile) override;
 
 };
 

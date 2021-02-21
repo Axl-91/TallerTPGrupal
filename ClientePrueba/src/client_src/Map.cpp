@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Map.h"
 #include "Walls.h"
-//#include "Objects.h"
 
 #define KEY_OFFSET_VALUE 101
 #define WEAPON_OFFSET_VALUE 127
@@ -11,7 +10,6 @@
 #define AMMO_OFFSET_VALUE 116
 #define TREASURE_OFFSET_VALUE 132
 #define IMMOVABLE_OBJECT_OFFSET_VALUE 188
-
 
 #define ENEMY_OFFSET 100
 
@@ -32,6 +30,11 @@ void Map::updateEnemy(Player_t &p){
 		
 	mapEnemies[p.ID].playerInfo = p;
 	enemies.defineFrame(mapEnemies[p.ID]);
+}
+
+void Map::updateMissile(Missile_t &m){
+	mapMissiles[m.ID].info = m;
+	std::cout<<"updateMissile: "<<m.ID<<std::endl;
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
@@ -118,6 +121,7 @@ void Map::setRenderer(SDL_Renderer* renderer){
 	walls.setRenderer(renderer);
 	objects.setRenderer(renderer);
 	enemies.setRenderer(renderer);
+	missiles.setRenderer(renderer);
 }
 
 int Map::getLongTiles(){
@@ -199,27 +203,50 @@ std::vector<Object_t> Map::orderObjects(Vector &pos){
 	std::vector<Object_t> vectorAux;
 	int auxSprite;
 	Object_t auxObj;
+
+	//se agregan objetos para rederizar
 	for (auto obj : mapObj){
 		addVectDist(vectorAux, obj.second, pos);
 	}
+
+	//se agregan enemigos para rederizar
 	for (auto enemy : mapEnemies){
 		enemies.defineSprite(enemy.second, pos, auxSprite);
 		Vector auxPos(enemy.second.playerInfo.x, enemy.second.playerInfo.y);
 		auxObj={auxPos, auxSprite};
 		addVectDist(vectorAux, auxObj, pos);
 	}
+
+	//se agregan misiles para rederizar
+	for (auto it = mapMissiles.begin(); it != mapMissiles.cend(); ){
+		missiles.defineSprite(it->second, pos, auxSprite);
+		Vector auxPos(it->second.info.x, it->second.info.y);
+		auxObj={auxPos, auxSprite};
+		addVectDist(vectorAux, auxObj, pos);
+		//si ya exploto borrarlo despues de cargar la ultima imagen
+		if(it->second.info.exploding == true && it->second.explode_frame == 2)
+			mapMissiles.erase(it++);
+		else
+			it++;
+				
+	}
 	return vectorAux;
 }
 
 void Map::setObj(int &type){
-	if(type>=ENEMY_OFFSET)
+	if (type >= 600)
+		missiles.setEnemyRenderSprite(type);
+	if (type >= ENEMY_OFFSET && type <600)
 		enemies.setEnemyRenderSprite(type);
 	else
 		objects.setObject(type);
 }
 
 void Map::setColObject(int &pos, int type){
-	if(type>=ENEMY_OFFSET){
+	if (type >= 600)
+		missiles.cutFromTexture(pos, 0, 1, 64);
+	else 
+	if (type >= ENEMY_OFFSET&& type <600){
 		setColEnemy(pos);
 	}else
 		objects.cutFromTexture(pos, 0, 1, 64);
@@ -235,7 +262,10 @@ void Map::renderEnemy(int &posX, int &posY, int &lenght, int &height){
 
 
 void Map::renderObject(int &posX, int &posY, int &lenght, int &height, int type){
-	if(type>=ENEMY_OFFSET){
+	if (type >= 600)
+		missiles.render(posX, posY, lenght, height);
+	else 
+	if (type >= ENEMY_OFFSET && type <600){
 		renderEnemy(posX, posY, lenght, height);
 	}
 	else{

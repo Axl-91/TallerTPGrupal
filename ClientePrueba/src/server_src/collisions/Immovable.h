@@ -10,6 +10,8 @@ private:
 public:
     Immovable(/* args */);
     ~Immovable();
+    bool collide(ServerMissile &m) override;
+
 };
 
 #endif

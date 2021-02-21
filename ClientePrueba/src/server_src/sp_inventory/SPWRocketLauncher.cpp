@@ -11,7 +11,22 @@ SPWRocketLauncher::SPWRocketLauncher(){
 SPWRocketLauncher::~SPWRocketLauncher(){}
 
 
-float SPWRocketLauncher::shoot(float dist, shooting_state_t &shootingState){
-    std::cout<<"disparo con el cañon"<<std::endl;   
+float SPWRocketLauncher::shoot(shooting_state_t &shootingState, bool &shootMissile){
+    shootMissile = false;
+
+    if(shooting == false){
+        shootingState = SHOOTING_STATE_QUIET;
+        return 0;
+    }
+    now = std::chrono::high_resolution_clock::now();
+    auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
+    if(waited.count()<ROCKET_LAUNCHER_WAIT_TIME){
+//        shootingState = SHOOTING_STATE_QUIET;
+        return 0;
+    }
+
+    before = now;
+    shooting = false;
+    shootMissile = true;
     return damage;
 }

@@ -32,6 +32,7 @@ void SpritesHandler::getTextures(SDL_Renderer* renderer){
     for(size_t i=0; i<imgFiles.size(); i++){
         SDL_Surface* surface = IMG_Load(imgFiles[i].data());
         if (!surface) {
+
             // destroyTextures();
             SDL_FreeSurface(surface);
             throw std::exception(); //Crear excepcion SDL

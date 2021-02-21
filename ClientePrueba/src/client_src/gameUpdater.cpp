@@ -35,15 +35,26 @@ void GameUpdater::update(){
 	Update_t anUpdate;
 	uQ.pop(anUpdate);
 
-   std::unique_lock<std::mutex> lock(m);
-	updatePlayer(anUpdate.playerUpdate);
-	if(anUpdate.mapChangeAvailable == true)
+    std::unique_lock<std::mutex> lock(m);
+	if(anUpdate.type == MISSILE_UPDATE){
+    	updateMissile(anUpdate.missileUpdate);
+    }
+
+	if(anUpdate.type == PLAYER_UPDATE){
+    	updatePlayer(anUpdate.playerUpdate);
+    }
+	if(anUpdate.type == MAP_CHANGE){
+    	updatePlayer(anUpdate.playerUpdate);
 		updateMap(anUpdate.mapChange);
+    }
 }
 
-void GameUpdater::updatePlayer(Player_t &p){
-	// std::cout << "este es el ID de este jugador: " << anUpdate.playerUpdate.ID << std::endl;
+void GameUpdater::updateMissile(Missile_t &m){
+    mapGame.updateMissile(m);
+}
 
+
+void GameUpdater::updatePlayer(Player_t &p){
 	if(p.ID == player.getID()){
 		player.updateInfo(p);
 		return;

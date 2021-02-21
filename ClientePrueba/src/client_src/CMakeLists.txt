@@ -20,5 +20,6 @@ TextHandler.cpp
 SDL_Sounds.cpp
 gameUpdater.cpp
 FilesHandler.cpp
+Missile.cpp
 )
 

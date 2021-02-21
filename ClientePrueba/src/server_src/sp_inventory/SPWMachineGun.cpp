@@ -10,10 +10,8 @@ SPWMachineGun::SPWMachineGun(){
 SPWMachineGun::~SPWMachineGun(){}
 
 
-float SPWMachineGun::shoot(float dist, shooting_state_t &shootingState){
-    std::cout<<"disparo con LA MACHINE GAN"<<std::endl;   
-    std::cout<<"bullet: "<<bulletsCounter<<std::endl;   
-
+float SPWMachineGun::shoot(shooting_state_t &shootingState, bool &shootMissile){
+    shootMissile = false;
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
  

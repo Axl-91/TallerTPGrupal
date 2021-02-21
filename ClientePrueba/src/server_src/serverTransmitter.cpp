@@ -63,6 +63,13 @@ void ServerTransmitter::sendPlayer(Player_t &player){
 }
 
 
+void ServerTransmitter::sendMissileInfo(Missile_t &missille){
+    std::unique_lock<std::mutex> lock(m);    
+    socket.send((char *) &missille, sizeof(Missile_t));
+}
+
+
+
 void ServerTransmitter::sendMapUpdate(Map_change_t &aMapChange){
     std::unique_lock<std::mutex> lock(m);
     socket.send((char*) &aMapChange, sizeof(Map_change_t));

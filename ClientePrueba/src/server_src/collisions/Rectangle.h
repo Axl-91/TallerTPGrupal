@@ -2,7 +2,7 @@
 #define _RECTANGLE_H_
 
 #include "Collidable.h"
-#include "../../common_src/Circle.h"
+#include "../../common_src/types.h"
 
 class Rectangle{
 //    float xInit, yInit, xEnd, yEnd; // coordenadas x,y en el plano / ancho y alto del plano

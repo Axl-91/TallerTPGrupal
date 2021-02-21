@@ -4,7 +4,7 @@
 #include <vector>
 #include <queue>
 #include "QuadNode.h"
-#include "../../common_src/Circle.h"
+#include "../../common_src/types.h"
 
 
 
