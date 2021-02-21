@@ -70,7 +70,10 @@ private:
 	
     int longWin = 320;
     int highWin = 240;
+	int longSelector = 23;
+	int highSelector = 16;
 	int highFont = 15;
+	int zero = 0;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;

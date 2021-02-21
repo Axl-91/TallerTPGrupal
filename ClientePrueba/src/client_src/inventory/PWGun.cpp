@@ -37,7 +37,7 @@ void PWGun::render(int largoWin, int altoWin){
              shootingState=SHOOTING_STATE_QUIET;
         }
     }
-    textureHandler.render(96, 72, GUNL, GUNA, frame);
+    textureHandler.render(posXWeapon, posYWeapon, GUNL, GUNA, frame);
 }
 
 

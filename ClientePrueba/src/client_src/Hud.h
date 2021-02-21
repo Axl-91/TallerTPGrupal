@@ -26,6 +26,12 @@ class Hud{
 private:
     int offsetGun = 49;
     int offsetNum = 9;
+    int posXGun = 0;
+    int posYGun = 41;
+    int posXNum = 0;
+    int posYNum = 66;
+    int posXFac = 25;
+    int posYFac = 0;
     SpritesHandler textureHandler;
     SpritesHandler gun;
     SpritesHandler numbers;

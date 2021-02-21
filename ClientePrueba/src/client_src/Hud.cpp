@@ -10,9 +10,9 @@ gun(INSTALLED_TEXTURE_HUD, HGUNL, HGUNA),
 numbers(INSTALLED_TEXTURE_HUD, HNUML, HNUMA),
 keys(INSTALLED_TEXTURE_HUD, HKEYL,HKEYA),
 faces(INSTALLED_TEXTURE_HUD_FACES, HFACEL, HFACEA){
-    gun.setPos(0, 41);
-    numbers.setPos(0, 66);
-    faces.setPos(25, 0);
+    gun.setPos(posXGun, posYGun);
+    numbers.setPos(posXNum, posYNum);
+    faces.setPos(posXFac, posYFac);
 }
 
 void Hud::setRenderer(SDL_Renderer* renderer){
@@ -24,17 +24,21 @@ void Hud::setRenderer(SDL_Renderer* renderer){
 }
 
 void Hud::setWeapon(weapon_t aWeapon){
-    gun.src.x = offsetGun*(aWeapon - 1);
+    int srcY = gun.getPosY();
+    int srcX = offsetGun*(aWeapon - 1);
+    gun.setPos(srcX, srcY);
 }
 
 void Hud::renderNumber(int number, int &x, int &y){
     int offsetRenderNum = 8;
     int decimal = 10;
+    int srcY = numbers.getPosY();
 
     while (true){
-        int numero = number % decimal;
+        int num = number % decimal;
 
-        numbers.src.x = offsetNum * numero;
+        int srcX = offsetNum * num;
+        numbers.setPos(srcX, srcY);
         numbers.render(x, y, HNUML, HNUMA);
 
         number = number / decimal;
@@ -53,21 +57,24 @@ void Hud::renderHealth(int &health){
 void Hud::renderFace(const int &health){
     int posX = 136;
     int posY = 204;
+    int srcX = faces.getPosX();
+    int srcY;
     if (health > 85){
-        faces.src.y = (HFACEA+1)*0;
+        srcY = (HFACEA+1)*0;
     } else if (health > 70){
-        faces.src.y = (HFACEA+1)*1;
+        srcY = (HFACEA+1)*1;
     } else if (health > 55){
-        faces.src.y = (HFACEA+1)*2;
+        srcY = (HFACEA+1)*2;
     } else if (health > 40){
-        faces.src.y = (HFACEA+1)*3;
+        srcY = (HFACEA+1)*3;
     } else if (health > 25){
-        faces.src.y = (HFACEA+1)*4;
+        srcY = (HFACEA+1)*4;
     } else if (health > 10){
-        faces.src.y = (HFACEA+1)*5;
+        srcY = (HFACEA+1)*5;
     } else {
-        faces.src.y = (HFACEA+1)*6;
+        srcY = (HFACEA+1)*6;
     }
+    faces.setPos(srcX, srcY);
     faces.render(posX, posY, HFACEL, HFACEA);
 }
 
@@ -110,7 +117,9 @@ void Hud::renderSilverKey(){
 void Hud::render(int &longWin, int &highWin){
     int posXGun = 255;
     int posYGun = 210;
-    textureHandler.render(longWin-HUDL, highWin-HUDA, HUDL, HUDA);
+    int longTex = longWin-HUDL;
+    int highTex = highWin-HUDA;
+    textureHandler.render(longTex, highTex, HUDL, HUDA);
     gun.render(posXGun, posYGun, HGUNL, HGUNA);
 }
 

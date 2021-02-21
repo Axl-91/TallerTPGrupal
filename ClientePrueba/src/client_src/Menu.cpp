@@ -195,27 +195,33 @@ void Menu::renderTextJoin(){
 }
 
 void Menu::renderMenu(){
+	int posSelector;
     if (menu == MENU_MAIN){
-		menusHandler.render(0, 0, longWin, highWin, MENU_MAIN);
-		selection.render(60, posSelectMain, 23, 16);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_MAIN);
+		posSelector = 60;
+		selection.render(posSelector, posSelectMain, longSelector, highSelector);
 	} else if (menu == MENU_OPTIONS){
-		menusHandler.render(0, 0 ,longWin ,highWin, MENU_OPTIONS);
-		selection.render(60, posSelectOpt, 23, 16);
+		menusHandler.render(zero, zero ,longWin ,highWin, MENU_OPTIONS);
+		posSelector = 60;
+		selection.render(posSelector, posSelectOpt, longSelector, highSelector);
 		renderTextOptions();
 	} else if (menu == MENU_NEW){
-		menusHandler.render(0, 0 ,longWin ,highWin, MENU_NEW);
-		selection.render(30, posSelectCreate, 23, 16);
+		menusHandler.render(zero, zero ,longWin ,highWin, MENU_NEW);
+		posSelector = 30;
+		selection.render(posSelector, posSelectCreate, longSelector, highSelector);
 		renderTextCreate();
 	} else if (menu == MENU_MAP){
-		menusHandler.render(0, 0, longWin, highWin, MENU_MAP);
-		selection.render(60, posSelectMap, 23, 16);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_MAP);
+		posSelector = 60;
+		selection.render(posSelector, posSelectMap, longSelector, highSelector);
 		renderTextMap();
 	} else if (menu == MENU_JOIN){
-		menusHandler.render(0, 0 ,longWin ,highWin, MENU_JOIN);
-		selection.render(36, posSelectJoin, 23, 16);
+		menusHandler.render(zero, zero ,longWin ,highWin, MENU_JOIN);
+		posSelector = 36;
+		selection.render(posSelector, posSelectJoin, longSelector, highSelector);
 		renderTextJoin();
 	} else if (menu == MENU_LOBBY){
-		menusHandler.render(0, 0, longWin, highWin, MENU_LOBBY);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_LOBBY);
 		waitingInLobby();
 	}
 }
@@ -283,11 +289,11 @@ void Menu::renderCreateForInput(std::string &input, int &x, int &y, const int &t
 	SDL_Color yellow = {255, 204, 0};
 	SDL_RenderClear(menuRenderer);
 	if (typeMenu == CREATE_PLAYER){
-		menusHandler.render(0, 0 ,longWin ,highWin, MENU_NEWNAME);
+		menusHandler.render(zero, zero ,longWin ,highWin, MENU_NEWNAME);
 	} else if (typeMenu == CREATE_GAME){
-		menusHandler.render(0, 0 ,longWin ,highWin, MENU_NEWGAME);
+		menusHandler.render(zero, zero ,longWin ,highWin, MENU_NEWGAME);
 	}else if (typeMenu == JOIN_PLAYER){
-		menusHandler.render(0, 0, longWin, highWin, MENU_JOINNAME);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_JOINNAME);
 	}
 	if (input.size() > 0){
 		TextHandler handler(input);
@@ -341,7 +347,7 @@ bool Menu::inputText(std::string &input, int &x, int &y, const int &typeMenu){
 void Menu::renderSelectionMap(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	menusHandler.render(0, 0, longWin, highWin, MENU_MAPSELECT);
+	menusHandler.render(zero, zero, longWin, highWin, MENU_MAPSELECT);
 	int posX = 130;
 	int posY = 74;
 
@@ -472,12 +478,12 @@ void Menu::renderSelectionNumber(const int &typeMenu){
 		posX = 161;
 		posY = 102;
 		number = cantPlayers;
-		menusHandler.render(0, 0, longWin, highWin, MENU_MAPPLAYER);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_MAPPLAYER);
 	} else {
 		posX = 138;
 		posY = 129;
 		number = cantBots;
-		menusHandler.render(0, 0, longWin, highWin, MENU_MAPBOTS);
+		menusHandler.render(zero, zero, longWin, highWin, MENU_MAPBOTS);
 	}
 
 	TextHandler handler(vectorNumbers[number]);
@@ -575,7 +581,7 @@ void Menu::doActionMap(){
 void Menu::renderSelectionMatch(int &pos){
 	SDL_Color yellow = {245,244,0};
 	SDL_RenderClear(menuRenderer);
-	menusHandler.render(0, 0, longWin, highWin, MENU_JOINMATCH);
+	menusHandler.render(zero, zero, longWin, highWin, MENU_JOINMATCH);
 
 	int posX = 170;
 	int posY = 112;

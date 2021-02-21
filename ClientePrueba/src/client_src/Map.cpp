@@ -243,17 +243,21 @@ void Map::setObj(int &type){
 }
 
 void Map::setColObject(int &pos, int type){
+	int zero = 0;
+	int one = 1;
 	if (type >= 600)
-		missiles.cutFromTexture(pos, 0, 1, 64);
+		missiles.cutFromTexture(pos, zero, one, longTile);
 	else 
 	if (type >= ENEMY_OFFSET&& type <600){
 		setColEnemy(pos);
 	}else
-		objects.cutFromTexture(pos, 0, 1, 64);
+		objects.cutFromTexture(pos, zero, one, longTile);
 }
 
 void Map::setColEnemy(int &pos){
-	enemies.cutFromTexture(pos, 0, 1, 64);
+	int zero = 0;
+	int one = 1;
+	enemies.cutFromTexture(pos, zero, one, longTile);
 }
 
 void Map::renderEnemy(int &posX, int &posY, int &lenght, int &height){

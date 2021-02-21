@@ -38,9 +38,9 @@ private:
 public:
     Objects();
     void setRenderer(SDL_Renderer* renderer);
-    void setObject(int num);
-    void cutFromTexture(int x, int y, int length = LONG, int height = HIGH);
-    void render(int x, int y, int length = LONG, int height = HIGH);
+    void setObject(int &num);
+    void cutFromTexture(int &x, int &y, const int &length = LONG, const int &height = HIGH);
+    void render(int &x, int &y, const int &length = LONG, const int &height = HIGH);
     ~Objects();
 };
 
