@@ -1,9 +1,10 @@
 #include "bot.h"
 
 Bot::Bot(ProtectedQueue<MatchEvent_t> &aQueue,
-        float x, float y, float ang, size_t ID):
+        float x, float y, float ang, size_t ID,
+        std::vector<std::vector<int>> &lvl):
     q(aQueue),
-    lua(x,y,ang,ID)
+    lua(x,y,ang,ID, lvl)
 {}
 
 void Bot::setID(size_t anID){

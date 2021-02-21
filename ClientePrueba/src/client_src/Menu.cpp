@@ -443,7 +443,6 @@ void Menu::doActionCreate(){
 				event.event = NEW_MATCH;
 				event.info = nameGame;
 				transmitter.sendMenuEvent(event);
-				// menuEventQ.push(event);
 			}
 			break;
 		case CREATE_BACK:
@@ -509,6 +508,7 @@ void Menu::selectNumber(const int &typeMenu){
 							if (typeMenu == MAP_BOTS){
 								if (cantBots < 4){
 									cantBots ++;
+									std::cout << "estoy aca" << std::endl;
 								}
 							}
 						}
@@ -540,10 +540,18 @@ void Menu::doActionMap(){
 			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_PLAYERS:
+			event.event = SELECT_MAX_PLAYER;
+			event.info = "";
 			selectNumber(MAP_PLAYERS);
+			event.info += std::to_string(cantPlayers);
+			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BOTS:
+			event.event = SELECT_NUMBER_OF_BOTS;
+			event.info = "";
 			selectNumber(MAP_BOTS);
+			event.info += std::to_string(cantBots);
+			transmitter.sendMenuEvent(event);
 			break;
 		case MAP_BACK:
 			menu = CREATE_MENU;

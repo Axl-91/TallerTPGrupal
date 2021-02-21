@@ -1,7 +1,9 @@
 #include "Map.h"
 
-Map::Map():mapHandler(0, 0, 384, 384, "tiles.png")
-{}
+Map::Map():mapHandler(0, 0, 384, 384, "tiles.png"){
+	load_objectTiles();
+	players = 0;
+}
 
 void Map::render(){
 	renderMap();
@@ -9,15 +11,16 @@ void Map::render(){
 	renderSelected();	
 }
 
+std::string Map::getMapName() const{
+	return name;
+}
+
 void Map::setResolution(int _height,int _width){
 	scaleX = ((float)_height / 320.0);
 	scaleY = ((float)_width / 240.0);
 }
 
-void Map::renderSelected(){	
-	SDL_Rect selected_rect = {200,200,60,20};	
-	SDL_RenderCopy(winRenderer, selectedTextura, NULL, &selected_rect);
-	//SDL_Rect clip = selected.getBox();	
+void Map::renderSelected(){		
 	mapHandler.setSrc(selected.getFactx(),selected.getFacty(),TILE_OPTION,TILE_OPTION);
 	mapHandler.render(265, 202, TILE_SIZE, TILE_SIZE);	
 }
@@ -25,10 +28,8 @@ void Map::renderSelected(){
 void Map::renderMap(){
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 			Tile tile = opt.at((*it).getType());
-		//if(checkCollision(camera, clip)){
 			mapHandler.setSrc(tile.getFactx(),tile.getFacty(),TILE_OPTION,TILE_OPTION);
 			mapHandler.render((*it).getX()+x, (*it).getY()+y, TILE_SIZE, TILE_SIZE);						
-		//}
 	}
 }	
 
@@ -54,12 +55,11 @@ void Map::updateClick(){
 	SDL_GetMouseState(&valx,&valy);	
 	xRelative = valx/scaleX;
 	yRelative = valy/scaleY;
-	//std::cout<<xRelative<<":"<<yRelative<<std::endl;
 }
 
 void Map::load_objectTiles(){		
 	int typeKey = 101;
-	int typeEnemy = 108;
+	int typePlayer = 108;
 	int typeHeal = 111;
 	int typeAmmo = 121;	
 	int typeWeapon = 133;
@@ -89,14 +89,14 @@ void Map::load_objectTiles(){
 			}if(element ==21){
 				type = typeAmmo;				
 			}if(element ==22){
-				type = typeEnemy;				
-			}if((element >22)&&(element<=29)){
+				type = typePlayer;				
+			}if((element >22)&&(element<=28)){
 				type = typeInmovable;
 				typeInmovable++;
-			}if((element >29)&&(element<=33)){
+			}if((element >28)&&(element<=32)){
 				type = typeTreasure;
 				typeTreasure++;
-			}if(element >33){
+			}if((element >32)&&(element<=34)){
 				type = typeKey;
 				typeKey++;
 			}
@@ -113,7 +113,6 @@ void Map::changeSelected(){
 	for (auto itr = opt.begin(); itr != opt.end(); ++itr) {
 		if((itr)->second.existPosition(xRelative,yRelative,OFFSET_X,OFFSET_Y)){
 				selected = (itr)->second;
-				//std::cout<<"pase"<<std::endl;
 			}
     }			
 }
@@ -153,32 +152,52 @@ int Map::getTypebyFilCol(int _fil, int _col){
 void Map::updateModel(){
 	for (int fil = 0; fil < rows; ++fil){
 		for (int col = 0; col < columns; ++col){
-			map[fil][col] = getTypebyFilCol(fil,col);
+			int type =  getTypebyFilCol(fil,col);
+			if((col == 0 ) || (col == columns -1) || 
+				(fil == 0) || (fil == rows -1)){
+					if((type < default_null_tile) || (type >= default_null_tile+11)){
+						type = default_null_tile;
+					}
+				}
+			map[fil][col] = type;
 		}
 	}
 }
 
-void Map::initText(){	
-	SDL_Surface* surfaceText;
-	TTF_Font* font_ = TTF_OpenFont("beamweapon.ttf", 24);
-	SDL_Color yellow = {255, 204, 0};
-
-	surfaceText = TTF_RenderText_Blended(font_, "Selected Tile", yellow);
-	selectedTextura = SDL_CreateTextureFromSurface(winRenderer, surfaceText);	
-	SDL_FreeSurface(surfaceText);
+void Map::setRenderer(SDL_Renderer *_renderer){
+	winRenderer = _renderer;
+	mapHandler.setRenderer(winRenderer);	
 }
 
-void Map::init(Settings &set, SDL_Renderer *_renderer){		
-	winRenderer = _renderer;
-	mapHandler.setRenderer(winRenderer);
+void Map::createNewMap(int _rows, int _columns){
+	players =0;
+	for (int fil = 0; fil < _rows; ++fil){
+		std::vector<int> v1;
+		for (int col = 0; col < _columns; ++col){
+			v1.push_back(default_value);
+		}
+		map.push_back(v1);
+	}
+}
 
-	map = set.getmap();
+void Map::openfromfile(std::string _path,std::string &_file){		
+	YAML::Node config = YAML::LoadFile(_path + "/" + _file + ".yaml");
+	map = config["model"].as<std::vector<std::vector<int>>>();
+	players = config["players"].as<int>();	
+}
+
+void Map::init(Settings &set, std::string &_name,bool create){
+	map.clear();
+	if(create){
+		createNewMap(set.getRows(), set.getColumns());
+	} else{
+		openfromfile(set.getPath(),_name);
+	}
 	rows = map.size();
 	columns = map[0].size();		
-
-	initText();
+	name = _name;	
+	
 	load();
-	load_objectTiles();			
 }
 
 void Map::setCamera(){		
@@ -191,12 +210,6 @@ void Map::setCamera(){
 	if( camera.y < 75 ){
 		camera.y = 75;
 	}
-	/*if( camera.x > 320 - camera.w )	{
-		camera.x = 320 - camera.w;
-	}
-	if(camera.y > 144 - camera.h ){
-		camera.y = 144 - camera.h;
-	}*/
 }
 
 bool Map::checkCollision( SDL_Rect a, SDL_Rect b ){    

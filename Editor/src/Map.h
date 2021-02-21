@@ -9,30 +9,32 @@
 #include "Settings.h"
 #include "SDLHandler.h"
 #include "Tile.h"
+#include "yaml-cpp/yaml.h"
 
 const int OFFSET_X = 200;
 const int OFFSET_Y = 70;
 const int OPTION_ROW = 6;
 const int OPTION_COL = 6;
+const int default_null_tile = 403;
 
 class Map{
 	private:
 	SDL_Point clickOffset;
-	int x = 15;
-	int y = 70;	
+	int x = 12;
+	int y = 10;	
 	float scaleX,scaleY;
 	float xRelative, yRelative;        		
 	int rows,columns;
+	int players;
 	
 	std::vector<std::vector<int>> map;
 	std::vector<Tile> tileSet;
 	std::map<int, Tile> opt;
+	std::string name;
 	
 	TTF_Font* font = NULL;
 	Tile selected;
-	SDLHandler mapHandler;
-	SDL_Texture* selectedTextura;
-	SDL_Texture* textura;
+	SDLHandler mapHandler;	
     SDL_Renderer* winRenderer;
 	SDL_Rect camera = { x, y, 160, 144 };
 
@@ -40,7 +42,6 @@ class Map{
 	void load();
 	//Initicializa el mapa con los tiles de opciones
 	void load_objectTiles();
-	void initText();
 
 	void renderMap();
 	void renderOptionsMap();
@@ -53,12 +54,16 @@ class Map{
 	bool checkCollision( SDL_Rect a, SDL_Rect b );
 	void updateModel();
 	int getTypebyFilCol(int _fil, int _col);
+	void createNewMap(int, int);
+	void openfromfile(std::string _path,std::string &_file);
 public:
-	Map();	
+	Map();
+	void setRenderer(SDL_Renderer *_renderer)	;
     void pollEvent(SDL_Event &evento);    
-	void init(Settings &set, SDL_Renderer *renderer);
+	void init(Settings &set, std::string &_name, bool create);
 	void setResolution(int,int);
 	std::vector<std::vector<int>> getMap() const;
+	std::string getMapName() const;
 	void render();
 	void update();	
 	~Map();

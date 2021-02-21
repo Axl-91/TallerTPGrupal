@@ -53,21 +53,27 @@ std::map<std::string, std::vector<std::vector<int>>> lvls = {
         {"map2",lvl3},
         {"map3",lvl4}
 };
-Match::Match(std::string &matchName, std::string &chosenMap):
+Match::Match(std::string &matchName, std::string &chosenMap,
+                    int &numberOfPlayers, int &numberOfBots):
     is_running(true),
     name(matchName),
     lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
     game(players, lvl1, uQ, missileUQ),
-    bot(q, 110, 110, 0, 1),
+    bot(q, 110, 110, 0, 0, lvls.at(chosenMap)),
     matchEventReader(players, q)
 {
     initializeInitPosition();
     initializeMaps();
     // lvl1 = availableMaps.at(chosenMap);
-    initPos auxPos;
-    auxPos = initPositions.at(connectionNumber % 4);
-    ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
+
+    if(numberOfBots != 0){
+        initPos auxPos;
+        auxPos = initPositions.at(connectionNumber % 4);
+        ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
+        players.emplace(connectionNumber, std::move(auxPlayer));
+    } 
+        connectionNumber++;
 
     matchEventReader();
 }
@@ -122,7 +128,7 @@ void Match::run(){
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
             // readEvents();
-//            bot.makeDecision();
+            // bot.makeDecision();
             game.update();
             updateUsers();
             
@@ -148,7 +154,7 @@ void Match::updateUsers(){
             user.second->update(uQ.front());
         // for(auto bot:bots)
         //     bot.second->update(uQ.front());
-//        bot.update(uQ.front());
+        // bot.update(uQ.front());
         uQ.pop();
     }
     while (missileUQ.empty()==false){
