@@ -158,7 +158,8 @@ void Player::updateInfo(Player_t &p){
 	equip(p.secondaryWP);
     blueKey = p.blueKey;
     goldKey = p.goldKey;   
-
+	dead = p.dead;
+	lost = p.lost;
 	setWeapon(p.currentWP);
 	shootingState = p.shootingState;
 

@@ -11,9 +11,9 @@ bool SPWeapon::estaEnAccion(){
     return estaDisparando;
 }
 
-// void SPWeapon::shoot(){
-//     estaDisparando=true;
-// }
+int SPWeapon::getUsedBullets(){
+    return usedBullets;
+}
 
 void SPWeapon::shootingTrue(){
     shooting=true;

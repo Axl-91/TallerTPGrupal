@@ -4,7 +4,7 @@ SPWChainCannon::SPWChainCannon(){
     type=CHAIN_CANNON;
     before = std::chrono::high_resolution_clock::now();
     damage = CHAIN_CANNON_DAMAGE;
-
+    usedBullets = CHAIN_CANNON_USED_BULLETS;
 }
 
 SPWChainCannon::~SPWChainCannon(){}

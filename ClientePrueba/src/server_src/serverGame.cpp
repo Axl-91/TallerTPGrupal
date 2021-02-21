@@ -20,16 +20,21 @@ void ServerGame::update(){
 	Missile_t m;
 	//actualizar jugadores
 	for (auto &aPlayer: players){
-	    movePlayer(aPlayer.second);
-    	aPlayer.second.rotate();
-	    if (aPlayer.second.isShooting() == true){
-        	handlePlayerShoot(aPlayer.second);
-    	}
-		if (aPlayer.second.updateIsAvailable() == true){
+		if(aPlayer.second.isDead()==true)
+			aPlayer.second.tryToRespawn();
+		else{
+		    movePlayer(aPlayer.second);
+    		aPlayer.second.rotate();
+	    	if (aPlayer.second.isShooting() == true){
+        		handlePlayerShoot(aPlayer.second);
+    		}
+		}
+
+//		if (aPlayer.second.updateIsAvailable() == true){
 			updateHandler.updatePlayerPosition(aPlayer.second);
 			uQ.emplace(std::move(updateHandler));
 			aPlayer.second.updated();
-		}
+//		}
 	}
 
 	updateHandler.updated();

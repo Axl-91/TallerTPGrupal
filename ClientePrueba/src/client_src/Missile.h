@@ -15,7 +15,7 @@ class Missile{
     int frame = 0;
     std::chrono::_V2::system_clock::time_point before;
     std::chrono::_V2::system_clock::time_point now;
-    float explodeFrameTimer;
+//    float explodeFrameTimer;
 
 protected:
     int explodeFrames;

@@ -20,7 +20,9 @@ void PWKnife::render(int largoWin, int altoWin){
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
 
-    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+    if(shootingState == SHOOTING_STATE_WAIT && numAuxiliar==0)
+        frame = 0;
+    else if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
         if(waited.count()>=frameTime){
             numAuxiliar++;
             before=now;
@@ -30,7 +32,7 @@ void PWKnife::render(int largoWin, int altoWin){
          if (frame > 4){
              numAuxiliar = 0;
              frame = 0;
-             shootingState=SHOOTING_STATE_QUIET;
+             shootingState=SHOOTING_STATE_WAIT;
         }
     }
     textureHandler.render(96, 72, GUNL, GUNA, frame);

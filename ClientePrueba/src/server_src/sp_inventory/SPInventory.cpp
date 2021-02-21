@@ -13,7 +13,7 @@
 SPInventory::SPInventory(){
     weapons[WP_KNIFE]= new SPWKnife();
     weapons[WP_GUN]= new SPWGun();
-    weapons[WP_SECONDARY]= NULL;
+    weapons[WP_SECONDARY] = NULL;
 }
 
 SPInventory::SPInventory(SPInventory &&other){
@@ -33,11 +33,18 @@ SPInventory::~SPInventory(){
         }
 }
 
+void SPInventory::respawn(){
+    if(weapons[WP_SECONDARY]!=NULL){
+        delete weapons[WP_SECONDARY];
+        weapons[WP_SECONDARY]=NULL;
+    }
+}
+
 //
 //selecciona arma equipada para cambiarla por la actual
 SPWeapon* SPInventory::getWeapon(SPWeapon* pw, int i){
     if(weapons[i]!=NULL)
-        pw=weapons[i];
+        pw = weapons[i];
     return pw;
 }
 

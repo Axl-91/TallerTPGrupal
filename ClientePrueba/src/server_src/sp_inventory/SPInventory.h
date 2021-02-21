@@ -22,6 +22,7 @@ public:
     void equipChainGun();
     void equipRocketLauncher();
     weapon_t getSecondaryWPtype();
+	void respawn();
 
     SPWeapon* getWeapon(SPWeapon* pw, int i);
 };

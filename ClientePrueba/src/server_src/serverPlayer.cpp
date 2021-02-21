@@ -3,11 +3,12 @@
 #include "../common_src/types.h"
 
 
-#define SHOOTING_ANGLE 0.087263
 #define COEF_SHOOTING_DISTANCE_DIVISOR 512
 #define COEF_SHOOTING_DISTANCE_OFFSET 0.2
 #define SHOOTING_SIZE 20
 #define COEF_SHOOTING_ANGLE_DIVISOR 96
+#define INITIAL_PLAYER_AMMO 8
+#define TIME_TO_RESPAWN 2000
 
 //funcion para debugear
 int toGrados(float radiales){
@@ -35,7 +36,8 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	blueKey = false;
 	goldKey = false;
 	shootingState = SHOOTING_STATE_QUIET;
-	// shooting = false;
+	dead = false;
+	lost = true;
 	lifes = 3;
 	score = 0;
 	moveOrientation = MOVE_QUIET;
@@ -43,6 +45,7 @@ currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
 	ID = newID;
 	updateAvailable = true;
 	openingDoor = false;
+
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -62,7 +65,8 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	ammo = other.ammo;
 	blueKey = other.blueKey;
 	goldKey = other.goldKey;
-
+	dead = other.dead;
+	lost = other.lost;
 	shootingState = other.shootingState;
 	lifes = other.lifes;
 	score = other.score;
@@ -79,12 +83,9 @@ bool ServerPlayer::updateIsAvailable(){
 
 void ServerPlayer::updated(){
 	updateAvailable = false;
+//	shootingState = SHOOTING_STATE_WAIT;
 }
 
-void ServerPlayer::respawn(){
-	position.x = init_posx;
-	position.y = init_posy;
-}
 
 void ServerPlayer::rotate(){
 	ang -= PI/36 * rotateOrientation;
@@ -131,13 +132,10 @@ void ServerPlayer::seteRotateOrientation(player_rotate_orientation_t o){
 void ServerPlayer::startShooting(){
 	currentWeapon->shootingTrue();
 	shootingState = SHOOTING_STATE_STARTED;
-	// shooting = true;
 }
 
 void ServerPlayer::stopShooting(){
 	shootingState = SHOOTING_STATE_QUIET;
-
-	// shooting = false;
 }
 
 weapon_t ServerPlayer::equip(weapon_t weapon){
@@ -187,21 +185,19 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 
 int ServerPlayer::shoot(bool &shootMissile){
+	// if(useBullets() == false)
+	// 	setCurrentWeapon(WP_KNIFE);
 	return currentWeapon->shoot(shootingState, shootMissile);
 }
 
-
-
-
-// void ServerPlayer::shoot(ServerPlayer &enemy, float coef){
-// 	float weaponDamage;
-// 	int totalDamage;
-// 	weaponDamage = currentWeapon->shoot(this->getDist(enemy), shootingState);
-// 	weaponDamage *= coef;
-// 	totalDamage = (int) weaponDamage;
-// 	enemy.beDamaged(totalDamage);
-// }
-
+bool ServerPlayer::useBullets(){
+	int bullets = currentWeapon->getUsedBullets();
+	if(ammo-bullets <0)
+		return false;
+	
+	ammo -= bullets;
+	return true;
+}
 
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
@@ -210,19 +206,47 @@ float ServerPlayer::getDist(ServerPlayer &enemy){
 	return pPos.getDistance(ePos) - 2*position.radius;
 }
 
+bool ServerPlayer::isDead(){
+	return dead;
+}
+
+bool ServerPlayer::tryToRespawn(){
+	now = std::chrono::high_resolution_clock::now();
+	auto wait = std::chrono::duration_cast<std::chrono::milliseconds>(now - timeOfDead);
+	if(wait.count() >= TIME_TO_RESPAWN){
+		respawn();
+		return true;
+	}
+	return false;
+}
+
+void ServerPlayer::respawn(){
+	position.x = init_posx;
+	position.y = init_posy;
+    setCurrentWeapon(WP_KNIFE);
+	health = 100;
+	ammo = INITIAL_PLAYER_AMMO;
+	dead=false;
+//	inventory.respawn();
+}
+
 void ServerPlayer::beDamaged(int damage){
 	health -= damage;
 	updateAvailable = true;
 	if (health <= 0){
-		respawn();
-		health = 100;
+		timeOfDead = std::chrono::high_resolution_clock::now();
+		dead = true;
+		health = 0;
 		lifes -= 1;
+		updateAvailable = true;
 		if (lifes <= 0){
 			lifes = 0;
+			lost = true;
 			// logica muerte
 		}			
 	}
 }
+
 
 void ServerPlayer::startOpenDoor(){
 	openingDoor = true;
@@ -303,10 +327,11 @@ void ServerPlayer::getPlayerInfo(Player_t &p){
 	p.score = score;
 	p.goldKey = goldKey;
 	p.blueKey = blueKey;
-
+	p.dead = dead;
 	p.shootingState = shootingState;
 	p.ID = ID;
     p.step = step;
+	p.lost = lost;
 }
 
 player_move_orientation_t ServerPlayer::getMoveOrientation(){

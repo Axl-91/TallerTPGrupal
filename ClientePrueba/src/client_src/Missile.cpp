@@ -15,7 +15,7 @@ Missile::Missile():
 spritesHandler(missileSprites){
     before = std::chrono::high_resolution_clock::now();
     frame = 0;
-    explodeFrameTimer = 0;
+//    explodeFrameTimer = 0;
     explodeFrames = 3;
     explodeFramesOffset = 8;
     explodeFrameTime = 200;
@@ -26,7 +26,7 @@ void Missile::setRenderer(SDL_Renderer* renderer){
 }
 
 
-//usa trigonometria para definia la vista del enemigo
+//usa trigonometria para definir la vista del misil
 void Missile::defineSprite(Render_missile_t &missile, Vector &posPlayer, int &sprite){
     Vector missilePos(missile.info.x, missile.info.y);
     defineFrame(missile);
@@ -34,12 +34,8 @@ void Missile::defineSprite(Render_missile_t &missile, Vector &posPlayer, int &sp
     float auxAngle=missilePos.getAngle(posPlayer);
 
     if(missile.info.exploding==true){
-
         sprite = explodeFramesOffset + missile.explode_frame+600;
         return;
-        std::cout<< "frame: "<< frame<<std::endl;
-
-        std::cout<< "sprite: "<< sprite<<std::endl;
     }
 
     if(auxAngle>=2*PI)
@@ -89,20 +85,18 @@ void Missile::defineFrame(Render_missile_t &missile){
 
 void Missile::defineExplodeFrame(Render_missile_t &missile){
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
-    explodeFrameTimer += waited.count();
-    std::cout<< "explodeFrameTimer: "<<explodeFrameTimer<<std::endl;
-
-    if(missile.info.exploding == false || 
-    (missile.explode_frame >= explodeFrames-1 && explodeFrameTimer >= explodeFrameTime)){
+    missile.explodeFrameTimer += waited.count();
+    if(missile.info.exploding == false){
         missile.explode_frame = 0;
-    }
-    else if(explodeFrameTimer >= explodeFrameTime){
+        missile.explodeFrameTimer = 0;
 
+    }else if(missile.explode_frame >= explodeFrames-1 
+    && missile.explodeFrameTimer >= explodeFrameTime){
+        missile.exploded = true;
+    }else if(missile.explodeFrameTimer >= explodeFrameTime){
         missile.explode_frame++;
-        explodeFrameTimer = 0;
+        missile.explodeFrameTimer = 0;
     }
-    std::cout<< "missile.explode_frame: "<<missile.explode_frame<<std::endl;
-    
 }
 
 void Missile::setEnemyRenderSprite(int sprite){

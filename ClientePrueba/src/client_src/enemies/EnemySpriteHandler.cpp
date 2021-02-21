@@ -23,6 +23,17 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     sprite=0;
     float auxAngle=enemyPos.getAngle(posPlayer);
 
+    if(enemy.playerInfo.dead == true){
+        sprite = deadFramesOffset + enemy.dead_frame;
+        std::cout<<"----------------------------------"<<std::endl;
+
+        std::cout<<"shootingFramesOffset: "<<shootingFramesOffset<<std::endl;
+        std::cout<<"deadFramesOffset: "<<deadFramesOffset<<std::endl;
+        std::cout<<"enemy.dead_frame: "<<enemy.dead_frame<<std::endl;
+        std::cout<<"sprite: "<<sprite<<std::endl;
+
+    }
+
     sprite += enemy.moving_frame * MOVEMENT_FRAME_OFFSET;
 
     if(auxAngle>=2*PI)
@@ -42,8 +53,14 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     if (angleDif <= 22.5 && angleDif >= 0||angleDif <= 360 && angleDif > 337.5){
         sprite += 0;
             //si el enemigo esta de frente y esta disparando, se ve la animacion de disparo
-            if(enemy.playerInfo.shootingState!=SHOOTING_STATE_QUIET || enemy.shooting_frame!=0){
+            if(enemy.playerInfo.shootingState!=SHOOTING_STATE_QUIET 
+            || enemy.shooting_frame!=0){
                 sprite = enemy.shooting_frame + shootingFramesOffset;
+            std::cout<<"shootingFramesOffset: "<<shootingFramesOffset<<std::endl;
+            std::cout<<"deadFramesOffset: "<<deadFramesOffset<<std::endl;
+            std::cout<<"enemy.shooting_frame: "<<enemy.shooting_frame<<std::endl;
+            std::cout<<"sprite: "<<sprite<<std::endl;
+
                 return;
             }
 
@@ -92,7 +109,8 @@ void EnemySpriteHandler::defineShootingFrame(Enemy_t &enemy){
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     shootingFrameTimer += waited.count();
     
-    if(enemy.playerInfo.shootingState==SHOOTING_STATE_QUIET && enemy.shooting_frame!=1)
+    if(enemy.playerInfo.shootingState==SHOOTING_STATE_QUIET && enemy.shooting_frame!=1
+    && shootingFrameTimer >= shootingFrameTime)
         enemy.shooting_frame = 0;    
     else if(shootingFrameTimer >= shootingFrameTime){
         if(enemy.shooting_frame>=shootingFrames-1)
@@ -107,13 +125,14 @@ void EnemySpriteHandler::defineDeadFrame(Enemy_t &enemy){
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     deadFrameTimer += waited.count();
 
-    if(enemy.dead==false || enemy.dead_frame>=deadFrames-1)
+    if(enemy.playerInfo.dead==false) 
         enemy.dead_frame=0;
+    else if(enemy.dead_frame>=deadFrames-1)
+        enemy.dead_frame=deadFrames-1;
     else if(deadFrameTimer >= deadFrameTime){
         enemy.dead_frame++;
         deadFrameTimer = 0;
     }
-    
 }
 
 void EnemySpriteHandler::setEnemyRenderSprite(int sprite){
@@ -125,6 +144,8 @@ void EnemySpriteHandler::cutFromTexture(int x, int y, int largo, int alto){
 }
 
 void EnemySpriteHandler::render(int x, int y, int largo, int alto){
+            std::cout<<"frame!!!!!!!!!!!!!!!!: "<<frame<<std::endl;
+
     spritesHandler.render(x, y, largo, alto, frame);
 }
 

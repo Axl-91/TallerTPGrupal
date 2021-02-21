@@ -5,7 +5,7 @@ SPWRocketLauncher::SPWRocketLauncher(){
     type = ROCKET_LAUNCHER;
     before = std::chrono::high_resolution_clock::now();
     damage = ROCKET_LAUNCHER_DAMAGE;
-
+    usedBullets = ROCKET_LAUNCHER_USED_BULLETS;
 }
 
 SPWRocketLauncher::~SPWRocketLauncher(){}

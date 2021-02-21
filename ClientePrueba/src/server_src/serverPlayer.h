@@ -2,6 +2,7 @@
 #define SERVERPLAYER__T
 
 #include <cmath>
+#include <chrono>
 #include "../common_src/types.h"
 #include "../common_src/Vector.h"
 #include "sp_inventory/SPWeapon.h"
@@ -13,6 +14,9 @@
 //Clase que se ocupa de la logica del jugador
 class ServerPlayer{
 private:
+    std::chrono::_V2::system_clock::time_point timeOfDead;
+    std::chrono::_V2::system_clock::time_point now;
+
     float init_posx;
     float init_posy;
 
@@ -36,12 +40,16 @@ private:
     bool blueKey;
     bool goldKey;   
     shooting_state_t shootingState;
+    bool lost;
+    bool dead;
 
     bool openingDoor;
     bool updateAvailable;
     weapon_t getSecondaryWPtype();
 
 public:
+    ServerPlayer(float x, float y, float a, size_t ID);
+    ~ServerPlayer();
 
     bool hasGoldKey();
     bool hasBlueKey();
@@ -52,23 +60,21 @@ public:
     void stopOpenDoor();
     bool isOpeningDoor();
 
-//    void shoot();
     void respawn();
     bool updateIsAvailable();
     void updated();
 
-    ServerPlayer(float x, float y, float a, size_t ID);
-    ~ServerPlayer();
     ServerPlayer(ServerPlayer&& other);
     void rotate();
 
     void getDamageCoefficient(ServerPlayer &enemy, float &coef, float wallDist);
     float getAngle();
-//	void shoot(ServerPlayer &enemy, float coef);
     int shoot(bool &shootMissile);
 
     void beDamaged(int damage);
 
+    bool isDead();
+    bool tryToRespawn();
 
     player_move_orientation_t getMoveOrientation();
     void getPlayerInfo(Player_t &p);
@@ -79,6 +85,7 @@ public:
     void setMoveOrientation(player_move_orientation_t o);
     void seteRotateOrientation(player_rotate_orientation_t o);
     float getDist(ServerPlayer &enemy);
+    bool useBullets();
 
     void move();
     void setCurrentWeapon(player_weapons_t aWeapon);

@@ -4,6 +4,7 @@ SPWGun::SPWGun(){
     type=GUN;
     before = std::chrono::high_resolution_clock::now();
     damage = GUN_DAMAGE;
+    usedBullets = GUN_USED_BULLETS;
 }
 SPWGun::~SPWGun(){}
 

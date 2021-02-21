@@ -5,6 +5,7 @@ SPWMachineGun::SPWMachineGun(){
     before = std::chrono::high_resolution_clock::now();
     damage = MACHINE_GUN_DAMAGE;
     bulletsCounter=1;
+    usedBullets = MACHINE_GUN_USED_BULLETS;
 }
 
 SPWMachineGun::~SPWMachineGun(){}

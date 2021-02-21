@@ -4,6 +4,7 @@ SPWKnife::SPWKnife(){
     type=KNIFE;
     damage=KNIFE_DAMAGE;
     before = std::chrono::high_resolution_clock::now();
+    usedBullets = KNIFE_USED_BULLETS;
 }
 SPWKnife::~SPWKnife(){}
 
@@ -17,7 +18,7 @@ float SPWKnife::shoot(shooting_state_t &shootingState, bool &shootMissile){
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     if(waited.count()<KNIFE_WAIT_TIME){
-//        shootingState = SHOOTING_STATE_QUIET;
+//        shootingState = SHOOTING_STATE_WAIT;
         shooting=false;
         return 0;
     }

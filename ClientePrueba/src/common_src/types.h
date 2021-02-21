@@ -32,6 +32,12 @@
 #define CHAIN_CANNON_WAIT_TIME 100 //ms
 #define ROCKET_LAUNCHER_WAIT_TIME 1000 //ms
 
+#define KNIFE_USED_BULLETS 0
+#define GUN_USED_BULLETS 1
+#define MACHINE_GUN_USED_BULLETS 1
+#define CHAIN_CANNON_USED_BULLETS 1
+#define ROCKET_LAUNCHER_USED_BULLETS 5
+
 /***************************************************************************/
 //
 //                          WEAPON FRAME TIMES
@@ -128,6 +134,7 @@ typedef enum{
     SHOOTING_STATE_QUIET = 0,
     SHOOTING_STATE_STARTED = 1,
     SHOOTING_STATE_SHOOTING = 2,
+    SHOOTING_STATE_WAIT = 3
 }shooting_state_t;
 
 typedef enum{
@@ -212,6 +219,8 @@ typedef struct{
     player_move_orientation_t moving;
     player_rotate_orientation_t rotating;
     int health;
+    bool dead;
+    bool lost;
     size_t score;
     size_t lifes;
 }Player_t;
@@ -221,7 +230,6 @@ typedef struct{
     int moving_frame;
     int shooting_frame;
     enemy_type_t type;
-    bool dead;
     int dead_frame;
 }Enemy_t;
 
@@ -253,7 +261,9 @@ typedef struct{
 
 typedef struct{
     Missile_t info;
-    int explode_frame;
+    bool exploded = false;
+    int explodeFrameTimer = 0;
+    int explode_frame = 0;
 }Render_missile_t;
 
 typedef enum{

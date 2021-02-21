@@ -25,16 +25,12 @@ void Map::updateEnemy(Player_t &p){
 	else
 		mapEnemies[p.ID].type = (enemy_type_t) p.secondaryWP;
 
-	if(p.lifes == 0)
-		mapEnemies[p.ID].dead = true;
-		
 	mapEnemies[p.ID].playerInfo = p;
 	enemies.defineFrame(mapEnemies[p.ID]);
 }
 
 void Map::updateMissile(Missile_t &m){
 	mapMissiles[m.ID].info = m;
-	std::cout<<"updateMissile: "<<m.ID<<std::endl;
 }
 
 void Map::load(std::vector<std::vector<int>> lvl){
@@ -88,7 +84,8 @@ void Map::insertWeaponWithCoords(int x, int y, int obj){
 void Map::insertEnemy(Player_t &p){
 	Enemy_t e;
 	e.playerInfo = p;
-	e.dead = false;
+	e.playerInfo.dead = false;
+	e.playerInfo.lost = false;
 	e.moving_frame = 0;
 	e.shooting_frame = 0;
 	e.dead_frame = 0;
@@ -224,7 +221,7 @@ std::vector<Object_t> Map::orderObjects(Vector &pos){
 		auxObj={auxPos, auxSprite};
 		addVectDist(vectorAux, auxObj, pos);
 		//si ya exploto borrarlo despues de cargar la ultima imagen
-		if(it->second.info.exploding == true && it->second.explode_frame == 2)
+		if(it->second.exploded == true)
 			mapMissiles.erase(it++);
 		else
 			it++;

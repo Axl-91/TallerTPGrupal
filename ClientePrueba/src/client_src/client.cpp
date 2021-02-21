@@ -84,9 +84,12 @@ void Client::runMenu(int &winLargo, int &winAlto){
 
 void Client::runGame(int &winLargo, int &winAlto){
     receiver();
+    std::cout<<"run game"<<std::endl;
+
     while(!receiver.isInMatch()){
         sleep(1/60);
     }
+    std::cout<<"run game: empezamos match"<<std::endl;
     eHandler();
     transmitter();
 

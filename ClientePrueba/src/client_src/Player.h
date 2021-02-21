@@ -25,7 +25,8 @@ private:
     int health;
     bool blueKey;
     bool goldKey;   
-
+    bool dead;
+    bool lost;
     size_t lifes;
     size_t score;
     Map &mapPlayer;
