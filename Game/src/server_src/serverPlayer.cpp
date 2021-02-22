@@ -5,12 +5,19 @@
 
 #define COEF_SHOOTING_DISTANCE_DIVISOR 512
 #define COEF_SHOOTING_DISTANCE_OFFSET 0.2
-#define SHOOTING_SIZE 20
+#define SHOOTING_SIZE 40
 #define COEF_SHOOTING_ANGLE_DIVISOR 96
-#define INITIAL_PLAYER_AMMO 8
 #define TIME_TO_RESPAWN 2000
 #define MAX_BLOOD_HEAL_PLAYER 10
 
+
+#define PLAYER_RADIUS 16
+#define PLAYER_STEP 5
+#define PLAYER_ROTATE_STEP PI/36
+#define PLAYER_MAX_HEALT 100
+#define PLAYER_INITIAL_AMMO 8
+#define PLAYER_INITIAL_LIFES 3
+#define PLAYER_KNIFE_REACH 100
 
 //funcion para debugear
 int toGrados(float radiales){
@@ -20,34 +27,30 @@ int toGrados(float radiales){
 }
 
 
-ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID):
-currentWeapon(inventory.getWeapon(currentWeapon, WP_KNIFE))
+ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID)
 {
 	init_posx = x;
 	init_posy = y;
     position.x = x;
     position.y = y;
-    position.radius = 16;
+    position.radius = PLAYER_RADIUS;
     ang = a;
-    step = 5;
+    step = PLAYER_STEP;
 	dirx = step * cos(ang);
 	diry = step * sin(ang); 
-	currentWP = WP_KNIFE;
-	health = 50;
-	ammo = 50;
 	blueKey = false;
 	goldKey = false;
 	shootingState = SHOOTING_STATE_QUIET;
 	dead = false;
 	lost = true;
-	lifes = 3;
+	lifes = PLAYER_INITIAL_LIFES;
 	score = 0;
 	moveOrientation = MOVE_QUIET;
 	rotateOrientation = ROTATE_QUIET;
 	ID = newID;
 	updateAvailable = true;
 	openingDoor = false;
-
+	respawn();
 }
 ServerPlayer::~ServerPlayer(){}
 
@@ -90,12 +93,13 @@ void ServerPlayer::updated(){
 
 
 void ServerPlayer::rotate(){
-	ang -= PI/36 * rotateOrientation;
+	if (rotateOrientation != ROTATE_QUIET)
+		updateAvailable = true;
+
+	ang -= PLAYER_ROTATE_STEP * rotateOrientation;
 	if (ang < 0 || ang >= 2*PI){
 		ang += 2*PI*rotateOrientation;
 	}
-	if (rotateOrientation != ROTATE_QUIET)
-		updateAvailable = true;
 
 	dirx = step * cos(ang);
 	diry = step * sin(ang);
@@ -173,14 +177,23 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	//direccion de tiro y posicion del enemigo
 	float op = sin(difAng) * distance; //cateto opuesto
 	float ad = cos(difAng) * distance; //cateto adyacente
+
 	if(ad > wallDist || op > SHOOTING_SIZE){
 		coef = 0;
 		return;
 	}
 
+	if(currentWP == WP_KNIFE){
+		if(ad > PLAYER_KNIFE_REACH)
+			coef = 0;
+		else
+			coef = 1;
+		return;
+	}
 	float coefDistance = COEF_SHOOTING_DISTANCE_OFFSET + exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
 	float coefAng = exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
 	coef = coefDistance * coefAng;
+
 	if(coef > 1)
 		coef = 1;
 }
@@ -222,8 +235,8 @@ void ServerPlayer::respawn(){
 	position.x = init_posx;
 	position.y = init_posy;
     setCurrentWeapon(WP_KNIFE);
-	health = 100;
-	ammo = INITIAL_PLAYER_AMMO;
+	health = PLAYER_MAX_HEALT;
+	ammo = PLAYER_INITIAL_AMMO;
 	dead=false;
 	inventory.respawn();
 }

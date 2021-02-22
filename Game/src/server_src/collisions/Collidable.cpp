@@ -38,9 +38,6 @@ Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
     }else if(opt>MOVABLE_FALSE_WALL_OFFSET && opt<MOVABLE_FALSE_WALL_OFFSET + MOVABLE_OFFSET){
         return new MovableFalseWall(xI, yI, cellWidth, opt-MOVABLE_FALSE_WALL_OFFSET);
     }else if(opt>=MOVABLE_DOOR_OFFSET && opt<MOVABLE_DOOR_OFFSET + MOVABLE_OFFSET){
-            std::cout<<"creando puerta: "<<opt<<std::endl;
-            std::cout<<"creando puerta: "<<opt<<std::endl;
-
         return new MovableDoor(xI, yI, cellWidth, opt-MOVABLE_DOOR_OFFSET);
 
     }else 
