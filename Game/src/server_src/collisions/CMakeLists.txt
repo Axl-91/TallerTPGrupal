@@ -16,4 +16,5 @@ add_library(collisions SHARED
     ImmovableObject.cpp
     Movable.cpp
     MovableDoor.cpp
+    MovableFalseWall.cpp
 )

@@ -1,21 +1,20 @@
 #include <iostream>
-#include "MovableDoor.h"
+#include "MovableFalseWall.h"
 #include "Rectangle.h"
 #include <iostream>
 
-MovableDoor::MovableDoor(int xI, int yI, int cellWidth, int doorType)
+MovableFalseWall::MovableFalseWall(int xI, int yI, int cellWidth, int doorType)
 {
-    type = (door_type_t) (doorType+1);
     xInit=xI*cellWidth;
     xEnd=xI*cellWidth+cellWidth;
     yInit=yI*cellWidth; 
     yEnd=yI*cellWidth+cellWidth;
 }
 
-MovableDoor::~MovableDoor(){}
+MovableFalseWall::~MovableFalseWall(){}
 
 
-int MovableDoor::collide(ServerPlayer &p){
+int MovableFalseWall::collide(ServerPlayer &p){
     float x;
     float y;
     float dX;
@@ -29,17 +28,7 @@ int MovableDoor::collide(ServerPlayer &p){
         dY=0;
 
     if(p.isOpeningDoor()==true){
-        if(type == NO_KEY_DOOR) 
             return 301;
-
-        if(type == BLUE_KEY_DOOR&&p.hasBlueKey() == true){
-            p.usedBlueKey();
-            return 301;
-        }
-        if(type == GOLD_KEY_DOOR && p.hasGoldKey() == true){
-            p.usedGoldKey();
-            return 301;
-        }
     }
 
     p.setDirection(dX, dY);
@@ -47,7 +36,7 @@ int MovableDoor::collide(ServerPlayer &p){
     return 300;
 }
 
-bool MovableDoor::detectCollision(circle &c, float dX,float dY){
+bool MovableFalseWall::detectCollision(circle &c, float dX,float dY){
 
     Rectangle aux(xInit-c.radius,yInit-c.radius, xEnd+c.radius, yEnd+c.radius);
     return aux.contains(c.x+dX, c.y+dY);

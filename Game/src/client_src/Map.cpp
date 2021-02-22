@@ -10,8 +10,8 @@
 #define AMMO_OFFSET_VALUE 116
 #define TREASURE_OFFSET_VALUE 132
 #define IMMOVABLE_OBJECT_OFFSET_VALUE 188
-
-
+#define MOVABLE_DOOR_OFFSET_VALUE 300
+#define MOVABLE_FALSE_WALL_OFFSET_VALUE 300
 #define ENEMY_OFFSET 100
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
@@ -42,10 +42,16 @@ void Map::load(std::vector<std::vector<int>> lvl){
 			if(map[i][j]>=IMMOVABLE_WALL_OFFSET)
 				map[i][j]-=IMMOVABLE_WALL_OFFSET;
 
-			if(map[i][j]>=MOVABLE_DOOR_OFFSET&&map[i][j]<MOVABLE_DOOR_OFFSET+COLLIDABLE_OFFSET){
+			if(map[i][j]>=MOVABLE_DOOR_OFFSET&&map[i][j]<MOVABLE_DOOR_OFFSET+MOVABLE_OFFSET){
 				insertDoor(j,i,map[i][j]);
-				map[i][j]-=MOVABLE_DOOR_OFFSET;
+				map[i][j]-=MOVABLE_DOOR_OFFSET_VALUE;
 			}
+			if(map[i][j]>=MOVABLE_FALSE_WALL_OFFSET&&map[i][j]<MOVABLE_FALSE_WALL_OFFSET+MOVABLE_OFFSET){
+				insertDoor(j,i,map[i][j]);
+				map[i][j]-=MOVABLE_FALSE_WALL_OFFSET_VALUE;
+			}
+
+
 
 			if(map[i][j]>=INITIAL_PLAYER_POS_OFFSET && map[i][j]<MAX_PLAYERS)
 				map[i][j]=0;
@@ -305,7 +311,6 @@ void Map::openDoor(int posX, int posY){
 	Vector posPlayer(posX, posY);
 	int x;
 	int y;
-
 	for(auto door: mapDoors){
 		if(posPlayer.getDistance(door.second.position)<60){
 			x = (door.second.position.getX() - longTile/2) / longTile;

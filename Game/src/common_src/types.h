@@ -57,13 +57,17 @@
 /***************************************************************************/
 #define COLLIDABLE_OFFSET 100
 #define COLLECTIBLE_OFFSET 10
+#define MOVABLE_OFFSET 40
+
 #define KEY_OFFSET 100
 #define HEAL_OFFSET 110
 #define AMMO_OFFSET 120
 #define WEAPON_OFFSET 130
 #define TREASURE_OFFSET 140
 #define IMMOVABLE_OBJECT_OFFSET 200
-#define MOVABLE_DOOR_OFFSET 300
+
+#define MOVABLE_FALSE_WALL_OFFSET 300
+#define MOVABLE_DOOR_OFFSET 350
 
 #define IMMOVABLE_WALL_OFFSET 400
 
@@ -175,9 +179,9 @@ typedef enum{
 }enemy_type_t;
 
 typedef enum{
-    NO_KEY_DOOR = 50,
-    BLUE_KEY_DOOR = 52,
-    GOLD_KEY_DOOR = 53
+    NO_KEY_DOOR = 1,
+    BLUE_KEY_DOOR = 3,
+    GOLD_KEY_DOOR = 4
 }door_type_t;
 
 typedef enum{
