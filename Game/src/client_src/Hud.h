@@ -32,6 +32,10 @@ private:
     int posYNum = 66;
     int posXFac = 25;
     int posYFac = 0;
+
+    std::string fileHud = "Media/HUD/hud.png";
+    std::string fileFaces = "Media/HUD/BJFaces.png";
+
     SpritesHandler textureHandler;
     SpritesHandler gun;
     SpritesHandler numbers;

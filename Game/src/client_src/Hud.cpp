@@ -2,14 +2,13 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Hud.h"
-#include "Install.h"
 
 Hud::Hud():
-textureHandler(INSTALLED_TEXTURE_HUD, HUDL, HUDA), 
-gun(INSTALLED_TEXTURE_HUD, HGUNL, HGUNA),
-numbers(INSTALLED_TEXTURE_HUD, HNUML, HNUMA),
-keys(INSTALLED_TEXTURE_HUD, HKEYL,HKEYA),
-faces(INSTALLED_TEXTURE_HUD_FACES, HFACEL, HFACEA){
+textureHandler(fileHud, HUDL, HUDA), 
+gun(fileHud, HGUNL, HGUNA),
+numbers(fileHud, HNUML, HNUMA),
+keys(fileHud, HKEYL,HKEYA),
+faces(fileFaces, HFACEL, HFACEA){
     gun.setPos(posXGun, posYGun);
     numbers.setPos(posXNum, posYNum);
     faces.setPos(posXFac, posYFac);

@@ -3,9 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "Walls.h"
-#include "Install.h"
 
-Walls::Walls():textureHandler(INSTALLED_TEXTURE_WALLS){}
+Walls::Walls():textureHandler(fileWalls){}
 
 void Walls::setRenderer(SDL_Renderer* renderer){
     textureHandler.setRenderer(renderer);

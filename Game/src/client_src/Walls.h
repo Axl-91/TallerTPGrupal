@@ -1,8 +1,9 @@
 #ifndef __TEXTURE_WALLS__
 #define __TEXTURE_WALLS__
 
-// #include <SDL2/SDL.h>
-// #include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <string>
 #include "SpritesHandler.h"
 
 class Walls{
@@ -10,6 +11,7 @@ private:
     int srcX = 0;
     int srcY = 0;
     int offset = 64;
+    std::string fileWalls = "Media/Walls/walls.png";
     int wall;
     SpritesHandler textureHandler;
 public:

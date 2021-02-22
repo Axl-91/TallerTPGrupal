@@ -15,8 +15,10 @@ Menu::Menu() : splash(0, 0, 320, 240, MENU_SPLASH),
 			   selection(0, 0, 23, 33, MENU_SEL),
 			   main(0, 0, 320, 240, MENU_MAP),
 			   save(0, 0, 160, 120, MENU_SAVE),
+   			   players(0, 0, 160, 120, MENU_PLAY),
 			   textNameHandler(" "),
-			   textMapHandler(" ")
+			   textMapHandler(" "),
+			   textPlayerHandler(" ")
 {
 	initialize();
 	createText();
@@ -55,7 +57,7 @@ void Menu::initialize(){
 	}
 
 	existError = SDL_CreateWindowAndRenderer(winlenght, winhigh,
-										   SDL_RENDERER_ACCELERATED, &menuWindow, &menuRenderer);
+		SDL_RENDERER_ACCELERATED, &menuWindow, &menuRenderer);
 	if (existError){
 		std::cout << "ERROR : " << SDL_GetError() << std::endl;
 	}
@@ -73,13 +75,17 @@ void Menu::initialize(){
 	mainCreate.setRenderer(menuRenderer);
 	mainEdit.setRenderer(menuRenderer);
 	save.setRenderer(menuRenderer);
+	players.setRenderer(menuRenderer);
 	textNameHandler.setRenderer(menuRenderer, white);
 	textMapHandler.setRenderer(menuRenderer, white);
+	textPlayerHandler.setRenderer(menuRenderer,white);
 
 	selection.setSrc(0, 0, 23, 16);	
 
 	vectorMaps = sett.getMaps();	
-	mapelement = vectorMaps[0];
+	vectorPlayers = sett.getPlayers(); 
+	mapelement = vectorMaps[mapPos];
+	maxplayer = vectorPlayers[playerPos];
 }
 
 void Menu::renderTextCreate(bool printDinamic){
@@ -96,6 +102,13 @@ void Menu::renderTextCreate(bool printDinamic){
 		int sizeName = 7 * mapname.size();
 		textNameHandler.render(180, 78, sizeName, 15);
 	}
+	
+	if (playerChange){
+		textPlayerHandler.setText(std::to_string(vectorPlayers[playerPos]));
+		playerChange = false;				
+	}	
+	int mapNameSize = 12;
+	textPlayerHandler.render(150,105,mapNameSize,15);
 }
 
 void Menu::renderTextEdit(){
@@ -155,6 +168,8 @@ void Menu::renderMenu(){
 	}else if (menu == SAV){
 		save.render(80, 60, 160, 120);
 		selection.render(100, posSelectSave, 23, 16);
+	}else if (menu == PLY){
+		players.render(80, 60, 160, 120);		
 	}
 }
 
@@ -246,11 +261,11 @@ void Menu::doActionCreate(){
 		nameChange = inputText(mapname, 180, 78);
 		break;
 	case CRT_PLA:
-
+		selectPlayer();
 		break;
 	case CRT_NEW:
 		sett.init(mapname);
-		map.init(sett, mapname, true);
+		map.init(sett, mapname,maxplayer,true);
 		menu = MAP;
 		break;
 	}
@@ -262,7 +277,7 @@ void Menu::doActionEdit(){
 			selectMap();
 		break;
 	case EDT_IN:
-		map.init(sett, mapelement, false);
+		map.init(sett, mapelement,maxplayer, false);
 		menu = MAP;
 		break;
 	}
@@ -280,6 +295,58 @@ void Menu::renderSelectionMap(int &pos){
 		handler.render(posVectorX,posVectorY,sizeJoin,15);
 	} 
 	SDL_RenderPresent(menuRenderer);
+}
+
+void Menu::renderSelectionPlayer(int &pos){
+	SDL_RenderClear(menuRenderer);
+	mainCreate.render(0, 0, 320, 240);
+	selection.render(70, posSelectCrt, 23, 16);
+	renderTextCreate(true);
+
+	if (vectorPlayers.size() > 0){
+		TextHandler handler(std::to_string(vectorPlayers[pos]));
+		handler.setRenderer(menuRenderer, yellow);
+		int sizeJoin =10;// 7*vectorPlayers[pos].size();
+		handler.render(150,105,sizeJoin,15);
+	} 
+	SDL_RenderPresent(menuRenderer);
+}
+
+void Menu::selectPlayer(){
+	bool selected = false;
+	SDL_Event event;
+	renderSelectionPlayer(playerPos);
+
+	while (!selected){
+		if (SDL_PollEvent(&event)){
+			if (event.type == SDL_KEYDOWN){
+				switch (event.key.keysym.sym){
+					case SDLK_RIGHT:
+						if (vectorPlayers.size() > playerPos+1){
+							playerPos += 1;
+							renderSelectionPlayer(playerPos);
+						}
+						break;
+					case SDLK_LEFT:
+						if (playerPos > 0){
+							playerPos -= 1;
+							renderSelectionPlayer(playerPos);
+						}
+						break;
+					case SDLK_RETURN:
+						if (vectorPlayers.size() > 0){
+							maxplayer = vectorPlayers[playerPos];
+							playerChange = true;
+							selected = true;
+						}
+						break;
+					case SDLK_ESCAPE:
+						selected = true;						
+						break;
+				}
+			}
+		}
+	}
 }
 
 void Menu::selectMap(){
@@ -325,7 +392,8 @@ void Menu::doActionSave(){
 		sett.saveChanges(map.getMap(),map.getMapName());
 		sett.UpdateFiles();
 		vectorMaps = sett.getMaps();	
-		mapelement = vectorMaps[0];
+		//mapelement = vectorMaps[0];
+		playerChange = true;
 		break;
 	case SAVE_Q:
 		break;
@@ -437,7 +505,11 @@ void Menu::pollEventMap(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){
 		switch (event.key.keysym.sym){
 		case SDLK_ESCAPE:
-			menu = SAV;
+			map.pollEvent(event);
+			if(map.getCanExit())
+				menu = SAV;
+			else
+				menu = PLY;
 			break;
 		}
 	}
@@ -503,6 +575,19 @@ void Menu::pollEventSave(SDL_Event &event){
 	}
 }
 
+void Menu::pollEventPlay(SDL_Event &event){
+	if (event.type == SDL_KEYDOWN){
+		switch (event.key.keysym.sym){
+		case SDLK_ESCAPE:
+			menu = MAP;
+			break;
+		default:
+			menu = MAIN;
+			break;
+		}
+	}
+}
+
 void Menu::pollEventEdit(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){
 		switch (event.key.keysym.sym){
@@ -560,6 +645,9 @@ void Menu::pollEvent(){
 				break;
 			case SAV:
 				pollEventSave(event);
+				break;
+			case PLY:
+				pollEventPlay(event);
 				break;
 			default:
 				break;

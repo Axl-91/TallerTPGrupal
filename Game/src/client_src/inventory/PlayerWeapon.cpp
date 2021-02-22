@@ -3,7 +3,6 @@
 #include <iostream>
 #include <unistd.h>
 #include "PlayerWeapon.h"
-#include "../Install.h"
 
 PlayerWeapon::PlayerWeapon(shooting_state_t &sS, std::vector<std::string> &imgs):
 shootingState(sS),

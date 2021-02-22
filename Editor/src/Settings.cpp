@@ -1,11 +1,9 @@
 #include "Settings.h"
-
 #include <string>
 #include <iostream>
 #include <filesystem>
 
 namespace fs = std::filesystem;
-
 
 Settings::Settings(){
     YAML::Node config = YAML::LoadFile(cfg);
@@ -25,6 +23,7 @@ void Settings::init(std::string &_mapname){
 
 void Settings::UpdateFiles(){
     maps.clear();
+    std::cout<<path<<std::endl;
     for (const auto & entry : fs::directory_iterator(path)){
         std::string file = entry.path().filename().string();
         std::string token = file.substr(0,file.find("."));
@@ -33,6 +32,7 @@ void Settings::UpdateFiles(){
 }
 
 void Settings::saveChanges(std::vector<std::vector<int>> _map,std::string _mapname){
+    //std::cout<<"guardo"<<std::endl;
     mapname = _mapname;
     YAML::Emitter out;
     YAML::Node doc;
@@ -44,8 +44,8 @@ void Settings::saveChanges(std::vector<std::vector<int>> _map,std::string _mapna
     fout << out.c_str();
 }
 
-int Settings::getmaxlayers() const{
-    return maxPlayers;
+std::vector<int> Settings::getPlayers() const{
+    return players;
 }
 
 int Settings::getRows() const{
