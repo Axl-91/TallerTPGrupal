@@ -6,11 +6,8 @@
 #include "PWChainCannon.h"
 #include "PWRocketLauncher.h"
 
-#define MAX_AMMO 100
-
 Inventory::Inventory(shooting_state_t &sS):
 shootingState(sS){
-    ammo=50;
     weapons[WP_KNIFE]= new PWKnife(sS);
     weapons[WP_GUN]= new PWGun(sS);
     weapons[WP_SECONDARY]= NULL;
@@ -38,29 +35,6 @@ PlayerWeapon* Inventory::getWeapon(PlayerWeapon* pw, int i){
     if(weapons[i]!=NULL)
         pw=weapons[i];
     return pw;
-}
-
-
-// int Inventory::reload(int a){
-// 	if(ammo>=MAX_AMMO)
-// 		return 0;
-
-// 	std::cout<<"ammo before: "<<ammo<<std::endl;
-// 	ammo+=a;
-// 	if(ammo>MAX_AMMO)
-// 		ammo=MAX_AMMO;
-
-// 	std::cout<<"ammo after: "<<ammo<<std::endl;
-
-// 	return 1;
-// }
-
-int Inventory::getAmmo(){
-    return ammo;
-}
-
-void Inventory::setAmmo(int a){
-    ammo = a;
 }
 
 bool Inventory::equip(weapon_t w){

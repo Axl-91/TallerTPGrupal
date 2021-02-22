@@ -11,6 +11,7 @@
 #define TREASURE_OFFSET_VALUE 132
 #define IMMOVABLE_OBJECT_OFFSET_VALUE 188
 
+
 #define ENEMY_OFFSET 100
 
 Map::Map(std::vector<std::vector<int>> &lvl): map(lvl){
@@ -38,8 +39,8 @@ void Map::load(std::vector<std::vector<int>> lvl){
 
 	for (int i = 0; i < rows; ++i){
 		for (int j = 0; j < cols; ++j){
-			if(map[i][j]>=400)
-				map[i][j]-=400;
+			if(map[i][j]>=IMMOVABLE_WALL_OFFSET)
+				map[i][j]-=IMMOVABLE_WALL_OFFSET;
 
 			if(map[i][j]>=MOVABLE_DOOR_OFFSET&&map[i][j]<MOVABLE_DOOR_OFFSET+COLLIDABLE_OFFSET){
 				insertDoor(j,i,map[i][j]);
@@ -231,9 +232,9 @@ std::vector<Object_t> Map::orderObjects(Vector &pos){
 }
 
 void Map::setObj(int &type){
-	if (type >= 600)
+	if (type >= MISSILE_OFFSET)
 		missiles.setEnemyRenderSprite(type);
-	if (type >= ENEMY_OFFSET && type <600)
+	if (type >= ENEMY_OFFSET && type <MISSILE_OFFSET)
 		enemies.setEnemyRenderSprite(type);
 	else
 		objects.setObject(type);
@@ -242,10 +243,10 @@ void Map::setObj(int &type){
 void Map::setColObject(int &pos, int type){
 	int zero = 0;
 	int one = 1;
-	if (type >= 600)
+	if (type >= MISSILE_OFFSET)
 		missiles.cutFromTexture(pos, zero, one, longTile);
 	else 
-	if (type >= ENEMY_OFFSET&& type <600){
+	if (type >= ENEMY_OFFSET&& type <MISSILE_OFFSET){
 		setColEnemy(pos);
 	}else
 		objects.cutFromTexture(pos, zero, one, longTile);
@@ -263,10 +264,10 @@ void Map::renderEnemy(int &posX, int &posY, int &lenght, int &height){
 
 
 void Map::renderObject(int &posX, int &posY, int &lenght, int &height, int type){
-	if (type >= 600)
+	if (type >= MISSILE_OFFSET)
 		missiles.render(posX, posY, lenght, height);
 	else 
-	if (type >= ENEMY_OFFSET && type <600){
+	if (type >= ENEMY_OFFSET && type <MISSILE_OFFSET){
 		renderEnemy(posX, posY, lenght, height);
 	}
 	else{

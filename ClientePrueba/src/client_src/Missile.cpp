@@ -15,7 +15,6 @@ Missile::Missile():
 spritesHandler(missileSprites){
     before = std::chrono::high_resolution_clock::now();
     frame = 0;
-//    explodeFrameTimer = 0;
     explodeFrames = 3;
     explodeFramesOffset = 8;
     explodeFrameTime = 200;
@@ -34,7 +33,7 @@ void Missile::defineSprite(Render_missile_t &missile, Vector &posPlayer, int &sp
     float auxAngle=missilePos.getAngle(posPlayer);
 
     if(missile.info.exploding==true){
-        sprite = explodeFramesOffset + missile.explode_frame+600;
+        sprite = explodeFramesOffset + missile.explode_frame+MISSILE_OFFSET;
         return;
     }
 

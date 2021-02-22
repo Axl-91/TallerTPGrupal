@@ -9,13 +9,15 @@
 #include "../common_src/Vector.h"
 #include <chrono>
 
+#define MISSILE_OFFSET 600
+
+//Clase que se ocupa de la vista de las animaciones del misil
 class Missile{
     SpritesHandler spritesHandler;
     int angleEnemy = 0;
     int frame = 0;
     std::chrono::_V2::system_clock::time_point before;
     std::chrono::_V2::system_clock::time_point now;
-//    float explodeFrameTimer;
 
 protected:
     int explodeFrames;

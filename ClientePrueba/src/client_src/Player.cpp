@@ -113,6 +113,7 @@ void Player::renderObjects(){
 		}
 		// int tipoObj = mapPlayer.getTipoObj(obj);
 		int typeObj = orderedObjets[obj].objType;
+
 		int longTiles = mapPlayer.getLongTiles();
 		float distObj = posPlayer.getDistance(posObjeto);
 
@@ -153,7 +154,7 @@ void Player::updateInfo(Player_t &p){
 	angPlayer = p.ang;
 	lifes = p.lifes;
 	score = p.score;
-	inventory.setAmmo(p.ammo);
+	ammo = p.ammo;
 	health = p.health;
 	equip(p.secondaryWP);
     blueKey = p.blueKey;
@@ -178,7 +179,7 @@ void Player::render(int largoWin, int altoWin){
 	hudGame.render(largoWin, altoWin);
 	hudGame.renderHealth(health);
 	hudGame.renderLife(lifes);
-	hudGame.renderAmmo(inventory.getAmmo());
+	hudGame.renderAmmo(ammo);
 	hudGame.renderScore(score);
 	if(goldKey == true)
 		hudGame.renderGoldenKey();

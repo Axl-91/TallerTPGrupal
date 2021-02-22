@@ -16,7 +16,6 @@ void EnemySpriteHandler::setRenderer(SDL_Renderer* renderer){
     spritesHandler.setRenderer(renderer);
 }
 
-
 //usa trigonometria para definia la vista del enemigo
 void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sprite){
     Vector enemyPos(enemy.playerInfo.x, enemy.playerInfo.y);
@@ -25,13 +24,7 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
 
     if(enemy.playerInfo.dead == true){
         sprite = deadFramesOffset + enemy.dead_frame;
-        std::cout<<"----------------------------------"<<std::endl;
-
-        std::cout<<"shootingFramesOffset: "<<shootingFramesOffset<<std::endl;
-        std::cout<<"deadFramesOffset: "<<deadFramesOffset<<std::endl;
-        std::cout<<"enemy.dead_frame: "<<enemy.dead_frame<<std::endl;
-        std::cout<<"sprite: "<<sprite<<std::endl;
-
+        return;
     }
 
     sprite += enemy.moving_frame * MOVEMENT_FRAME_OFFSET;
@@ -56,11 +49,6 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
             if(enemy.playerInfo.shootingState!=SHOOTING_STATE_QUIET 
             || enemy.shooting_frame!=0){
                 sprite = enemy.shooting_frame + shootingFramesOffset;
-            std::cout<<"shootingFramesOffset: "<<shootingFramesOffset<<std::endl;
-            std::cout<<"deadFramesOffset: "<<deadFramesOffset<<std::endl;
-            std::cout<<"enemy.shooting_frame: "<<enemy.shooting_frame<<std::endl;
-            std::cout<<"sprite: "<<sprite<<std::endl;
-
                 return;
             }
 
@@ -81,7 +69,6 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     }
 
 }
-
 
 void EnemySpriteHandler::defineFrame(Enemy_t &enemy){
     now = std::chrono::high_resolution_clock::now();
@@ -144,8 +131,6 @@ void EnemySpriteHandler::cutFromTexture(int x, int y, int largo, int alto){
 }
 
 void EnemySpriteHandler::render(int x, int y, int largo, int alto){
-            std::cout<<"frame!!!!!!!!!!!!!!!!: "<<frame<<std::endl;
-
     spritesHandler.render(x, y, largo, alto, frame);
 }
 

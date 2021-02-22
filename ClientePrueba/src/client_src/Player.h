@@ -23,6 +23,7 @@ private:
     float step;
     float distBuffer[320];
     int health;
+    int ammo;
     bool blueKey;
     bool goldKey;   
     bool dead;

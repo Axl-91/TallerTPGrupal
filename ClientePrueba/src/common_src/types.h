@@ -65,7 +65,7 @@
 #define IMMOVABLE_OBJECT_OFFSET 200
 #define MOVABLE_DOOR_OFFSET 300
 
-#define WALL_OFFSET 400
+#define IMMOVABLE_WALL_OFFSET 400
 
 
 /***************************************************************************/

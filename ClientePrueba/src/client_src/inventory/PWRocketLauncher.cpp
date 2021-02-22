@@ -20,15 +20,15 @@ void PWRocketLauncher::render(int posX, int posY){
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
 
-    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+    if (shootingState!=SHOOTING_STATE_QUIET || frameAuxiliar!=0){
         if(waited.count()>=frameTime){
-            numAuxiliar++;
+            frameAuxiliar++;
             before=now;
         }
-        frame = numAuxiliar;
+        frame = frameAuxiliar;
 
          if (frame > 4){
-             numAuxiliar = 0;
+             frameAuxiliar = 0;
              frame = 0;
              shootingState=SHOOTING_STATE_QUIET;
         }

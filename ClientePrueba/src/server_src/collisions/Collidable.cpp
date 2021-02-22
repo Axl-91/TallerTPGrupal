@@ -32,14 +32,12 @@ Collidable* Collidable::makeCollidable(int xI, int yI, int cellWidth, int opt){
         return new CollectAmmo(xI, yI, cellWidth, opt-AMMO_OFFSET);
     }else if(opt>IMMOVABLE_OBJECT_OFFSET && opt<IMMOVABLE_OBJECT_OFFSET + COLLIDABLE_OFFSET){
         return new ImmovableObject(xI, yI, cellWidth, opt-IMMOVABLE_OBJECT_OFFSET);
-    }else if(opt>WALL_OFFSET && opt<WALL_OFFSET + COLLIDABLE_OFFSET){
-        return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);
+    }else if(opt>IMMOVABLE_WALL_OFFSET && opt<IMMOVABLE_WALL_OFFSET + COLLIDABLE_OFFSET){
+        return new ImmovableWall(xI, yI, cellWidth, opt-IMMOVABLE_WALL_OFFSET);
     }else if(opt>MOVABLE_DOOR_OFFSET && opt<MOVABLE_DOOR_OFFSET + COLLIDABLE_OFFSET){
         return new MovableDoor(xI, yI, cellWidth, opt-MOVABLE_DOOR_OFFSET);
-    }else {
-        //TIRAR ERROR!!!
-        return new ImmovableWall(xI, yI, cellWidth, opt-WALL_OFFSET);
-    }
+    }else 
+        return NULL;
 }
 
 bool Collidable::isInside(circle &c){

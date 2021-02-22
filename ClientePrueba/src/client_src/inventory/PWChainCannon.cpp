@@ -22,19 +22,19 @@ void PWChainCannon::render(int posX, int posY){
 
     if (shootingState != SHOOTING_STATE_QUIET){
         if(waited.count()>=frameTime){
-            numAuxiliar++;
+            frameAuxiliar++;
             before=now;
         }
-        frame = numAuxiliar;
+        frame = frameAuxiliar;
 
         if (shootingState == SHOOTING_STATE_SHOOTING){
             if (frame > 3){
-                numAuxiliar = 1;
-                frame = numAuxiliar;
+                frameAuxiliar = 1;
+                frame = frameAuxiliar;
             }
         }else
          if (frame > 4){
-             numAuxiliar = 0;
+             frameAuxiliar = 0;
              frame = 0;
              shootingState=SHOOTING_STATE_QUIET;
         }

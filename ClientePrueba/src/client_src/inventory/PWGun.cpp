@@ -24,15 +24,15 @@ void PWGun::render(int largoWin, int altoWin){
 
 
     std::cout<<"shootingState: "<<shootingState<<std::endl;
-    if (shootingState!=SHOOTING_STATE_QUIET || numAuxiliar!=0){
+    if (shootingState!=SHOOTING_STATE_QUIET || frameAuxiliar!=0){
         if(waited.count()>=frameTime){
-            numAuxiliar++;
+            frameAuxiliar++;
             before=now;
         }
-        frame = numAuxiliar;
+        frame = frameAuxiliar;
 
          if (frame > 4){
-             numAuxiliar = 0;
+             frameAuxiliar = 0;
              frame = 0;
              shootingState=SHOOTING_STATE_QUIET;
         }

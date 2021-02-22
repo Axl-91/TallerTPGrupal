@@ -52,21 +52,24 @@ void ClientReceiver::receiveGame(){
     update_tag_t aTag = TAG_NO_UPDATE;
     socket.receive((char*) &aTag, sizeof(update_tag_t));
 
+    //recibe inicializacion de mapa
     if(aTag == TAG_MAP_INIT){
         receiveMap();
     }
-
+    //recibe actualizacion de misil
     if(aTag == TAG_MISSILE_INFO){
         receiveMissileInfo(anUpdate);
         anUpdate.type = MISSILE_UPDATE;
         uQ.push(anUpdate);
     }
-
+    //recibe actualizacion de jugador
     if(aTag == TAG_PLAYER_INFO){
         receivePlayerInfo(anUpdate);
         anUpdate.type = PLAYER_UPDATE;
         uQ.push(anUpdate);
     }
+    //recibe actualizacion de mapa y de jugador
+    //solo puede haber actualizacion de mapa cuando un jugador se mueve
     if(aTag == TAG_MAP_CHANGE){
         receiveMapChange(anUpdate);
         receivePlayerInfo(anUpdate);
@@ -79,18 +82,11 @@ void ClientReceiver::receiveGame(){
     }
 }   
 
-
 void ClientReceiver::receiveMissileInfo(Update_t &anUpdate){
     Missile_t aux;
     socket.receive((char *) &aux, sizeof(Missile_t));
-    // std::cout<<"recibi misil: "<< aux.ID<<" daño: "<<aux.damage<<std::endl;
-    // std::cout<<"x: "<< aux.x<<" t: "<<aux.y<<std::endl;
-    // std::cout<<"ang: "<< aux.ang<<std::endl;
-
-
     anUpdate.missileUpdate = aux;
 }
-
 
 void ClientReceiver::receiveString(std::string &aString){
     uint32_t length = 0;
