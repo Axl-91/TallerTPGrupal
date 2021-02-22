@@ -22,9 +22,8 @@ class SDL_Sounds{
 
 public:
     SDL_Sounds();
-    void playEffect(const int &type);
-    void playMusic(const int &type);
-    void changeVolMusic(int &volume);
+    void playEffect(const int &type, const int &vol);
+    void playMusic(const int &type, const int &vol);
     void stopMusic();
     ~SDL_Sounds();
 private:

@@ -1,6 +1,5 @@
 #include "Missile.h"
 
-
 std::vector<std::string> missileSprites = {
     "Media/Missile/MISSILE01.png", "Media/Missile/MISSILE02.png",
     "Media/Missile/MISSILE03.png", "Media/Missile/MISSILE04.png",

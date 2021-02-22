@@ -12,7 +12,7 @@ private:
     std::vector<std::string> vectorFiles;
     void createVectorFiles();
 public:
-    FilesHandler(std::string nameFile);
+    FilesHandler(const std::string &nameFile);
     std::vector<std::string> getVectorFiles();
     ~FilesHandler();
 };

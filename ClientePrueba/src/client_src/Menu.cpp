@@ -14,10 +14,10 @@ Menu::Menu(ClientReceiver &r,
 	transmitter(t),
 	winLength(l),
 	winHeight(a),
-	menuFiles("Media/Menu/menusFiles.txt"),
+	menuFiles(fileMenus),
 	vectorMenus(menuFiles.getVectorFiles()),
 	menusHandler(vectorMenus, longWin, highWin),
-	selection("Media/Menu/SelectionMenu.png", 23, 33),
+	selection(fileSelector, 23, 33),
 	textSelectHandler(vectorSelectionText),
 	textErrorHandler(vectorErrors),
 	textNameHandler(nonString),
@@ -29,7 +29,7 @@ Menu::Menu(ClientReceiver &r,
 {
 		initialize();
 		createText();
-		menuSounds.playMusic(MENU_MUSIC);
+		menuSounds.playMusic(MENU_MUSIC, volMusic);
 }
 
 void Menu::createText(){
@@ -819,7 +819,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_DOWN:
-					menuSounds.playEffect(MENU_MOVE);
+					menuSounds.playEffect(MENU_MOVE, volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_DOWN);
@@ -839,7 +839,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_UP:
-					menuSounds.playEffect(MENU_MOVE);
+					menuSounds.playEffect(MENU_MOVE, volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_UP);
@@ -859,7 +859,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_RETURN:
-					menuSounds.playEffect(MENU_SELECT);
+					menuSounds.playEffect(MENU_SELECT,volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_ENTER);

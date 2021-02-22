@@ -5,7 +5,12 @@
 #include "Objects.h"
 #include "Install.h"
 
-Objects::Objects(): objHandler(ObjectsSprites){}
+Objects::Objects():
+    objectsFiles(fileObj),
+    objectsSprites(objectsFiles.getVectorFiles()),
+    objHandler(objectsSprites)
+{}
+
 void Objects::setRenderer(SDL_Renderer* renderer){
     objHandler.setRenderer(renderer);
 }

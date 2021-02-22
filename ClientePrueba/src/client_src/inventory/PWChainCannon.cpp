@@ -28,20 +28,24 @@ void PWChainCannon::render(int posX, int posY){
         frame = frameAuxiliar;
 
         if (shootingState == SHOOTING_STATE_SHOOTING){
+            if (!soundOn){
+                gunSounds.playEffect(MINIGUN_SHOT, 20);
+                soundOn = true;
+            }
             if (frame > 3){
                 frameAuxiliar = 1;
+                soundOn = false;
                 frame = frameAuxiliar;
             }
-        }else
-         if (frame > 4){
+        }else if (frame > 4){
              frameAuxiliar = 0;
              frame = 0;
+             soundOn = false;
              shootingState=SHOOTING_STATE_QUIET;
+            }
         }
-    }
     textureHandler.render(posXWeapon, posYWeapon, GUNL, GUNA, frame);
 
 }
-
 
 PWChainCannon::~PWChainCannon(){}

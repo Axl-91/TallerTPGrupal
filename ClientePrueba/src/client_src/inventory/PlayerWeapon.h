@@ -7,6 +7,7 @@
 #include "../SpritesHandler.h"
 #include "../../common_src/types.h"
 #include "../SpritesHandler.h"
+#include "../SDL_Sounds.h"
 
 //Largo y alto del arma
 #define GUNL 128
@@ -25,6 +26,8 @@ protected:
     shooting_state_t shootingState;
     weapon_t type;
     SpritesHandler textureHandler;
+    SDL_Sounds gunSounds;
+    bool soundOn = false;
     float frameTime;
     std::chrono::_V2::system_clock::time_point before;
     std::chrono::_V2::system_clock::time_point now;

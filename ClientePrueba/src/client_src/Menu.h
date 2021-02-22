@@ -67,6 +67,9 @@ private:
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
 	SDL_Sounds menuSounds;
+
+	std::string fileMenus = "Media/Menu/menusFiles.txt";
+	std::string fileSelector = "Media/Menu/SelectionMenu.png";
 	
     int longWin = 320;
     int highWin = 240;
@@ -74,6 +77,8 @@ private:
 	int highSelector = 16;
 	int highFont = 15;
 	int zero = 0;
+	int volMusic = 45;
+	int volSFX = 20;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;

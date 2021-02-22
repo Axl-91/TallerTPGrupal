@@ -28,9 +28,15 @@ void PWMachineGun::render(int posX, int posY){
         }
         frame = frameAuxiliar;
 
-         if (frame > 4){
+        if (!soundOn){
+            gunSounds.playEffect(RIFLE_SHOT, 20);
+            soundOn = true;
+        }
+
+        if (frame > 4){
              frameAuxiliar = 0;
              frame = 0;
+             soundOn = false;
              shootingState=SHOOTING_STATE_QUIET;
         }
     }

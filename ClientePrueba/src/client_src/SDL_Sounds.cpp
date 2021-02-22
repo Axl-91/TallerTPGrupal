@@ -27,7 +27,6 @@ SDL_Sounds::SDL_Sounds():
 
 void SDL_Sounds::loadChunk(std::string &nameChunk){
     Mix_Chunk* chunkLoad = Mix_LoadWAV(nameChunk.c_str());
-    Mix_VolumeChunk(chunkLoad, 20);
     if (chunkLoad == 0){
         std::cout << "Error loading chunk: " << Mix_GetError() << std::endl;
     }
@@ -36,18 +35,19 @@ void SDL_Sounds::loadChunk(std::string &nameChunk){
 
 void SDL_Sounds::loadMusic(std::string &nameMusic){
     Mix_Music* musicLoad = Mix_LoadMUS(nameMusic.c_str());
-    Mix_VolumeMusic(45);
     if (musicLoad == 0){
         std::cout << "Error loading music: " << Mix_GetError() << std::endl;
     }
     vectorMusic.push_back(musicLoad);
 }
 
-void SDL_Sounds::playEffect(const int &type){
+void SDL_Sounds::playEffect(const int &type, const int &vol){
+    Mix_VolumeChunk(vectorChunks[type], vol);
     Mix_PlayChannel(-1, vectorChunks[type], 0);
 }
 
-void SDL_Sounds::playMusic(const int &type){
+void SDL_Sounds::playMusic(const int &type, const int &vol){
+    Mix_VolumeMusic(vol);
     Mix_PlayMusic(vectorMusic[type], -1);
 }
 
