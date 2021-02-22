@@ -20,9 +20,10 @@ float SPWKnife::shoot(shooting_state_t &shootingState, bool &shootMissile){
     if(waited.count()<KNIFE_WAIT_TIME){
 //        shootingState = SHOOTING_STATE_WAIT;
         shooting=false;
+        shooted = false;
         return 0;
     }
-
+    shooted = true;
     before=now;
     shooting=false;
     return damage;

@@ -20,12 +20,15 @@ float SPWMachineGun::shoot(shooting_state_t &shootingState, bool &shootMissile){
         if(waited.count()<MACHINE_GUN_WAIT_TIME)
             return 0;
         bulletsCounter=1;
+        shooted = true;
         return damage;
     }
 
-    if(waited.count()<MACHINE_GUN_BULLET_WAIT_TIME)
+    if(waited.count()<MACHINE_GUN_BULLET_WAIT_TIME){
+        shooted = false;
         return 0;
-
+    }
     bulletsCounter++;
+    shooted = true;
     return damage;
 }

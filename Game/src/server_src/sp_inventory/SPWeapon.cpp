@@ -3,7 +3,8 @@
 #include "SPWeapon.h"
 
 SPWeapon::SPWeapon(){
-    shooting=false;
+    shooting = false;
+    shooted = false;
 }
 
 
@@ -11,8 +12,15 @@ bool SPWeapon::estaEnAccion(){
     return estaDisparando;
 }
 
-int SPWeapon::getUsedBullets(){
+int SPWeapon::getBulletsNeeded(){
     return usedBullets;
+}
+
+
+int SPWeapon::getUsedBullets(){
+    if(shooted == true)
+        return usedBullets;
+    return 0;
 }
 
 void SPWeapon::shootingTrue(){

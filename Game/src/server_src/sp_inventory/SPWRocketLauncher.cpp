@@ -16,17 +16,20 @@ float SPWRocketLauncher::shoot(shooting_state_t &shootingState, bool &shootMissi
 
     if(shooting == false){
         shootingState = SHOOTING_STATE_QUIET;
+        shooted = false;
         return 0;
     }
     now = std::chrono::high_resolution_clock::now();
     auto waited = std::chrono::duration_cast<std::chrono::milliseconds>(now - before);
     if(waited.count()<ROCKET_LAUNCHER_WAIT_TIME){
 //        shootingState = SHOOTING_STATE_QUIET;
+        shooted = false;
         return 0;
     }
 
     before = now;
     shooting = false;
+    shooted = true;
     shootMissile = true;
     return damage;
 }

@@ -185,19 +185,24 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 
 int ServerPlayer::shoot(bool &shootMissile){
-	// if(useBullets() == false)
-	// 	setCurrentWeapon(WP_KNIFE);
-	return currentWeapon->shoot(shootingState, shootMissile);
+	int weaponDamage;
+	if(ammo < currentWeapon->getBulletsNeeded())
+	 	setCurrentWeapon(WP_KNIFE);
+
+	weaponDamage = currentWeapon->shoot(shootingState, shootMissile);
+	ammo-=currentWeapon->getUsedBullets();
+
+	return weaponDamage;
 }
 
-bool ServerPlayer::useBullets(){
-	int bullets = currentWeapon->getUsedBullets();
-	if(ammo-bullets <0)
-		return false;
+// bool ServerPlayer::useBullets(){
+// 	int bullets = currentWeapon->getUsedBullets();
+// 	if(ammo-bullets <0)
+// 		return false;
 	
-	ammo -= bullets;
-	return true;
-}
+// 	ammo -= bullets;
+// 	return true;
+// }
 
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);

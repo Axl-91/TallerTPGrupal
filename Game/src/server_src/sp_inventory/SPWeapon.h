@@ -15,16 +15,15 @@ protected:
     std::chrono::_V2::system_clock::time_point before;
     std::chrono::_V2::system_clock::time_point now;
     int usedBullets;
-    // void disparar();
+    bool shooted;
 public:
     void shootingTrue();
+    int getBulletsNeeded();
 
 	virtual float shoot(shooting_state_t &shootingState, bool &shootMissile) = 0;
     int getUsedBullets();
-//    virtual float shoot(float dist, shooting_state_t &shootingState) = 0;
     SPWeapon();
 	SPWeapon(const SPWeapon &copy) = delete;
-//	PlayerWeapon operator=(const PlayerWeapon &copy) = delete;
     bool estaEnAccion();
     weapon_t getType();
     ~SPWeapon();
