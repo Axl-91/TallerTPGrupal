@@ -31,7 +31,7 @@
 const int posVectorX = 180;
 const int posVectorY = 80;
 
-enum MENU_TIPO {SPL,MAIN,OPTIONS,MAP,CREATE,EDIT,SAV};
+enum MENU_TIPO {SPL,MAIN,OPTIONS,MAP,CREATE,EDIT,SAV,PLY};
 
 class Menu{
 private:
@@ -40,6 +40,7 @@ private:
     int winlenght = 640;
 	int winhigh = 480;
 	int mapPos = 0;
+	int playerPos = 0;
 
 	int posSelectMain = MAIN_CREATE;
 	int posSelectOpt = OPT_RES;
@@ -52,11 +53,14 @@ private:
 	int menu = SPL;
 	bool nameChange = false;
 	bool mapChange = true;
+	bool playerChange = true;
 
 	std::vector<std::string> vectorMaps;	
+	std::vector<int> vectorPlayers;
 
 	std::string mapname = "";	
 	std::string mapelement = "";	
+	int maxplayer = 0;
 
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
@@ -77,10 +81,12 @@ private:
 	SDLHandler optionsMenu;
 	SDLHandler selection;
 	SDLHandler main;
-	SDLHandler save;	
+	SDLHandler save;
+	SDLHandler players;
 
 	TextHandler textNameHandler;
 	TextHandler textMapHandler;	
+	TextHandler textPlayerHandler;	
 
 	SDL_Color white = {255, 255, 255};
 	SDL_Color yellow = {255, 204, 0};
@@ -92,6 +98,7 @@ private:
 	void renderTextOptions();
 	void renderTextCreate(bool);	
 	void renderSelectionMap(int &pos);
+	void renderSelectionPlayer(int &pos);	
 	void renderTextEdit();
 
 	void pollEventEdit(SDL_Event &event);
@@ -101,16 +108,19 @@ private:
 	void pollEventMap(SDL_Event &event);
 	void pollEventCreate(SDL_Event &event);
 	void pollEventSave(SDL_Event &event);	
+	void pollEventPlay(SDL_Event &event);
 
 	void doActionMain();
 	void doActionCreate();
 	void doActionOpt();
 	void doActionSave();
+	void doActionPlay();
 	void doActionEdit();	
 
 	bool inputText(std::string &input, int x, int y);
 	void renderCreateForInput(std::string &input, int x, int y);
 	void selectMap();
+	void selectPlayer();
 public:
 	Menu();
 	bool getFullScreen();

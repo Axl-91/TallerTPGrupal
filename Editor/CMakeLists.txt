@@ -39,6 +39,7 @@ data/MainMenu.png
 data/MapMenu.png
 data/OptionsMenu.png
 data/MainCreate.png
+data/Players.png
 data/beamweapon.ttf
 data/config.yaml
 DESTINATION ${CMAKE_BINARY_DIR})

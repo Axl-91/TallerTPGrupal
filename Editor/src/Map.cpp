@@ -1,7 +1,9 @@
 #include "Map.h"
+#include "Defines.h"
 
-Map::Map():mapHandler(0, 0, 384, 384, "tiles.png"){
-	load_objectTiles();
+Map::Map():mapHandler(0, 0, 384, 384, "tiles.png"),
+		  textPlayerHandler(" "){
+	load_objectTiles();	
 	players = 0;
 }
 
@@ -9,6 +11,7 @@ void Map::render(){
 	renderMap();
 	renderOptionsMap();
 	renderSelected();	
+	textPlayerHandler.render(280, 182, 13, 13);	
 }
 
 std::string Map::getMapName() const{
@@ -44,10 +47,14 @@ void Map::load(){
 	for (int fil = 0; fil < rows; ++fil){
 		for (int col = 0; col < columns; ++col){
 			int type = map[fil][col];
+			if((type<=10)&& (type>default_tile)){
+				type = TYPE_PLAYER;
+			}
 			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type,fil,col);						
 			tileSet.push_back(tile);
 		}
 	}	
+	//std::cout<<"pas2"<<std::endl;
 }
 
 void Map::updateClick(){
@@ -58,23 +65,23 @@ void Map::updateClick(){
 }
 
 void Map::load_objectTiles(){		
-	int typeKey = 101;
-	int typePlayer = 108;
-	int typeHeal = 111;
-	int typeAmmo = 121;	
-	int typeWeapon = 133;
-	int typeTreasure = 141;
-	int typeInmovable = 201;
-	int typeDoor = 400;
-	int typeWall = 403;
+	int typeKey = TYPE_KEY;
+	int typePlayer = TYPE_PLAYER;
+	int typeHeal = TYPE_HEAL;
+	int typeAmmo = TYPE_AMMO;	
+	int typeWeapon = TYPE_WAEPON;
+	int typeTreasure = TYPE_TREASURE;
+	int typeInmovable = TYPE_INMOVABLE;
+	int typeDoor = TYPE_DOOR;
+	int typeWall = TYPE_WALL;
+
 	int type;
 	int element = 0;	
 	for (int fil = 0; fil < OPTION_ROW; ++fil){
 		for (int col = 0; col < OPTION_COL; ++col){
 			if(element == 0){
 				type = 0;
-			}
-			if((element>0)&&(element<=11)){
+			}if((element>0)&&(element<=11)){
 				type = typeWall;
 				typeWall++;
 			}if((element>11)&&(element<=14)){
@@ -120,24 +127,58 @@ void Map::changeSelected(){
 void Map::putTileMap(){
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 		if((*it).existPosition(xRelative,yRelative,x,y)){
-			 (*it).setType(selected.getType());
-		}
+			int typeOri = selected.getType();
+			int typeDest = (*it).getType();
+			if((typeOri !=TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
+				if(typeOri == typeDest){					
+					(*it).setType(default_tile);
+				}else{
+					(*it).setType(typeOri);
+				}
+			}else if((typeOri ==TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
+				if(playersPendings>0){
+					playersPendings--;
+					players++;
+					(*it).setType(typeOri);									
+			}
+			}else if((typeOri!=TYPE_PLAYER)&&(typeDest==TYPE_PLAYER)){
+				playersPendings++;
+				players--;
+				(*it).setType(typeOri);	
+			} else if(typeOri == typeDest==TYPE_PLAYER){
+				(*it).setType(default_tile);
+				playersPendings++;
+				players--;				
+			}else {
+				std::cout<<typeOri<<":"<<typeDest<<std::endl;				
+				(*it).setType(typeOri);	
+			}
+		}	
 	}	
+	textPlayerHandler.setText(std::to_string(playersPendings));			
 }
 
 void Map::pollEvent(SDL_Event &evento){
 	updateClick();
-	setCamera();
-
+	
 	if(evento.type == SDL_MOUSEBUTTONDOWN){
 		if(evento.button.button == SDL_BUTTON_LEFT){									
 			changeSelected();
 			putTileMap();
 		}
 	}if ((evento.type == SDL_QUIT)|| 
-		(evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE)){			
+		(evento.type == SDL_KEYDOWN && evento.key.keysym.sym == SDLK_ESCAPE)){	
+			if(playersPendings == 0){
+				canExit = true;
 				updateModel();
+			}else{
+				canExit = false;
+			} 	
 	}
+}
+
+bool Map::getCanExit() const{
+	return canExit;
 }
 
 int Map::getTypebyFilCol(int _fil, int _col){
@@ -150,6 +191,7 @@ int Map::getTypebyFilCol(int _fil, int _col){
 }
 
 void Map::updateModel(){
+	int playersProcessed = 1;
 	for (int fil = 0; fil < rows; ++fil){
 		for (int col = 0; col < columns; ++col){
 			int type =  getTypebyFilCol(fil,col);
@@ -159,18 +201,24 @@ void Map::updateModel(){
 						type = default_null_tile;
 					}
 				}
-			map[fil][col] = type;
+			if(type == TYPE_PLAYER){
+				type = playersProcessed;
+				playersProcessed++;
+			}				
+			map[fil][col] = type;			
 		}
 	}
 }
 
 void Map::setRenderer(SDL_Renderer *_renderer){
 	winRenderer = _renderer;
-	mapHandler.setRenderer(winRenderer);	
+	mapHandler.setRenderer(winRenderer);
+	textPlayerHandler.setRenderer(winRenderer,yellow);	
 }
 
-void Map::createNewMap(int _rows, int _columns){
+void Map::createNewMap(int _rows, int _columns,int _maxplayer){
 	players =0;
+	playersPendings =_maxplayer;
 	for (int fil = 0; fil < _rows; ++fil){
 		std::vector<int> v1;
 		for (int col = 0; col < _columns; ++col){
@@ -184,68 +232,25 @@ void Map::openfromfile(std::string _path,std::string &_file){
 	YAML::Node config = YAML::LoadFile(_path + "/" + _file + ".yaml");
 	map = config["model"].as<std::vector<std::vector<int>>>();
 	players = config["players"].as<int>();	
+	playersPendings = 0;
+	//std::cout<<"pase"<<std::endl;
 }
 
-void Map::init(Settings &set, std::string &_name,bool create){
-	map.clear();
+void Map::init(Settings &set, std::string &_name,int _maxplayer,bool create){
+	map.clear();	
+	tileSet.clear();
 	if(create){
-		createNewMap(set.getRows(), set.getColumns());
+		createNewMap(set.getRows(), set.getColumns(),_maxplayer);
 	} else{
 		openfromfile(set.getPath(),_name);
 	}
 	rows = map.size();
 	columns = map[0].size();		
 	name = _name;	
-	
+	textPlayerHandler.setText(std::to_string(playersPendings));		
 	load();
 }
 
-void Map::setCamera(){		
-	camera.x = (xRelative)- camera.w/2; 
-	camera.y = (yRelative)- camera.h/2;
-
-	if( camera.x < 15 ){ 
-		camera.x = 15;
-	}
-	if( camera.y < 75 ){
-		camera.y = 75;
-	}
-}
-
-bool Map::checkCollision( SDL_Rect a, SDL_Rect b ){    
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
-    
-    leftA = a.x;
-    rightA = a.x + a.w;
-    topA = a.y;
-    bottomA = a.y + a.h;
-
-    leftB = b.x;
-    rightB = b.x + b.w;
-    topB = b.y;
-    bottomB = b.y + b.h;
-    
-    if( bottomA <= topB ){
-        return false;
-    }
-
-    if( topA >= bottomB ){
-        return false;
-    }
-
-    if( rightA <= leftB )
-    {
-        return false;
-    }
-
-    if( leftA >= rightB ) {
-        return false;
-    }    
-    return true;
-}
 std::vector<std::vector<int>> Map::getMap() const{
 	return map;
 }
