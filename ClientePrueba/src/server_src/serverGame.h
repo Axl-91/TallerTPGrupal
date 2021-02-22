@@ -38,6 +38,9 @@ public:
     void handleMissileExplosion(ServerMissile &missile);
 
     void update();
+    void updateMissiles();
+    void updatePlayers();
+
     void movePlayer(ServerPlayer &player);
     void handlePlayerShoot(ServerPlayer &player);
 

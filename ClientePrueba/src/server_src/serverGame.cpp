@@ -17,28 +17,14 @@ ServerGame::ServerGame(std::map<size_t, ServerPlayer> &p,
 //Genera actualizaciones en el mapa y 
 //el jugador de a acuerdo a los cambio en cada evento
 void ServerGame::update(){
+	updatePlayers();
+	updateMissiles();
+}
+
+
+
+void ServerGame::updateMissiles(){
 	Missile_t m;
-	//actualizar jugadores
-	for (auto &aPlayer: players){
-		if(aPlayer.second.isDead()==true)
-			aPlayer.second.tryToRespawn();
-		else{
-		    movePlayer(aPlayer.second);
-    		aPlayer.second.rotate();
-	    	if (aPlayer.second.isShooting() == true){
-        		handlePlayerShoot(aPlayer.second);
-    		}
-		}
-
-//		if (aPlayer.second.updateIsAvailable() == true){
-			updateHandler.updatePlayerPosition(aPlayer.second);
-			uQ.emplace(std::move(updateHandler));
-			aPlayer.second.updated();
-//		}
-	}
-
-	updateHandler.updated();
-
 	//actualizar misiles
 	for (auto it=missiles.begin(); it!=missiles.cend(); ){
 		moveMissile(it->second);
@@ -52,6 +38,25 @@ void ServerGame::update(){
 	}
 }
 
+void ServerGame::updatePlayers(){
+	//actualizar jugadores
+	for (auto &aPlayer: players){
+		if(aPlayer.second.isDead()==true)
+			aPlayer.second.tryToRespawn();
+		else{
+		    movePlayer(aPlayer.second);
+    		aPlayer.second.rotate();
+	    	if (aPlayer.second.isShooting() == true){
+        		handlePlayerShoot(aPlayer.second);
+    		}
+		}
+		updateHandler.updatePlayerPosition(aPlayer.second);
+		uQ.emplace(std::move(updateHandler));
+		aPlayer.second.updated();
+	}
+	updateHandler.updated();
+}
+
 void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	float wallDist = shootRaycaster(player);
 	float coef=0;
@@ -59,7 +64,7 @@ void ServerGame::handlePlayerShoot(ServerPlayer &player){
 	bool shootMissile;
 
 	damage = player.shoot(shootMissile);
-	if(shootMissile ==false){
+	if(shootMissile == false){
 		for (auto &p: players){
 			if (p.first == player.getID())
 				continue;

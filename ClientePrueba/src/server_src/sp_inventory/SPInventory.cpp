@@ -36,7 +36,7 @@ SPInventory::~SPInventory(){
 void SPInventory::respawn(){
     if(weapons[WP_SECONDARY]!=NULL){
         delete weapons[WP_SECONDARY];
-        weapons[WP_SECONDARY]=NULL;
+        weapons[WP_SECONDARY] = NULL;
     }
 }
 

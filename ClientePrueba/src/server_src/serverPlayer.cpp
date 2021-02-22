@@ -227,7 +227,7 @@ void ServerPlayer::respawn(){
 	health = 100;
 	ammo = INITIAL_PLAYER_AMMO;
 	dead=false;
-//	inventory.respawn();
+	inventory.respawn();
 }
 
 void ServerPlayer::beDamaged(int damage){

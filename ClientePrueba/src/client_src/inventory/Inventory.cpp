@@ -40,6 +40,14 @@ PlayerWeapon* Inventory::getWeapon(PlayerWeapon* pw, int i){
 bool Inventory::equip(weapon_t w){
     weapon_t last;
 
+    if(w == NONE){
+        if(weapons[WP_SECONDARY]!=NULL){
+            delete weapons[WP_SECONDARY];
+            weapons[WP_SECONDARY]=NULL;
+        }
+        return false;
+    }
+
     if(weapons[WP_SECONDARY]!=NULL){
         if(w == weapons[WP_SECONDARY]->getType()){
             return false;
