@@ -67,6 +67,8 @@
 
 #define IMMOVABLE_WALL_OFFSET 400
 
+#define INITIAL_PLAYER_POS_OFFSET 0
+#define MAX_PLAYERS 10
 
 /***************************************************************************/
 //

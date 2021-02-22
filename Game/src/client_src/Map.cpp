@@ -47,6 +47,9 @@ void Map::load(std::vector<std::vector<int>> lvl){
 				map[i][j]-=MOVABLE_DOOR_OFFSET;
 			}
 
+			if(map[i][j]>=INITIAL_PLAYER_POS_OFFSET && map[i][j]<MAX_PLAYERS)
+				map[i][j]=0;
+
 			if(map[i][j]>=IMMOVABLE_OBJECT_OFFSET&&map[i][j]<IMMOVABLE_OBJECT_OFFSET+COLLIDABLE_OFFSET){
 				insertObject(j,i,map[i][j]-IMMOVABLE_OBJECT_OFFSET_VALUE);
 				map[i][j]=0;

@@ -60,7 +60,8 @@ private:
 
     size_t connectionNumber;
     ServerGame game;
-    void initializeInitPosition();
+    
+    void initializeInitPosition(std::vector<std::vector<int>> &map);
     void initializeMaps();
     void welcomeUser(User* user);
     Bot bot;

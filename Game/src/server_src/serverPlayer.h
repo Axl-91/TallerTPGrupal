@@ -85,7 +85,6 @@ public:
     void setMoveOrientation(player_move_orientation_t o);
     void seteRotateOrientation(player_rotate_orientation_t o);
     float getDist(ServerPlayer &enemy);
-    bool useBullets();
 
     void move();
     void setCurrentWeapon(player_weapons_t aWeapon);

@@ -9,6 +9,8 @@
 #define COEF_SHOOTING_ANGLE_DIVISOR 96
 #define INITIAL_PLAYER_AMMO 8
 #define TIME_TO_RESPAWN 2000
+#define MAX_BLOOD_HEAL_PLAYER 10
+
 
 //funcion para debugear
 int toGrados(float radiales){
@@ -195,15 +197,6 @@ int ServerPlayer::shoot(bool &shootMissile){
 	return weaponDamage;
 }
 
-// bool ServerPlayer::useBullets(){
-// 	int bullets = currentWeapon->getUsedBullets();
-// 	if(ammo-bullets <0)
-// 		return false;
-	
-// 	ammo -= bullets;
-// 	return true;
-// }
-
 float ServerPlayer::getDist(ServerPlayer &enemy){
 	Vector pPos(position.x, position.y);
 	Vector ePos(enemy.position.x, enemy.position.y);
@@ -274,7 +267,8 @@ float ServerPlayer::getAngle(){
 }
 
 int ServerPlayer::heal(int h){
-	if (health >= MAX_HEALTH)
+	if (health >= MAX_HEALTH 
+	|| (h == HEAL_BLOOD && health > MAX_BLOOD_HEAL_PLAYER))
 		return 0;
 	updateAvailable = true;
 

@@ -17,8 +17,6 @@ root(0, 0, cols*cellWidth, rows*cellWidth, "root", 1, cellWidth){
             if(map[i][j]!=0){
                 if((aux=maker->makeCollidable(j, i, cellWidth, map[i][j]))!=NULL)
                 root.insert(aux);
-
-                // root.insert(maker->makeCollidable(j, i, cellWidth, map[i][j]));
             }
         }
     }
