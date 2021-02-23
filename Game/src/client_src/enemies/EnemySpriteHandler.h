@@ -7,6 +7,7 @@
 #include "../SpritesHandler.h"
 #include "../../common_src/types.h"
 #include "../../common_src/Vector.h"
+#include "../SDL_Sounds.h"
 #include <chrono>
 
 
@@ -69,6 +70,9 @@ protected:
     float movingFrameTime;
     float shootingFrameTime;
     float deadFrameTime;
+    
+    SDL_Sounds enemySounds;
+    bool soundOn = false;
 
 public:
     EnemySpriteHandler(std::vector<std::string> &EnemiesSprites);

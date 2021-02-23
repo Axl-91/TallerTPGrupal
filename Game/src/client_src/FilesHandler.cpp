@@ -6,12 +6,9 @@ FilesHandler::FilesHandler(const std::string &nameString){
 }
 
 void FilesHandler::createVectorFiles(){
-    while (true){
+    while (!streamFiles.eof()){
         std::string stringFile;
-        std::getline(streamFiles, stringFile);
-        if (streamFiles.eof()){
-            return;
-        }
+        std::getline(streamFiles, stringFile, '\n');
         vectorFiles.push_back(stringFile);
     }
 }

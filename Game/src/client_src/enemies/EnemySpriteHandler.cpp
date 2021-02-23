@@ -23,6 +23,7 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     float auxAngle=enemyPos.getAngle(posPlayer);
 
     if(enemy.playerInfo.dead == true){
+        enemySounds.playEffect(PLAYER_DIE, 5);
         sprite = deadFramesOffset + enemy.dead_frame;
         return;
     }
@@ -48,7 +49,23 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
             //si el enemigo esta de frente y esta disparando, se ve la animacion de disparo
             if(enemy.playerInfo.shootingState!=SHOOTING_STATE_QUIET 
             || enemy.shooting_frame!=0){
+                if (!soundOn){
+                    if (type == HOUND){
+                        enemySounds.playEffect(KNIFE_STAB, 10);
+                    } else if (type == GUARD){
+                        enemySounds.playEffect(GUN_SHOT, 10);
+                    } else if (type == OFFICIAL){
+                        enemySounds.playEffect(RIFLE_SHOT, 10);
+                    } else if (type == SS){
+                        enemySounds.playEffect(MINIGUN_SHOT, 10);
+                    } else {
+                        enemySounds.playEffect(ROCKET_SHOT, 10);
+                    }
+                    soundOn = true;
+                }
+                
                 sprite = enemy.shooting_frame + shootingFramesOffset;
+                
                 return;
             }
 
@@ -67,7 +84,7 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     } else if (angleDif > 292.5  && angleDif <= 337.5){
         sprite += 7;
     }
-
+    soundOn = false;
 }
 
 void EnemySpriteHandler::defineFrame(Enemy_t &enemy){
