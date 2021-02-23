@@ -5,10 +5,9 @@
 #include "../../common_src/types.h"
 
 class Rectangle{
-//    float xInit, yInit, xEnd, yEnd; // coordenadas x,y en el plano / ancho y alto del plano
-
+    // coordenadas x,y en el plano / ancho y alto del plano
+    float xInit, yInit, xEnd, yEnd; 
 public:
-    float xInit, yInit, xEnd, yEnd; // coordenadas x,y en el plano / ancho y alto del plano
 
     Rectangle();
     Rectangle(int x_, int y_, int w_, int h_);
