@@ -1,4 +1,0 @@
-/home/axel/Descargas/Taller/TallerTPGrupal/Editor/project/build/arrow.png
-/home/axel/Descargas/Taller/TallerTPGrupal/Editor/project/build/background.png
-/home/axel/Descargas/Taller/TallerTPGrupal/Editor/project/build/wolfenstein.ttf
-/home/axel/Descargas/Taller/TallerTPGrupal/Editor/project/build/nivel.yaml

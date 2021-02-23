@@ -1,9 +1,0 @@
-#1 Instalar librerias de SDL2 (Image y TTF incluidas)
-#2 Instalar última versión yaml-cpp:
-	https://github.com/jbeder/yaml-cpp/tags
-#3 Cmake:
-	3.1 Crear director build
-	3.2 Ejecutar cmake ..
-	3.3 make install
-	3.4 make
-	3.4 ./Editor

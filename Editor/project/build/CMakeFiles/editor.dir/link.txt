@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11  -rdynamic CMakeFiles/editor.dir/src/main.cpp.o  -o editor  libsdl-lib.a -lSDL2 -lSDL2_image -lSDL2_ttf -lyaml-cpp 
