@@ -45,26 +45,7 @@ target_link_libraries(client SDL2 SDL2_image SDL2_ttf SDL2_mixer pthread)
 target_link_libraries(server pthread)
 target_link_libraries(editor sdl-lib SDL2 SDL2_image SDL2_ttf ${YAMLCPP_LIBRARIES})
 
-file(COPY Editor/data/maps DESTINATION ${CMAKE_BINARY_DIR})
-
 install(DIRECTORY
 Game/Media
-DESTINATION ${CMAKE_BINARY_DIR})
-
-install(FILES 
-Editor/data/tiles.png
-Editor/data/SelectionMenu.png
-Editor/data/Save.png
-Editor/data/Main.png
-Editor/data/Options.png
-Editor/data/MainMenuEdit.png
-Editor/data/splash.png
-Editor/data/nivel.yaml
-Editor/data/MainMenu.png
-Editor/data/MapMenu.png
-Editor/data/OptionsMenu.png
-Editor/data/MainCreate.png
-Editor/data/Players.png
-Editor/data/beamweapon.ttf
-Editor/data/config.yaml
+Editor/Media
 DESTINATION ${CMAKE_BINARY_DIR})
