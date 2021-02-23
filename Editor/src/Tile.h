@@ -7,6 +7,7 @@
 #include <string>
 
 const int TILE_SIZE = 16;
+const int TILE_MAP = 12;
 const int TILE_OPTION = 64;
 
 class Tile{

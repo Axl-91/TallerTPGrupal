@@ -74,6 +74,7 @@ public:
 	std::vector<std::vector<int>> getMap() const;
 	std::string getMapName() const;
 	bool getCanExit() const;
+	bool isConflictLine(int fil, int col, int &typeOri);
 	void render();
 	void update();	
 	~Map();

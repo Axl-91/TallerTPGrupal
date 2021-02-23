@@ -33,7 +33,7 @@ void Map::renderMap(){
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 			Tile tile = opt.at((*it).getType());
 			mapHandler.setSrc(tile.getFactx(),tile.getFacty(),TILE_OPTION,TILE_OPTION);
-			mapHandler.render((*it).getX()+x, (*it).getY()+y, TILE_SIZE, TILE_SIZE);						
+			mapHandler.render((*it).getX()+x, (*it).getY()+y, TILE_MAP, TILE_MAP);						
 	}
 }	
 
@@ -51,7 +51,7 @@ void Map::load(){
 			if((type<=10)&& (type>default_tile)){
 				type = TYPE_PLAYER;
 			}
-			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type,fil,col);						
+			Tile tile = Tile(TILE_MAP*col,TILE_MAP*fil,type,fil,col);						
 			tileSet.push_back(tile);
 		}
 	}	
@@ -126,33 +126,46 @@ void Map::changeSelected(){
     }			
 }
 
+bool Map::isConflictLine(int fil, int col,int &typeOri){
+	if((col == 0 ) || (col == columns -1) || 
+				(fil == 0) || (fil == rows -1)){
+					if((typeOri < 400) || (typeOri >= 499)){
+						return true;
+					}
+		}		
+	return false;
+}
+
 void Map::putTileMap(){
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 		if((*it).existPosition(xRelative,yRelative,x,y)){
 			int typeOri = selected.getType();
-			int typeDest = (*it).getType();
-			if((typeOri !=TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
-				if(typeOri == typeDest){					
-					(*it).setType(default_tile);
-				}else{
-					(*it).setType(typeOri);
+			int typeDest = (*it).getType();			
+			bool conflict = isConflictLine((*it).getfil(),(*it).getcol(),typeOri);
+			if(!conflict){
+				if((typeOri !=TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
+					if(typeOri == typeDest){					
+						(*it).setType(default_tile);
+					}else{
+						(*it).setType(typeOri);
+					}
+				}else if((typeOri ==TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
+					if(playersPendings>0){
+						playersPendings--;
+						players++;
+						(*it).setType(typeOri);									
 				}
-			}else if((typeOri ==TYPE_PLAYER)&&(typeDest!=TYPE_PLAYER)){
-				if(playersPendings>0){
-					playersPendings--;
-					players++;
-					(*it).setType(typeOri);									
-			}
-			}else if((typeOri!=TYPE_PLAYER)&&(typeDest==TYPE_PLAYER)){
-				playersPendings++;
-				players--;
-				(*it).setType(typeOri);	
-			} else if(typeOri == typeDest==TYPE_PLAYER){
-				(*it).setType(default_tile);
-				playersPendings++;
-				players--;				
-			}else {
-				(*it).setType(typeOri);	
+				}else if((typeOri!=TYPE_PLAYER)&&(typeDest==TYPE_PLAYER)){
+					playersPendings++;
+					players--;
+					(*it).setType(typeOri);	
+				} else if(typeOri == typeDest==TYPE_PLAYER){
+					(*it).setType(default_tile);
+					playersPendings++;
+					players--;				
+				}else {
+					(*it).setType(typeOri);	
+				}
 			}
 		}	
 	}	
@@ -201,7 +214,7 @@ void Map::updateModel(){
 					if((type < default_null_tile) || (type >= default_null_tile+11)){
 						type = default_null_tile;
 					}
-				}
+				}			
 			if(type == TYPE_PLAYER){
 				type = playersProcessed;
 				playersProcessed++;
