@@ -53,24 +53,39 @@ void AILua::makeDecision(event_t &event){
     if(checkForEnemiesInSight(event, aux) == true){
         Vector posPropia(position.x, position.y);
         float distance = posPropia.getDistance(aux);
-        float relativeAng = posPropia.getAngle(aux);
-        if(relativeAng < 0)
-            relativeAng += 2*PI;
-        if(relativeAng >= 2*PI)
-            relativeAng -= 2*PI;
+        float anguloObj = posPropia.getAngle(aux);
+        if(anguloObj < 0)
+            anguloObj += 2*PI;
+        if(anguloObj >= 2*PI)
+            anguloObj -= 2*PI;
 
         std::cout << "posPerro " << posPropia << std::endl;
         std::cout << "posPlayer: " << aux << std::endl;
-        std::cout << "relativeAng: " << relativeAng *180/PI << std::endl;
+        std::cout << "relativeAng: " << anguloObj *180/PI << std::endl;
         std::cout << "angPerro: " << ang *180/PI << std::endl <<std::endl<< std::endl;
 
-        follow(event, relativeAng, distance);
+        follow(event, anguloObj, distance);
         // std::cout << "vi a alguien" << std::endl;
         attackModeOn = true;
-        } 
-        if(!attackModeOn){
-            // noEnemyAtSight(event);
+    } else{
+        if(moving){
+            event = PLAYER_STOP_MOVING;
+            moving = false;
+        } else{
+            event = PLAYER_START_ROTATING_RIGHT;
+            rotating = true;
         }
+    }
+
+        // if(!attackModeOn){
+        // if(moving){
+        //     event = PLAYER_STOP_MOVING;
+        //     moving = false;
+        // } else{
+        //     event = PLAYER_START_ROTATING_RIGHT;
+        //     rotating = true;
+        // }
+//    }
 
     return;
 }
@@ -110,7 +125,7 @@ std::vector<Player_t> AILua::orderEnemies(Vector &pos){
 }
 
 bool AILua::checkForEnemiesInSight(event_t &event, Vector &auxVector){
-    // std::cout << "AI.Lua. 97, tamño de enemies: " << enemies.size() << std::endl;
+     std::cout << "AI.Lua. 97, tamño de enemies: " << enemies.size() << std::endl;
     renderRaycaster();
     int one = 1;
     Vector posPlayer = Vector(position.x, position.y);
@@ -119,42 +134,33 @@ bool AILua::checkForEnemiesInSight(event_t &event, Vector &auxVector){
     for (int obj = 0; obj < orderedEnemies.size(); ++obj){
         Vector enemyPos(orderedEnemies[obj].x, orderedEnemies[obj].y);
         
-        if (!lua.isVisible(posPlayer, enemyPos, ang)){
-            // if(distObj < 60){
-            //     event = PLAYER_START_ROTATING_RIGHT;
-            // }
+        if (!objIsVisible(enemyPos)){
             continue;
         }
 
-            // std::cout << "position.x: " << x << std::endl;
-            // std::cout << "position.y: " << x << std::endl;
         Vector pos(position.x, position.y);
         float distance = pos.getDistance(enemyPos); 
         float anguloObj = pos.getAngle(enemyPos);
+
+        if(anguloObj < 0)
+            anguloObj += 2*PI;
+        if(anguloObj >= 2*PI)
+            anguloObj -= 2*PI;
+
         float difAng = ang - anguloObj;
 
-        if (difAng < -PI){
+        if(difAng < 0)
             difAng += 2*PI;
-        }
-        if (difAng > PI){
+        if(difAng >= 2*PI)
             difAng -= 2*PI;
-        }
-        if(difAng<0)
-            difAng=-difAng;
+
         //se forma un triangulo rectangulo con posicion del jugador,
         //direccion de tiro y posicion del enemigo
         float op=sin(difAng)*distance; //cateto opuesto
         float ad=cos(difAng)*distance; //cateto adyacente
  
-        // std::cout << "distbuffer[0]: " << distBuffer[0] << std::endl;
-
-            // std::cout << "anguloObj: " << anguloObj << std::endl;
         int x = (int)(30*PI/180 + anguloObj- ang ) / 0.1875;
-            // std::cout << "x: " << x << std::endl;
         if(distance < distBuffer[x] && distance < distBuffer[x+1]){
-            // std::cout << "distance: " << distance << std::endl;
-            // std::cout << "distbuffer[x]: " << distBuffer[x] << std::endl;
-            // std::cout << "distbuffer[x+1]: " << distBuffer[x+1] << std::endl;
             float auxFloat = enemyPos.getX();
             auxVector.setX(auxFloat);
             auxFloat = enemyPos.getY();
@@ -166,7 +172,6 @@ bool AILua::checkForEnemiesInSight(event_t &event, Vector &auxVector){
 
     }
         return false;
-    // noEnemyAtSight(event);
 }
 
 void AILua::noEnemyAtSight(event_t &event){
@@ -181,27 +186,34 @@ void AILua::noEnemyAtSight(event_t &event){
     }    
 }
 
-void AILua::follow(event_t &event, float &relativeAng, float &dist){
-    std::cout << "relativeAng - angPerro:" <<  (180/PI)*(relativeAng - ang) << std::endl;
-    // if(dist < 100){
+void AILua::follow(event_t &event, float &anguloObj, float &dist){
+    std::cout << "relativeAng - angPerro:" <<  (180/PI)*(anguloObj - ang) << std::endl;
+    if(dist < 100){
+            event = PLAYER_SHOOT;
+            return;
+    // }else{
+    //     if(shootingState != SHOOTING_STATE_QUIET)
 
-    //         event = PLAYER_SHOOT;
-    //         return;
-        
-    // }
-    // else 
-    if(relativeAng-ang >= 15*PI/180){
+    }
+    float relativeAng;
+    float auxAngle;
+    if(anguloObj-ang >5.5){
+        relativeAng = auxAngle-ang - 2*PI;
+    }else if(anguloObj-ang<-5.5){
+        relativeAng = anguloObj-auxAngle+ 2*PI;
+    }else
+        relativeAng = anguloObj-ang;
+
+    if(relativeAng >= 15*PI/180){
         if(moving){
             event = PLAYER_STOP_MOVING;
             moving = false;
         } else{
-
             event = PLAYER_START_ROTATING_RIGHT;
             rotating = true;
         }
     }
-    // else 
-    else if(relativeAng-ang <= -15*PI/180){
+    else if(relativeAng <= -15*PI/180){
         if(moving){
             event = PLAYER_STOP_MOVING;
             moving = false;
@@ -210,8 +222,7 @@ void AILua::follow(event_t &event, float &relativeAng, float &dist){
             rotating = true;
         }
     }
-    else if(relativeAng-ang < 15*PI/180 && relativeAng-ang > -15*PI/180){
-        std::cout << "entro a centro " << std::endl;
+    else /*if(relativeAng < 15*PI/180 && relativeAng > -15*PI/180)*/{
         if(rotating){
             event = PLAYER_STOP_ROTATING;
             rotating = false;
