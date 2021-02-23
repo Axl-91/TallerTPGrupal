@@ -150,6 +150,7 @@ void Menu::renderTextMap(){
 	if (numChange){
 		numPlayerHandler.setText(vectorNumbers[cantPlayers]);
 		numBotsHandler.setText(vectorNumbers[cantBots]);
+		numChange = false;
 	}
 	int sizeNums = 7;
 	posX = 161;
@@ -410,6 +411,7 @@ void Menu::selectMap(){
 						if (vectorMaps.size() > 0){
 							mapName = vectorMaps[mapPos];
 							mapChange = true;
+							numChange = true;
 							selected = true;
 						}
 						break;
