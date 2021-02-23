@@ -6,9 +6,8 @@
 
 class Immovable: public Collidable{
 private:
-    /* data */
 public:
-    Immovable(/* args */);
+    Immovable();
     ~Immovable();
     bool collide(ServerMissile &m) override;
 

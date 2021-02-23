@@ -19,6 +19,10 @@ public:
     bool contains(circle &c);
 
     friend std::ostream & operator<< (std::ostream &os, Rectangle &r);
+    float getxInit();
+    float getyInit();
+    float getxEnd();
+    float getyEnd();
 
 };
 

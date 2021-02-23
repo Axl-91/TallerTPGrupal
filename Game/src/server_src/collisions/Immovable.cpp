@@ -3,8 +3,6 @@
 
 Immovable::Immovable(/* args */){
 }
-
-
 Immovable::~Immovable(){
 }
 

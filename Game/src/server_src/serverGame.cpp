@@ -87,8 +87,9 @@ void ServerGame::addMissile(ServerPlayer &player,int damage){
 	ang = player.getAngle();
 	player.getPosition(x, y);
     player.getDirection(dX, dY);
-
-	ServerMissile m(ID, x+dX*5, y+dY*5, ang, dX, dY, damage);
+	float missileStartX = x + (dX/PLAYER_STEP)*2*player.getRadius();
+	float missileStartY = y + (dY/PLAYER_STEP)*2*player.getRadius();
+	ServerMissile m(ID, missileStartX ,missileStartY , ang, dX, dY, damage);
 	missiles.emplace(ID, m);
 }
 

@@ -8,6 +8,8 @@
 #include "sp_inventory/SPWeapon.h"
 #include "sp_inventory/SPInventory.h"
 
+#define PLAYER_STEP 3
+
 
 
 //
@@ -96,7 +98,7 @@ public:
     int reload(int ammo);
     int grabKey(game_key_t k);
     int addPoints(int p);
-
+    float getRadius();
     size_t getID();
 };
 

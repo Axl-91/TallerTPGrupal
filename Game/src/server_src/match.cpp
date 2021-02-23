@@ -95,6 +95,7 @@ void Match::initializeInitPosition(std::vector<std::vector<int>> &map){
 		for (int j = 0; j < cols; ++j){
 			if(map[i][j]>INITIAL_PLAYER_POS_OFFSET && map[i][j]<MAX_PLAYERS){
                 initPos pos={j*64+32, i*64+32};
+
                 std::cout<<"map: "<<map[i][j]<<std::endl;
 
                 std::cout<<"pos: "<<std::endl;
@@ -102,6 +103,9 @@ void Match::initializeInitPosition(std::vector<std::vector<int>> &map){
 
                 initPositions.emplace(playersCounter, pos);
                 playersCounter++;
+                if(map[i][j]<300)
+                    map[i][j]=0;
+
             }
         }
     }

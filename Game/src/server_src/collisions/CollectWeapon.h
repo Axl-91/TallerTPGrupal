@@ -9,8 +9,6 @@ class CollectWeapon: public Collectible{
 public:
     CollectWeapon(int xI, int yI, int cellWidth, int w);
     int collide(ServerPlayer &p) override;
-    // bool detectCollision(circle &c, float dX,float dY) override;
-
     ~CollectWeapon();
 };
 

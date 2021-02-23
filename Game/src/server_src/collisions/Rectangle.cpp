@@ -31,6 +31,21 @@ bool Rectangle::contains(float x, float y) {
     return contX && contY;
 }
 
+
+float Rectangle::getxInit(){
+    return xInit;
+}
+float Rectangle::getyInit(){
+    return yInit;
+}
+float Rectangle::getxEnd(){
+    return xEnd;
+}
+float Rectangle::getyEnd(){
+    return yEnd;
+}
+
+
 std::ostream & operator<< (std::ostream &os, Rectangle &r){
     os<<"xInit: "<<r.xInit<<std::endl;
     os<<"xEnd: "<<r.xEnd<<std::endl;

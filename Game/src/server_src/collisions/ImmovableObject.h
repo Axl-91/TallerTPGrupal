@@ -2,7 +2,6 @@
 #define _IMMOVABLE_OBJECT_H_
 
 #include "Immovable.h"
-// #include "Collidable.h"
 
 class ImmovableObject: public Immovable{
 

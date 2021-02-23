@@ -65,10 +65,10 @@ bool QuadNode::insert(Collidable *point){//Método que inserta puntos en el árb
 }
 
 void QuadNode::split(){ //método que divide el nodo en 4 subnodos
-    int x= bounds.xInit;
-    int y= bounds.yInit;
-    int w= bounds.xEnd;
-    int h= bounds.yEnd;
+    int x= bounds.getxInit();
+    int y= bounds.getyInit();
+    int w= bounds.getxEnd();
+    int h= bounds.getyEnd();
     int dX=(w - x)/2;
     int dY=(h - y)/2;
     std::vector<Collidable*> aux;

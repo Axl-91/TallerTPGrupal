@@ -18,8 +18,6 @@ Collectible(xI, yI, cellWidth){
 }
 
 int CollectTreasure::collide(ServerPlayer &p){
-    std::cout<<"colision cura"<<std::endl;
-
     return (int)p.addPoints(points)+TREASURE_OFFSET;
 }
 

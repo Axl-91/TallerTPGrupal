@@ -12,8 +12,7 @@
 
 
 #define PLAYER_RADIUS 16
-#define PLAYER_STEP 5
-#define PLAYER_ROTATE_STEP PI/36
+#define PLAYER_ROTATE_STEP PI/72
 #define PLAYER_MAX_HEALT 100
 #define PLAYER_INITIAL_AMMO 8
 #define PLAYER_INITIAL_LIFES 3
@@ -165,6 +164,11 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	float anguloObj = pos.getAngle(enemyPos);
 	float difAng = ang - anguloObj;
 
+	if(abs(difAng)>PI/2){
+		coef = 0;
+		return;
+	}
+
 	if (difAng < -PI){
 		difAng += 2*PI;
 	}
@@ -172,7 +176,7 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 		difAng -= 2*PI;
 	}
 	if (difAng < 0)
-		difAng =- difAng;
+		difAng = -difAng;
 	//se forma un triangulo rectangulo con posicion del jugador,
 	//direccion de tiro y posicion del enemigo
 	float op = sin(difAng) * distance; //cateto opuesto
@@ -196,6 +200,10 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 
 	if(coef > 1)
 		coef = 1;
+}
+
+float ServerPlayer::getRadius(){
+	return position.radius;
 }
 
 

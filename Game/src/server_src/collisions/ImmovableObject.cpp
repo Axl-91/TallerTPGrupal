@@ -4,10 +4,10 @@
 
 ImmovableObject::ImmovableObject(int xI, int yI, int cellWidth, int wall)
 {
-    xInit=xI*cellWidth;
-    xEnd=xI*cellWidth+cellWidth;
-    yInit=yI*cellWidth; 
-    yEnd=yI*cellWidth+cellWidth;
+    xInit=xI*cellWidth+cellWidth/4;
+    xEnd=xI*cellWidth+cellWidth-cellWidth/4;
+    yInit=yI*cellWidth+cellWidth/4; 
+    yEnd=yI*cellWidth+cellWidth-cellWidth/4;
 }
 
 ImmovableObject::~ImmovableObject(){}
@@ -22,9 +22,11 @@ int ImmovableObject::collide(ServerPlayer &p){
     p.getPosition(x,y);
     p.getDirection(dX,dY);
 
-    if((xInit<x+16 && xEnd>x+16)==false && (xInit<x-16 && xEnd>x-16)==false)
+    if((xInit<x+p.getRadius() && xEnd>x+p.getRadius())==false 
+    && (xInit<x-p.getRadius() && xEnd>x-p.getRadius())==false)
         dX=0;
-    if((yInit<y+16 && yEnd>y+16)==false && (yInit<y-16 && yEnd>y-16)==false)
+    if((yInit<y+p.getRadius() && yEnd>y+p.getRadius())==false && 
+    (yInit<y-p.getRadius() && yEnd>y-p.getRadius())==false)
         dY=0;
 
     p.setDirection(dX, dY);
