@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+SDL_Sounds* SDL_Sounds::soundInstance = 0;
+
 SDL_Sounds::SDL_Sounds(): 
     fileSFX("Media/SoundEffects/SoundEffects.txt"),
     fileMusic("Media/Music/Music.txt")
@@ -59,13 +61,19 @@ void SDL_Sounds::freeVectors(){
     for (int i; i < vectorChunks.size(); i++){
         Mix_FreeChunk(vectorChunks[i]);
     }
+    vectorChunks.clear();
     for (int j; j < vectorMusic.size(); j++){
         Mix_FreeMusic(vectorMusic[j]);
     }
+    vectorMusic.clear();
+}
+
+void SDL_Sounds::close(){
+    delete soundInstance;
+    soundInstance = 0;
 }
 
 SDL_Sounds::~SDL_Sounds(){
-    std::cout << "Endl" << std::endl;
     freeVectors();
     Mix_CloseAudio();
     Mix_Quit();

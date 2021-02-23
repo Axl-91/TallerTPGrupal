@@ -66,7 +66,7 @@ private:
 	int &winHeight;
 	SDL_Window* menuWindow;
 	SDL_Renderer* menuRenderer;
-	SDL_Sounds menuSounds;
+	SDL_Sounds* menuSounds = SDL_Sounds::getInstance();
 
 	std::string fileMenus = "Media/Menu/menusFiles.txt";
 	std::string fileSelector = "Media/Menu/SelectionMenu.png";

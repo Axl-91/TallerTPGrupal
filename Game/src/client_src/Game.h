@@ -24,7 +24,7 @@ private:
     int largoReal = 320;
     int altoReal = 240;
 	bool gameOver = false;
-	SDL_Sounds gameSounds;
+	SDL_Sounds* gameSounds = SDL_Sounds::getInstance();
 	int winLargo;
 	int winAlto;
 	Map mapGame;

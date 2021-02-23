@@ -29,7 +29,7 @@ void PWMachineGun::render(int posX, int posY){
         frame = frameAuxiliar;
 
         if (!soundOn){
-            gunSounds.playEffect(RIFLE_SHOT, 20);
+            gunSounds->playEffect(RIFLE_SHOT, 20);
             soundOn = true;
         }
 

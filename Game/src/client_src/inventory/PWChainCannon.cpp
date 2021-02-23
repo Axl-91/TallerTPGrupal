@@ -29,7 +29,7 @@ void PWChainCannon::render(int posX, int posY){
 
         if (shootingState == SHOOTING_STATE_SHOOTING){
             if (!soundOn){
-                gunSounds.playEffect(MINIGUN_SHOT, 20);
+                gunSounds->playEffect(MINIGUN_SHOT, 20);
                 soundOn = true;
             }
             if (frame > 3){

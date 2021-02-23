@@ -21,20 +21,28 @@ enum MUSIC {
 class SDL_Sounds{
 
 public:
-    SDL_Sounds();
+    static SDL_Sounds* getInstance() {
+        if (soundInstance == 0){
+            soundInstance = new SDL_Sounds();
+        }
+        return soundInstance;
+    }
     void playEffect(const int &type, const int &vol);
     void playMusic(const int &type, const int &vol);
     void stopMusic();
-    ~SDL_Sounds();
+    void close();
+    
 private:
     static SDL_Sounds* soundInstance;
     FilesHandler fileSFX;
     FilesHandler fileMusic;
     std::vector<Mix_Chunk*> vectorChunks;
     std::vector<Mix_Music*> vectorMusic;
+    SDL_Sounds();
     void loadChunk(std::string &nameChunk);
     void loadMusic(std::string &nameMusic);
     void freeVectors();
+    ~SDL_Sounds();
 };
 
 #endif

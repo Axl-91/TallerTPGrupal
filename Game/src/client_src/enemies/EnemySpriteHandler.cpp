@@ -23,7 +23,7 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
     float auxAngle=enemyPos.getAngle(posPlayer);
 
     if(enemy.playerInfo.dead == true){
-        enemySounds.playEffect(PLAYER_DIE, 5);
+        enemySounds->playEffect(PLAYER_DIE, 5);
         sprite = deadFramesOffset + enemy.dead_frame;
         return;
     }
@@ -51,15 +51,15 @@ void EnemySpriteHandler::defineSprite(Enemy_t &enemy, Vector &posPlayer, int &sp
             || enemy.shooting_frame!=0){
                 if (!soundOn){
                     if (type == HOUND){
-                        enemySounds.playEffect(KNIFE_STAB, 10);
+                        enemySounds->playEffect(KNIFE_STAB, 10);
                     } else if (type == GUARD){
-                        enemySounds.playEffect(GUN_SHOT, 10);
+                        enemySounds->playEffect(GUN_SHOT, 10);
                     } else if (type == OFFICIAL){
-                        enemySounds.playEffect(RIFLE_SHOT, 10);
+                        enemySounds->playEffect(RIFLE_SHOT, 10);
                     } else if (type == SS){
-                        enemySounds.playEffect(MINIGUN_SHOT, 10);
+                        enemySounds->playEffect(MINIGUN_SHOT, 10);
                     } else {
-                        enemySounds.playEffect(ROCKET_SHOT, 10);
+                        enemySounds->playEffect(ROCKET_SHOT, 10);
                     }
                     soundOn = true;
                 }

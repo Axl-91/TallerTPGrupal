@@ -30,7 +30,7 @@ void PWKnife::render(int largoWin, int altoWin){
         frame = frameAuxiliar;
 
         if (!soundOn){
-            gunSounds.playEffect(KNIFE_STAB, 20);
+            gunSounds->playEffect(KNIFE_STAB, 20);
             soundOn = true;
         }
 

@@ -32,7 +32,7 @@ void PWGun::render(int largoWin, int altoWin){
         frame = frameAuxiliar;
 
         if (!soundOn){
-            gunSounds.playEffect(GUN_SHOT, 20);
+            gunSounds->playEffect(GUN_SHOT, 20);
             soundOn = true;
         }
 

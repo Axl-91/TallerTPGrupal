@@ -71,7 +71,7 @@ protected:
     float shootingFrameTime;
     float deadFrameTime;
     
-    SDL_Sounds enemySounds;
+    SDL_Sounds* enemySounds = SDL_Sounds::getInstance();
     bool soundOn = false;
 
 public:

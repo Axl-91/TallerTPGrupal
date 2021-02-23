@@ -29,7 +29,7 @@ Menu::Menu(ClientReceiver &r,
 {
 		initialize();
 		createText();
-		menuSounds.playMusic(MENU_MUSIC, volMusic);
+		menuSounds->playMusic(MENU_MUSIC, volMusic);
 }
 
 void Menu::createText(){
@@ -819,7 +819,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_DOWN:
-					menuSounds.playEffect(MENU_MOVE, volSFX);
+					menuSounds->playEffect(MENU_MOVE, volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_DOWN);
@@ -839,7 +839,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_UP:
-					menuSounds.playEffect(MENU_MOVE, volSFX);
+					menuSounds->playEffect(MENU_MOVE, volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_UP);
@@ -859,7 +859,7 @@ void Menu::pollEvent(){
 					}
 					break;
 				case SDLK_RETURN:
-					menuSounds.playEffect(MENU_SELECT,volSFX);
+					menuSounds->playEffect(MENU_SELECT,volSFX);
 					switch (menu){
 						case MENU_MAIN:
 							pollEventMain(KEY_ENTER);
@@ -941,6 +941,7 @@ Menu::~Menu(){
 	}
 	TTF_Quit();
 	SDL_Quit();
+	menuSounds->close();
 }
 bool Menu::joinedMatch(){
 	return hasJoinGame | hasCreateGame;
