@@ -3,6 +3,7 @@
 
 Map::Map():mapHandler(0, 0, 384, 384, "tiles.png"),
 		  textPlayerHandler(" "){
+	fillTypes();
 	load_objectTiles();	
 	players = 0;
 }
@@ -54,7 +55,6 @@ void Map::load(){
 			tileSet.push_back(tile);
 		}
 	}	
-	//std::cout<<"pas2"<<std::endl;
 }
 
 void Map::updateClick(){
@@ -64,49 +64,51 @@ void Map::updateClick(){
 	yRelative = valy/scaleY;
 }
 
-void Map::load_objectTiles(){		
-	int typeKey = TYPE_KEY;
-	int typePlayer = TYPE_PLAYER;
-	int typeHeal = TYPE_HEAL;
-	int typeAmmo = TYPE_AMMO;	
-	int typeWeapon = TYPE_WAEPON;
-	int typeTreasure = TYPE_TREASURE;
-	int typeInmovable = TYPE_INMOVABLE;
-	int typeDoor = TYPE_DOOR;
-	int typeWall = TYPE_WALL;
+void Map::fillTypes(){
+	types.insert({0,TYPE_NULL});	
+	types.insert({1,TYPE_WALL_1});
+	types.insert({2,TYPE_WALL_2});
+	types.insert({3,TYPE_WALL_3});	
+	types.insert({4,TYPE_WALL_4});
+	types.insert({5,TYPE_WALL_5});
+	types.insert({6,TYPE_WALL_6});
+	types.insert({7,TYPE_WALL_7});
+	types.insert({8,TYPE_WALL_8});
+	types.insert({9,TYPE_WALL_9});
+	types.insert({10,TYPE_WALL_10});
+	types.insert({11,TYPE_WALL_11});
+	types.insert({12,TYPE_DOOR_1});
+	types.insert({13,TYPE_DOOR_2});
+	types.insert({14,TYPE_DOOR_3});
+	types.insert({15,TYPE_HEAL_1});
+	types.insert({16,TYPE_HEAL_2});
+	types.insert({17,TYPE_HEAL_3});
+	types.insert({18,TYPE_WAEPON_1});
+	types.insert({19,TYPE_WAEPON_2});
+	types.insert({20,TYPE_WAEPON_3});
+	types.insert({21,TYPE_AMMO});
+	types.insert({22,TYPE_PLAYER});
+	types.insert({23,TYPE_INMOVABLE_1});
+	types.insert({24,TYPE_INMOVABLE_2});
+	types.insert({25,TYPE_INMOVABLE_3});
+	types.insert({26,TYPE_INMOVABLE_4});
+	types.insert({27,TYPE_INMOVABLE_5});
+	types.insert({28,TYPE_INMOVABLE_6});
+	types.insert({29,TYPE_TREASURE_1});
+	types.insert({30,TYPE_TREASURE_2});
+	types.insert({31,TYPE_TREASURE_3});
+	types.insert({32,TYPE_TREASURE_4});
+	types.insert({33,TYPE_KEY_1});
+	types.insert({34,TYPE_KEY_2});	
+	types.insert({35,TYPE_KEY_2});
+}
 
+void Map::load_objectTiles(){			
 	int type;
 	int element = 0;	
 	for (int fil = 0; fil < OPTION_ROW; ++fil){
 		for (int col = 0; col < OPTION_COL; ++col){
-			if(element == 0){
-				type = 0;
-			}if((element>0)&&(element<=11)){
-				type = typeWall;
-				typeWall++;
-			}if((element>11)&&(element<=14)){
-				type = typeDoor;
-				typeDoor++;
-			}if((element >14)&&(element<=17)){
-				type = typeHeal;
-				typeHeal++;
-			}if((element >17)&&(element<=20)){
-				type = typeWeapon;
-				typeWeapon++;
-			}if(element ==21){
-				type = typeAmmo;				
-			}if(element ==22){
-				type = typePlayer;				
-			}if((element >22)&&(element<=28)){
-				type = typeInmovable;
-				typeInmovable++;
-			}if((element >28)&&(element<=32)){
-				type = typeTreasure;
-				typeTreasure++;
-			}if((element >32)&&(element<=34)){
-				type = typeKey;
-				typeKey++;
-			}
+			type = types.at(element);
 			Tile tile = Tile(TILE_SIZE*col,TILE_SIZE*fil,type,fil,col);				
 			opt.insert({ type, tile });				
 			element++;
@@ -150,7 +152,6 @@ void Map::putTileMap(){
 				playersPendings++;
 				players--;				
 			}else {
-				std::cout<<typeOri<<":"<<typeDest<<std::endl;				
 				(*it).setType(typeOri);	
 			}
 		}	
@@ -181,13 +182,13 @@ bool Map::getCanExit() const{
 	return canExit;
 }
 
-int Map::getTypebyFilCol(int _fil, int _col){
+int Map::getTypebyFilCol(int _fil, int _col) {
 	for (std::vector<Tile>::iterator it = tileSet.begin() ; it != tileSet.end(); ++it){		    					
 		if((*it).existbyFilCol(_fil,_col)){
 			return (*it).getType();
 		}
 	}
-	return 0;
+	return TYPE_NULL;
 }
 
 void Map::updateModel(){
@@ -233,7 +234,6 @@ void Map::openfromfile(std::string _path,std::string &_file){
 	map = config["model"].as<std::vector<std::vector<int>>>();
 	players = config["players"].as<int>();	
 	playersPendings = 0;
-	//std::cout<<"pase"<<std::endl;
 }
 
 void Map::init(Settings &set, std::string &_name,int _maxplayer,bool create){

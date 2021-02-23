@@ -34,10 +34,7 @@ data/Main.png
 data/Options.png
 data/MainMenuEdit.png
 data/splash.png
-data/nivel.yaml
-data/MainMenu.png
 data/MapMenu.png
-data/OptionsMenu.png
 data/MainCreate.png
 data/Players.png
 data/beamweapon.ttf

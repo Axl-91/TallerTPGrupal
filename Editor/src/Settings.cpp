@@ -23,7 +23,6 @@ void Settings::init(std::string &_mapname){
 
 void Settings::UpdateFiles(){
     maps.clear();
-    std::cout<<path<<std::endl;
     for (const auto & entry : fs::directory_iterator(path)){
         std::string file = entry.path().filename().string();
         std::string token = file.substr(0,file.find("."));
@@ -32,7 +31,6 @@ void Settings::UpdateFiles(){
 }
 
 void Settings::saveChanges(std::vector<std::vector<int>> _map,std::string _mapname){
-    //std::cout<<"guardo"<<std::endl;
     mapname = _mapname;
     YAML::Emitter out;
     YAML::Node doc;

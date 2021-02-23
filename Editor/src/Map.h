@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include "Settings.h"
+#include "Defines.h"
 #include "SDLHandler.h"
 #include "Tile.h"
 #include "TextHandler.h"
@@ -16,8 +17,8 @@ const int OFFSET_X = 200;
 const int OFFSET_Y = 40;
 const int OPTION_ROW = 6;
 const int OPTION_COL = 6;
-const int default_null_tile = 403;
-const int default_tile = 0;
+const int default_null_tile = TYPE_WALL_1;
+const int default_tile = TYPE_NULL;
 
 class Map{
 	private:
@@ -34,6 +35,7 @@ class Map{
 	std::vector<std::vector<int>> map;
 	std::vector<Tile> tileSet;
 	std::map<int, Tile> opt;
+	std::map<int, int> types;
 	std::string name;
 	
 	TTF_Font* font = NULL;
@@ -62,6 +64,7 @@ class Map{
 	int getTypebyFilCol(int _fil, int _col);
 	void createNewMap(int,int,int);
 	void openfromfile(std::string _path,std::string &_file);
+	void fillTypes();
 public:
 	Map();
 	void setRenderer(SDL_Renderer *_renderer)	;

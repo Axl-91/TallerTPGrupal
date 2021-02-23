@@ -392,7 +392,6 @@ void Menu::doActionSave(){
 		sett.saveChanges(map.getMap(),map.getMapName());
 		sett.UpdateFiles();
 		vectorMaps = sett.getMaps();	
-		//mapelement = vectorMaps[0];
 		playerChange = true;
 		break;
 	case SAVE_Q:
@@ -578,11 +577,16 @@ void Menu::pollEventSave(SDL_Event &event){
 void Menu::pollEventPlay(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){
 		switch (event.key.keysym.sym){
-		case SDLK_ESCAPE:
-			menu = MAP;
+		case SDLK_RETURN:
+			menu = MAIN;
+			mapelement = vectorMaps[0];
+			vectorPlayers.begin();
+			playerChange = true;
+			mapname = "";
+			nameChange = true;
 			break;
 		default:
-			menu = MAIN;
+			menu = MAP;
 			break;
 		}
 	}
