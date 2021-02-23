@@ -14,7 +14,7 @@ ShootingRaycaster::ShootingRaycaster(Vector &pos, float &anguloPlayer, Collision
 ShootingRaycaster::~ShootingRaycaster(){}
 
 
-void ShootingRaycaster::crearRay(float &angulo){
+void ShootingRaycaster::makeRay(float &angulo){
 	angRay = angulo;
 
 	raycasterHorizontal();
@@ -133,6 +133,6 @@ void ShootingRaycaster::calcularRayFinal(){
 	distT = distT * cos(angNuevo);
 }
 
-float ShootingRaycaster::getDistancia(){
+float ShootingRaycaster::getDistance(){
     return distT;
 }

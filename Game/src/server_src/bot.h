@@ -9,7 +9,6 @@
 class Bot{
 private:
     size_t ID;
-    // Player_t playerInfo;
     ProtectedQueue<MatchEvent_t> &q;
     AILua lua;
 public:
@@ -17,11 +16,9 @@ public:
         float x, float y, float ang, size_t ID,
         std::vector<std::vector<int>> &lvl);
     void pichula();
-    // void update(Update_t &anUpdate);
     void makeDecision();
     void setID(size_t anID);
     void update(UpdateHandler &uHandler);
-    void setGameMap(std::vector<std::vector<int>> &aVector);
     void updateAPlayerInfo(Player_t &aPlayerInfo);
 };
 

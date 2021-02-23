@@ -16,26 +16,19 @@ void Bot::setID(size_t anID){
 void Bot::makeDecision(){
     MatchEvent_t event;
     event.playerTag = ID;
+    event.event = NO_EVENT;
     lua.makeDecision(event.event);
-    q.push(event);
+    if(event.event != NO_EVENT)
+        q.push(event);
 }
 
 void Bot::updateAPlayerInfo(Player_t &aPlayerInfo){
     lua.update(aPlayerInfo);
 }
 
-void Bot::setGameMap(std::vector<std::vector<int>> &aVector){
-    lua.setGameMap(aVector);
-}
-
 void Bot::update(UpdateHandler &uHandler){
     Player_t playerInfo;
     uHandler.getPlayerChange(playerInfo);    
 
-    // if(uHandler.mapChangeAvailable()){
-    //     Map_change_t aMapChange;
-    //     uHandler.getMapChange(aMapChange);
-    //     AILua.sendMapUpdate(aMapChange);
     lua.update(playerInfo);  
 }
-

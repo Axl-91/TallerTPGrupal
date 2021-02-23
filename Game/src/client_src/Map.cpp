@@ -320,11 +320,30 @@ void Map::openDoor(int posX, int posY){
 	}
 }
 
-// void Map::closeDoor(int posX, int posY){
-// 	int x = (posX - longTile/2) / longTile;
-// 	int y = (posY - longTile/2) / longTile;
-// 	std::pair <int, int> pos={posY,posX};
-// 	int type = mapDoors[pos].objType;
+struct PointsStruct{
+	size_t points;
+	size_t ID;
+};
 
-// 	map[x][y]=type;
-// }
+bool myfunction(PointsStruct i, PointsStruct j) { return (i.points > j.points); }
+
+void Map::getPointsVector(size_t ID, size_t points){
+	std::vector<PointsStruct> aux = {};
+	PointsStruct auxStruct;
+	auxStruct.ID = ID;
+	auxStruct.points = points;
+	aux.push_back(auxStruct);
+
+	for(auto &player:mapEnemies){
+		auxStruct.ID = player.second.playerInfo.ID;
+		auxStruct.points = player.second.playerInfo.score;
+		aux.push_back(auxStruct);
+	}
+
+	std::sort(aux.begin(), aux.end(), myfunction);
+	 
+	for(int i = 0; i < aux.size(); i++){
+		std::cout << i << ")\t score.ID: " << aux[i].ID << std::endl;
+		std::cout << "\t score.points: " << aux[i].points << std::endl;
+	}
+}

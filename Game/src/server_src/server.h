@@ -1,5 +1,5 @@
 #ifndef SERVER__T
-#define SERVER
+#define SERVER__T
 
 #include <sstream>
 #include <string>
@@ -7,7 +7,7 @@
 #include "thacceptor.h"
 #include "menuHandler.h"
 #include "matchHandler.h"
-
+#include "AILuaScript.h"
 class Server{
 private:
     MenuHandler menuHandler;

@@ -2,89 +2,45 @@
 #include <algorithm>
 #include <chrono>
 
-
-
-std::vector<std::vector<int>> lvl2 = {
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,001,000,000,334,000,000,000,133,000,201,000,121,004,121,121,121,000,434},
-	{434,000,000,000,000,111,000,000,000,133,000,000,000,121,121,121,121,121,000,434},
-	{434,000,000,000,000,135,000,000,000,000,000,000,000,121,121,121,121,121,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,101,102,000,000,000,000,000,000,000,141,142,143,144,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,434,434,350,434,434,434,434,434,434,434,434,434,434,353,434,434,434,434,434},
-	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
-	{434,000,002,000,000,000,000,000,352,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,121,121,434,000,000,000,000,000,003,000,000,121,121,434},
-	{434,000,113,113,000,000,134,121,434,000,000,113,113,000,000,000,000,135,121,434},
-	{434,000,113,113,000,000,000,000,434,434,000,113,113,000,000,000,000,000,000,434},
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-};
-
-std::vector<std::vector<int>> lvl3 = {
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,001,000,000,000,000,000,141,000,000,201,000,000,000,002,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,000,000,434,434,434},
-	{434,000,000,000,000,000,004,000,434,434,000,000,000,000,000,003,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-};
-
-std::vector<std::vector<int>> lvl4 = {
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
-	{434,000,000,001,000,000,000,000,000,000,000,201,000,000,002,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,434,434,434,434,434,000,004,434,434,434,434,000,000,003,434,434,434},
-	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
-	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
-};
-std::map<std::string, std::vector<std::vector<int>>> lvls = {
-        {"map1",lvl2},
-        {"map2",lvl3},
-        {"map3",lvl4}
-};
-Match::Match(std::string &matchName, std::string &chosenMap,
-                    int &numberOfPlayers, int &numberOfBots):
+Match::Match(std::string &matchName, //std::string &chosenMap,
+                    int &numberOfPlayers, int &numberOfBots,
+                    std::vector<std::vector<int>>& lvls):
     is_running(true),
     name(matchName),
-    lvl1(lvls.at(chosenMap)),
+    lvl1(lvls),
+    // lvl1(lvls.at(chosenMap)),
     connectionNumber(0),
     game(players, lvl1, uQ, missileUQ),
-    bot(q, 110, 110, 0, 0, lvls.at(chosenMap)),
+    // bot(q, 110, 110, 0, 0, lvls.at(chosenMap)),
     matchEventReader(players, q)
 {
-    initializeInitPosition(lvls.at(chosenMap));
-    initializeMaps();
+    initializeInitPosition(lvl1);
+    // initializeMaps();
     // lvl1 = availableMaps.at(chosenMap);
 
-    if(numberOfBots != 0){
+    std::cout << "number of bots " << numberOfBots << std::endl;
+
+    // if(numberOfBots != 0){
+    for(int i = 0; i < numberOfBots ; i++){
         initPos auxPos;
         auxPos = initPositions.at(connectionNumber % 4);
-        ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
+        ServerPlayer auxPlayer(412, 412, 0, connectionNumber);
         players.emplace(connectionNumber, std::move(auxPlayer));
-    } 
+
+        Bot* bot = new Bot(q, 412, 412, 0, 0, lvl1);
+        bot->setID(connectionNumber);
+        bots[connectionNumber] = bot;
         connectionNumber++;
+    }
 
     matchEventReader();
 }
 
-void Match::initializeMaps(){
-    availableMaps.emplace("map1", lvl2);
-    availableMaps.emplace("map2", lvl3);
-    availableMaps.emplace("map3", lvl4);
-}
+// void Match::initializeMaps(){
+//     availableMaps.emplace("map1", lvl2);
+//     availableMaps.emplace("map2", lvl3);
+//     availableMaps.emplace("map3", lvl4);
+// }
 
 void Match::initializeInitPosition(std::vector<std::vector<int>> &map){
     int	rows=map.size();
@@ -120,6 +76,9 @@ Match::~Match(){
         }
         delete(user.second);
     }
+    for (auto bot:bots){
+        delete(bot.second);
+    }
     if(!matchEventReader.isDead()){
         matchEventReader.stop();
     }
@@ -136,7 +95,8 @@ void Match::run(){
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
             // readEvents();
-            // bot.makeDecision();
+            for(auto &bot:bots)
+                bot.second->makeDecision();
             game.update();
             updateUsers();
             
@@ -160,8 +120,8 @@ void Match::updateUsers(){
     while (uQ.empty()==false){
         for(auto user:users)
             user.second->update(uQ.front());
-        // for(auto bot:bots)
-        //     bot.second->update(uQ.front());
+        for(auto bot:bots)
+            bot.second->update(uQ.front());
         // bot.update(uQ.front());
         uQ.pop();
     }

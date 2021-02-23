@@ -30,6 +30,7 @@ void ClientTransmitter::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
+    std::cout << "sali de loop de transmitter" << std::endl;
 }
 
 void ClientTransmitter::sendGameEvent(){

@@ -34,6 +34,7 @@ void ClientReceiver::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     }
+    std::cout << "sali de loop de receiver" << std::endl;
 }
 
 bool ClientReceiver::matchFinished(){

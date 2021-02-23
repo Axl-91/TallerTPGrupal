@@ -26,9 +26,14 @@ void GameUpdater::run(){
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
+    std::cout << "sali de loop de gameupdater" << std::endl;
 }
 void GameUpdater::stop(){
     is_running = false;
+}
+
+bool GameUpdater::isRunning(){
+    return is_running;
 }
 
 void GameUpdater::update(){

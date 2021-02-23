@@ -25,6 +25,7 @@ public:
     void operator()();
     virtual void run() override;
     void stop();
+    bool isRunning();
 };
 
 #endif

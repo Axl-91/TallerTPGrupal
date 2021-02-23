@@ -38,9 +38,8 @@ private:
     std::vector<std::vector<int>> lvl2;
     std::atomic<bool> is_running;
     ProtectedQueue<Update_t> gameUpdateQ;
-
-    void runMenu(int &winLargo, int &winAlto);
-    void runGame(int &winLargo, int &winAlto);
+    void runMenu(int &winLargo, int &winAlto, bool &fullScreen);
+    void runGame(int &winLargo, int &winAlto, bool &fullScreen);
 };
 
 #endif

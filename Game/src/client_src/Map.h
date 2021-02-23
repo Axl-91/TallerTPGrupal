@@ -5,6 +5,8 @@
 #include <SDL2/SDL_image.h>
 #include <vector>
 #include <map>
+#include <algorithm>    // std::sort scores
+
 #include "../common_src/Vector.h"
 #include "Walls.h"
 #include "Objects.h"
@@ -66,6 +68,7 @@ public:
 
 	void insertDoor(int x, int y, int doorType);
 	void openDoor(int x, int y);
+	void getPointsVector(size_t ID, size_t points);
 };
 
 #endif

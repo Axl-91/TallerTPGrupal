@@ -8,9 +8,7 @@
 #define CLIENT_TIME_STEP 1000/60
 
 //cuando se inicializa, inicia SDL
-Game::Game(int &largo, int &alto, 
-			std::vector<std::vector<int>> &lvl, 
-			ProtectedQueue<Update_t> &q): 
+Game::Game(int &largo, int &alto, bool &fullscreen, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q):
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),
@@ -41,6 +39,10 @@ Game::Game(int &largo, int &alto,
 	}
 
 	SDL_SetWindowTitle(window, title);
+
+	if(fullscreen)
+		setFullScreen();
+
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 	mapGame.setRenderer(renderer);
 	player.setRenderer(renderer);
@@ -75,10 +77,10 @@ void Game::run(){
     } catch (const std::exception &e){
         std::cerr << "Excepcion en Game.run()" << std::endl;
         std::cerr << e.what() << std::endl;
-        return;
     } catch (...) { // ellipsis: catch anything
         printf("Unknown error!");
     } 
+    std::cout << "sali de loop de game" << std::endl;
 }
 
 void Game::updatePlayer(Player_t &p){
@@ -101,10 +103,10 @@ void Game::fill(){
 	SDL_SetRenderDrawColor(renderer, 0x33, 0x33, 0x33, 0xFF);
     SDL_RenderFillRect(renderer, &rect);
 }
-/*
+
 void Game::setFullScreen(){
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-}*/
+}
 
 void Game::quitGame(){
 	gameOver = true;
@@ -130,6 +132,10 @@ SDL_Renderer* Game::getRenderer(){
 }
 
 Game::~Game(){
+	if(gameUpdater.isRunning()){
+		gameUpdater.stop();
+		gameUpdater.join();
+	}
 	if (renderer){
 		SDL_DestroyRenderer(renderer);
 		renderer = nullptr;

@@ -70,10 +70,4 @@ void MatchEventReader::readEvent(){
     if(event.event==PLAYER_STOP_OPENING_DOOR)
         aPlayer.stopOpenDoor();
 
-    // if(event.event==GAME_QUIT)
-    //     return false;
-    // if(event.event==PICHIWAR)
-    //     return false;
-    // if(event.event==JOIN)
-    //     return false;
 }

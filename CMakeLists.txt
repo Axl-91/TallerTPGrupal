@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(Wofenstein3D)
+project(Wolfenstein3D)
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++17")
+
+find_package(Lua 5.3 REQUIRED)
+include_directories(${LUA_INCLUDE_DIR})
 
 file(GLOB COMMON_SRC_FILES "Game/src/common_src/*.cpp")
 file(GLOB CLIENT_SRC_FILES "Game/src/client_src/*.cpp")
@@ -23,13 +26,6 @@ Editor/src/TextHandler.cpp
 Editor/src/SDLHandler.cpp
 )
 
-#add_subdirectory(${PROJECT_SOURCE_DIR}src/client_src)
-#add_subdirectory(${PROJECT_SOURCE_DIR}src/common_src)
-#add_subdirectory(${PROJECT_SOURCE_DIR}src/server_src)
-
-#add_executable (server src/server_src/main.cpp)
-#add_executable (client src/client_src/main.cpp)
-
 find_package(PkgConfig)
 pkg_check_modules(YAMLCPP REQUIRED yaml-cpp>=0.5)
 
@@ -42,7 +38,7 @@ add_executable (client Game/src/client_src/main.cpp ${CLIENT_SRC_FILES} ${COMMON
 add_executable (editor Editor/src/main.cpp)
 
 target_link_libraries(client SDL2 SDL2_image SDL2_ttf SDL2_mixer pthread)
-target_link_libraries(server pthread)
+target_link_libraries(server pthread ${YAMLCPP_LIBRARIES} ${LUA_LIBRARIES})
 target_link_libraries(editor sdl-lib SDL2 SDL2_image SDL2_ttf ${YAMLCPP_LIBRARIES})
 
 install(DIRECTORY

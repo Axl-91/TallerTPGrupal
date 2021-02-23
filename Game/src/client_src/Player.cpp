@@ -165,6 +165,7 @@ void Player::updateInfo(Player_t &p){
 	shootingState = p.shootingState;
 
 	currentWeapon->shoot(shootingState);
+	mapPlayer.getPointsVector(ID, score);
 }
 
 size_t Player::getID(){
@@ -174,7 +175,6 @@ size_t Player::getID(){
 void Player::render(int largoWin, int altoWin){
 	renderRaycaster();
 	renderObjects();
-//	std::cout<<"rederizo"<<std::endl;
 	currentWeapon->render(largoWin, altoWin);
 	hudGame.render(largoWin, altoWin);
 	hudGame.renderHealth(health);

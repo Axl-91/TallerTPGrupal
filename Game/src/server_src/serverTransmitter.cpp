@@ -26,16 +26,8 @@ void ServerTransmitter::sendString(std::string &aString){
     socket.send(aux.str().data(), aux.str().length());   
 }
 
-// void printVector(std::vector<std::vector<uint32_t>> lvl1){
-//     for(auto v:lvl1){
-//         for(auto num:v)
-//             std::cout << num;
-//         std::cout << std::endl;
-//     }
-// }
 
 void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
-    // printVector(lvl1);
     uint32_t filas = lvl1.size();
     filas = htonl(filas);
     uint32_t columnas = lvl1[0].size();
@@ -49,7 +41,6 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
 
     for(auto v:lvl1){
         for(auto celda:v){
-            std::cout << celda;
             celda = htonl(celda);
             socket.send((char *) &celda, SIZE_OF_UINT32);
         }
