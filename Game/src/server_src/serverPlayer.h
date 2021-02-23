@@ -10,8 +10,6 @@
 
 #define PLAYER_STEP 3
 
-
-
 //
 //Clase que se ocupa de la logica del jugador
 class ServerPlayer{

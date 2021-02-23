@@ -2,7 +2,6 @@
 #include <iostream>
 #include "../common_src/types.h"
 
-
 #define COEF_SHOOTING_DISTANCE_DIVISOR 512
 #define COEF_SHOOTING_DISTANCE_OFFSET 0.2
 #define SHOOTING_SIZE 40
@@ -10,21 +9,12 @@
 #define TIME_TO_RESPAWN 2000
 #define MAX_BLOOD_HEAL_PLAYER 10
 
-
 #define PLAYER_RADIUS 16
 #define PLAYER_ROTATE_STEP PI/72
 #define PLAYER_MAX_HEALT 100
 #define PLAYER_INITIAL_AMMO 8
 #define PLAYER_INITIAL_LIFES 3
 #define PLAYER_KNIFE_REACH 100
-
-//funcion para debugear
-int toGrados(float radiales){
-	float anguloGrados = (radiales / PI) * 180;
-	int anguloInt = round(anguloGrados);
-	return anguloInt;
-}
-
 
 ServerPlayer::ServerPlayer(float x, float y, float a, size_t newID)
 {
@@ -80,16 +70,13 @@ ServerPlayer::ServerPlayer(ServerPlayer&& other):
 	openingDoor = other.openingDoor;
 }
 
-
 bool ServerPlayer::updateIsAvailable(){
 	return updateAvailable;
 }
 
 void ServerPlayer::updated(){
 	updateAvailable = false;
-//	shootingState = SHOOTING_STATE_WAIT;
 }
-
 
 void ServerPlayer::rotate(){
 	if (rotateOrientation != ROTATE_QUIET)
@@ -164,10 +151,11 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	float anguloObj = pos.getAngle(enemyPos);
 	float difAng = ang - anguloObj;
 
-	if(abs(difAng)>PI/2){
+	if(difAng>PI/2 && difAng<3*PI/2){
 		coef = 0;
 		return;
 	}
+
 
 	if (difAng < -PI){
 		difAng += 2*PI;

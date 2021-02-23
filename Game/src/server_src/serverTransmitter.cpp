@@ -7,7 +7,6 @@ ServerTransmitter::ServerTransmitter(Socket &socket):
 ServerTransmitter::ServerTransmitter(ServerTransmitter&& other):
     socket(other.socket)
 {}
-    // ~Transmitter(){}
 void ServerTransmitter::sendTag(update_tag_t &aTag){
     std::unique_lock<std::mutex> lock(m);
 

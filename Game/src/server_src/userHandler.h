@@ -42,7 +42,6 @@ private:
     void changeUserName(std::string &newName);
     void setChosenMap(std::string &newName);
     void setNumberOfBots(std::string &newName);
-    // void initializeMaps();
     void initializeMap(std::string &name);
     void getDirectoryFiles();
     std::vector<std::string> fileNameVector;

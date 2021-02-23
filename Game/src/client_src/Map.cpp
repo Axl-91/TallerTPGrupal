@@ -341,9 +341,4 @@ void Map::getPointsVector(size_t ID, size_t points){
 	}
 
 	std::sort(aux.begin(), aux.end(), myfunction);
-	 
-	for(int i = 0; i < aux.size(); i++){
-		std::cout << i << ")\t score.ID: " << aux[i].ID << std::endl;
-		std::cout << "\t score.points: " << aux[i].points << std::endl;
-	}
 }
