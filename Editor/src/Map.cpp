@@ -1,7 +1,7 @@
 #include "Map.h"
 #include "Defines.h"
 
-Map::Map():mapHandler(0, 0, 384, 384, "tiles.png"),
+Map::Map():mapHandler(0, 0, 384, 384, "Media/MenuEditor/tiles.png"),
 		  textPlayerHandler(" "){
 	fillTypes();
 	load_objectTiles();	
