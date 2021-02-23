@@ -6,7 +6,7 @@
 #include "Rectangle.h"
 #include "../../common_src/types.h"
 
-#define CAP 8 //Capacidad de nodos y arbol
+#define CAP 16 //Capacidad de nodos y arbol
 
 class QuadNode{
     std::string name;

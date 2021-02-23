@@ -11,7 +11,7 @@ class CollisionMap{
    	int largoBloque;
 	int rows;
 	int cols;
-	std::vector<std::vector<int>> &map;
+	std::vector<std::vector<int>> map;
 	Quadtree collisionTree;
 
 public:

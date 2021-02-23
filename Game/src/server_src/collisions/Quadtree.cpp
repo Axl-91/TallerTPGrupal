@@ -4,7 +4,7 @@
 #include "Collidable.h"
 
 //se crea cargando el mapa
-Quadtree::Quadtree(int rows, int cols, std::vector<std::vector<int>> map, int cellWidth):
+Quadtree::Quadtree(int rows, int cols, std::vector<std::vector<int>> &map, int cellWidth):
 root(0, 0, cols*cellWidth, rows*cellWidth, "root", 1, cellWidth){
     int i,j;
     Collidable *maker;
@@ -17,6 +17,8 @@ root(0, 0, cols*cellWidth, rows*cellWidth, "root", 1, cellWidth){
             if(map[i][j]!=0){
                 if((aux=maker->makeCollidable(j, i, cellWidth, map[i][j]))!=NULL)
                 root.insert(aux);
+                if(map[i][j]<300)
+                    map[i][j] = 0;
             }
         }
     }

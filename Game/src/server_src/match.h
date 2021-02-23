@@ -40,17 +40,16 @@ public:
     std::string getName();
     bool started();
     void delete_finish_clients(std::vector<User*>& threads);
-    // bool readEvents();
     void getPlayerIndex(size_t index);
 
 private:
+    int playersOnMap;
     std::map<size_t, initPos> initPositions;
     ProtectedQueue<MatchEvent_t> q;
     std::map<size_t, User*> users;
     std::map<size_t, ServerPlayer> players;
     std::atomic<bool> is_running;
     std::atomic<bool> gameStarted;
-    // std::stringstream game;
     std::string name;
     std::vector<std::vector<int>> lvl1;
     UpdateHandler updateHandler;

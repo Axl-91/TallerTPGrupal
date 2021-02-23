@@ -12,8 +12,7 @@
 class Quadtree{
     QuadNode root;
 public:
-    Quadtree(int rows, int cols, std::vector<std::vector<int>> map, int cellWidth);
-
+    Quadtree(int rows, int cols, std::vector<std::vector<int>> &map, int cellWidth);
     Quadtree(){}
     ~Quadtree();
     void query();
@@ -22,7 +21,6 @@ public:
     void insert(float x, float y, int cellWidth, int value);
     void erase(float x, float y);
     void erase(circle pPos);
-
 };
 
 

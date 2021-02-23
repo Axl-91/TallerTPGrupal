@@ -9,8 +9,6 @@
 #include "../common_src/types.h"
 
 #include "ShootingRaycaster.h"
-// #include "svRaycaster.h"
-// #include "svMap.h"
 #include "CollisionMap.h"
 #include "AILuaScript.h"
 

@@ -10,7 +10,6 @@ Bot::Bot(ProtectedQueue<MatchEvent_t> &aQueue,
 void Bot::setID(size_t anID){
     lua.setID(anID);
     ID = anID;
-    // ID = anID;
 }
 
 void Bot::makeDecision(){

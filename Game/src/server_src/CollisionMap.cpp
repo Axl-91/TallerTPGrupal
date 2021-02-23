@@ -3,7 +3,7 @@
 CollisionMap::CollisionMap(std::vector<std::vector<int>> &lvl):
 largoBloque(64),
 map(lvl),
-collisionTree(lvl.size(),lvl[0].size(),lvl,largoBloque){
+collisionTree(map.size(),map[0].size(),map,largoBloque){
 	rows=lvl.size();
 	cols=lvl[0].size();
 }

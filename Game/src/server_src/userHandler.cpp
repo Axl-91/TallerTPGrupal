@@ -89,9 +89,8 @@ void UserHandler::changeUserName(std::string &newName){
 
 void UserHandler::newMatch(std::string &matchName){
     initializeMap(chosenMap);
-    matches.newMatch(matchName/*, chosenMap*/, numberOfPlayers, numberOfBots,
+    matches.newMatch(matchName, numberOfPlayers, numberOfBots,
     map);
-    // lvls.at(chosenMap));
 }
 
 void UserHandler::addUserToMatch(std::string matchName){
@@ -105,17 +104,12 @@ void UserHandler::addUserToMatch(std::string matchName){
 
 void UserHandler::sendMaps(){
 
-    std::cout << "entro a send maps()" << std::endl;
     getDirectoryFiles();
     std::stringstream mapsList;
     for(auto fileName:fileNameVector)
         mapsList << fileName <<std::endl;
 
     std::cout << mapsList.str() << std::endl;
-    // mapsList << "map1
-    //             map2
-    //             map3";
-    // maps.getMapList(mapsList);
     menu_event_t anEvent;
     anEvent.event = GET_MAPS;
     anEvent.info = mapsList.str();

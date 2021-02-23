@@ -175,7 +175,7 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 		return;
 	}
 
-	if(currentWP == WP_KNIFE){
+	if(currentWeapon->getType() == KNIFE){
 		if(ad > PLAYER_KNIFE_REACH)
 			coef = 0;
 		else
@@ -184,6 +184,7 @@ void ServerPlayer::getDamageCoefficient(ServerPlayer &enemy, float &coef, float 
 	}
 	float coefDistance = COEF_SHOOTING_DISTANCE_OFFSET + exp(-ad/COEF_SHOOTING_DISTANCE_DIVISOR);
 	float coefAng = exp(-op/COEF_SHOOTING_ANGLE_DIVISOR);
+
 	coef = coefDistance * coefAng;
 
 	if(coef > 1)

@@ -2,32 +2,28 @@
 #include <algorithm>
 #include <chrono>
 
-Match::Match(std::string &matchName, //std::string &chosenMap,
+Match::Match(std::string &matchName,
                     int &numberOfPlayers, int &numberOfBots,
                     std::vector<std::vector<int>>& lvls):
     is_running(true),
     name(matchName),
     lvl1(lvls),
-    // lvl1(lvls.at(chosenMap)),
-    connectionNumber(0),
+    connectionNumber(1),
     game(players, lvl1, uQ, missileUQ),
-    // bot(q, 110, 110, 0, 0, lvls.at(chosenMap)),
+    playersOnMap(0),
     matchEventReader(players, q)
 {
     initializeInitPosition(lvl1);
-    // initializeMaps();
-    // lvl1 = availableMaps.at(chosenMap);
 
-    std::cout << "number of bots " << numberOfBots << std::endl;
-
-    // if(numberOfBots != 0){
     for(int i = 0; i < numberOfBots ; i++){
         initPos auxPos;
-        auxPos = initPositions.at(connectionNumber % 4);
-        ServerPlayer auxPlayer(412, 412, 0, connectionNumber);
+        
+        auxPos = initPositions.at(connectionNumber % playersOnMap);
+
+        ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
         players.emplace(connectionNumber, std::move(auxPlayer));
 
-        Bot* bot = new Bot(q, 412, 412, 0, 0, lvl1);
+        Bot* bot = new Bot(q, auxPos.x, auxPos.y, 0, 0, lvl1);
         bot->setID(connectionNumber);
         bots[connectionNumber] = bot;
         connectionNumber++;
@@ -36,32 +32,16 @@ Match::Match(std::string &matchName, //std::string &chosenMap,
     matchEventReader();
 }
 
-// void Match::initializeMaps(){
-//     availableMaps.emplace("map1", lvl2);
-//     availableMaps.emplace("map2", lvl3);
-//     availableMaps.emplace("map3", lvl4);
-// }
-
 void Match::initializeInitPosition(std::vector<std::vector<int>> &map){
     int	rows=map.size();
 	int cols=map[0].size();
-    int playersCounter=0;;
 
 	for (int i = 0; i < rows; ++i){
 		for (int j = 0; j < cols; ++j){
 			if(map[i][j]>INITIAL_PLAYER_POS_OFFSET && map[i][j]<MAX_PLAYERS){
                 initPos pos={j*64+32, i*64+32};
-
-                std::cout<<"map: "<<map[i][j]<<std::endl;
-
-                std::cout<<"pos: "<<std::endl;
-                std::cout<<"x: "<<pos.x<<" y: "<<pos.y<<std::endl;
-
-                initPositions.emplace(playersCounter, pos);
-                playersCounter++;
-                if(map[i][j]<300)
-                    map[i][j]=0;
-
+                initPositions.emplace(map[i][j], pos);
+                playersOnMap++;
             }
         }
     }
@@ -94,7 +74,6 @@ void Match::run(){
     try{
         while(is_running){
             auto initial = std::chrono::high_resolution_clock::now();
-            // readEvents();
             for(auto &bot:bots)
                 bot.second->makeDecision();
             game.update();
@@ -122,7 +101,6 @@ void Match::updateUsers(){
             user.second->update(uQ.front());
         for(auto bot:bots)
             bot.second->update(uQ.front());
-        // bot.update(uQ.front());
         uQ.pop();
     }
     while (missileUQ.empty()==false){
@@ -155,19 +133,17 @@ void Match::welcomeUser(User* user){
 // Carga al usuario y sus atributos iniciales al contenedor
 void Match::addUser(User* user){
     initPos auxPos;
-    auxPos = initPositions.at(connectionNumber % 4);
+    auxPos = initPositions.at(connectionNumber% playersOnMap);
 
     ServerPlayer auxPlayer(auxPos.x, auxPos.y, 0, connectionNumber);
     players.emplace(connectionNumber, std::move(auxPlayer));
     user->setProtectedMatchEventQueue(&q);
-    // user->setProtectedMatchEventQueue(&q);
     user->setID(connectionNumber);
     users[connectionNumber] = user;
 
     user->start();
 
     welcomeUser(user);
-    std::cout << "se guardo el ID: "  << connectionNumber << std::endl;
     connectionNumber++;
 
 }
