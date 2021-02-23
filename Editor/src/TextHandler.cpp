@@ -25,7 +25,7 @@ void TextHandler::setRenderer(SDL_Renderer* renderer, SDL_Color color){
 
 void TextHandler::getTextures(SDL_Renderer* renderer, SDL_Color color){
     SDL_Surface* surfaceText;
-	TTF_Font* font = TTF_OpenFont("beamweapon.ttf", 28);
+	TTF_Font* font = TTF_OpenFont("Media/MenuEditor/beamweapon.ttf", 28);
 
     for(size_t i=0; i<vectorText.size(); i++){
         surfaceText = TTF_RenderText_Blended(font, vectorText[i].c_str(), color);

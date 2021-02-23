@@ -1,15 +1,15 @@
 #ifndef _DEFINES_
 #define _DEFINES_
 
-#define MENU_SPLASH "splash.png"
-#define MENU_MAIN "Main.png"
-#define MENU_CREATE "MainCreate.png"
-#define MENU_EDIT "MainMenuEdit.png"
-#define MENU_OPTION "Options.png"
-#define MENU_SEL "SelectionMenu.png"
-#define MENU_MAP "MapMenu.png"
-#define MENU_SAVE "Save.png"
-#define MENU_PLAY "Players.png"
+#define MENU_SPLASH "Media/MenuEditor/splash.png"
+#define MENU_MAIN "Media/MenuEditor/Main.png"
+#define MENU_CREATE "Media/MenuEditor/MainCreate.png"
+#define MENU_EDIT "Media/MenuEditor/MainMenuEdit.png"
+#define MENU_OPTION "Media/MenuEditor/Options.png"
+#define MENU_SEL "Media/MenuEditor/SelectionMenu.png"
+#define MENU_MAP "Media/MenuEditor/MapMenu.png"
+#define MENU_SAVE "Media/MenuEditor/Save.png"
+#define MENU_PLAY "Media/MenuEditor/Players.png"
 
 #define  TYPE_NULL  0
 #define TYPE_WALL_1 417

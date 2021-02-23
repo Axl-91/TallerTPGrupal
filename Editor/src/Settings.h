@@ -15,7 +15,7 @@ private:
     int rows, columns,count;   
     std::string mapname;
     std::string filename = "nivel.yaml";
-    std::string cfg = "config.yaml";
+    std::string cfg = "Media/MenuEditor/config.yaml";
     std::string path;
    	std::vector<std::string> maps;
     std::vector<int> players;

@@ -26,7 +26,7 @@ Menu::Menu() : splash(0, 0, 320, 240, MENU_SPLASH),
 
 void Menu::createText(){
 	SDL_Surface *surfaceText;
-	TTF_Font *font = TTF_OpenFont("beamweapon.ttf", 28);
+	TTF_Font *font = TTF_OpenFont("Media/MenuEditor/beamweapon.ttf", 28);
 
 	surfaceText = TTF_RenderText_Blended(font, "On", yellow);
 	on = SDL_CreateTextureFromSurface(menuRenderer, surfaceText);
