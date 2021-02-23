@@ -14,29 +14,22 @@ sudo apt-get install
 	liblua5.3-dev
 	(yaml-cpp) https://github.com/jbeder/yaml-cpp/releases/tag/yaml-cpp-0.6.3
 
-## Para correr Wolfestein3D:
+## Para instalar Wolfestein3D:
 	
 	mkdir build
 	cd build
-	cmake ../ClientePrueba
-	make install
-	
-Para ejecutar servidor:
-	
-	./server <puerto/servicio>
-	
-Para ejecutar cliente:
-
-	./client <ip/hostname> <port/service>
-
-### Para correr Editor:
-	
-	mkdir buildEditor
-	cd buildEditor
 	cmake ..
 	make install
 	
-Para ejecutar servidor:
+Para ejecutar el servidor:
+	
+	./server <port/service>
+	
+Para ejecutar el cliente:
+
+	./client <ip/hostname> <port/service>
+
+Para ejecutar el editor:
 	
 	./editor 
 	
