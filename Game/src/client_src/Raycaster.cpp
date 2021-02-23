@@ -150,16 +150,16 @@ float Raycaster::getDistance(){
 }
 
 void Raycaster::render(int &pos){
-	int largoCol = 1;
+	int longCol = 1;
 	int longTile = mapRay.getLongTiles();
-	float largoPared = (longTile * LONG_SCREEN) / distT;
+	float longWall = (longTile * LONG_SCREEN) / distT;
 	//Desde donde voy a empezar a dibujar la pared
-	float offset = (HIGH_SCREEN/2) - (largoPared/2);
+	float offset = (HIGH_SCREEN/2) - (longWall/2);
 
-	int largoParedInt = largoPared;
+	int longWallInt = longWall;
 	int offsetInt = offset;
 	
-	mapRay.renderWall(pos, offsetInt, largoCol, largoParedInt);
+	mapRay.renderWall(pos, offsetInt, longCol, longWallInt);
 }
 
 Raycaster::~Raycaster(){}
