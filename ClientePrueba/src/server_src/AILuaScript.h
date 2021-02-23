@@ -14,10 +14,10 @@ class AILuaScript{
 public:
     AILuaScript();
     ~AILuaScript();
-    void getEvent(event_t &event);
-    bool isVisible(Vector &posPlayer, Vector &posEnemy, float &isVisible);
-    void isVisible2(float x, float y, float ex, float ey, float angPlayer);
-    void printHello();
+    void getIdleEvent(event_t &event, bool &rotating, bool &moving);
+    bool isVisible(Vector &posPlayer, Vector &posEnemy, float &playerAng);
+    void getEvent(event_t &event, float &angPlayer,float &relativeAng, float &dist,
+                            bool &shooting, bool &rotating, bool &moving);
 private:
     lua_State *L;
 };

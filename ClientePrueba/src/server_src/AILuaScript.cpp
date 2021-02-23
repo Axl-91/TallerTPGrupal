@@ -1,45 +1,54 @@
 #include "AILuaScript.h"
 
-bool CheckLua(lua_State *L, int r)
-{
-	if (r != LUA_OK)
-	{
+bool CheckLua(lua_State *L, int r){
+	if (r != LUA_OK){
 		std::string errormsg = lua_tostring(L, -1);
-		std::cout << errormsg << std::endl;
+		std::cerr << errormsg << std::endl;
 		return false;
 	}
 	return true;
 }
 
 AILuaScript::AILuaScript(){
-    // clientId(clientId){
     L = luaL_newstate();
     luaL_openlibs(L);
-    if(CheckLua(L, luaL_dofile(L, "./Media/Lua/AILuaAction.lua")))
-	{      
-        std::cout << "lo abri" << std::endl;
-    }
-    // luaL_dofile(L, "Lua/AILuaAction.lua");
+    (CheckLua(L, luaL_dofile(L, "./Media/Lua/AILuaAction.lua")));
+
 }
 AILuaScript::~AILuaScript(){}
 
+void AILuaScript::getIdleEvent(event_t &event, bool &rotating, bool &moving){
+    lua_getglobal(L, "getIdleEvent");
+    lua_pushboolean(L, rotating);
+    lua_pushboolean(L, moving);    
 
-// AILuaScript::LuaScript(std::string& clientId, std::string& scriptFile) :
-    // clientId(clientId){
-    // L = luaL_newstate();
-    // luaL_openlibs(L);
+    if(CheckLua(L, lua_pcall(L, 2, 3, 0))){
+        event = (event_t)lua_tonumber(L, -3);
+        rotating = (bool)lua_toboolean(L, -2);
+        moving = (bool)lua_toboolean(L, -1);
+    }
+}
 
-    // luaL_dofile(L, scriptFile.c_str());
-    // luaL_dofile(L, scriptFile.c_str());
-
-void AILuaScript::getEvent(event_t &event){
+void AILuaScript::getEvent(event_t &event, float &playerAng,float &enemyAng, float &dist,
+                            bool &shooting, bool &rotating, bool &moving){
     
     lua_getglobal(L, "getEvent");
-    // lua_pushnumber(L, ang);
+    lua_pushnumber(L, playerAng);
+    lua_pushnumber(L, enemyAng);
+    lua_pushnumber(L, dist);
+    lua_pushboolean(L, shooting);
+    lua_pushboolean(L, rotating);
+    lua_pushboolean(L, moving);
+
+    if(CheckLua(L, lua_pcall(L, 6, 4, 0))){
+        event = (event_t)lua_tonumber(L, -4);
+        shooting = (bool)lua_toboolean(L, -3);
+        rotating = (bool)lua_toboolean(L, -2);
+        moving = (bool)lua_toboolean(L, -1);
+    }
 }
 
 bool AILuaScript::isVisible(Vector &posPlayer, Vector &posEnemy, float &angPlayer){
-    std::cout << "entre a isVisible" << std::endl;
     lua_getglobal(L, "objIsVisible");
     lua_pushnumber(L, posPlayer.getX());
     lua_pushnumber(L, posPlayer.getY());
@@ -51,18 +60,4 @@ bool AILuaScript::isVisible(Vector &posPlayer, Vector &posEnemy, float &angPlaye
         return (bool)lua_toboolean(L, -1);
     }
     return false;
-
-}
-
-
-void AILuaScript::printHello(){
-    std::cout << "entre a print" << std::endl;
-    // lua_getglobal(L, "helloWorld");
-    if(CheckLua(L, luaL_dofile(L, "Media/Lua/AILuaAction.lua")))
-	{      
-        std::cout << "lo abri" << std::endl;
-    }
-    // luaL_dofile(L, "Lua/AILuaAction.lua");
-    // lua_pushstring (L, "helloWorld");
-    // lua_pcall(L, 0, 0, 0);
 }

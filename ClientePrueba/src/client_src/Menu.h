@@ -88,7 +88,7 @@ private:
 	bool hasCreateGame = false;
 	bool hasJoinGame = false;
 	bool hasQuitGame = false;
-	bool isFullScreen = false;
+	bool &isFullScreen;
 
 	bool validName = true;
 	bool validMatch = true;
@@ -175,7 +175,8 @@ public:
 	Menu(ClientReceiver &r, 
 		ClientTransmitter &t,
 		int &l, 
-		int &a);
+		int &a,
+		bool &fullscreen);
 	void render();
 	void pollEvent();
 	bool quitGame();

@@ -49,15 +49,15 @@ void Client::run(){
         while(is_running == true){            
             int winLargo = 640;
             int winAlto = 480;
-                
-            runMenu(winLargo, winAlto);
+            bool fullscreen = false;
+            runMenu(winLargo, winAlto, fullscreen);
 
             if(!gameStarted){
                 is_running = false;
                 continue;
             }
 
-            runGame(winLargo, winAlto);
+            runGame(winLargo, winAlto, fullscreen);
         }
     }  catch (const SocketError &e){
         std::cerr << "Excepcion en client.run()" << std::endl;
@@ -70,8 +70,8 @@ void Client::run(){
     } 
 }
 
-void Client::runMenu(int &winLargo, int &winAlto){
-    Menu menu(receiver, transmitter, winLargo, winAlto);
+void Client::runMenu(int &winLargo, int &winAlto, bool &fullscreen){
+    Menu menu(receiver, transmitter, winLargo, winAlto, fullscreen);
 
     while (!menu.quitGame() && !menu.createGame() && !menu.joinGame()){
     // while (!menu.leftMenu()){
@@ -82,7 +82,7 @@ void Client::runMenu(int &winLargo, int &winAlto){
     gameStarted = menu.joinedMatch();
 }
 
-void Client::runGame(int &winLargo, int &winAlto){
+void Client::runGame(int &winLargo, int &winAlto, bool &fullScreen){
     receiver();
     while(!receiver.isInMatch()){
         sleep(1/60);
@@ -90,7 +90,7 @@ void Client::runGame(int &winLargo, int &winAlto){
     eHandler();
     transmitter();
 
-    Game game(winLargo, winAlto, lvl2, gameUpdateQ);
+    Game game(winLargo, winAlto, fullScreen, lvl2, gameUpdateQ);
     game();
 
     while (!game.isGameOver() && is_running == true){

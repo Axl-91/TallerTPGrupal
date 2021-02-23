@@ -8,7 +8,7 @@
 #define CLIENT_TIME_STEP 1000/60
 
 //cuando se inicializa, inicia SDL
-Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
+Game::Game(int &largo, int &alto, bool &fullscreen, std::vector<std::vector<int>> &lvl, ProtectedQueue<Update_t> &q): 
 	mapGame(lvl),
 	player(mapGame),
 	uQ(q),
@@ -41,6 +41,10 @@ Game::Game(int &largo, int &alto, std::vector<std::vector<int>> &lvl, ProtectedQ
 	}
 
 	SDL_SetWindowTitle(window, title);
+
+	if(fullscreen)
+		setFullScreen();
+		
 	SDL_RenderSetLogicalSize(renderer, largoReal, altoReal);
 	mapGame.setRenderer(renderer);
 	// if(uQ.isEmpty()){
@@ -123,10 +127,10 @@ void Game::fill(){
 	SDL_SetRenderDrawColor(renderer, 0x33, 0x33, 0x33, 0xFF);
     SDL_RenderFillRect(renderer, &rect);
 }
-/*
+
 void Game::setFullScreen(){
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-}*/
+}
 
 void Game::quitGame(){
 	gameOver = true;

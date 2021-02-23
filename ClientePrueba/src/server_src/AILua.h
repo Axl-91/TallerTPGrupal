@@ -31,7 +31,6 @@ private:
     int health;
     size_t lifes;
     size_t score;
-    // Map &mapPlayer;
     size_t ID;
     shooting_state_t shootingState;
     player_weapons_t currentWeapon;
@@ -39,19 +38,13 @@ private:
     std::map<size_t, Player_t> enemies;
     void updateEnemy(Player_t &p);
     void updatePlayerInfo(Player_t &aPlayerInfo);
-    void getDamageCoefficient(Player_t &enemy, float &coef, float wallDist);
     void renderRaycaster();
     bool checkForEnemiesInSight(event_t &event, Vector &aux);
     std::vector<Player_t> orderEnemies(Vector &pos);
-    bool objIsVisible(Vector &pos);
-    void changeToAttackMode();
-    bool attackModeOn;
-    void follow(event_t &event, float &relativeAng, float &distProyPlane);
     bool rotating;
-    void noEnemyAtSight(event_t &event);
     bool moving;
+    bool shooting;
     float distBuffer[320];
-    // svMap mapPlayer;
     CollisionMap mapPlayer;
     AILuaScript lua;
 public:
@@ -59,8 +52,6 @@ public:
     void setID(size_t anID);
     void update(Player_t &p);
     void makeDecision(event_t &event);
-    void setGameMap(std::vector<std::vector<int> > &aVector);
-    // void sendMapUpdate(Map_change_t &aMapChange);
 };
 
 #endif

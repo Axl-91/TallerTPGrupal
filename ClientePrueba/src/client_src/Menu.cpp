@@ -8,12 +8,14 @@
 Menu::Menu(ClientReceiver &r, 
 			ClientTransmitter &t, 
 			int &l, 
-			int &a): 
+			int &a,
+			bool &fullscreen): 
 	// menuEventQ(eQ),
 	receiver(r),
 	transmitter(t),
 	winLength(l),
 	winHeight(a),
+	isFullScreen(fullscreen),
 	menuFiles("Media/Menu/menusFiles.txt"),
 	vectorMenus(menuFiles.getVectorFiles()),
 	menusHandler(vectorMenus, longWin, highWin),

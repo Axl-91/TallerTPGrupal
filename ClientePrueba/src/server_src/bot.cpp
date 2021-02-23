@@ -26,10 +26,6 @@ void Bot::updateAPlayerInfo(Player_t &aPlayerInfo){
     lua.update(aPlayerInfo);
 }
 
-void Bot::setGameMap(std::vector<std::vector<int>> &aVector){
-    lua.setGameMap(aVector);
-}
-
 void Bot::update(UpdateHandler &uHandler){
     Player_t playerInfo;
     uHandler.getPlayerChange(playerInfo);    
