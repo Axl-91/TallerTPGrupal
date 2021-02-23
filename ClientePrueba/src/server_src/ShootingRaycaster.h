@@ -26,8 +26,8 @@ private:
     void calcularRayFinal();
 public:
     ShootingRaycaster(Vector &pos, float &anguloPlayer, CollisionMap &map);
-    void crearRay(float &anguloRay);
-    float getDistancia();
+    void makeRay(float &angleRay);
+    float getDistance();
     ~ShootingRaycaster();
 };
 

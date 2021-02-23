@@ -31,12 +31,13 @@ void MatchHandler::getMatchList(std::stringstream &matchesList){
     }
 }
 
-void MatchHandler::newMatch(std::string &matchName, std::string &chosenMap,
-                    int &numberOfPlayers, int &numberOfBots){
+void MatchHandler::newMatch(std::string &matchName, //std::string &chosenMap,
+                    int &numberOfPlayers, int &numberOfBots,
+                    std::vector<std::vector<int>> &lvls){
     // checkear que no haya nombre ocupado
     std::cout << "_________ bots:" << numberOfBots << std::endl;
-    Match *match = new Match(matchName, chosenMap, numberOfPlayers, 
-                            numberOfBots);
+    Match *match = new Match(matchName, /*chosenMap,*/ numberOfPlayers, 
+                            numberOfBots, lvls);
     (*match)();
     matches[match->getName()] = match;
 }

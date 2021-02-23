@@ -8,7 +8,6 @@ Server::Server(const char *service):
 void Server::run(){
     std::string input;
     bool keep_accepting = true;
-
     acceptor();
     
     while (keep_accepting){

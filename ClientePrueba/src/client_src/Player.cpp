@@ -78,6 +78,9 @@ void Player::renderRaycaster(){
 	Raycaster raycaster(vectorPos, angPlayer, mapPlayer);
 	float angleRay = angPlayer-PI/6;
 
+    std::cout << "angleray: " << angleRay << std::endl;
+    std::cout << "ang: " << angPlayer << std::endl;
+
 	for (int pos=0; pos < LONG_SCREEN; ++pos){
 
 		if (angleRay < 0){
@@ -90,6 +93,10 @@ void Player::renderRaycaster(){
 		distBuffer[pos] = raycaster.getDistance();
 		angleRay += PI/960;
 	}
+    std::cout << "distBuffer[0]" << distBuffer[0] << std::endl; 
+    std::cout << "distBuffer[1]" << distBuffer[1] << std::endl; 
+    std::cout << "distBuffer[5]" << distBuffer[5] << std::endl; 
+    std::cout << "distBuffer[100]" << distBuffer[100] << std::endl; 
 }
 
 void Player::setID(size_t newID){

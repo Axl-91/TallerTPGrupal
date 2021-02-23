@@ -59,8 +59,8 @@ float ServerGame::shootRaycaster(ServerPlayer &player){
 		anguloRay -=2*PI;
 	}
 
-	raycaster.crearRay(anguloRay);
-	return raycaster.getDistancia();
+	raycaster.makeRay(anguloRay);
+	return raycaster.getDistance();
 }
 
 

@@ -16,8 +16,10 @@ void Bot::setID(size_t anID){
 void Bot::makeDecision(){
     MatchEvent_t event;
     event.playerTag = ID;
+    event.event = NO_EVENT;
     lua.makeDecision(event.event);
-    q.push(event);
+    if(event.event != NO_EVENT)
+        q.push(event);
 }
 
 void Bot::updateAPlayerInfo(Player_t &aPlayerInfo){

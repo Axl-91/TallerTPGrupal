@@ -19,6 +19,5 @@ ShootingRaycaster.cpp
 matchEventHandler.cpp
 bot.cpp
 AILua.cpp
-svRaycaster.cpp
-svMap.cpp
+AILuaScript.cpp
 )

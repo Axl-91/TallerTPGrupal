@@ -1,12 +1,69 @@
 #include "userHandler.h"
 
+namespace fs = std::filesystem;
+
+// std::vector<std::vector<int>> lvl2 = {
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,133,000,201,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,133,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,101,102,000,000,000,000,000,000,000,141,142,143,144,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,434,434,350,434,434,434,434,434,434,434,434,434,434,353,434,434,434,434,434},
+// 	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,352,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,121,121,434,000,000,000,000,000,000,000,000,121,121,434},
+// 	{434,000,113,113,000,000,134,121,434,000,000,113,113,000,000,000,000,135,121,434},
+// 	{434,000,113,113,000,000,000,000,434,434,000,113,113,000,000,000,000,000,000,434},
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// };
+
+// std::vector<std::vector<int>> lvl3 = {
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,141,000,000,201,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,000,000,434,434,434},
+// 	{434,000,000,000,000,000,000,000,434,434,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// };
+
+// std::vector<std::vector<int>> lvl4 = {
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,201,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,000,101,102,111,112,113,121,133,134,135,141,142,143,144,000,000,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,434,434,434,434,434,000,000,434,434,434,434,000,000,000,434,434,434},
+// 	{434,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,434},
+// 	{434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434,434},
+// };
+// std::map<std::string, std::vector<std::vector<int>>> lvls = {
+//         {"map1",lvl2},
+//         {"map2",lvl3},
+//         {"map3",lvl4}
+// };
+
 UserHandler::UserHandler(User *user, MatchHandler &matches):
     is_running(true),
     matches(matches),
     user(user),
     numberOfPlayers(1),
     numberOfBots(0)
-{}
+{
+    mapMaxPlayers = 1;
+    // initializeMaps();
+}
 
 UserHandler::~UserHandler(){
     if(user != NULL){
@@ -14,6 +71,12 @@ UserHandler::~UserHandler(){
         user = NULL;
     }
 }
+
+// void UserHandler::initializeMaps(){
+//     availableMaps.emplace("map1", lvl2);
+//     availableMaps.emplace("map2", lvl3);
+//     availableMaps.emplace("map3", lvl4);
+// }
 
 void UserHandler::operator()(){
     this->start();
@@ -56,17 +119,19 @@ void UserHandler::processInput(){
         setChosenMap(event.info);
     }
     if(event.event == SELECT_MAX_PLAYER){
-        setMaxPlayers(event.info);
+        setMatchMaxPlayers(event.info);
     }
     if(event.event == SELECT_NUMBER_OF_BOTS){
         setNumberOfBots(event.info);
     }
-
 }
 
-void UserHandler::setMaxPlayers(std::string &maxPlayers){
+void UserHandler::setMatchMaxPlayers(std::string &maxPlayers){
     std::stringstream auxStream(maxPlayers);
+    
     auxStream >> numberOfPlayers;
+    if(numberOfPlayers > mapMaxPlayers)
+        numberOfPlayers = mapMaxPlayers;
 }
 
 void UserHandler::setNumberOfBots(std::string &botsNumber){
@@ -83,7 +148,10 @@ void UserHandler::changeUserName(std::string &newName){
 }
 
 void UserHandler::newMatch(std::string &matchName){
-    matches.newMatch(matchName, chosenMap, numberOfPlayers, numberOfBots);
+    initializeMap(chosenMap);
+    matches.newMatch(matchName/*, chosenMap*/, numberOfPlayers, numberOfBots,
+    map);
+    // lvls.at(chosenMap));
 }
 
 void UserHandler::addUserToMatch(std::string matchName){
@@ -96,8 +164,17 @@ void UserHandler::addUserToMatch(std::string matchName){
 }
 
 void UserHandler::sendMaps(){
+
+    std::cout << "entro a send maps()" << std::endl;
+    getDirectoryFiles();
     std::stringstream mapsList;
-    mapsList << "map1\nmap2\nmap3";
+    for(auto fileName:fileNameVector)
+        mapsList << fileName <<std::endl;
+
+    std::cout << mapsList.str() << std::endl;
+    // mapsList << "map1
+    //             map2
+    //             map3";
     // maps.getMapList(mapsList);
     menu_event_t anEvent;
     anEvent.event = GET_MAPS;
@@ -120,4 +197,20 @@ bool UserHandler::is_dead(){
 
 void UserHandler::stop(){
     is_running = false;
+}
+
+void UserHandler::initializeMap(std::string &name){
+    YAML::Node config = YAML::LoadFile("Media/Maps/" + name + ".yaml");
+
+    mapMaxPlayers = config["players"].as<int>();
+	map = config["model"].as<std::vector<std::vector<int>>>();
+}
+
+void UserHandler::getDirectoryFiles(){
+    std::string path = "Media/Maps";
+    for (const auto & entry : fs::directory_iterator(path)){
+        std::string file = entry.path().filename().string();
+        std::string token = file.substr(0,file.find("."));
+        fileNameVector.push_back(token);
+    }
 }

@@ -49,7 +49,7 @@ void ServerTransmitter::sendMap(std::vector<std::vector<int>> &lvl1){
 
     for(auto v:lvl1){
         for(auto celda:v){
-            std::cout << celda;
+            // std::cout << celda;
             celda = htonl(celda);
             socket.send((char *) &celda, SIZE_OF_UINT32);
         }

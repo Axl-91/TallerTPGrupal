@@ -1,5 +1,6 @@
 #include "AILua.h"
 
+
 AILua::AILua(float x, float y, float a, size_t anID,
             std::vector<std::vector<int>> &lvl):
             mapPlayer(lvl){
@@ -9,6 +10,8 @@ AILua::AILua(float x, float y, float a, size_t anID,
     ang=a;
     ID=anID;
     attackModeOn = false;
+    moving = false;
+    rotating = false;
 }
 
 void AILua::update(Player_t &p){
@@ -45,29 +48,30 @@ void AILua::setGameMap(std::vector<std::vector<int> > &aVector){
 }
 
 void AILua::makeDecision(event_t &event){
-    if(!attackModeOn){
-        switch(decision){
-        case 1:
-            // event = PLAYER_START_ROTATING_LEFT;
-            decision++;
-            break;
-        case 0:
-            event = PLAYER_START_MOVING_FORWARD;
-            decision++;
-            break;
-        case 2:
-            event = PLAYER_START_ROTATING_RIGHT;
-            decision++;
-            break;
-        case 3:
-            event = PLAYER_STOP_MOVING;
-            decision++;
-            break;
-        default:
-            decision=0;
+    attackModeOn = false;
+    Vector aux;
+    if(checkForEnemiesInSight(event, aux) == true){
+        Vector posPropia(position.x, position.y);
+        float distance = posPropia.getDistance(aux);
+        float relativeAng = posPropia.getAngle(aux);
+        if(relativeAng < 0)
+            relativeAng += 2*PI;
+        if(relativeAng >= 2*PI)
+            relativeAng -= 2*PI;
+
+        std::cout << "posPerro " << posPropia << std::endl;
+        std::cout << "posPlayer: " << aux << std::endl;
+        std::cout << "relativeAng: " << relativeAng *180/PI << std::endl;
+        std::cout << "angPerro: " << ang *180/PI << std::endl <<std::endl<< std::endl;
+
+        follow(event, relativeAng, distance);
+        // std::cout << "vi a alguien" << std::endl;
+        attackModeOn = true;
+        } 
+        if(!attackModeOn){
+            // noEnemyAtSight(event);
         }
-    }
-    checkForEnemiesInSight(event);
+
     return;
 }
 
@@ -95,9 +99,9 @@ std::vector<Player_t> AILua::orderEnemies(Vector &pos){
 
     for (auto enemy : enemies){
         Vector posObjeto(enemy.second.x, enemy.second.y);
-        if (!objIsVisible(posObjeto)){
-            continue;
-        }
+        // if (!objIsVisible(posObjeto)){
+        //     continue;
+        // }
         // Vector auxPos(enemy.second.x, enemy.second.y);
         // std::cout << "AI.Lua. 91. enemyID:" << enemy.second.ID << std::endl;
         addVectDist(vectorAux, enemy.second, pos);
@@ -105,80 +109,132 @@ std::vector<Player_t> AILua::orderEnemies(Vector &pos){
     return vectorAux;
 }
 
-void AILua::checkForEnemiesInSight(event_t &event){
+bool AILua::checkForEnemiesInSight(event_t &event, Vector &auxVector){
     // std::cout << "AI.Lua. 97, tamño de enemies: " << enemies.size() << std::endl;
     renderRaycaster();
     int one = 1;
     Vector posPlayer = Vector(position.x, position.y);
     std::vector<Player_t> orderedEnemies;
-    // orderedEnemies=mapPlayer.orderEnemies(posPlayer);
     orderedEnemies = orderEnemies(posPlayer);
-    // std::cout << "AI.Lua. 104" << std::endl;
-
     for (int obj = 0; obj < orderedEnemies.size(); ++obj){
-        Vector posObjeto(orderedEnemies[obj].x, orderedEnemies[obj].y);
-        if (!objIsVisible(posObjeto)){
+        Vector enemyPos(orderedEnemies[obj].x, orderedEnemies[obj].y);
+        
+        if (!lua.isVisible(posPlayer, enemyPos, ang)){
+            // if(distObj < 60){
+            //     event = PLAYER_START_ROTATING_RIGHT;
+            // }
             continue;
         }
-        // int tipoObj = mapPlayer.getTipoObj(obj);
-        float distObj = posPlayer.getDistance(posObjeto);
 
-        //Coordenadas en Y
-        //Coordenadas en X
-        float dx = position.x - posObjeto.getX();
-    // std::cout << "AI.Lua. 118 dx:" << dx << std::endl;
-        float dy = position.y - posObjeto.getY();
-    // std::cout << "AI.Lua. 120 dy:" << dy << std::endl;
-        float angObj = atan2(dy, dx) - ang; // distancia relativa del obj desde centro de vision
-    // std::cout << "angObj:" << angObj << std::endl;
-        float distProyPlane = (LONG_SCREEN/2) / tan(PI/6);
-        float xo = tan(angObj) * distProyPlane;
-    // std::cout << "xo:" << xo << std::endl;
+            // std::cout << "position.x: " << x << std::endl;
+            // std::cout << "position.y: " << x << std::endl;
+        Vector pos(position.x, position.y);
+        float distance = pos.getDistance(enemyPos); 
+        float anguloObj = pos.getAngle(enemyPos);
+        float difAng = ang - anguloObj;
 
-        float x = round((LONG_SCREEN/2) + xo);
-        int longTiles = mapPlayer.getLongTiles();
-        float sizeObj = (longTiles * LONG_SCREEN) / distObj;
-        float longObj = sizeObj / longTiles;
-
-        int count = 0;
-        for (int i = 0; i < longTiles; ++i){
-            for (int j = 0; j < longObj; ++j){
-                int z = round(x)+((i)*longObj)+j;
-                if (distBuffer[z] > distObj){
-                    event = PLAYER_SHOOT;
-                    // std::cout << "_______________________________AI.Lua. 137" << std::endl;
-                    // std::cout << "Veo a " << orderedEnemies[obj].ID << count << std::endl;
-                    changeToAttackMode();
-                    follow(event, xo);
-                    return;
-                }
-            }
+        if (difAng < -PI){
+            difAng += 2*PI;
         }
-        attackModeOn = false;
+        if (difAng > PI){
+            difAng -= 2*PI;
+        }
+        if(difAng<0)
+            difAng=-difAng;
+        //se forma un triangulo rectangulo con posicion del jugador,
+        //direccion de tiro y posicion del enemigo
+        float op=sin(difAng)*distance; //cateto opuesto
+        float ad=cos(difAng)*distance; //cateto adyacente
+ 
+        // std::cout << "distbuffer[0]: " << distBuffer[0] << std::endl;
+
+            // std::cout << "anguloObj: " << anguloObj << std::endl;
+        int x = (int)(30*PI/180 + anguloObj- ang ) / 0.1875;
+            // std::cout << "x: " << x << std::endl;
+        if(distance < distBuffer[x] && distance < distBuffer[x+1]){
+            // std::cout << "distance: " << distance << std::endl;
+            // std::cout << "distbuffer[x]: " << distBuffer[x] << std::endl;
+            // std::cout << "distbuffer[x+1]: " << distBuffer[x+1] << std::endl;
+            float auxFloat = enemyPos.getX();
+            auxVector.setX(auxFloat);
+            auxFloat = enemyPos.getY();
+            auxVector.setY(auxFloat);
+            return true;
+        }
+        
+            std::cout << "___________________________________" << std::endl;
+
     }
+        return false;
+    // noEnemyAtSight(event);
 }
 
-void AILua::follow(event_t &event, float &xo){
-    if(xo <= -100){
-        event = PLAYER_START_ROTATING_LEFT;
-        rotating = true;
-    }
-    else if(xo > 100){
+void AILua::noEnemyAtSight(event_t &event){
+    // std::cout << "no hay nadie en vista" << std::endl;
+    if(!rotating){
         event = PLAYER_START_ROTATING_RIGHT;
-        rotating = true;
+        rotating = true;    
     }
-    else {
-        if(!rotating)
+    else if(!moving){
+        event = PLAYER_START_MOVING_FORWARD;
+        moving = true;
+    }    
+}
+
+void AILua::follow(event_t &event, float &relativeAng, float &dist){
+    std::cout << "relativeAng - angPerro:" <<  (180/PI)*(relativeAng - ang) << std::endl;
+    // if(dist < 100){
+
+    //         event = PLAYER_SHOOT;
+    //         return;
+        
+    // }
+    // else 
+    if(relativeAng-ang >= 15*PI/180){
+        if(moving){
             event = PLAYER_STOP_MOVING;
-        event = PLAYER_STOP_ROTATING;
+            moving = false;
+        } else{
+
+            event = PLAYER_START_ROTATING_RIGHT;
+            rotating = true;
+        }
+    }
+    // else 
+    else if(relativeAng-ang <= -15*PI/180){
+        if(moving){
+            event = PLAYER_STOP_MOVING;
+            moving = false;
+        } else{
+            event = PLAYER_START_ROTATING_LEFT;
+            rotating = true;
+        }
+    }
+    else if(relativeAng-ang < 15*PI/180 && relativeAng-ang > -15*PI/180){
+        std::cout << "entro a centro " << std::endl;
+        if(rotating){
+            event = PLAYER_STOP_ROTATING;
+            rotating = false;
+        }
+        else{
+            event = PLAYER_START_MOVING_FORWARD;
+            moving = true;
+        }
     }
     return;
 }
 
+
 void AILua::renderRaycaster(){
     Vector vectorPos(position.x, position.y);
-    svRaycaster raycaster(vectorPos, ang, mapPlayer);
+    // std::cout << "x: " << position.x << std::endl;
+    // std::cout << "y: " << position.y << std::endl;
+    ShootingRaycaster raycaster(vectorPos, ang, mapPlayer);
+    // svRaycaster raycaster(vectorPos, ang, mapPlayer);
     float angleRay = ang - PI/6;
+
+    // std::cout << "angleray: " << angleRay << std::endl;
+    // std::cout << "ang: " << ang << std::endl;
 
     for (int pos=0; pos < LONG_SCREEN; ++pos){
 
@@ -191,16 +247,20 @@ void AILua::renderRaycaster(){
         distBuffer[pos] = raycaster.getDistance();
         angleRay += PI/960;
     }
+    // std::cout << "distBuffer[0]" << distBuffer[0] << std::endl; 
+    // std::cout << "distBuffer[1]" << distBuffer[1] << std::endl; 
+    // std::cout << "distBuffer[5]" << distBuffer[5] << std::endl; 
+    // std::cout << "distBuffer[100]" << distBuffer[100] << std::endl; 
 }
-bool AILua::objIsVisible(Vector &posObj){
+bool AILua::objIsVisible(Vector &posEnemy){
     /*Visibilidad hacia izq y derecha en radiales
     serian 30 grados pero agrego 5 mas para que
     se vea mas el sprite del objeto */
     float gVis = 35.0/180.0;
     float visible = PI * gVis;
 
-    float dx = posObj.getX() - position.x;
-    float dy = posObj.getY() - position.y;
+    float dx = posEnemy.getX() - position.x;
+    float dy = posEnemy.getY() - position.y;
 
     float angleObj = atan2(dy, dx);
     float difAng = ang - angleObj;

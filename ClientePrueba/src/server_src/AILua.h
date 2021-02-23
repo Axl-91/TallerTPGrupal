@@ -5,11 +5,15 @@
 #include <map>
 #include <vector>
 
+
 #include "../common_src/types.h"
 #include "../common_src/Circle.h"
 #include "ShootingRaycaster.h"
-#include "svRaycaster.h"
-#include "svMap.h"
+// #include "svRaycaster.h"
+// #include "svMap.h"
+#include "CollisionMap.h"
+#include "AILuaScript.h"
+
 #define SHOOTING_SIZE 100
 #define COEF_SHOOTING_DISTANCE_DIVISOR 512
 #define COEF_SHOOTING_DISTANCE_OFFSET 0.2
@@ -37,15 +41,19 @@ private:
     void updatePlayerInfo(Player_t &aPlayerInfo);
     void getDamageCoefficient(Player_t &enemy, float &coef, float wallDist);
     void renderRaycaster();
-    void checkForEnemiesInSight(event_t &event);
+    bool checkForEnemiesInSight(event_t &event, Vector &aux);
     std::vector<Player_t> orderEnemies(Vector &pos);
     bool objIsVisible(Vector &pos);
     void changeToAttackMode();
     bool attackModeOn;
-    void follow(event_t &event, float &xo);
+    void follow(event_t &event, float &relativeAng, float &distProyPlane);
     bool rotating;
+    void noEnemyAtSight(event_t &event);
+    bool moving;
     float distBuffer[320];
-    svMap mapPlayer;
+    // svMap mapPlayer;
+    CollisionMap mapPlayer;
+    AILuaScript lua;
 public:
     AILua(float x, float y, float ang, size_t ID, std::vector<std::vector<int>> &lvl);
     void setID(size_t anID);

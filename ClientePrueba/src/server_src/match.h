@@ -24,8 +24,9 @@ struct initPos{
 class Match : public Thread
 {
 public:
-    Match(std::string &matchName, std::string &chosenMap,
-                    int &numberOfPlayers, int &numberOfBots);
+    Match(std::string &matchName,// std::string &chosenMap,
+                    int &numberOfPlayers, int &numberOfBots,
+                    std::vector<std::vector<int>> &lvls);
     ~Match();
     void addUser();
     virtual void run() override;
@@ -44,11 +45,9 @@ public:
 
 private:
     std::map<size_t, initPos> initPositions;
-    // ProtectedMatchEventQueue q;
     ProtectedQueue<MatchEvent_t> q;
     std::map<size_t, User*> users;
     std::map<size_t, ServerPlayer> players;
-    std::map<std::string, std::vector<std::vector<int>>> availableMaps;
     std::atomic<bool> is_running;
     std::atomic<bool> gameStarted;
     // std::stringstream game;
@@ -61,7 +60,9 @@ private:
     void initializeInitPosition();
     void initializeMaps();
     void welcomeUser(User* user);
-    Bot bot;
+
+    std::map<size_t, Bot*> bots;
+    // Bot bot;
     MatchEventReader matchEventReader;
 };
 
