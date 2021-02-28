@@ -32,7 +32,8 @@ Para ejecutar el cliente:
 Para ejecutar el editor:
 	
 	./editor 
-	
+
+## [Manuales](https://drive.google.com/drive/folders/1VW-EPqXIucWQge4ju8_OZWhA2whqlhI9?usp=sharing)
 
 ## Grupo 14
 
