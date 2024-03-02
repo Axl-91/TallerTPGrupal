@@ -1,8 +1,0 @@
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/install/strip.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/install.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/list_install_components.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/rebuild_cache.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/edit_cache.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/client.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/install/local.dir
-/home/ari/Desktop/FIUBA/TallerTPGrupal/ClientePrueba/build/CMakeFiles/server.dir
